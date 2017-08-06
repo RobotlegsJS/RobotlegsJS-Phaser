@@ -1,6 +1,10 @@
 RobotlegsJS Phaser Extension
 ===
 
+[![Build Status](https://secure.travis-ci.org/RobotlegsJS/RobotlegsJS-Phaser.svg?branch=master)](https://travis-ci.org/RobotlegsJS/RobotlegsJS-Phaser)
+[![Code Climate](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/badges/gpa.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser)
+[![Test Coverage](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/badges/coverage.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/coverage)
+
 Integrate [RobotlegsJS](https://github.com/goodgamestudios/RobotlegsJs)
 framework with [Phaser](http://phaser.io).
 
