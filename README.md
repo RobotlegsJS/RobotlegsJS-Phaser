@@ -17,7 +17,7 @@ Usage
 import "reflect-metadata";
 
 import { Context, IContext, MVCSBundle } from "robotlegs";
-import { PhaserBundle, ContextStateManager } from "robotlegsjs-phaser";
+import { PhaserBundle, ContextStateManager } from "@robotlegsjs/robotlegsjs-phaser";
 
 import { Boot } from "./game/states/Boot";
 import { Preload } from "./game/states/Preload";
