@@ -1,40 +1,44 @@
+/// <reference path="../node_modules/phaser-ce/typescript/phaser.d.ts" />
+
 import "reflect-metadata";
 
-import PIXI = require('pixi.js');
+import { Context, IContext, MVCSBundle } from "robotlegs";
+import { PhaserBundle, ContextStateManager } from "@robotlegsjs/robotlegsjs-phaser";
 
-import { Context, MVCSBundle } from "robotlegs";
-import { ContextView, PixiBundle } from "../src";
+import { StateKey } from "./constants/StateKey";
 
-import { MyConfig } from "./config/MyConfig";
-import { CircleView } from "./view/CircleView";
+import { Boot } from "./states/Boot";
+import { Preload } from "./states/Preload";
+import { GameTitle } from "./states/GameTitle";
+import { Main } from "./states/Main";
+import { GameOver } from "./states/GameOver";
 
-class Main {
+import { GameConfig } from "./config/GameConfig";
+import { StateMediatorConfig } from "./config/StateMediatorConfig";
 
-    stage: PIXI.Container;
-    renderer: PIXI.CanvasRenderer | PIXI.WebGLRenderer;
-    context: Context;
+class Game extends Phaser.Game {
 
-    constructor () {
-        this.renderer = PIXI.autoDetectRenderer(800, 600, {});
-        this.stage = new PIXI.Container();
+    private _context: IContext;
 
-        this.context = new Context();
-        this.context.install(MVCSBundle, PixiBundle).
-            configure(new ContextView((<any>this.renderer).plugins.interaction)).
-            configure(MyConfig).
-            initialize();
+    constructor() {
 
-        this.stage.addChild(new CircleView())
+        super(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.AUTO);
 
-        document.body.appendChild(this.renderer.view);
+        this._context = new Context();
+        this._context.install(MVCSBundle, PhaserBundle)
+            .configure(new ContextStateManager(this.state))
+            .configure(StateMediatorConfig)
+            .configure(GameConfig)
+            .initialize();
+
+        this.state.add(StateKey.BOOT, Boot, false);
+        this.state.add(StateKey.PRELOAD, Preload, false);
+        this.state.add(StateKey.GAME_TITLE, GameTitle, false);
+        this.state.add(StateKey.MAIN, Main, false);
+        this.state.add(StateKey.GAME_OVER, GameOver, false);
+
+        this.state.start(StateKey.BOOT);
     }
-
-    render = () => {
-        this.renderer.render(this.stage);
-        window.requestAnimationFrame(this.render);
-    }
-
 }
 
-let main = new Main();
-main.render();
+new Game();
