@@ -21,10 +21,10 @@ export class StateMediatorConfig implements IConfig {
     public stateMediatorMap: IStateMediatorMap;
 
     public configure(): void {
-        this.mapstateMediators();
+        this.mapStateMediators();
     }
 
-    private mapstateMediators(): void {
+    private mapStateMediators(): void {
         this.stateMediatorMap.map(Boot).toMediator(BootMediator);
         this.stateMediatorMap.map(Preload).toMediator(PreloadMediator);
         this.stateMediatorMap.map(GameTitle).toMediator(GameTitleMediator);
