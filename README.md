@@ -19,12 +19,16 @@ import "reflect-metadata";
 import { Context, IContext, MVCSBundle } from "robotlegs";
 import { PhaserBundle, ContextStateManager } from "@robotlegsjs/robotlegsjs-phaser";
 
-import { Boot } from "./game/states/Boot";
-import { Preload } from "./game/states/Preload";
-import { GameTitle } from "./game/states/GameTitle";
-import { Main } from "./game/states/Main";
-import { GameOver } from "./game/states/GameOver";
-import { StateKey } from "./game/constants/StateKey";
+import { StateKey } from "./constants/StateKey";
+
+import { Boot } from "./states/Boot";
+import { Preload } from "./states/Preload";
+import { GameTitle } from "./states/GameTitle";
+import { Main } from "./states/Main";
+import { GameOver } from "./states/GameOver";
+
+import { GameConfig } from "./config/GameConfig";
+import { StateMediatorConfig } from "./config/StateMediatorConfig";
 
 class Game extends Phaser.Game {
 
@@ -53,6 +57,8 @@ class Game extends Phaser.Game {
 
 new Game();
 ```
+
+[See example](example)
 
 License
 ---
