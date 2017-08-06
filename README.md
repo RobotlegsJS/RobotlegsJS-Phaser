@@ -6,7 +6,7 @@ RobotlegsJS Phaser Extension
 [![Test Coverage](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/badges/coverage.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/coverage)
 [![Greenkeeper badge](https://badges.greenkeeper.io/RobotlegsJS/RobotlegsJS-Phaser.svg)](https://greenkeeper.io/)
 
-Integrate [RobotlegsJS](https://github.com/goodgamestudios/RobotlegsJs)
+Integrate [RobotlegsJS](https://github.com/RobotlegsJS/RobotlegsJS)
 framework with [Phaser](http://phaser.io).
 
 Usage
