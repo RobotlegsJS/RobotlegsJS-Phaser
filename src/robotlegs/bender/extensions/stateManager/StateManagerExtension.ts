@@ -9,7 +9,7 @@ import {
     IContext,
     IExtension,
     IInjector
-} from "robotlegs";
+} from "@robotlegsjs/core";
 
 import { IStateManager } from "./api/IStateManager";
 import { StateManager } from "./impl/StateManager";

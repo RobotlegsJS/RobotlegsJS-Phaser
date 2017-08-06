@@ -11,7 +11,7 @@ import {
     IExtension,
     IInjector,
     ILogger
-} from "robotlegs";
+} from "@robotlegsjs/core";
 
 import { IContextStateManager } from "./api/IContextStateManager";
 import { ContextStateManager } from "./impl/ContextStateManager";

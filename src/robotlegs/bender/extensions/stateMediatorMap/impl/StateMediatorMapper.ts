@@ -8,7 +8,7 @@
 import {
     ILogger,
     ITypeFilter
-} from "robotlegs";
+} from "@robotlegsjs/core";
 
 import { IStateMediatorMapping } from "../api/IStateMediatorMapping";
 import { IStateMediatorConfigurator } from "../dsl/IStateMediatorConfigurator";

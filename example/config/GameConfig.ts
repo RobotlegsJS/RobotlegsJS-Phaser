@@ -1,4 +1,4 @@
-import { injectable, inject, IConfig, IContext } from "robotlegs";
+import { injectable, inject, IConfig, IContext } from "@robotlegsjs/core";
 
 import { GameModel } from "../models/GameModel";
 

@@ -1,4 +1,4 @@
-import { injectable, inject, IConfig } from "robotlegs";
+import { injectable, inject, IConfig } from "@robotlegsjs/core";
 
 import { IStateMediatorMap } from "@robotlegsjs/phaser";
 

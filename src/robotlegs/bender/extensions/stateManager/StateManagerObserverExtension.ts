@@ -10,7 +10,7 @@ import {
     IExtension,
     IInjector,
     ILogger
-} from "robotlegs";
+} from "@robotlegsjs/core";
 
 import { StateRegistry } from "./impl/StateRegistry";
 import { StateManagerObserver } from "./impl/StateManagerObserver";

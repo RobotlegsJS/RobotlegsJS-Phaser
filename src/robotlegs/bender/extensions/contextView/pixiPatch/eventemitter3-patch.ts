@@ -6,7 +6,7 @@
  */
 
 import EventEmitter = require("eventemitter3");
-import { IEvent } from "robotlegs";
+import { IEvent } from "@robotlegsjs/core";
 
 const EventDispatcherMixin = {
 

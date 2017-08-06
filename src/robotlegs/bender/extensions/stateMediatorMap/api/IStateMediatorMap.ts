@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { ITypeMatcher } from "robotlegs";
+import { ITypeMatcher } from "@robotlegsjs/core";
 
 import { IStateMediatorMapper } from "../dsl/IStateMediatorMapper";
 import { IStateMediatorUnmapper } from "../dsl/IStateMediatorUnmapper";

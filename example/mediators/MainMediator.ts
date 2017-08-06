@@ -1,4 +1,4 @@
-import { injectable, inject } from "robotlegs";
+import { injectable, inject } from "@robotlegsjs/core";
 
 import { StateMediator } from "@robotlegsjs/phaser";
 

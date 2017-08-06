@@ -7,7 +7,7 @@
 
 import { injectable } from "inversify";
 
-import { EventDispatcher } from "robotlegs";
+import { EventDispatcher } from "@robotlegsjs/core";
 
 import { IStateHandler } from "../api/IStateHandler";
 import { IStateManager } from "../api/IStateManager";

@@ -8,7 +8,7 @@
 import {
     IBundle,
     IContext
-} from "robotlegs";
+} from "@robotlegsjs/core";
 
 import { ContextStateManagerExtension } from "../../extensions/contextStateManager/ContextStateManagerExtension";
 import { StateManagerExtension } from "../../extensions/stateManager/StateManagerExtension";

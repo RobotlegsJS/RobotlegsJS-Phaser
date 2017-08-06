@@ -2,7 +2,7 @@
 
 import "reflect-metadata";
 
-import { Context, IContext, MVCSBundle } from "robotlegs";
+import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
 import { PhaserBundle, ContextStateManager } from "@robotlegsjs/phaser";
 
 import { StateKey } from "./constants/StateKey";

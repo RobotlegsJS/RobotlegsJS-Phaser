@@ -11,7 +11,7 @@ import {
     guardsApprove,
     instantiateUnmapped,
     ITypeFilter
-} from "robotlegs";
+} from "@robotlegsjs/core";
 
 import { IStateMediatorMapping } from "../api/IStateMediatorMapping";
 

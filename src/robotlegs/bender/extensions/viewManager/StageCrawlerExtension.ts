@@ -10,7 +10,7 @@ import {
     IExtension,
     IInjector,
     ILogger
-} from "robotlegs";
+} from "@robotlegsjs/core";
 
 import { IContextView } from "../contextView/api/IContextView";
 
