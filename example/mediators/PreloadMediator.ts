@@ -1,6 +1,6 @@
 import { injectable } from "robotlegs";
 
-import { StateMediator } from "@robotlegsjs/robotlegsjs-phaser";
+import { StateMediator } from "@robotlegsjs/phaser";
 
 import { Preload } from "../states/Preload";
 

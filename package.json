@@ -1,5 +1,5 @@
 {
-  "name": "@robotlegsjs/robotlegsjs-phaser",
+  "name": "@robotlegsjs/phaser",
   "version": "0.0.1",
   "description": "RobotlegsJS integration with Phaser State Manager",
   "main": "lib/index.js",
