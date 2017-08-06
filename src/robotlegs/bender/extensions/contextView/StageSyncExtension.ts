@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved.
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
@@ -63,10 +63,12 @@ export class StageSyncExtension implements IExtension {
         }
     }
 
+    /*
     private onAddedToStage(event: Event): void {
         // this._contextView.removeEventListener(Event.ADDED_TO_STAGE, this.onAddedToStage);
         this.initializeContext();
     }
+    */
 
     private initializeContext(): void {
         this._logger.debug("Context view is now on stage. Initializing context...");
@@ -74,9 +76,11 @@ export class StageSyncExtension implements IExtension {
         // this._contextView.addEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
     }
 
+    /*
     private onRemovedFromStage(event: Event): void {
         this._logger.debug("Context view has left the stage. Destroying context...");
         // this._contextView.removeEventListener(Event.REMOVED_FROM_STAGE, this.onRemovedFromStage);
         this._context.destroy();
     }
+    */
 }

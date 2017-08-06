@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved.
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
@@ -89,8 +89,6 @@ export class MediatorViewHandler implements IViewHandler {
     }
 
     private getInterestedMappingsFor(item: Object, type: any): IMediatorMapping[] {
-        var mapping: IMediatorMapping;
-
         // we've seen this type before and nobody was interested
         if (this._knownMappings[type] === false)
             return null;

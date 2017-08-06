@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved.
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
@@ -7,8 +7,7 @@
 
 import {
     IBundle,
-    IContext,
-    LogLevel
+    IContext
 } from "robotlegs";
 
 import { ContextViewExtension } from "../../extensions/contextView/ContextViewExtension";

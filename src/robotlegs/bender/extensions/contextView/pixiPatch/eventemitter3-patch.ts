@@ -6,7 +6,6 @@
  */
 
 import EventEmitter = require("eventemitter3");
-import { DisplayObject } from "pixi.js";
 import { IEvent } from "robotlegs";
 
 const EventDispatcherMixin = {
@@ -40,5 +39,5 @@ const EventDispatcherMixin = {
 
 };
 
-Object.assign(DisplayObject.prototype, EventDispatcherMixin);
+Object.assign(PIXI.DisplayObject.prototype, EventDispatcherMixin);
 Object.assign((<any>EventEmitter).prototype, EventDispatcherMixin);

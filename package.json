@@ -1,21 +1,21 @@
 {
-  "name": "robotlegs-pixi",
-  "version": "1.0.0",
-  "description": "PIXI View Integration with RobotlegsJS",
+  "name": "robotlegsjs-phaser",
+  "version": "0.0.1",
+  "description": "RobotlegsJS integration with Phaser State Manager",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.example.config.js",
     "test": "karma start --single-run",
     "mocha": "mocha test/**/*.test.ts --require ts-node/register",
-    "autoformat": "tsfmt -r",
+    "autoformat": "tsfmt --useTsconfig tsconfig.test.json -r",
     "clean-up": "rm -rf coverage && rm -rf lib",
     "prepublish": "tsc -d && publish-please guard",
     "publish-please": "npm run autoformat && npm run clean-up && publish-please"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/GoodgameStudios/RobotlegsJS-Pixi.git"
+    "url": "git@github.com:RobotlegsJS/RobotlegsJS-Phaser.git"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
@@ -24,32 +24,31 @@
     "TypeScript",
     "Robotlegs",
     "IoC",
-    "PIXI"
+    "Phaser"
   ],
-  "author": "Goodgame Studios",
+  "author": "RobotlegsJS",
   "contributors": [
     "Endel Dreyer <endel.dreyer@gmail.com>",
-    "Tiago Schenkel <tiago.tche@gmail.com>"
+    "Tiago Schenkel <tiago.schenkel@gmail.com>"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/GoodgameStudios/RobotlegsJS-Pixi/issues"
+    "url": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser/issues"
   },
-  "homepage": "https://github.com/GoodgameStudios/RobotlegsJS-Pixi#readme",
+  "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
   "dependencies": {
     "eventemitter3": "^2.0.3",
-    "pixi.js": "^4.5.4",
+    "phaser-ce": "^2.8.3",
     "robotlegs": "^1.0.1"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.8",
     "@types/chai": "^4.0.2",
     "@types/mocha": "^2.2.41",
-    "@types/pixi.js": "^4.5.2",
     "@types/sinon": "^2.3.3",
     "bluebird": "^3.5.0",
     "browserify-versionify": "^1.0.6",
-    "chai": "^4.1.0",
+    "chai": "^4.1.1",
     "es6-map": "^0.1.5",
     "es6-symbol": "^3.1.1",
     "glslify": "^6.1.0",
@@ -77,7 +76,7 @@
     "reflect-metadata": "^0.1.10",
     "remap-istanbul": "^0.9.5",
     "rimraf": "^2.6.1",
-    "sinon": "^2.4.1",
+    "sinon": "^3.0.0",
     "sinon-chai": "^2.12.0",
     "ts-loader": "^2.3.2",
     "ts-node": "^3.3.0",
@@ -88,7 +87,6 @@
     "webpack-dev-server": "^2.6.1"
   },
   "peerDependencies": {
-    "pixi.js": "*",
     "reflect-metadata": "^0.1.10"
   }
 }

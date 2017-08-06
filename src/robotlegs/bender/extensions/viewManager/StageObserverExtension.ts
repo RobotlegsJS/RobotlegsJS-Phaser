@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2016 Goodgame Studios. All Rights Reserved.
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
@@ -60,7 +60,7 @@ export class StageObserverExtension implements IExtension {
         // Hark, an actual Singleton!
         if (!StageObserverExtension._stageObserver) {
             var containerRegistry: ContainerRegistry = this._injector.get<ContainerRegistry>(ContainerRegistry);
-            this._logger.debug("Creating genuine StageObserver Singleton");
+            this._logger.debug("Creating genuine StateManagerObserver Singleton");
             StageObserverExtension._stageObserver = new StageObserver(containerRegistry);
         }
     }
@@ -68,7 +68,7 @@ export class StageObserverExtension implements IExtension {
     private whenDestroying(): void {
         installCount--;
         if (installCount == 0) {
-            this._logger.debug("Destroying genuine StageObserver Singleton");
+            this._logger.debug("Destroying genuine StateManagerObserver Singleton");
             StageObserverExtension._stageObserver.destroy();
             StageObserverExtension._stageObserver = null;
         }

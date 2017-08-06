@@ -3,41 +3,40 @@
 //
 
 import "./eventemitter3-patch";
-import PIXI = require('pixi.js');
 
 export function applyPixiPatch(interaction: any) {
 
-    let addChild = PIXI.Container.prototype.addChild;
-    let addChildAt = PIXI.Container.prototype.addChildAt;
-    let removeChild = PIXI.Container.prototype.removeChild;
-    let removeChildAt = PIXI.Container.prototype.removeChildAt;
+    let addChild = PIXI.DisplayObjectContainer.prototype.addChild;
+    let addChildAt = PIXI.DisplayObjectContainer.prototype.addChildAt;
+    let removeChild = PIXI.DisplayObjectContainer.prototype.removeChild;
+    let removeChildAt = PIXI.DisplayObjectContainer.prototype.removeChildAt;
 
-    PIXI.Container.prototype.addChild = function patchedAddChild<T extends PIXI.DisplayObject>(...child: T[]) {
+    PIXI.DisplayObjectContainer.prototype.addChild = function(...child: any[]): PIXI.DisplayObject {
         for (var i = 0, len = child.length; i < len; i++) {
             addChild.call(this, child[i]);
-            interaction.emit("added", { target: child[i] })
+            interaction.emit("added", { target: child[i] });
         }
         return this;
-    }
+    };
 
-    PIXI.Container.prototype.addChildAt = function patchedAddChildAt<T extends PIXI.DisplayObject>(child: T, index: number): T {
+    PIXI.DisplayObjectContainer.prototype.addChildAt = function(child, index): PIXI.DisplayObject {
         addChildAt.call(this, child, index);
-        interaction.emit("added", { target: child })
+        interaction.emit("added", { target: child });
         return this;
-    }
+    };
 
-    PIXI.Container.prototype.removeChild = function(...child): PIXI.DisplayObject {
+    PIXI.DisplayObjectContainer.prototype.removeChild = function(...child: any[]): PIXI.DisplayObject {
         for (var i = 0, len = child.length; i < len; i++) {
             removeChild.call(this, child[i]);
-            interaction.emit("removed", { target: child[i] })
+            interaction.emit("removed", { target: child[i] });
         }
         return this;
-    }
+    };
 
-    PIXI.Container.prototype.removeChildAt = function(index): PIXI.DisplayObject {
+    PIXI.DisplayObjectContainer.prototype.removeChildAt = function(index): PIXI.DisplayObject {
         var child = removeChildAt.call(this, index);
         interaction.emit("removed", { target: child });
         return this;
-    }
+    };
 
 }
