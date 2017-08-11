@@ -1,6 +1,6 @@
 {
   "name": "@robotlegsjs/phaser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "RobotlegsJS integration with Phaser State Manager",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
