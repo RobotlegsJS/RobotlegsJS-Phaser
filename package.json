@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
   "dependencies": {
-    "@robotlegsjs/core": "^0.0.3",
+    "@robotlegsjs/core": "^0.0.4",
     "eventemitter3": "^2.0.3",
     "phaser-ce": "^2.8.4"
   },
