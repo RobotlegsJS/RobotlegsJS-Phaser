@@ -5,10 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    IBundle,
-    IContext
-} from "@robotlegsjs/core";
+import { IBundle, IContext } from "@robotlegsjs/core";
 
 import { ContextStateManagerExtension } from "../../extensions/contextStateManager/ContextStateManagerExtension";
 import { StateManagerExtension } from "../../extensions/stateManager/StateManagerExtension";
@@ -23,7 +20,6 @@ import { StateManagerObserverExtension } from "../../extensions/stateManager/Sta
  * in typical Robotlegs applications and modules.</p>
  */
 export class PhaserBundle implements IBundle {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

@@ -14,14 +14,16 @@ import { StateMediatorFactory } from "./StateMediatorFactory";
  * @private
  */
 export class StateMediatorStateHandler implements IStateHandler {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
     private _mappings: IStateMediatorMapping[] = [];
 
-    private _knownMappings: Map<FunctionConstructor, IStateMediatorMapping[]> = new Map<FunctionConstructor, IStateMediatorMapping[]>();
+    private _knownMappings: Map<
+        FunctionConstructor,
+        IStateMediatorMapping[]
+    > = new Map<FunctionConstructor, IStateMediatorMapping[]>();
 
     private _factory: StateMediatorFactory;
 
@@ -89,10 +91,16 @@ export class StateMediatorStateHandler implements IStateHandler {
     /*============================================================================*/
 
     private flushCache(): void {
-        this._knownMappings = new Map<FunctionConstructor, IStateMediatorMapping[]>();
+        this._knownMappings = new Map<
+            FunctionConstructor,
+            IStateMediatorMapping[]
+        >();
     }
 
-    private getInterestedMappingsFor(item: Object, type: any): IStateMediatorMapping[] {
+    private getInterestedMappingsFor(
+        item: Object,
+        type: any
+    ): IStateMediatorMapping[] {
         // we've seen this type before and nobody was interested
         if (this._knownMappings[type] === false) {
             return null;

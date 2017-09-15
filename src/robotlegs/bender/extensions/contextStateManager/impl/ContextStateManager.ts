@@ -11,7 +11,6 @@ import { IContextStateManager } from "../api/IContextStateManager";
  * The Context StateManager represents the Phaser.StateManager for a Context
  */
 export class ContextStateManager implements IContextStateManager {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/

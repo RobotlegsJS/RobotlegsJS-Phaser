@@ -5,11 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    IContext,
-    IExtension,
-    IInjector
-} from "@robotlegsjs/core";
+import { IContext, IExtension, IInjector } from "@robotlegsjs/core";
 
 import { IStateMediatorMap } from "./api/IStateMediatorMap";
 import { StateMediatorMap } from "./impl/StateMediatorMap";
@@ -20,7 +16,6 @@ import { IStateManager } from "../stateManager/api/IStateManager";
  * This extension installs a shared IStateMediatorMap into the context
  */
 export class StateMediatorMapExtension implements IExtension {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -39,11 +34,15 @@ export class StateMediatorMapExtension implements IExtension {
      * @inheritDoc
      */
     public extend(context: IContext): void {
-        context.beforeInitializing(this.beforeInitializing.bind(this))
+        context
+            .beforeInitializing(this.beforeInitializing.bind(this))
             .beforeDestroying(this.beforeDestroying.bind(this))
             .whenDestroying(this.whenDestroying.bind(this));
         this._injector = context.injector;
-        this._injector.bind(IStateMediatorMap).to(StateMediatorMap).inSingletonScope();
+        this._injector
+            .bind(IStateMediatorMap)
+            .to(StateMediatorMap)
+            .inSingletonScope();
     }
 
     /*============================================================================*/
@@ -51,9 +50,13 @@ export class StateMediatorMapExtension implements IExtension {
     /*============================================================================*/
 
     private beforeInitializing(): void {
-        this._mediatorMap = this._injector.get<StateMediatorMap>(IStateMediatorMap);
+        this._mediatorMap = this._injector.get<StateMediatorMap>(
+            IStateMediatorMap
+        );
         if (this._injector.isBound(IStateManager)) {
-            this._viewManager = this._injector.get<IStateManager>(IStateManager);
+            this._viewManager = this._injector.get<IStateManager>(
+                IStateManager
+            );
             this._viewManager.addStateHandler(this._mediatorMap);
         }
     }
@@ -61,7 +64,9 @@ export class StateMediatorMapExtension implements IExtension {
     private beforeDestroying(): void {
         this._mediatorMap.unmediateAll();
         if (this._injector.isBound(IStateManager)) {
-            this._viewManager = this._injector.get<IStateManager>(IStateManager);
+            this._viewManager = this._injector.get<IStateManager>(
+                IStateManager
+            );
             this._viewManager.removeStateHandler(this._mediatorMap);
         }
     }

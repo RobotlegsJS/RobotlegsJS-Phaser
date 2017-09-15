@@ -20,7 +20,6 @@ import { IStateManager } from "../../stateManager/api/IStateManager";
  */
 @injectable()
 export class ContextStateManagerListenerConfig implements IConfig {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/

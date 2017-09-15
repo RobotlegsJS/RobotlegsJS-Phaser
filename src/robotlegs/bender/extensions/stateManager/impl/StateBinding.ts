@@ -15,7 +15,6 @@ import { StateBindingEvent } from "./StateBindingEvent";
  * @private
  */
 export class StateBinding extends EventDispatcher {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -85,7 +84,9 @@ export class StateBinding extends EventDispatcher {
         if (index > -1) {
             this._handlers.splice(index, 1);
             if (this._handlers.length === 0) {
-                this.dispatchEvent(new StateBindingEvent(StateBindingEvent.BINDING_EMPTY));
+                this.dispatchEvent(
+                    new StateBindingEvent(StateBindingEvent.BINDING_EMPTY)
+                );
             }
         }
     }

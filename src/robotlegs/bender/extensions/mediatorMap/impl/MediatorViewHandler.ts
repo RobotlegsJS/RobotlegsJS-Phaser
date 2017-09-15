@@ -14,14 +14,16 @@ import { MediatorFactory } from "./MediatorFactory";
  * @private
  */
 export class MediatorViewHandler implements IViewHandler {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
     private _mappings: IMediatorMapping[] = [];
 
-    private _knownMappings: Map<FunctionConstructor, IMediatorMapping[]> = new Map<FunctionConstructor, IMediatorMapping[]>();
+    private _knownMappings: Map<
+        FunctionConstructor,
+        IMediatorMapping[]
+    > = new Map<FunctionConstructor, IMediatorMapping[]>();
 
     private _factory: MediatorFactory;
 
@@ -45,8 +47,7 @@ export class MediatorViewHandler implements IViewHandler {
      */
     public addMapping(mapping: IMediatorMapping): void {
         var index: number = this._mappings.indexOf(mapping);
-        if (index > -1)
-            return;
+        if (index > -1) return;
         this._mappings.push(mapping);
         this.flushCache();
     }
@@ -56,8 +57,7 @@ export class MediatorViewHandler implements IViewHandler {
      */
     public removeMapping(mapping: IMediatorMapping): void {
         var index: number = this._mappings.indexOf(mapping);
-        if (index == -1)
-            return;
+        if (index == -1) return;
         this._mappings.splice(index, 1);
         this.flushCache();
     }
@@ -85,13 +85,18 @@ export class MediatorViewHandler implements IViewHandler {
     /*============================================================================*/
 
     private flushCache(): void {
-        this._knownMappings = new Map<FunctionConstructor, IMediatorMapping[]>();
+        this._knownMappings = new Map<
+            FunctionConstructor,
+            IMediatorMapping[]
+        >();
     }
 
-    private getInterestedMappingsFor(item: Object, type: any): IMediatorMapping[] {
+    private getInterestedMappingsFor(
+        item: Object,
+        type: any
+    ): IMediatorMapping[] {
         // we've seen this type before and nobody was interested
-        if (this._knownMappings[type] === false)
-            return null;
+        if (this._knownMappings[type] === false) return null;
 
         // we haven't seen this type before
         if (this._knownMappings[type] == undefined) {
@@ -105,8 +110,7 @@ export class MediatorViewHandler implements IViewHandler {
                 }
             }
             // nobody cares, let's get out of here
-            if (this._knownMappings[type] === false)
-                return null;
+            if (this._knownMappings[type] === false) return null;
         }
 
         // these mappings really do care

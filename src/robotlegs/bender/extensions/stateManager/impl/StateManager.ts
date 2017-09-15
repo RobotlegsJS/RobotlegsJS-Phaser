@@ -22,7 +22,6 @@ import { StateBinding } from "./StateBinding";
  */
 @injectable()
 export class StateManager extends EventDispatcher implements IStateManager {
-
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -74,7 +73,9 @@ export class StateManager extends EventDispatcher implements IStateManager {
             let handler: IStateHandler = this._handlers[i];
             this._registry.addContainer(container).addHandler(handler);
         }
-        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.CONTAINER_ADD, container));
+        this.dispatchEvent(
+            new StateManagerEvent(StateManagerEvent.CONTAINER_ADD, container)
+        );
     }
 
     /**
@@ -93,7 +94,9 @@ export class StateManager extends EventDispatcher implements IStateManager {
             let handler: IStateHandler = this._handlers[i];
             binding.removeHandler(handler);
         }
-        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.CONTAINER_REMOVE, container));
+        this.dispatchEvent(
+            new StateManagerEvent(StateManagerEvent.CONTAINER_REMOVE, container)
+        );
     }
 
     /**
@@ -110,7 +113,9 @@ export class StateManager extends EventDispatcher implements IStateManager {
             let container: any = this._containers[i];
             this._registry.addContainer(container).addHandler(handler);
         }
-        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.HANDLER_ADD, null, handler));
+        this.dispatchEvent(
+            new StateManagerEvent(StateManagerEvent.HANDLER_ADD, null, handler)
+        );
     }
 
     /**
@@ -128,7 +133,13 @@ export class StateManager extends EventDispatcher implements IStateManager {
             let container: any = this._containers[i];
             this._registry.getBinding(container).removeHandler(handler);
         }
-        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.HANDLER_REMOVE, null, handler));
+        this.dispatchEvent(
+            new StateManagerEvent(
+                StateManagerEvent.HANDLER_REMOVE,
+                null,
+                handler
+            )
+        );
     }
 
     /**
@@ -156,7 +167,10 @@ export class StateManager extends EventDispatcher implements IStateManager {
                 return false;
             }
 
-            if (registeredContainer.contains(container) || container.contains(registeredContainer)) {
+            if (
+                registeredContainer.contains(container) ||
+                container.contains(registeredContainer)
+            ) {
                 throw new Error("Containers can not be nested");
             }
         }
