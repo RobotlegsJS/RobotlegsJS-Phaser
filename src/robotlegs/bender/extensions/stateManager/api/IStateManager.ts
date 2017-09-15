@@ -13,7 +13,6 @@ import { IStateHandler } from "./IStateHandler";
  */
 export let IStateManager = Symbol("IStateManager");
 export interface IStateManager extends IEventDispatcher {
-
     /**
      * A list of currently registered container
      */

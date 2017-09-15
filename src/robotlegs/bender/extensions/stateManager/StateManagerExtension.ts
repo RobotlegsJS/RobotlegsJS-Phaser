@@ -5,11 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    IContext,
-    IExtension,
-    IInjector
-} from "@robotlegsjs/core";
+import { IContext, IExtension, IInjector } from "@robotlegsjs/core";
 
 import { IStateManager } from "./api/IStateManager";
 import { StateManager } from "./impl/StateManager";
@@ -20,7 +16,6 @@ import { StateRegistry } from "./impl/StateRegistry";
  * This extension install a State Manager into the context
  */
 export class StateManagerExtension implements IExtension {
-
     /*============================================================================*/
     /* Private Static Properties                                                  */
     /*============================================================================*/
@@ -50,11 +45,17 @@ export class StateManagerExtension implements IExtension {
         this._injector = context.injector;
 
         // Just one Container Registry
-        StateManagerExtension._containerRegistry = StateManagerExtension._containerRegistry || new StateRegistry();
-        this._injector.bind(StateRegistry).toConstantValue(StateManagerExtension._containerRegistry);
+        StateManagerExtension._containerRegistry =
+            StateManagerExtension._containerRegistry || new StateRegistry();
+        this._injector
+            .bind(StateRegistry)
+            .toConstantValue(StateManagerExtension._containerRegistry);
 
         // But you get your own View Manager
-        this._injector.bind(IStateManager).to(StateManager).inSingletonScope();
+        this._injector
+            .bind(IStateManager)
+            .to(StateManager)
+            .inSingletonScope();
     }
 
     /*============================================================================*/

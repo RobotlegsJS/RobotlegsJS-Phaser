@@ -12,7 +12,6 @@ import { MediatorFactory } from "./MediatorFactory";
  * @private
  */
 export class MediatorManager {
-
     /*============================================================================*/
     /* Private Static Properties                                                  */
     /*============================================================================*/
@@ -36,7 +35,6 @@ export class MediatorManager {
         this._factory = factory;
     }
 
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -44,7 +42,11 @@ export class MediatorManager {
     /**
      * @private
      */
-    public addMediator(mediator: any, item: any, mapping: IMediatorMapping): void {
+    public addMediator(
+        mediator: any,
+        item: any,
+        mapping: IMediatorMapping
+    ): void {
         var displayObject: PIXI.DisplayObject = <PIXI.DisplayObject>item;
 
         // Watch Display Object for removal
@@ -60,7 +62,11 @@ export class MediatorManager {
     /**
      * @private
      */
-    public removeMediator(mediator: any, item: any, mapping: IMediatorMapping): void {
+    public removeMediator(
+        mediator: any,
+        item: any,
+        mapping: IMediatorMapping
+    ): void {
         // if (item instanceof PIXI.DisplayObject)
         //    (<PIXI.DisplayObject>item).off('removed', (<any>item)._onRemovedFromStage);
 
@@ -76,30 +82,22 @@ export class MediatorManager {
     }
 
     private initializeMediator(mediator: any, mediatedItem: any): void {
-        if ('preInitialize' in mediator)
-            mediator.preInitialize();
+        if ("preInitialize" in mediator) mediator.preInitialize();
 
-        if ('view' in mediator)
-            mediator.view = mediatedItem;
+        if ("view" in mediator) mediator.view = mediatedItem;
 
-        if ('initialize' in mediator)
-            mediator.initialize();
+        if ("initialize" in mediator) mediator.initialize();
 
-        if ('postInitialize' in mediator)
-            mediator.postInitialize();
+        if ("postInitialize" in mediator) mediator.postInitialize();
     }
 
     private destroyMediator(mediator: any): void {
-        if ('preDestroy' in mediator)
-            mediator.preDestroy();
+        if ("preDestroy" in mediator) mediator.preDestroy();
 
-        if ('destroy' in mediator)
-            mediator.destroy();
+        if ("destroy" in mediator) mediator.destroy();
 
-        if ('view' in mediator)
-            mediator.view = null;
+        if ("view" in mediator) mediator.view = null;
 
-        if ('postDestroy' in mediator)
-            mediator.postDestroy();
+        if ("postDestroy" in mediator) mediator.postDestroy();
     }
 }

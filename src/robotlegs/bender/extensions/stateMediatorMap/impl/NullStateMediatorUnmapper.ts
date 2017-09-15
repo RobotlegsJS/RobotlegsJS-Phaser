@@ -11,7 +11,6 @@ import { IStateMediatorUnmapper } from "../dsl/IStateMediatorUnmapper";
  * @private
  */
 export class NullStateMediatorUnmapper implements IStateMediatorUnmapper {
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -19,12 +18,10 @@ export class NullStateMediatorUnmapper implements IStateMediatorUnmapper {
     /**
      * @private
      */
-    public fromMediator(mediatorClass: FunctionConstructor): void {
-    }
+    public fromMediator(mediatorClass: FunctionConstructor): void {}
 
     /**
      * @private
      */
-    public fromAll(): void {
-    }
+    public fromAll(): void {}
 }
