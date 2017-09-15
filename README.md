@@ -3,7 +3,7 @@ RobotlegsJS Phaser Extension
 
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
 [![Build Status](https://secure.travis-ci.org/RobotlegsJS/RobotlegsJS-Phaser.svg?branch=master)](https://travis-ci.org/RobotlegsJS/RobotlegsJS-Phaser)
-[![Code Climate](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/badges/gpa.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser)
+[![codebeat badge](https://codebeat.co/badges/75c0995f-d238-4d43-99a7-cc883bb0dd88)](https://codebeat.co/projects/github-com-robotlegsjs-robotlegsjs-phaser-master)
 [![Test Coverage](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/badges/coverage.svg)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/coverage)
 [![npm version](https://badge.fury.io/js/%40robotlegsjs%2Fphaser.svg)](https://badge.fury.io/js/%40robotlegsjs%2Fphaser)
 [![Greenkeeper badge](https://badges.greenkeeper.io/RobotlegsJS/RobotlegsJS-Phaser.svg)](https://greenkeeper.io/)
