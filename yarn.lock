@@ -8,9 +8,9 @@
   dependencies:
     inversify "^4.3.0"
 
-"@types/bluebird@^3.5.17":
-  version "3.5.17"
-  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.5.17.tgz#f9eee76920e7aded0f665ee7658c058407bd12ff"
+"@types/bluebird@^3.5.18":
+  version "3.5.18"
+  resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.5.18.tgz#6a60435d4663e290f3709898a4f75014f279c4d6"
 
 "@types/chai@^4.0.4":
   version "4.0.4"
@@ -20,7 +20,7 @@
   version "2.2.44"
   resolved "https://registry.npmjs.org/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
 
-"@types/sinon@4.0.0":
+"@types/sinon@^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/@types/sinon/-/sinon-4.0.0.tgz#9a93ffa4ee1329e85166278a5ed99f81dc4c8362"
 
