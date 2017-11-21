@@ -15,12 +15,12 @@ export class ContextStateManager implements IContextStateManager {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _stateManager: any;
+    private _stateManager: Phaser.StateManager;
 
     /**
      * The root Phaser.StateManager for this Context
      */
-    public get stateManager(): any {
+    public get stateManager(): Phaser.StateManager {
         return this._stateManager;
     }
 
@@ -32,7 +32,11 @@ export class ContextStateManager implements IContextStateManager {
      * The StateManager represents the root Phaser.StateManager for a Context
      * @param stateManager The root State Manager for this Context
      */
-    constructor(stateManager: any) {
-        this._stateManager = stateManager;
+    constructor(stateManager: Phaser.StateManager) {
+        if (stateManager !== null && stateManager !== undefined) {
+            this._stateManager = stateManager;
+        } else {
+            throw new Error("StateManager can't be null or undefined");
+        }
     }
 }

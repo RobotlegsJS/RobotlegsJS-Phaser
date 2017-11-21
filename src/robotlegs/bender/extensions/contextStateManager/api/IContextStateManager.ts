@@ -7,5 +7,5 @@
 
 export let IContextStateManager = Symbol("IContextStateManager");
 export interface IContextStateManager {
-    stateManager: any;
+    stateManager: Phaser.StateManager;
 }
