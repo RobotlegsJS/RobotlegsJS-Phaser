@@ -45,6 +45,8 @@ export class ContextStateManagerListenerConfig implements IConfig {
      */
     public configure(): void {
         // Adds the StateManager to the View Manager at startup
-        this._stateManager.addContainer(this._contextStateManager.stateManager);
+        this._stateManager.addStateManager(
+            this._contextStateManager.stateManager
+        );
     }
 }

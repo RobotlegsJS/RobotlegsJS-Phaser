@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "@robotlegsjs/core";
+
 import { IStateMediatorConfigurator } from "./IStateMediatorConfigurator";
 
 /**
@@ -16,5 +18,5 @@ export interface IStateMediatorMapper {
      * @param mediatorClass The concrete mediator class
      * @return Mapping configurator
      */
-    toMediator(mediatorClass: any): IStateMediatorConfigurator;
+    toMediator(mediatorClass: IClass<any>): IStateMediatorConfigurator;
 }

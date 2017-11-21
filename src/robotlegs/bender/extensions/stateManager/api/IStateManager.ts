@@ -9,26 +9,26 @@ import { IEventDispatcher } from "@robotlegsjs/core";
 import { IStateHandler } from "./IStateHandler";
 
 /**
- * The State Manager allows you to add multiple "state root" containers to a context
+ * The State Manager allows you to add multiple "state managers" to a context
  */
 export let IStateManager = Symbol("IStateManager");
 export interface IStateManager extends IEventDispatcher {
     /**
-     * A list of currently registered container
+     * A list of currently registered StateManagers
      */
-    containers: any[];
+    stateManagers: Phaser.StateManager[];
 
     /**
-     * Adds a container as a "state root" into the context
-     * @param container
+     * Adds a StateManager as a "state root" into the context
+     * @param stateManager
      */
-    addContainer(container: any): void;
+    addStateManager(stateManager: Phaser.StateManager): void;
 
     /**
-     * Removes a container from this context
-     * @param container
+     * Removes a StateManager from this context
+     * @param stateManager
      */
-    removeContainer(container: any): void;
+    removeStateManager(stateManager: Phaser.StateManager): void;
 
     /**
      * Registers a state handler

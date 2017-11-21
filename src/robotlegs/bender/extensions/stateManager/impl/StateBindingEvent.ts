@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { Event } from "@robotlegsjs/core";
+
 /**
  * @private
  */
@@ -33,7 +35,7 @@ export class StateBindingEvent extends Event {
     /**
      * @inheritDoc
      */
-    public clone(): Event {
+    public clone(): StateBindingEvent {
         return new StateBindingEvent(this.type);
     }
 }

@@ -10,7 +10,7 @@ import { Event } from "@robotlegsjs/core";
 import { IStateHandler } from "../api/IStateHandler";
 
 /**
- * Container existence event
+ * StateManager existence event
  * @private
  */
 export class StateManagerEvent extends Event {
@@ -18,9 +18,9 @@ export class StateManagerEvent extends Event {
     /* Public Static Properties                                                   */
     /*============================================================================*/
 
-    public static CONTAINER_ADD: string = "containerAdd";
+    public static STATE_MANAGER_ADD: string = "stateManagerAdd";
 
-    public static CONTAINER_REMOVE: string = "containerRemove";
+    public static STATE_MANAGER_REMOVE: string = "stateManagerRemove";
 
     public static HANDLER_ADD: string = "handlerAdd";
 
@@ -30,13 +30,13 @@ export class StateManagerEvent extends Event {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _container: any;
+    private _stateManager: Phaser.StateManager;
 
     /**
-     * The container associated with this event
+     * The stateManager associated with this event
      */
-    public get container(): any {
-        return this._container;
+    public get stateManager(): Phaser.StateManager {
+        return this._stateManager;
     }
 
     private _handler: IStateHandler;
@@ -55,12 +55,16 @@ export class StateManagerEvent extends Event {
     /**
      * Creates a state manager event
      * @param type The event type
-     * @param container The container associated with this event
+     * @param stateManager The Phaser.StateManager associated with this event
      * @param handler The state handler associated with this event
      */
-    constructor(type: string, container?: any, handler?: IStateHandler) {
-        super(type);
-        this._container = container;
+    constructor(
+        type: string,
+        stateManager?: Phaser.StateManager,
+        handler?: IStateHandler
+    ) {
+        super(type, { bubbles: true });
+        this._stateManager = stateManager;
         this._handler = handler;
     }
 
@@ -72,6 +76,10 @@ export class StateManagerEvent extends Event {
      * @inheritDoc
      */
     public clone(): StateManagerEvent {
-        return new StateManagerEvent(this.type, this._container, this._handler);
+        return new StateManagerEvent(
+            this.type,
+            this._stateManager,
+            this._handler
+        );
     }
 }

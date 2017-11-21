@@ -5,8 +5,6 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IGuard, IHook } from "@robotlegsjs/core";
-
 /**
  * Configures a mediator mapping
  */
@@ -16,14 +14,14 @@ export interface IStateMediatorConfigurator {
      * @param guards Guards
      * @return Self
      */
-    withGuards(...guards: IGuard[]): IStateMediatorConfigurator;
+    withGuards(...guards: any[]): IStateMediatorConfigurator;
 
     /**
      * Hooks to run before a mediator is created
      * @param hooks Hooks
      * @return Self
      */
-    withHooks(...hooks: IHook[]): IStateMediatorConfigurator;
+    withHooks(...hooks: any[]): IStateMediatorConfigurator;
 
     /**
      * Should the mediator be removed when the mediated item looses scope?

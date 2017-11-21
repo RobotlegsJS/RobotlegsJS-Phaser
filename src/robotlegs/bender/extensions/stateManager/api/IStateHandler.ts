@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "@robotlegsjs/core";
+
 /**
  * State handler contract
  */
@@ -14,5 +16,5 @@ export interface IStateHandler {
      * @param state The state instance to handle
      * @param type The class of the state instance
      */
-    handleState(state: any, type: FunctionConstructor): void;
+    handleState(state: Phaser.State, type: IClass<any>): void;
 }
