@@ -8,7 +8,7 @@
 import { Event } from "@robotlegsjs/core";
 
 /**
- * View Configuration Event
+ * State Configuration Event
  * @private
  */
 export class ConfigureStateEvent extends Event {
