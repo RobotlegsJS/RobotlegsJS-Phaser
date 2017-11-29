@@ -40,7 +40,7 @@
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
   "dependencies": {
     "@robotlegsjs/core": "^0.0.6",
-    "eventemitter3": "^2.0.3",
+    "eventemitter3": "^3.0.0",
     "phaser-ce": "^2.9.2"
   },
   "devDependencies": {
