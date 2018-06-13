@@ -1,6 +1,6 @@
 import { injectable, inject } from "@robotlegsjs/core";
 
-import { StateMediator } from "@robotlegsjs/phaser";
+import { StateMediator } from "../../src/robotlegs/bender/extensions/stateMediatorMap/impl/StateMediator";
 
 import { GameModel } from "../models/GameModel";
 import { Main } from "../states/Main";

@@ -3,7 +3,8 @@
 import "reflect-metadata";
 
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
-import { PhaserBundle, ContextStateManager } from "@robotlegsjs/phaser";
+import { PhaserBundle } from "../src/robotlegs/bender/bundles/phaser/PhaserBundle";
+import { ContextStateManager } from "../src/robotlegs/bender/extensions/contextStateManager/impl/ContextStateManager";
 
 import { StateKey } from "./constants/StateKey";
 

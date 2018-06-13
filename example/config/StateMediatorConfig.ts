@@ -1,6 +1,6 @@
 import { injectable, inject, IConfig } from "@robotlegsjs/core";
 
-import { IStateMediatorMap } from "@robotlegsjs/phaser";
+import { IStateMediatorMap } from "../../src/robotlegs/bender/extensions/stateMediatorMap/api/IStateMediatorMap";
 
 import { BootMediator } from "../mediators/BootMediator";
 import { PreloadMediator } from "../mediators/PreloadMediator";
