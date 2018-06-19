@@ -2,9 +2,7 @@ import { StateKey } from "../constants/StateKey";
 import { BaseState } from "./BaseState";
 
 export class Boot extends BaseState {
-
-    public preload(): void {
-    }
+    public preload(): void {}
 
     public create(): void {
         super.create();

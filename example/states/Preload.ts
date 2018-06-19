@@ -2,7 +2,6 @@ import { StateKey } from "../constants/StateKey";
 import { BaseState } from "./BaseState";
 
 export class Preload extends BaseState {
-
     public preload(): void {
         /* Preload required assets */
         // this.game.load.image('myImage', 'assets/my-image.png');

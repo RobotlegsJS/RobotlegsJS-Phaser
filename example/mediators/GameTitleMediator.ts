@@ -6,7 +6,6 @@ import { GameTitle } from "../states/GameTitle";
 
 @injectable()
 export class GameTitleMediator extends StateMediator<GameTitle> {
-
     public initialize(): void {
         console.log("GameTitleMediator: initialize");
     }

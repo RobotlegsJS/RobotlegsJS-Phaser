@@ -6,7 +6,6 @@ import { Preload } from "../states/Preload";
 
 @injectable()
 export class PreloadMediator extends StateMediator<Preload> {
-
     public initialize(): void {
         console.log("PreloadMediator: initialize");
     }

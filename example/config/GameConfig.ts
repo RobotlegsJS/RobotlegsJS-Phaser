@@ -4,9 +4,7 @@ import { GameModel } from "../models/GameModel";
 
 @injectable()
 export class GameConfig implements IConfig {
-
-    @inject(IContext)
-    public context: IContext;
+    @inject(IContext) public context: IContext;
 
     public configure(): void {
         this.mapCommands();
@@ -14,13 +12,14 @@ export class GameConfig implements IConfig {
         this.mapModels();
     }
 
-    private mapCommands(): void {
-    }
+    private mapCommands(): void {}
 
-    private mapManager(): void {
-    }
+    private mapManager(): void {}
 
     private mapModels(): void {
-        this.context.injector.bind(GameModel).to(GameModel).inSingletonScope();
+        this.context.injector
+            .bind(GameModel)
+            .to(GameModel)
+            .inSingletonScope();
     }
 }
