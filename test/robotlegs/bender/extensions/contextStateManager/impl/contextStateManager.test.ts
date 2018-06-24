@@ -9,10 +9,7 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import {
-    IContextStateManager,
-    ContextStateManager
-} from "../../../../../../src";
+import { IContextStateManager, ContextStateManager } from "../../../../../../src";
 
 describe("ContextStateManager", () => {
     let game: Phaser.Game;
@@ -44,9 +41,6 @@ describe("ContextStateManager", () => {
         function inicializeContextStateManagerWithUndefinedStateManager(): void {
             contextStateManager = new ContextStateManager(undefined);
         }
-        assert.throws(
-            inicializeContextStateManagerWithUndefinedStateManager,
-            Error
-        );
+        assert.throws(inicializeContextStateManagerWithUndefinedStateManager, Error);
     });
 });

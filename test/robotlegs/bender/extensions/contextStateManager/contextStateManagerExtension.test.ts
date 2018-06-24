@@ -11,11 +11,7 @@ import { assert } from "chai";
 
 import { IContext, Context, LogLevel } from "@robotlegsjs/core";
 
-import {
-    IContextStateManager,
-    ContextStateManager,
-    ContextStateManagerExtension
-} from "../../../../../src";
+import { IContextStateManager, ContextStateManager, ContextStateManagerExtension } from "../../../../../src";
 
 import { CallbackLogTarget } from "./support/CallbackLogTarget";
 import { LogParams } from "./support/LogParams";
@@ -43,13 +39,9 @@ describe("ContextStateManagerExtension", () => {
     it("contextStateManager_is_mapped", () => {
         let game: Phaser.Game = new Phaser.Game();
         let actual: ContextStateManager = null;
-        context
-            .install(ContextStateManagerExtension)
-            .configure(new ContextStateManager(game.state));
+        context.install(ContextStateManagerExtension).configure(new ContextStateManager(game.state));
         context.whenInitializing(() => {
-            actual = context.injector.get<ContextStateManager>(
-                IContextStateManager
-            );
+            actual = context.injector.get<ContextStateManager>(IContextStateManager);
         });
         context.initialize();
         assert.equal(actual.stateManager, game.state);
@@ -61,14 +53,9 @@ describe("ContextStateManagerExtension", () => {
         let secondGame: Phaser.Game = new Phaser.Game();
         context
             .install(ContextStateManagerExtension)
-            .configure(
-                new ContextStateManager(game.state),
-                new ContextStateManager(secondGame.state)
-            );
+            .configure(new ContextStateManager(game.state), new ContextStateManager(secondGame.state));
         context.whenInitializing(() => {
-            actual = context.injector.get<ContextStateManager>(
-                IContextStateManager
-            );
+            actual = context.injector.get<ContextStateManager>(IContextStateManager);
         });
         context.initialize();
         assert.equal(actual.stateManager, game.state);
@@ -76,13 +63,8 @@ describe("ContextStateManagerExtension", () => {
 
     it("extension_logs_error_when_context_initialized_with_no_ContextStateManager", () => {
         let errorLogged: boolean = false;
-        let logTarget: CallbackLogTarget = new CallbackLogTarget(function(
-            log: LogParams
-        ): void {
-            if (
-                log.source instanceof ContextStateManagerExtension &&
-                log.level === LogLevel.ERROR
-            ) {
+        let logTarget: CallbackLogTarget = new CallbackLogTarget(function(log: LogParams): void {
+            if (log.source instanceof ContextStateManagerExtension && log.level === LogLevel.ERROR) {
                 errorLogged = true;
             }
         });

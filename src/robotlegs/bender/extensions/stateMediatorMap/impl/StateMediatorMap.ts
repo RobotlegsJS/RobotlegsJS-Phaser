@@ -5,12 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    IContext,
-    ILogger,
-    ITypeMatcher,
-    TypeMatcher
-} from "@robotlegsjs/core";
+import { IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
 
 import { IStateMediatorMap } from "../api/IStateMediatorMap";
 import { IStateMediatorMapper } from "../dsl/IStateMediatorMapper";
@@ -34,10 +29,7 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappers: Map<string, IStateMediatorMapper> = new Map<
-        string,
-        IStateMediatorMapper
-    >();
+    private _mappers: Map<string, IStateMediatorMapper> = new Map<string, IStateMediatorMapper>();
 
     private _logger: ILogger;
 
@@ -69,8 +61,7 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
      */
     public mapMatcher(matcher: ITypeMatcher): IStateMediatorMapper {
         this._mappers[matcher.createTypeFilter().descriptor] =
-            this._mappers[matcher.createTypeFilter().descriptor] ||
-            this.createMapper(matcher);
+            this._mappers[matcher.createTypeFilter().descriptor] || this.createMapper(matcher);
         return this._mappers[matcher.createTypeFilter().descriptor];
     }
 
@@ -85,10 +76,7 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
      * @inheritDoc
      */
     public unmapMatcher(matcher: ITypeMatcher): IStateMediatorUnmapper {
-        return (
-            this._mappers[matcher.createTypeFilter().descriptor] ||
-            this.NULL_UNMAPPER
-        );
+        return this._mappers[matcher.createTypeFilter().descriptor] || this.NULL_UNMAPPER;
     }
 
     /**
@@ -131,10 +119,6 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
     /*============================================================================*/
 
     private createMapper(matcher: ITypeMatcher): IStateMediatorMapper {
-        return new StateMediatorMapper(
-            matcher.createTypeFilter(),
-            this._stateHandler,
-            this._logger
-        );
+        return new StateMediatorMapper(matcher.createTypeFilter(), this._stateHandler, this._logger);
     }
 }

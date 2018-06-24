@@ -73,12 +73,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
             this._registry.addContainer(stateManager).addHandler(handler);
         });
 
-        this.dispatchEvent(
-            new StateManagerEvent(
-                StateManagerEvent.STATE_MANAGER_ADD,
-                stateManager
-            )
-        );
+        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.STATE_MANAGER_ADD, stateManager));
     }
 
     /**
@@ -99,12 +94,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
             binding.removeHandler(handler);
         });
 
-        this.dispatchEvent(
-            new StateManagerEvent(
-                StateManagerEvent.STATE_MANAGER_REMOVE,
-                stateManager
-            )
-        );
+        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.STATE_MANAGER_REMOVE, stateManager));
     }
 
     /**
@@ -121,9 +111,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
             this._registry.addContainer(stateManager).addHandler(handler);
         });
 
-        this.dispatchEvent(
-            new StateManagerEvent(StateManagerEvent.HANDLER_ADD, null, handler)
-        );
+        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.HANDLER_ADD, null, handler));
     }
 
     /**
@@ -142,13 +130,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
             this._registry.getBinding(stateManager).removeHandler(handler);
         });
 
-        this.dispatchEvent(
-            new StateManagerEvent(
-                StateManagerEvent.HANDLER_REMOVE,
-                null,
-                handler
-            )
-        );
+        this.dispatchEvent(new StateManagerEvent(StateManagerEvent.HANDLER_REMOVE, null, handler));
     }
 
     /**
@@ -169,13 +151,11 @@ export class StateManager extends EventDispatcher implements IStateManager {
     /*============================================================================*/
 
     private validStateManager(stateManager: Phaser.StateManager): boolean {
-        this._stateManagers.forEach(
-            (registeredStateManager: Phaser.StateManager) => {
-                if (stateManager === registeredStateManager) {
-                    return false;
-                }
+        this._stateManagers.forEach((registeredStateManager: Phaser.StateManager) => {
+            if (stateManager === registeredStateManager) {
+                return false;
             }
-        );
+        });
 
         return true;
     }

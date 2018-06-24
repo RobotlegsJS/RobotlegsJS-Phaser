@@ -5,15 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import {
-    IClass,
-    IType,
-    IInjector,
-    applyHooks,
-    guardsApprove,
-    instantiateUnmapped,
-    ITypeFilter
-} from "@robotlegsjs/core";
+import { IClass, IType, IInjector, applyHooks, guardsApprove, instantiateUnmapped, ITypeFilter } from "@robotlegsjs/core";
 
 import { IStateMediatorMapping } from "../api/IStateMediatorMapping";
 
@@ -53,19 +45,13 @@ export class StateMediatorFactory {
      * @private
      */
     public getMediator(item: any, mapping: IStateMediatorMapping): any {
-        return this._mediators.get(item)
-            ? this._mediators.get(item).get(<any>mapping)
-            : null;
+        return this._mediators.get(item) ? this._mediators.get(item).get(<any>mapping) : null;
     }
 
     /**
      * @private
      */
-    public createMediators(
-        item: any,
-        type: IClass<any>,
-        mappings: any[]
-    ): any[] {
+    public createMediators(item: any, type: IClass<any>, mappings: any[]): any[] {
         let createdMediators: any[] = [];
         let mediator: any;
 
@@ -90,16 +76,12 @@ export class StateMediatorFactory {
      * @private
      */
     public removeMediators(item: any): void {
-        let mediators: Map<any, IStateMediatorMapping> = this._mediators.get(
-            item
-        );
+        let mediators: Map<any, IStateMediatorMapping> = this._mediators.get(item);
         if (!mediators) {
             return;
         }
 
-        mediators.forEach((value, key) =>
-            this._manager.removeMediator(value, item, key)
-        );
+        mediators.forEach((value, key) => this._manager.removeMediator(value, item, key));
 
         this._mediators.delete(item);
     }
@@ -122,10 +104,7 @@ export class StateMediatorFactory {
             return mediator;
         }
 
-        if (
-            mapping.guards.length === 0 ||
-            guardsApprove(mapping.guards, this._injector)
-        ) {
+        if (mapping.guards.length === 0 || guardsApprove(mapping.guards, this._injector)) {
             let mediatorClass: IClass<any> = mapping.mediatorClass;
             mediator = instantiateUnmapped(this._injector, mediatorClass);
             if (mapping.hooks.length > 0) {
@@ -138,34 +117,21 @@ export class StateMediatorFactory {
         return mediator;
     }
 
-    private addMediator(
-        mediator: any,
-        item: any,
-        mapping: IStateMediatorMapping
-    ): void {
-        let mediatorMap =
-            this._mediators.get(item) || new Map<any, IStateMediatorMapping>();
+    private addMediator(mediator: any, item: any, mapping: IStateMediatorMapping): void {
+        let mediatorMap = this._mediators.get(item) || new Map<any, IStateMediatorMapping>();
         this._mediators.set(item, mediatorMap);
         mediatorMap.set(<any>mapping, mediator);
         this._manager.addMediator(mediator, item, mapping);
     }
 
-    private mapTypeForFilterBinding(
-        filter: ITypeFilter,
-        type: IClass<any>,
-        item: any
-    ): void {
+    private mapTypeForFilterBinding(filter: ITypeFilter, type: IClass<any>, item: any): void {
         let requiredTypes = this.requiredTypesFor(filter, type);
         requiredTypes.forEach((requiredType: IType<any>) => {
             this._injector.bind(requiredType).toConstantValue(item);
         });
     }
 
-    private unmapTypeForFilterBinding(
-        filter: ITypeFilter,
-        type: IClass<any>,
-        item: any
-    ): void {
+    private unmapTypeForFilterBinding(filter: ITypeFilter, type: IClass<any>, item: any): void {
         let requiredTypes = this.requiredTypesFor(filter, type);
 
         requiredTypes.forEach((requiredType: IType<any>) => {
@@ -175,13 +141,8 @@ export class StateMediatorFactory {
         });
     }
 
-    private requiredTypesFor(
-        filter: ITypeFilter,
-        type: IClass<any>
-    ): Array<IType<any>> {
-        let requiredTypes: Array<IType<any>> = filter.allOfTypes.concat(
-            filter.anyOfTypes
-        );
+    private requiredTypesFor(filter: ITypeFilter, type: IClass<any>): Array<IType<any>> {
+        let requiredTypes: Array<IType<any>> = filter.allOfTypes.concat(filter.anyOfTypes);
 
         if (requiredTypes.indexOf(type) === -1) {
             requiredTypes.push(type);

@@ -20,6 +20,8 @@
 
 - Update codeclimate settings (see #40).
 
+- Update Prettier rules (see #41).
+
 - Update dev dependencies to latest version.
 
 ### [v0.0.5](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.0.5) - 2017-09-26
