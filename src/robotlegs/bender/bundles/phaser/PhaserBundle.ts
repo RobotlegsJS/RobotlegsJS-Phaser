@@ -28,12 +28,7 @@ export class PhaserBundle implements IBundle {
      * @inheritDoc
      */
     public extend(context: IContext): void {
-        context.install(
-            ContextStateManagerExtension,
-            StateManagerExtension,
-            StateManagerObserverExtension,
-            StateMediatorMapExtension
-        );
+        context.install(ContextStateManagerExtension, StateManagerExtension, StateManagerObserverExtension, StateMediatorMapExtension);
 
         context.configure(ContextStateManagerListenerConfig);
     }

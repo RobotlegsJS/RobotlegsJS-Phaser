@@ -50,13 +50,9 @@ export class StateMediatorMapExtension implements IExtension {
     /*============================================================================*/
 
     private beforeInitializing(): void {
-        this._mediatorMap = this._injector.get<StateMediatorMap>(
-            IStateMediatorMap
-        );
+        this._mediatorMap = this._injector.get<StateMediatorMap>(IStateMediatorMap);
         if (this._injector.isBound(IStateManager)) {
-            this._viewManager = this._injector.get<IStateManager>(
-                IStateManager
-            );
+            this._viewManager = this._injector.get<IStateManager>(IStateManager);
             this._viewManager.addStateHandler(this._mediatorMap);
         }
     }
@@ -64,9 +60,7 @@ export class StateMediatorMapExtension implements IExtension {
     private beforeDestroying(): void {
         this._mediatorMap.unmediateAll();
         if (this._injector.isBound(IStateManager)) {
-            this._viewManager = this._injector.get<IStateManager>(
-                IStateManager
-            );
+            this._viewManager = this._injector.get<IStateManager>(IStateManager);
             this._viewManager.removeStateHandler(this._mediatorMap);
         }
     }

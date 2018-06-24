@@ -53,24 +53,16 @@ export class StateManagerObserverExtension implements IExtension {
     private whenInitializing(): void {
         // Hark, an actual Singleton!
         if (!StateManagerObserverExtension._stageObserver) {
-            var containerRegistry: StateRegistry = this._injector.get<
-                StateRegistry
-            >(StateRegistry);
-            this._logger.debug(
-                "Creating genuine StateManagerObserver Singleton"
-            );
-            StateManagerObserverExtension._stageObserver = new StateManagerObserver(
-                containerRegistry
-            );
+            var containerRegistry: StateRegistry = this._injector.get<StateRegistry>(StateRegistry);
+            this._logger.debug("Creating genuine StateManagerObserver Singleton");
+            StateManagerObserverExtension._stageObserver = new StateManagerObserver(containerRegistry);
         }
     }
 
     private whenDestroying(): void {
         installCount--;
         if (installCount == 0) {
-            this._logger.debug(
-                "Destroying genuine StateManagerObserver Singleton"
-            );
+            this._logger.debug("Destroying genuine StateManagerObserver Singleton");
             StateManagerObserverExtension._stageObserver.destroy();
             StateManagerObserverExtension._stageObserver = null;
         }

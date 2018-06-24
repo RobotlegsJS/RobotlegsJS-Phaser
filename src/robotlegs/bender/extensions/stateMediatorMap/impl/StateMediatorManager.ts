@@ -23,10 +23,7 @@ export class StateMediatorManager {
     /*============================================================================*/
 
     private _factory: StateMediatorFactory;
-    private _autoRemoveMap: Map<string, Phaser.State> = new Map<
-        string,
-        Phaser.State
-    >();
+    private _autoRemoveMap: Map<string, Phaser.State> = new Map<string, Phaser.State>();
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -46,11 +43,7 @@ export class StateMediatorManager {
     /**
      * @private
      */
-    public addMediator(
-        mediator: any,
-        item: any,
-        mapping: IStateMediatorMapping
-    ): void {
+    public addMediator(mediator: any, item: any, mapping: IStateMediatorMapping): void {
         let state: Phaser.State = <Phaser.State>item;
 
         // Watch state for removal
@@ -70,11 +63,7 @@ export class StateMediatorManager {
     /**
      * @private
      */
-    public removeMediator(
-        mediator: any,
-        item: any,
-        mapping: IStateMediatorMapping
-    ): void {
+    public removeMediator(mediator: any, item: any, mapping: IStateMediatorMapping): void {
         this.destroyMediator(mediator);
     }
 
@@ -82,10 +71,7 @@ export class StateMediatorManager {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private onStateChange(
-        currentStateKey: string,
-        previousStateKey: string
-    ): void {
+    private onStateChange(currentStateKey: string, previousStateKey: string): void {
         if (this._autoRemoveMap.has(previousStateKey)) {
             let state: Phaser.State = this._autoRemoveMap.get(previousStateKey);
             this._autoRemoveMap.delete(previousStateKey);

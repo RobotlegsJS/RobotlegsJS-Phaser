@@ -26,16 +26,8 @@ export class StateManagerObserver {
         this._registry = containerRegistry;
 
         // We only care about roots
-        this._registry.addEventListener(
-            StageRegistryEvent.ROOT_CONTAINER_ADD,
-            this.onRootContainerAdd,
-            this
-        );
-        this._registry.addEventListener(
-            StageRegistryEvent.ROOT_CONTAINER_REMOVE,
-            this.onRootContainerRemove,
-            this
-        );
+        this._registry.addEventListener(StageRegistryEvent.ROOT_CONTAINER_ADD, this.onRootContainerAdd, this);
+        this._registry.addEventListener(StageRegistryEvent.ROOT_CONTAINER_REMOVE, this.onRootContainerRemove, this);
 
         // We might have arrived late on the scene
         for (let i in this._registry.rootBindings) {
@@ -52,16 +44,8 @@ export class StateManagerObserver {
      * @private
      */
     public destroy(): void {
-        this._registry.removeEventListener(
-            StageRegistryEvent.ROOT_CONTAINER_ADD,
-            this.onRootContainerAdd,
-            this
-        );
-        this._registry.removeEventListener(
-            StageRegistryEvent.ROOT_CONTAINER_REMOVE,
-            this.onRootContainerRemove,
-            this
-        );
+        this._registry.removeEventListener(StageRegistryEvent.ROOT_CONTAINER_ADD, this.onRootContainerAdd, this);
+        this._registry.removeEventListener(StageRegistryEvent.ROOT_CONTAINER_REMOVE, this.onRootContainerRemove, this);
 
         for (let i in this._registry.rootBindings) {
             let binding: StateBinding = this._registry.rootBindings[i];
@@ -88,10 +72,7 @@ export class StateManagerObserver {
         }
     }
 
-    private onStateChange(
-        currentStateKey: string,
-        previousStateKey: string
-    ): void {
+    private onStateChange(currentStateKey: string, previousStateKey: string): void {
         let rootBindings: StateBinding[] = this._registry.rootBindings;
         let stateManager: Phaser.StateManager;
 
@@ -99,14 +80,9 @@ export class StateManagerObserver {
             stateManager = <Phaser.StateManager>rootBindings[i].container;
 
             if (stateManager && stateManager.states[currentStateKey]) {
-                let binding: StateBinding = this._registry.getBinding(
-                    stateManager.states[currentStateKey]
-                );
+                let binding: StateBinding = this._registry.getBinding(stateManager.states[currentStateKey]);
                 if (binding) {
-                    binding.handleState(
-                        stateManager.states[currentStateKey],
-                        stateManager.states[currentStateKey]["constructor"]
-                    );
+                    binding.handleState(stateManager.states[currentStateKey], stateManager.states[currentStateKey]["constructor"]);
                 }
             }
         }

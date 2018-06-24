@@ -17,8 +17,7 @@ import { IStateMediator } from "../api/IStateMediator";
  * <p>Override initialize and destroy to hook into the mediator lifecycle.</p>
  */
 @injectable()
-export abstract class StateMediator<T extends Phaser.State>
-    implements IStateMediator {
+export abstract class StateMediator<T extends Phaser.State> implements IStateMediator {
     /*============================================================================*/
     /* Protected Properties                                                       */
     /*============================================================================*/
@@ -67,35 +66,19 @@ export abstract class StateMediator<T extends Phaser.State>
     /* Protected Functions                                                        */
     /*============================================================================*/
 
-    protected addViewListener(
-        eventString: string,
-        listener: Function,
-        eventClass?: Object
-    ): void {
+    protected addViewListener(eventString: string, listener: Function, eventClass?: Object): void {
         // this.eventMap.mapListener(this._stateComponent, eventString, listener, eventClass);
     }
 
-    protected addContextListener(
-        eventString: string,
-        listener: Function,
-        eventClass?: Object
-    ): void {
+    protected addContextListener(eventString: string, listener: Function, eventClass?: Object): void {
         // this.eventMap.mapListener(this.eventDispatcher, eventString, listener, eventClass);
     }
 
-    protected removeViewListener(
-        eventString: string,
-        listener: Function,
-        eventClass?: Object
-    ): void {
+    protected removeViewListener(eventString: string, listener: Function, eventClass?: Object): void {
         // this.eventMap.unmapListener(this._stateComponent, eventString, listener, eventClass);
     }
 
-    protected removeContextListener(
-        eventString: string,
-        listener: Function,
-        eventClass?: Object
-    ): void {
+    protected removeContextListener(eventString: string, listener: Function, eventClass?: Object): void {
         // this.eventMap.unmapListener(this.eventDispatcher, eventString, listener, eventClass);
     }
 

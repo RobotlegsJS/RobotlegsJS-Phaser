@@ -18,16 +18,12 @@ import { StateMediatorMapping } from "./StateMediatorMapping";
 /**
  * @private
  */
-export class StateMediatorMapper
-    implements IStateMediatorMapper, IStateMediatorUnmapper {
+export class StateMediatorMapper implements IStateMediatorMapper, IStateMediatorUnmapper {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappings: Map<any, IStateMediatorMapping> = new Map<
-        any,
-        IStateMediatorMapping
-    >();
+    private _mappings: Map<any, IStateMediatorMapping> = new Map<any, IStateMediatorMapping>();
 
     private _typeFilter: ITypeFilter;
 
@@ -42,11 +38,7 @@ export class StateMediatorMapper
     /**
      * @private
      */
-    constructor(
-        typeFilter: ITypeFilter,
-        handler: StateMediatorStateHandler,
-        logger?: ILogger
-    ) {
+    constructor(typeFilter: ITypeFilter, handler: StateMediatorStateHandler, logger?: ILogger) {
         this._typeFilter = typeFilter;
         this._handler = handler;
         this._logger = logger;
@@ -61,9 +53,7 @@ export class StateMediatorMapper
      */
     public toMediator(mediatorClass: any): IStateMediatorConfigurator {
         let mapping: IStateMediatorMapping = this._mappings[<any>mediatorClass];
-        return mapping
-            ? this.overwriteMapping(mapping)
-            : this.createMapping(mediatorClass);
+        return mapping ? this.overwriteMapping(mapping) : this.createMapping(mediatorClass);
     }
 
     /**
@@ -91,17 +81,11 @@ export class StateMediatorMapper
     /*============================================================================*/
 
     private createMapping(mediatorClass: any): StateMediatorMapping {
-        let mapping: StateMediatorMapping = new StateMediatorMapping(
-            this._typeFilter,
-            mediatorClass
-        );
+        let mapping: StateMediatorMapping = new StateMediatorMapping(this._typeFilter, mediatorClass);
         this._handler.addMapping(mapping);
         this._mappings[<any>mediatorClass] = mapping;
         if (this._logger) {
-            this._logger.debug("{0} mapped to {1}", [
-                this._typeFilter,
-                mapping
-            ]);
+            this._logger.debug("{0} mapped to {1}", [this._typeFilter, mapping]);
         }
         return mapping;
     }
@@ -110,16 +94,11 @@ export class StateMediatorMapper
         this._handler.removeMapping(mapping);
         delete this._mappings[<any>mapping.mediatorClass];
         if (this._logger) {
-            this._logger.debug("{0} unmapped from {1}", [
-                this._typeFilter,
-                mapping
-            ]);
+            this._logger.debug("{0} unmapped from {1}", [this._typeFilter, mapping]);
         }
     }
 
-    private overwriteMapping(
-        mapping: IStateMediatorMapping
-    ): IStateMediatorConfigurator {
+    private overwriteMapping(mapping: IStateMediatorMapping): IStateMediatorConfigurator {
         if (this._logger) {
             this._logger.warn(
                 "{0} already mapped to {1}\n" +

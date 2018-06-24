@@ -13,8 +13,7 @@ import { IStateMediatorConfigurator } from "../dsl/IStateMediatorConfigurator";
 /**
  * @private
  */
-export class StateMediatorMapping
-    implements IStateMediatorMapping, IStateMediatorConfigurator {
+export class StateMediatorMapping implements IStateMediatorMapping, IStateMediatorConfigurator {
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/

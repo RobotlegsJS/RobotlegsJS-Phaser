@@ -17,10 +17,7 @@ describe("ConfigureStateEvent", () => {
 
     beforeEach(() => {
         state = new Phaser.State();
-        event = new ConfigureStateEvent(
-            ConfigureStateEvent.CONFIGURE_STATE,
-            state
-        );
+        event = new ConfigureStateEvent(ConfigureStateEvent.CONFIGURE_STATE, state);
     });
 
     afterEach(() => {

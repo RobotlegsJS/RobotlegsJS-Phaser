@@ -22,11 +22,7 @@ describe("StateManagerEvent", () => {
     beforeEach(() => {
         game = new Phaser.Game();
         handler = new CallbackStateHandler();
-        event = new StateManagerEvent(
-            StateManagerEvent.STATE_MANAGER_ADD,
-            game.state,
-            handler
-        );
+        event = new StateManagerEvent(StateManagerEvent.STATE_MANAGER_ADD, game.state, handler);
     });
 
     afterEach(() => {
@@ -37,10 +33,7 @@ describe("StateManagerEvent", () => {
 
     it("ensure_static_properties_will_not_change", () => {
         assert.equal(StateManagerEvent.STATE_MANAGER_ADD, "stateManagerAdd");
-        assert.equal(
-            StateManagerEvent.STATE_MANAGER_REMOVE,
-            "stateManagerRemove"
-        );
+        assert.equal(StateManagerEvent.STATE_MANAGER_REMOVE, "stateManagerRemove");
         assert.equal(StateManagerEvent.HANDLER_ADD, "handlerAdd");
         assert.equal(StateManagerEvent.HANDLER_REMOVE, "handlerRemove");
     });

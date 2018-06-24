@@ -21,10 +21,7 @@ export class StateRegistry extends EventDispatcher {
 
     private _rootBindings: StateBinding[] = [];
     private _bindings: StateBinding[] = [];
-    private _bindingByContainer: Map<any, StateBinding> = new Map<
-        any,
-        StateBinding
-    >();
+    private _bindingByContainer: Map<any, StateBinding> = new Map<any, StateBinding>();
 
     /*============================================================================*/
     /* Public Properties                                                          */
@@ -52,9 +49,7 @@ export class StateRegistry extends EventDispatcher {
      * @private
      */
     public addContainer(container: any): StateBinding {
-        return (this._bindingByContainer[container] =
-            this._bindingByContainer[container] ||
-            this.createBinding(container));
+        return (this._bindingByContainer[container] = this._bindingByContainer[container] || this.createBinding(container));
     }
 
     /**
@@ -101,10 +96,7 @@ export class StateRegistry extends EventDispatcher {
         this._bindings.push(binding);
 
         // Add a listener so that we can remove this binding when it has no handlers
-        binding.addEventListener(
-            StateBindingEvent.BINDING_EMPTY,
-            this.onBindingEmpty
-        );
+        binding.addEventListener(StateBindingEvent.BINDING_EMPTY, this.onBindingEmpty);
 
         // If the new binding doesn't have a parent it is a Root
         binding.parent = this.findParentBinding(container);
@@ -127,12 +119,7 @@ export class StateRegistry extends EventDispatcher {
             }
         }
 
-        this.dispatchEvent(
-            new StageRegistryEvent(
-                StageRegistryEvent.CONTAINER_ADD,
-                binding.container
-            )
-        );
+        this.dispatchEvent(new StageRegistryEvent(StageRegistryEvent.CONTAINER_ADD, binding.container));
         return binding;
     }
 
@@ -143,10 +130,7 @@ export class StateRegistry extends EventDispatcher {
         this._bindings.splice(index, 1);
 
         // Drop the empty binding listener
-        binding.removeEventListener(
-            StateBindingEvent.BINDING_EMPTY,
-            this.onBindingEmpty
-        );
+        binding.removeEventListener(StateBindingEvent.BINDING_EMPTY, this.onBindingEmpty);
 
         if (!binding.parent) {
             // This binding didn't have a parent, so it was a Root
@@ -166,33 +150,18 @@ export class StateRegistry extends EventDispatcher {
             }
         }
 
-        this.dispatchEvent(
-            new StageRegistryEvent(
-                StageRegistryEvent.CONTAINER_REMOVE,
-                binding.container
-            )
-        );
+        this.dispatchEvent(new StageRegistryEvent(StageRegistryEvent.CONTAINER_REMOVE, binding.container));
     }
 
     private addRootBinding(binding: StateBinding): void {
         this._rootBindings.push(binding);
-        this.dispatchEvent(
-            new StageRegistryEvent(
-                StageRegistryEvent.ROOT_CONTAINER_ADD,
-                binding.container
-            )
-        );
+        this.dispatchEvent(new StageRegistryEvent(StageRegistryEvent.ROOT_CONTAINER_ADD, binding.container));
     }
 
     private removeRootBinding(binding: StateBinding): void {
         var index: number = this._rootBindings.indexOf(binding);
         this._rootBindings.splice(index, 1);
-        this.dispatchEvent(
-            new StageRegistryEvent(
-                StageRegistryEvent.ROOT_CONTAINER_REMOVE,
-                binding.container
-            )
-        );
+        this.dispatchEvent(new StageRegistryEvent(StageRegistryEvent.ROOT_CONTAINER_REMOVE, binding.container));
     }
 
     private onBindingEmpty(event: StateBindingEvent): void {
