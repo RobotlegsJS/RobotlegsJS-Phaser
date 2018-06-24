@@ -26,13 +26,13 @@ export class StateManager extends EventDispatcher implements IStateManager {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _containers: any[] = [];
+    private _stateManagers: Phaser.StateManager[] = [];
 
     /**
      * @inheritDoc
      */
-    public get containers(): any[] {
-        return this._containers;
+    public get stateManagers(): Phaser.StateManager[] {
+        return this._stateManagers;
     }
 
     /*============================================================================*/
@@ -50,9 +50,9 @@ export class StateManager extends EventDispatcher implements IStateManager {
     /**
      * @private
      */
-    constructor(containerRegistry: StateRegistry) {
+    constructor(stateRegistry: StateRegistry) {
         super();
-        this._registry = containerRegistry;
+        this._registry = stateRegistry;
     }
 
     /*============================================================================*/
@@ -62,40 +62,48 @@ export class StateManager extends EventDispatcher implements IStateManager {
     /**
      * @inheritDoc
      */
-    public addContainer(container: any): void {
-        if (!this.validContainer(container)) {
+    public addStateManager(stateManager: Phaser.StateManager): void {
+        if (!this.validStateManager(stateManager)) {
             return;
         }
 
-        this._containers.push(container);
+        this._stateManagers.push(stateManager);
 
-        for (let i in this._handlers) {
-            let handler: IStateHandler = this._handlers[i];
-            this._registry.addContainer(container).addHandler(handler);
-        }
+        this._handlers.forEach((handler: IStateHandler) => {
+            this._registry.addContainer(stateManager).addHandler(handler);
+        });
+
         this.dispatchEvent(
-            new StateManagerEvent(StateManagerEvent.CONTAINER_ADD, container)
+            new StateManagerEvent(
+                StateManagerEvent.STATE_MANAGER_ADD,
+                stateManager
+            )
         );
     }
 
     /**
      * @inheritDoc
      */
-    public removeContainer(container: any): void {
-        var index: number = this._containers.indexOf(container);
+    public removeStateManager(stateManager: Phaser.StateManager): void {
+        let index: number = this._stateManagers.indexOf(stateManager);
+
         if (index === -1) {
             return;
         }
 
-        this._containers.splice(index, 1);
+        this._stateManagers.splice(index, 1);
 
-        var binding: StateBinding = this._registry.getBinding(container);
-        for (let i in this._handlers) {
-            let handler: IStateHandler = this._handlers[i];
+        let binding: StateBinding = this._registry.getBinding(stateManager);
+
+        this._handlers.forEach((handler: IStateHandler) => {
             binding.removeHandler(handler);
-        }
+        });
+
         this.dispatchEvent(
-            new StateManagerEvent(StateManagerEvent.CONTAINER_REMOVE, container)
+            new StateManagerEvent(
+                StateManagerEvent.STATE_MANAGER_REMOVE,
+                stateManager
+            )
         );
     }
 
@@ -109,10 +117,10 @@ export class StateManager extends EventDispatcher implements IStateManager {
 
         this._handlers.push(handler);
 
-        for (let i in this._containers) {
-            let container: any = this._containers[i];
-            this._registry.addContainer(container).addHandler(handler);
-        }
+        this._stateManagers.forEach((stateManager: Phaser.StateManager) => {
+            this._registry.addContainer(stateManager).addHandler(handler);
+        });
+
         this.dispatchEvent(
             new StateManagerEvent(StateManagerEvent.HANDLER_ADD, null, handler)
         );
@@ -122,17 +130,18 @@ export class StateManager extends EventDispatcher implements IStateManager {
      * @inheritDoc
      */
     public removeStateHandler(handler: IStateHandler): void {
-        var index: number = this._handlers.indexOf(handler);
+        let index: number = this._handlers.indexOf(handler);
+
         if (index === -1) {
             return;
         }
 
         this._handlers.splice(index, 1);
 
-        for (let i in this._containers) {
-            let container: any = this._containers[i];
-            this._registry.getBinding(container).removeHandler(handler);
-        }
+        this._stateManagers.forEach((stateManager: Phaser.StateManager) => {
+            this._registry.getBinding(stateManager).removeHandler(handler);
+        });
+
         this.dispatchEvent(
             new StateManagerEvent(
                 StateManagerEvent.HANDLER_REMOVE,
@@ -146,34 +155,28 @@ export class StateManager extends EventDispatcher implements IStateManager {
      * @inheritDoc
      */
     public removeAllHandlers(): void {
-        for (let i in this._containers) {
-            let container: any = this._containers[i];
-            var binding: StateBinding = this._registry.getBinding(container);
-            for (let j in this._handlers) {
-                let handler: IStateHandler = this._handlers[j];
+        this._stateManagers.forEach((stateManager: Phaser.StateManager) => {
+            let binding: StateBinding = this._registry.getBinding(stateManager);
+
+            this._handlers.forEach((handler: IStateHandler) => {
                 binding.removeHandler(handler);
-            }
-        }
+            });
+        });
     }
 
     /*============================================================================*/
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private validContainer(container: any): boolean {
-        for (let i in this._containers) {
-            let registeredContainer: any = this._containers[i];
-            if (container === registeredContainer) {
-                return false;
+    private validStateManager(stateManager: Phaser.StateManager): boolean {
+        this._stateManagers.forEach(
+            (registeredStateManager: Phaser.StateManager) => {
+                if (stateManager === registeredStateManager) {
+                    return false;
+                }
             }
+        );
 
-            if (
-                registeredContainer.contains(container) ||
-                container.contains(registeredContainer)
-            ) {
-                throw new Error("Containers can not be nested");
-            }
-        }
         return true;
     }
 }

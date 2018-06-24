@@ -5,8 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { Event } from "@robotlegsjs/core";
+
 /**
- * View Configuration Event
+ * State Configuration Event
  * @private
  */
 export class ConfigureStateEvent extends Event {
@@ -20,12 +22,12 @@ export class ConfigureStateEvent extends Event {
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _state: any;
+    private _state: Phaser.State;
 
     /**
      * The state instance associated with this event
      */
-    public get state(): any {
+    public get state(): Phaser.State {
         return this._state;
     }
 
@@ -38,9 +40,8 @@ export class ConfigureStateEvent extends Event {
      * @param type The event type
      * @param state The associated state instance
      */
-    constructor(type: string, state?: any) {
-        // super(type, true, true);
-        super(type);
+    constructor(type: string, state?: Phaser.State) {
+        super(type, { bubbles: true });
         this._state = state;
     }
 
@@ -51,7 +52,7 @@ export class ConfigureStateEvent extends Event {
     /**
      * @inheritDoc
      */
-    public clone(): Event {
+    public clone(): ConfigureStateEvent {
         return new ConfigureStateEvent(this.type, this._state);
     }
 }

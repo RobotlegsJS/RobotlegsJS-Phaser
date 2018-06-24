@@ -1,7 +1,6 @@
 import { BaseState } from "./BaseState";
 
 export class GameOver extends BaseState {
-
     public create(): void {
         super.create();
 

@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { ITypeMatcher } from "@robotlegsjs/core";
+import { IClass, ITypeMatcher } from "@robotlegsjs/core";
 
 import { IStateMediatorMapper } from "../dsl/IStateMediatorMapper";
 import { IStateMediatorUnmapper } from "../dsl/IStateMediatorUnmapper";
@@ -28,7 +28,7 @@ export interface IStateMediatorMap {
      * @param state The class or interface to be matched against.
      * @return the mapper so that you can continue the mapping.
      */
-    map(state: any): IStateMediatorMapper;
+    map(state: IClass<Phaser.State>): IStateMediatorMapper;
 
     /**
      * Removes a mapping that was made against a matcher.
@@ -44,19 +44,19 @@ export interface IStateMediatorMap {
      * @param state The class or interface to be matched against.
      * @return the unmapper so that you can continue the unmapping.
      */
-    unmap(state: any): IStateMediatorUnmapper;
+    unmap(state: IClass<Phaser.State>): IStateMediatorUnmapper;
 
     /**
      * Mediates an state directly. If the state matches any mapped matchers or types then it will be mediated according to those mappings.
      * @param state The state to create mediators for.
      */
-    mediate(state: any): void;
+    mediate(state: IClass<Phaser.State>): void;
 
     /**
      * Removes the mediators for an state if there are any.
      * @param state The state to remove mediators for.
      */
-    unmediate(state: any): void;
+    unmediate(state: IClass<Phaser.State>): void;
 
     /**
      * Removes all mediators

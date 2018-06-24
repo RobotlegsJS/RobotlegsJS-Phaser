@@ -1,5 +1,4 @@
 export abstract class BaseState extends Phaser.State {
-
     public init(): void {
         console.log(this.key + ": init");
     }

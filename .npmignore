@@ -6,6 +6,7 @@
 /lib/test
 /not-ported-extensions
 /src
+/static
 /test
 /transpiled-code
 /typings
