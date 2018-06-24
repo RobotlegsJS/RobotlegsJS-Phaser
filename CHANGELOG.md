@@ -14,7 +14,7 @@
 
 - Add code of conduct (see #36).
 
-- Add issue template (see #37).
+- Add issue template (see #38).
 
 - Update dev dependencies to latest version.
 
