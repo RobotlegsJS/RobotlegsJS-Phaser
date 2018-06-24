@@ -16,6 +16,8 @@ const concatPluginConfigGenerator = (name, files) => {
 
 module.exports = options => {
   return {
+    mode: "development",
+
     entry: {
       main: path.resolve("example/index.ts")
     },
