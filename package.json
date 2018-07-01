@@ -12,7 +12,7 @@
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "clean-up": "rimraf .nyc_output && rimraf coverage && rimraf lib",
     "compile": "tsc -d",
-    "compile:test": "tsc --config tsconfig.test.json -d",
+    "compile:test": "tsc --p tsconfig.test.json -d",
     "prepare": "npm run clean-up && npm run compile",
     "prepublishOnly": "publish-please guard",
     "publish-please": "npm run autoformat && npm run clean-up && npm run test && publish-please"
