@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
+import { IClass, IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
 
 import { IStateMediatorMap } from "../api/IStateMediatorMap";
 import { IStateMediatorMapper } from "../dsl/IStateMediatorMapper";
@@ -29,7 +29,7 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappers: Map<string, IStateMediatorMapper> = new Map<string, IStateMediatorMapper>();
+    private _mappers: Map<string, StateMediatorMapper> = new Map<string, StateMediatorMapper>();
 
     private _logger: ILogger;
 
@@ -60,15 +60,22 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
      * @inheritDoc
      */
     public mapMatcher(matcher: ITypeMatcher): IStateMediatorMapper {
-        this._mappers[matcher.createTypeFilter().descriptor] =
-            this._mappers[matcher.createTypeFilter().descriptor] || this.createMapper(matcher);
-        return this._mappers[matcher.createTypeFilter().descriptor];
+        const desc = matcher.createTypeFilter().descriptor;
+        let mapper = this._mappers.get(desc);
+
+        if (mapper) {
+            return mapper;
+        }
+
+        mapper = this.createMapper(matcher);
+        this._mappers.set(desc, mapper);
+        return mapper;
     }
 
     /**
      * @inheritDoc
      */
-    public map(type: any): IStateMediatorMapper {
+    public map(type: IClass<Phaser.State>): IStateMediatorMapper {
         return this.mapMatcher(new TypeMatcher().allOf(type));
     }
 
@@ -76,34 +83,34 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
      * @inheritDoc
      */
     public unmapMatcher(matcher: ITypeMatcher): IStateMediatorUnmapper {
-        return this._mappers[matcher.createTypeFilter().descriptor] || this.NULL_UNMAPPER;
+        return this._mappers.get(matcher.createTypeFilter().descriptor) || this.NULL_UNMAPPER;
     }
 
     /**
      * @inheritDoc
      */
-    public unmap(type: any): IStateMediatorUnmapper {
+    public unmap(type: IClass<Phaser.State>): IStateMediatorUnmapper {
         return this.unmapMatcher(new TypeMatcher().allOf(type));
     }
 
     /**
      * @inheritDoc
      */
-    public handleState(state: any, type: any): void {
+    public handleState(state: Phaser.State, type: IClass<any>): void {
         this._stateHandler.handleState(state, type);
     }
 
     /**
      * @inheritDoc
      */
-    public mediate(item: any): void {
-        this._stateHandler.handleItem(item, <any>item["constructor"]);
+    public mediate(item: IClass<Phaser.State>): void {
+        this._stateHandler.handleItem(item, <IClass<any>>item.constructor);
     }
 
     /**
      * @inheritDoc
      */
-    public unmediate(item: any): void {
+    public unmediate(item: IClass<Phaser.State>): void {
         this._factory.removeMediators(item);
     }
 
@@ -118,7 +125,7 @@ export class StateMediatorMap implements IStateMediatorMap, IStateHandler {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private createMapper(matcher: ITypeMatcher): IStateMediatorMapper {
+    private createMapper(matcher: ITypeMatcher): StateMediatorMapper {
         return new StateMediatorMapper(matcher.createTypeFilter(), this._stateHandler, this._logger);
     }
 }

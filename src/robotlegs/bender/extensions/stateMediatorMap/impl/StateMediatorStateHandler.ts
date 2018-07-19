@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IClass } from "@robotlegsjs/core";
+
 import { IStateMediatorMapping } from "../api/IStateMediatorMapping";
 import { IStateHandler } from "../../stateManager/api/IStateHandler";
 
@@ -20,7 +22,7 @@ export class StateMediatorStateHandler implements IStateHandler {
 
     private _mappings: IStateMediatorMapping[] = [];
 
-    private _knownMappings: Map<FunctionConstructor, IStateMediatorMapping[]> = new Map<FunctionConstructor, IStateMediatorMapping[]>();
+    private _knownMappings: Map<IClass<any>, IStateMediatorMapping[] | boolean> = new Map<IClass<any>, IStateMediatorMapping[]>();
 
     private _factory: StateMediatorFactory;
 
@@ -66,7 +68,7 @@ export class StateMediatorStateHandler implements IStateHandler {
     /**
      * @private
      */
-    public handleState(state: any, type: FunctionConstructor): void {
+    public handleState(state: Phaser.State, type: IClass<any>): void {
         let interestedMappings = this.getInterestedMappingsFor(state, type);
         if (interestedMappings) {
             this._factory.createMediators(state, type, interestedMappings);
@@ -76,7 +78,7 @@ export class StateMediatorStateHandler implements IStateHandler {
     /**
      * @private
      */
-    public handleItem(item: Object, type: FunctionConstructor): void {
+    public handleItem(item: any, type: IClass<any>): void {
         let interestedMappings = this.getInterestedMappingsFor(item, type);
         if (interestedMappings) {
             this._factory.createMediators(item, type, interestedMappings);
@@ -88,34 +90,35 @@ export class StateMediatorStateHandler implements IStateHandler {
     /*============================================================================*/
 
     private flushCache(): void {
-        this._knownMappings = new Map<FunctionConstructor, IStateMediatorMapping[]>();
+        this._knownMappings = new Map<IClass<any>, IStateMediatorMapping[]>();
     }
 
-    private getInterestedMappingsFor(item: Object, type: any): IStateMediatorMapping[] {
+    private getInterestedMappingsFor(item: any, type: any): IStateMediatorMapping[] {
         // we've seen this type before and nobody was interested
-        if (this._knownMappings[type] === false) {
+        if (this._knownMappings.get(type) === false) {
             return null;
         }
 
         // we haven't seen this type before
-        if (this._knownMappings[type] === undefined) {
-            this._knownMappings[type] = false;
-            for (let i in this._mappings) {
-                let mapping: IStateMediatorMapping = this._mappings[i];
+        if (this._knownMappings.get(type) === undefined) {
+            this._knownMappings.set(type, false);
+
+            this._mappings.forEach((mapping: IStateMediatorMapping) => {
                 if (mapping.matcher.matches(item)) {
-                    if (!this._knownMappings[type]) {
-                        this._knownMappings[type] = [];
+                    if (!this._knownMappings.get(type)) {
+                        this._knownMappings.set(type, []);
                     }
-                    this._knownMappings[type].push(mapping);
+                    (this._knownMappings.get(type) as IStateMediatorMapping[]).push(mapping);
                 }
-            }
+            });
+
             // nobody cares, let's get out of here
-            if (this._knownMappings[type] === false) {
+            if (this._knownMappings.get(type) === false) {
                 return null;
             }
         }
 
         // these mappings really do care
-        return this._knownMappings[type];
+        return this._knownMappings.get(type) as IStateMediatorMapping[];
     }
 }
