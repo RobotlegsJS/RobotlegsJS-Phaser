@@ -12,22 +12,22 @@ import { assert } from "chai";
 import { IContextStateManager, ContextStateManager } from "../../../../../../src";
 
 describe("ContextStateManager", () => {
-    let game: Phaser.Game;
+    let stateManager: Phaser.StateManager;
     let contextStateManager: IContextStateManager;
 
     beforeEach(() => {
-        game = new Phaser.Game();
+        stateManager = new Phaser.StateManager(null);
     });
 
     afterEach(() => {
-        game = null;
+        stateManager = null;
         contextStateManager = null;
     });
 
     it("stateManager_is_stored", () => {
-        contextStateManager = new ContextStateManager(game.state);
+        contextStateManager = new ContextStateManager(stateManager);
         assert.isNotNull(contextStateManager.stateManager);
-        assert.equal(contextStateManager.stateManager, game.state);
+        assert.equal(contextStateManager.stateManager, stateManager);
     });
 
     it("ContextStateManager_throws_a_error_when_state_manager_is_null", () => {
