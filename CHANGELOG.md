@@ -8,7 +8,7 @@
 
 - Update phaser-ce to version 2.10.6 (see #34).
 
-- Update eventemmiter3 to version 3.1.10 (see #34).
+- Remove eventemitter3 dependency (see #45).
 
 - Add changelog (see #35).
 
@@ -27,8 +27,6 @@
 - Update TypeScript Compiler Options (see #43).
 
 - Enforce TSLint rules (see #44).
-
-- Remove eventemitter3 dependency (see #45).
 
 - Update dev dependencies to latest version.
 
