@@ -21,7 +21,7 @@ export class StateManagerExtension implements IExtension {
     /*============================================================================*/
 
     // Really? Yes, there can be only one.
-    private static _containerRegistry: StateRegistry;
+    private static _stateRegistry: StateRegistry;
 
     /*============================================================================*/
     /* Private Properties                                                         */
@@ -45,8 +45,8 @@ export class StateManagerExtension implements IExtension {
         this._injector = context.injector;
 
         // Just one Container Registry
-        StateManagerExtension._containerRegistry = StateManagerExtension._containerRegistry || new StateRegistry();
-        this._injector.bind(StateRegistry).toConstantValue(StateManagerExtension._containerRegistry);
+        StateManagerExtension._stateRegistry = StateManagerExtension._stateRegistry || new StateRegistry();
+        this._injector.bind(StateRegistry).toConstantValue(StateManagerExtension._stateRegistry);
 
         // But you get your own View Manager
         this._injector

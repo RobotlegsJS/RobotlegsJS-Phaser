@@ -5,9 +5,9 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { StateBinding } from "./StateBinding";
+import { StateManagerBinding } from "./StateManagerBinding";
 import { StateRegistry } from "./StateRegistry";
-import { StageRegistryEvent } from "./StateRegistryEvent";
+import { StateRegistryEvent } from "./StateRegistryEvent";
 
 /**
  * @private
@@ -26,14 +26,13 @@ export class StateManagerObserver {
         this._registry = containerRegistry;
 
         // We only care about roots
-        this._registry.addEventListener(StageRegistryEvent.ROOT_CONTAINER_ADD, this.onRootContainerAdd, this);
-        this._registry.addEventListener(StageRegistryEvent.ROOT_CONTAINER_REMOVE, this.onRootContainerRemove, this);
+        this._registry.addEventListener(StateRegistryEvent.ROOT_STATE_MANAGER_ADD, this.onRootStateManagerAdd, this);
+        this._registry.addEventListener(StateRegistryEvent.ROOT_STATE_MANAGER_REMOVE, this.onRootStateManagerRemove, this);
 
         // We might have arrived late on the scene
-        for (let i in this._registry.rootBindings) {
-            let binding: StateBinding = this._registry.rootBindings[i];
-            this.addRootListener(binding.container);
-        }
+        this._registry.rootBindings.forEach((binding: StateManagerBinding) => {
+            this.addRootListener(binding.stateManager);
+        });
     }
 
     /*============================================================================*/
@@ -44,52 +43,49 @@ export class StateManagerObserver {
      * @private
      */
     public destroy(): void {
-        this._registry.removeEventListener(StageRegistryEvent.ROOT_CONTAINER_ADD, this.onRootContainerAdd, this);
-        this._registry.removeEventListener(StageRegistryEvent.ROOT_CONTAINER_REMOVE, this.onRootContainerRemove, this);
+        this._registry.removeEventListener(StateRegistryEvent.ROOT_STATE_MANAGER_ADD, this.onRootStateManagerAdd, this);
+        this._registry.removeEventListener(StateRegistryEvent.ROOT_STATE_MANAGER_REMOVE, this.onRootStateManagerRemove, this);
 
-        for (let i in this._registry.rootBindings) {
-            let binding: StateBinding = this._registry.rootBindings[i];
-            this.removeRootListener(binding.container);
-        }
+        this._registry.rootBindings.forEach((binding: StateManagerBinding) => {
+            this.removeRootListener(binding.stateManager);
+        });
     }
 
     /*============================================================================*/
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private onRootContainerAdd(event: StageRegistryEvent): void {
-        this.addRootListener(event.container);
+    private onRootStateManagerAdd(event: StateRegistryEvent): void {
+        this.addRootListener(event.stateManager);
     }
 
-    private onRootContainerRemove(event: StageRegistryEvent): void {
-        this.removeRootListener(event.container);
+    private onRootStateManagerRemove(event: StateRegistryEvent): void {
+        this.removeRootListener(event.stateManager);
     }
 
-    private addRootListener(container: any): void {
-        let stateManager: Phaser.StateManager = <Phaser.StateManager>container;
+    private addRootListener(stateManager: Phaser.StateManager): void {
         if (stateManager) {
             stateManager.onStateChange.add(this.onStateChange, this, -1);
         }
     }
 
     private onStateChange(currentStateKey: string, previousStateKey: string): void {
-        let rootBindings: StateBinding[] = this._registry.rootBindings;
+        let rootBindings: StateManagerBinding[] = this._registry.rootBindings;
         let stateManager: Phaser.StateManager;
 
-        for (let i: number = 0; i < rootBindings.length; i++) {
-            stateManager = <Phaser.StateManager>rootBindings[i].container;
+        rootBindings.forEach((rootBinding: StateManagerBinding) => {
+            stateManager = rootBinding.stateManager;
 
             if (stateManager && stateManager.states[currentStateKey]) {
-                let binding: StateBinding = this._registry.getBinding(stateManager.states[currentStateKey]);
+                let binding: StateManagerBinding = this._registry.getBinding(stateManager.states[currentStateKey]);
                 if (binding) {
-                    binding.handleState(stateManager.states[currentStateKey], stateManager.states[currentStateKey]["constructor"]);
+                    binding.handleState(stateManager.states[currentStateKey], stateManager.states[currentStateKey].constructor);
                 }
             }
-        }
+        });
     }
 
-    private removeRootListener(container: any): void {
-        let stateManager: Phaser.StateManager = <Phaser.StateManager>container;
+    private removeRootListener(stateManager: Phaser.StateManager): void {
         if (stateManager) {
             stateManager.onStateChange.remove(this.onStateChange, this);
         }

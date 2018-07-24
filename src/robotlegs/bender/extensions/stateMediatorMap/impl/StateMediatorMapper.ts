@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { ILogger, ITypeFilter } from "@robotlegsjs/core";
+import { IClass, ILogger, ITypeFilter } from "@robotlegsjs/core";
 
 import { IStateMediatorMapping } from "../api/IStateMediatorMapping";
 import { IStateMediatorConfigurator } from "../dsl/IStateMediatorConfigurator";
@@ -23,7 +23,7 @@ export class StateMediatorMapper implements IStateMediatorMapper, IStateMediator
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappings: Map<any, IStateMediatorMapping> = new Map<any, IStateMediatorMapping>();
+    private _mappings: Map<IClass<any>, IStateMediatorMapping> = new Map<IClass<any>, IStateMediatorMapping>();
 
     private _typeFilter: ITypeFilter;
 
@@ -51,16 +51,17 @@ export class StateMediatorMapper implements IStateMediatorMapper, IStateMediator
     /**
      * @inheritDoc
      */
-    public toMediator(mediatorClass: any): IStateMediatorConfigurator {
-        let mapping: IStateMediatorMapping = this._mappings[<any>mediatorClass];
+    public toMediator(mediatorClass: IClass<any>): IStateMediatorConfigurator {
+        let mapping: IStateMediatorMapping = this._mappings.get(mediatorClass);
         return mapping ? this.overwriteMapping(mapping) : this.createMapping(mediatorClass);
     }
 
     /**
      * @inheritDoc
      */
-    public fromMediator(mediatorClass: any): void {
-        let mapping: IStateMediatorMapping = this._mappings[<any>mediatorClass];
+    public fromMediator(mediatorClass: IClass<any>): void {
+        let mapping: IStateMediatorMapping = this._mappings.get(mediatorClass);
+
         if (mapping) {
             this.deleteMapping(mapping);
         }
@@ -70,29 +71,29 @@ export class StateMediatorMapper implements IStateMediatorMapper, IStateMediator
      * @inheritDoc
      */
     public fromAll(): void {
-        for (let i in this._mappings) {
-            let mapping: IStateMediatorMapping = this._mappings[i];
-            this.deleteMapping(mapping);
-        }
+        this._mappings.forEach(this.deleteMapping, this);
     }
 
     /*============================================================================*/
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private createMapping(mediatorClass: any): StateMediatorMapping {
+    private createMapping(mediatorClass: IClass<any>): StateMediatorMapping {
         let mapping: StateMediatorMapping = new StateMediatorMapping(this._typeFilter, mediatorClass);
         this._handler.addMapping(mapping);
-        this._mappings[<any>mediatorClass] = mapping;
+        this._mappings.set(mediatorClass, mapping);
+
         if (this._logger) {
             this._logger.debug("{0} mapped to {1}", [this._typeFilter, mapping]);
         }
+
         return mapping;
     }
 
     private deleteMapping(mapping: IStateMediatorMapping): void {
         this._handler.removeMapping(mapping);
-        delete this._mappings[<any>mapping.mediatorClass];
+        this._mappings.delete(mapping.mediatorClass);
+
         if (this._logger) {
             this._logger.debug("{0} unmapped from {1}", [this._typeFilter, mapping]);
         }

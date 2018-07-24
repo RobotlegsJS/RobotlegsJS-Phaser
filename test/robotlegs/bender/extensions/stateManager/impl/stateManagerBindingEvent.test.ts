@@ -9,13 +9,13 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { StateBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/stateManager/impl/StateBindingEvent";
+import { StateManagerBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/stateManager/impl/StateManagerBindingEvent";
 
-describe("StateBindingEvent", () => {
-    let event: StateBindingEvent = null;
+describe("StateManagerBindingEvent", () => {
+    let event: StateManagerBindingEvent = null;
 
     beforeEach(() => {
-        event = new StateBindingEvent(StateBindingEvent.BINDING_EMPTY);
+        event = new StateManagerBindingEvent(StateManagerBindingEvent.BINDING_EMPTY);
     });
 
     afterEach(() => {
@@ -23,15 +23,15 @@ describe("StateBindingEvent", () => {
     });
 
     it("ensure_static_properties_will_not_change", () => {
-        assert.equal(StateBindingEvent.BINDING_EMPTY, "bindingEmpty");
+        assert.equal(StateManagerBindingEvent.BINDING_EMPTY, "bindingEmpty");
     });
 
     it("type_is_stored", () => {
-        assert.equal(event.type, StateBindingEvent.BINDING_EMPTY);
+        assert.equal(event.type, StateManagerBindingEvent.BINDING_EMPTY);
     });
 
     it("event_is_cloned", () => {
-        let clone: StateBindingEvent = event.clone();
+        let clone: StateManagerBindingEvent = event.clone();
         assert.equal(clone.type, event.type);
         assert.notEqual(clone, event);
     });

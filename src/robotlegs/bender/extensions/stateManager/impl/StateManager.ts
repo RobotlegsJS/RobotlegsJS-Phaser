@@ -15,7 +15,7 @@ import { IStateManager } from "../api/IStateManager";
 import { StateManagerEvent } from "./StateManagerEvent";
 
 import { StateRegistry } from "./StateRegistry";
-import { StateBinding } from "./StateBinding";
+import { StateManagerBinding } from "./StateManagerBinding";
 
 /**
  * @private
@@ -70,7 +70,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
         this._stateManagers.push(stateManager);
 
         this._handlers.forEach((handler: IStateHandler) => {
-            this._registry.addContainer(stateManager).addHandler(handler);
+            this._registry.addStateManager(stateManager).addHandler(handler);
         });
 
         this.dispatchEvent(new StateManagerEvent(StateManagerEvent.STATE_MANAGER_ADD, stateManager));
@@ -88,7 +88,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
 
         this._stateManagers.splice(index, 1);
 
-        let binding: StateBinding = this._registry.getBinding(stateManager);
+        let binding: StateManagerBinding = this._registry.getBinding(stateManager);
 
         this._handlers.forEach((handler: IStateHandler) => {
             binding.removeHandler(handler);
@@ -108,7 +108,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
         this._handlers.push(handler);
 
         this._stateManagers.forEach((stateManager: Phaser.StateManager) => {
-            this._registry.addContainer(stateManager).addHandler(handler);
+            this._registry.addStateManager(stateManager).addHandler(handler);
         });
 
         this.dispatchEvent(new StateManagerEvent(StateManagerEvent.HANDLER_ADD, null, handler));
@@ -138,7 +138,7 @@ export class StateManager extends EventDispatcher implements IStateManager {
      */
     public removeAllHandlers(): void {
         this._stateManagers.forEach((stateManager: Phaser.StateManager) => {
-            let binding: StateBinding = this._registry.getBinding(stateManager);
+            let binding: StateManagerBinding = this._registry.getBinding(stateManager);
 
             this._handlers.forEach((handler: IStateHandler) => {
                 binding.removeHandler(handler);

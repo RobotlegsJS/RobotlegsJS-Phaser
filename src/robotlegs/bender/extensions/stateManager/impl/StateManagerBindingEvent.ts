@@ -10,7 +10,7 @@ import { Event } from "@robotlegsjs/core";
 /**
  * @private
  */
-export class StateBindingEvent extends Event {
+export class StateManagerBindingEvent extends Event {
     /*============================================================================*/
     /* Public Static Properties                                                   */
     /*============================================================================*/
@@ -35,7 +35,7 @@ export class StateBindingEvent extends Event {
     /**
      * @inheritDoc
      */
-    public clone(): StateBindingEvent {
-        return new StateBindingEvent(this.type);
+    public clone(): StateManagerBindingEvent {
+        return new StateManagerBindingEvent(this.type);
     }
 }

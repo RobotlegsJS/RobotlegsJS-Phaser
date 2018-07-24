@@ -5,43 +5,43 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { EventDispatcher } from "@robotlegsjs/core";
+import { IClass, EventDispatcher } from "@robotlegsjs/core";
 
 import { IStateHandler } from "../api/IStateHandler";
 
-import { StateBindingEvent } from "./StateBindingEvent";
+import { StateManagerBindingEvent } from "./StateManagerBindingEvent";
 
 /**
  * @private
  */
-export class StateBinding extends EventDispatcher {
+export class StateManagerBinding extends EventDispatcher {
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _parent: StateBinding;
+    private _parent: StateManagerBinding;
 
     /**
      * @private
      */
-    public get parent(): StateBinding {
+    public get parent(): StateManagerBinding {
         return this._parent;
     }
 
     /**
      * @private
      */
-    public set parent(value: StateBinding) {
+    public set parent(value: StateManagerBinding) {
         this._parent = value;
     }
 
-    private _container: any;
+    private _stateManager: Phaser.StateManager;
 
     /**
      * @private
      */
-    public get container(): any {
-        return this._container;
+    public get stateManager(): Phaser.StateManager {
+        return this._stateManager;
     }
 
     /*============================================================================*/
@@ -57,9 +57,9 @@ export class StateBinding extends EventDispatcher {
     /**
      * @private
      */
-    constructor(container: any) {
+    constructor(stateManager: Phaser.StateManager) {
         super();
-        this._container = container;
+        this._stateManager = stateManager;
     }
 
     /*============================================================================*/
@@ -84,7 +84,7 @@ export class StateBinding extends EventDispatcher {
         if (index > -1) {
             this._handlers.splice(index, 1);
             if (this._handlers.length === 0) {
-                this.dispatchEvent(new StateBindingEvent(StateBindingEvent.BINDING_EMPTY));
+                this.dispatchEvent(new StateManagerBindingEvent(StateManagerBindingEvent.BINDING_EMPTY));
             }
         }
     }
@@ -92,11 +92,9 @@ export class StateBinding extends EventDispatcher {
     /**
      * @private
      */
-    public handleState(state: any, type: FunctionConstructor): void {
-        let length: number = this._handlers.length;
-        for (let i: number = 0; i < length; i++) {
-            let handler: IStateHandler = <IStateHandler>this._handlers[i];
+    public handleState(state: Phaser.State, type: IClass<any>): void {
+        this._handlers.forEach((handler: IStateHandler) => {
             handler.handleState(state, type);
-        }
+        });
     }
 }

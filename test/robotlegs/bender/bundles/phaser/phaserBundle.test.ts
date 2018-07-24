@@ -9,12 +9,9 @@ import "../../../../entry";
 
 import { assert } from "chai";
 
-import { IContext, Context, LogLevel } from "@robotlegsjs/core";
-
-import { ContextStateManager, PhaserBundle } from "../../../../../src";
+import { IContext, Context } from "@robotlegsjs/core";
 
 describe("PhaserBundle", () => {
-    let game: Phaser.Game;
     let context: IContext;
 
     afterEach(() => {

@@ -6,35 +6,35 @@
 // ------------------------------------------------------------------------------
 
 /**
- * Container existence event
+ * StateManager existence event
  * @private
  */
 import { Event } from "@robotlegsjs/core";
 
-export class StageRegistryEvent extends Event {
+export class StateRegistryEvent extends Event {
     /*============================================================================*/
     /* Public Static Properties                                                   */
     /*============================================================================*/
 
-    public static CONTAINER_ADD: string = "containerAdd";
+    public static STATE_MANAGER_ADD: string = "stateManagerAdd";
 
-    public static CONTAINER_REMOVE: string = "containerRemove";
+    public static STATE_MANAGER_REMOVE: string = "stateManagerRemove";
 
-    public static ROOT_CONTAINER_ADD: string = "rootContainerAdd";
+    public static ROOT_STATE_MANAGER_ADD: string = "rootStateManagerAdd";
 
-    public static ROOT_CONTAINER_REMOVE: string = "rootContainerRemove";
+    public static ROOT_STATE_MANAGER_REMOVE: string = "rootStateManagerRemove";
 
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    private _container: any;
+    private _stateManager: Phaser.StateManager;
 
     /**
-     * The container associated with this event
+     * The stateManager associated with this event
      */
-    public get container(): any {
-        return this._container;
+    public get stateManager(): Phaser.StateManager {
+        return this._stateManager;
     }
 
     /*============================================================================*/
@@ -42,13 +42,13 @@ export class StageRegistryEvent extends Event {
     /*============================================================================*/
 
     /**
-     * Creates a new container existence event
+     * Creates a new stateManager existence event
      * @param type The event type
-     * @param container The container associated with this event
+     * @param stateManager The stateManager associated with this event
      */
-    constructor(type: string, container: any) {
+    constructor(type: string, stateManager: Phaser.StateManager) {
         super(type);
-        this._container = container;
+        this._stateManager = stateManager;
     }
 
     /*============================================================================*/
@@ -58,7 +58,7 @@ export class StageRegistryEvent extends Event {
     /**
      * @inheritDoc
      */
-    public clone(): StageRegistryEvent {
-        return new StageRegistryEvent(this.type, this._container);
+    public clone(): StateRegistryEvent {
+        return new StateRegistryEvent(this.type, this._stateManager);
     }
 }
