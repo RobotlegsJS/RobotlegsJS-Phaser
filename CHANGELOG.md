@@ -6,7 +6,7 @@
 
 - Update @robotlegsjs/core to version 0.1.3 (see #33).
 
-- Update phaser-ce to version 2.10.6 (see #34).
+- Update phaser-ce to version 2.11.0 (see #45).
 
 - Remove eventemitter3 dependency (see #45).
 
