@@ -5153,9 +5153,9 @@ phantomjs-prebuilt@^2.1.7:
     request-progress "^2.0.1"
     which "^1.2.10"
 
-phaser-ce@^2.10.6:
-  version "2.10.6"
-  resolved "https://registry.npmjs.org/phaser-ce/-/phaser-ce-2.10.6.tgz#dad73574264d6d014296aff9c0457c06ee89137e"
+phaser-ce@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.npmjs.org/phaser-ce/-/phaser-ce-2.11.0.tgz#5c4f52991e34d038c72e0aa9f7d49b35b70d78e3"
 
 pify@^2.0.0:
   version "2.3.0"
