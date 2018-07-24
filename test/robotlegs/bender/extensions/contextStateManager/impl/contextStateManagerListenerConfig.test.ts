@@ -15,22 +15,22 @@ import { StateRegistry } from "../../../../../../src/robotlegs/bender/extensions
 import { StateManager } from "../../../../../../src/robotlegs/bender/extensions/stateManager/impl/StateManager";
 
 describe("ContextStateManagerListenerConfig", () => {
-    let game: Phaser.Game;
+    let phaserStateManager: Phaser.StateManager;
     let contextStateManager: IContextStateManager;
     let stateRegistry: StateRegistry;
     let stateManager: StateManager;
     let contextStateManagerListenerConfig: ContextStateManagerListenerConfig;
 
     beforeEach(() => {
-        game = new Phaser.Game();
-        contextStateManager = new ContextStateManager(game.state);
+        phaserStateManager = new Phaser.StateManager(null);
+        contextStateManager = new ContextStateManager(phaserStateManager);
         stateRegistry = new StateRegistry();
         stateManager = new StateManager(stateRegistry);
         contextStateManagerListenerConfig = new ContextStateManagerListenerConfig(contextStateManager, stateManager);
     });
 
     afterEach(() => {
-        game = null;
+        phaserStateManager = null;
         contextStateManager = null;
         stateRegistry = null;
         stateManager = null;
@@ -39,6 +39,6 @@ describe("ContextStateManagerListenerConfig", () => {
 
     it("container_is_added_to_view_manager", () => {
         contextStateManagerListenerConfig.configure();
-        assert.deepEqual(stateManager.stateManagers, [game.state]);
+        assert.deepEqual(stateManager.stateManagers, [phaserStateManager]);
     });
 });

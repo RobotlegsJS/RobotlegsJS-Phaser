@@ -15,18 +15,18 @@ import { StateManagerEvent } from "../../../../../../src/robotlegs/bender/extens
 import { CallbackStateHandler } from "../support/CallbackStateHandler";
 
 describe("StateManagerEvent", () => {
-    let game: Phaser.Game = null;
+    let phaserStateManager: Phaser.StateManager = null;
     let handler: IStateHandler = null;
     let event: StateManagerEvent = null;
 
     beforeEach(() => {
-        game = new Phaser.Game();
+        phaserStateManager = new Phaser.StateManager(null);
         handler = new CallbackStateHandler();
-        event = new StateManagerEvent(StateManagerEvent.STATE_MANAGER_ADD, game.state, handler);
+        event = new StateManagerEvent(StateManagerEvent.STATE_MANAGER_ADD, phaserStateManager, handler);
     });
 
     afterEach(() => {
-        game = null;
+        phaserStateManager = null;
         handler = null;
         event = null;
     });
@@ -43,7 +43,7 @@ describe("StateManagerEvent", () => {
     });
 
     it("stateManager_is_stored", () => {
-        assert.equal(event.stateManager, game.state);
+        assert.equal(event.stateManager, phaserStateManager);
     });
 
     it("handler_is_stored", () => {
