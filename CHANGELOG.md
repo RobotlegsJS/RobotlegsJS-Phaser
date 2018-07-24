@@ -28,6 +28,8 @@
 
 - Enforce TSLint rules (see #44).
 
+- Remove eventemitter3 dependency (see #45).
+
 - Update dev dependencies to latest version.
 
 ### [v0.0.5](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.0.5) - 2017-09-26
