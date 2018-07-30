@@ -1,3 +1,10 @@
+// ------------------------------------------------------------------------------
+//  Copyright (c) 2017-present, RobotlegsJS. All Rights Reserved.
+//
+//  NOTICE: You are permitted to use, modify, and distribute this file
+//  in accordance with the terms of the license agreement accompanying it.
+// ------------------------------------------------------------------------------
+
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
 import { PhaserBundle } from "../src/robotlegs/bender/bundles/phaser/PhaserBundle";
 import { ContextStateManager } from "../src/robotlegs/bender/extensions/contextStateManager/impl/ContextStateManager";
