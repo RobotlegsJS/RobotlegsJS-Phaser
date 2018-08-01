@@ -1,13 +1,11 @@
 process.env.TEST = true;
-process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = "test";
 
-const webpack = require("webpack");
-const path = require("path");
-const webpackConfig = require('./webpack.config.js')({ production: false, karma: true });
+const webpackConfig = require("./webpack.config.js")({ production: false, karma: true });
 
 delete webpackConfig.entry;
 
-module.exports = function(config) {
+module.exports = config => {
 
   var configuration = {
     basePath: "",
@@ -19,6 +17,7 @@ module.exports = function(config) {
     ],
     files: [
       { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
+      { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
       { pattern: "node_modules/phaser-ce/build/phaser.js", include: true },
       { pattern: "./test/**/**/**.test.ts", include: true },
       { pattern: '**/*.map', served: true, included: false, watched: true }
@@ -35,12 +34,12 @@ module.exports = function(config) {
       "karma-webpack",
       "karma-sourcemap-writer",
       "karma-sourcemap-loader",
+      "karma-remap-istanbul",
       "karma-mocha-reporter",
       "karma-mocha",
       "karma-chai",
       "karma-sinon",
       "karma-es6-shim",
-      "karma-remap-istanbul",
       "karma-coverage-istanbul-reporter"
     ],
     reporters: (
@@ -62,14 +61,15 @@ module.exports = function(config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: []
+    browsers: [],
+    browserNoActivityTimeout: 50000
   };
 
   if (process.env.TRAVIS) {
-    configuration.browsers = ['PhantomJS'];
+    configuration.browsers.push("PhantomJS");
     configuration.plugins.push("karma-phantomjs-launcher");
   } else {
-    configuration.browsers = ['PhantomJS'];
+    configuration.browsers.push("PhantomJS");
     configuration.plugins.push("karma-phantomjs-launcher");
   }
 
