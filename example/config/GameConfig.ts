@@ -11,7 +11,8 @@ import { GameModel } from "../models/GameModel";
 
 @injectable()
 export class GameConfig implements IConfig {
-    @inject(IContext) public context: IContext;
+    @inject(IContext)
+    public context: IContext;
 
     public configure(): void {
         this.mapCommands();
