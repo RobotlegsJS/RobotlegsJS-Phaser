@@ -22,9 +22,11 @@ export abstract class StateMediator<T extends Phaser.State> implements IStateMed
     /* Protected Properties                                                       */
     /*============================================================================*/
 
-    @inject(IEventMap) protected eventMap: IEventMap;
+    @inject(IEventMap)
+    protected eventMap: IEventMap;
 
-    @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher;
+    @inject(IEventDispatcher)
+    protected eventDispatcher: IEventDispatcher;
 
     protected _stateComponent: T;
 

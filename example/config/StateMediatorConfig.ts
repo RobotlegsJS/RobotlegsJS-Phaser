@@ -23,7 +23,8 @@ import { GameOver } from "../states/GameOver";
 
 @injectable()
 export class StateMediatorConfig implements IConfig {
-    @inject(IStateMediatorMap) public stateMediatorMap: IStateMediatorMap;
+    @inject(IStateMediatorMap)
+    public stateMediatorMap: IStateMediatorMap;
 
     public configure(): void {
         this.mapStateMediators();

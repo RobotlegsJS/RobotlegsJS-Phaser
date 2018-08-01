@@ -151,12 +151,14 @@ export class StateManager extends EventDispatcher implements IStateManager {
     /*============================================================================*/
 
     private validStateManager(stateManager: Phaser.StateManager): boolean {
+        let valid: boolean = true;
+
         this._stateManagers.forEach((registeredStateManager: Phaser.StateManager) => {
             if (stateManager === registeredStateManager) {
-                return false;
+                valid = false;
             }
         });
 
-        return true;
+        return valid;
     }
 }

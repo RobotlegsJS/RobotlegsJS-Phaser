@@ -1,25 +1,10 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "lib",
-    "target": "es5",
-    "lib": ["es6", "dom"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "declaration": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noImplicitAny": true,
-    "noUnusedParameters": false,
-    "noUnusedLocals": true,
-    "removeComments": true,
-    "sourceMap": true
+    "outDir": "lib-test"
   },
   "include": [
     "./src/**/*.ts",
     "./test/**/*.ts"
-  ],
-  "files": [
-    "./node_modules/phaser-ce/typescript/phaser.d.ts",
-    "./node_modules/phaser-ce/typescript/pixi.d.ts"
   ]
 }

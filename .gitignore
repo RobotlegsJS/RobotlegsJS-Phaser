@@ -61,8 +61,10 @@ typings/
 .idea
 
 # Project
-dev
+dist
+dist-test
 lib
+lib-test
 src/**/*.js
 src/**/*.js.map
 test/**/*.js
