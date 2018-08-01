@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+/// <reference types="mocha" />
+
 /// <reference path="../node_modules/phaser-ce/typescript/phaser.d.ts" />
 
 import "reflect-metadata";
