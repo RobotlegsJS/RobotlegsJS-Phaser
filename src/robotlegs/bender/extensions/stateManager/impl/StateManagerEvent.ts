@@ -59,7 +59,7 @@ export class StateManagerEvent extends Event {
      * @param handler The state handler associated with this event
      */
     constructor(type: string, stateManager?: Phaser.StateManager, handler?: IStateHandler) {
-        super(type, { bubbles: true });
+        super(type, true);
         this._stateManager = stateManager;
         this._handler = handler;
     }

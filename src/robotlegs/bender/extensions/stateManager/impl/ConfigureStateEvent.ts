@@ -41,7 +41,7 @@ export class ConfigureStateEvent extends Event {
      * @param state The associated state instance
      */
     constructor(type: string, state?: Phaser.State) {
-        super(type, { bubbles: true });
+        super(type, true);
         this._state = state;
     }
 
