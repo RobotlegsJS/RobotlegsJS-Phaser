@@ -5,9 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject } from "inversify";
-
-import { IConfig } from "@robotlegsjs/core";
+import { injectable, inject, IConfig } from "@robotlegsjs/core";
 
 import { IContextStateManager } from "../api/IContextStateManager";
 import { IStateManager } from "../../stateManager/api/IStateManager";
