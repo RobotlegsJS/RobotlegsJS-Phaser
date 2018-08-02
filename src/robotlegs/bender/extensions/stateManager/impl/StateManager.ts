@@ -5,9 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable } from "inversify";
-
-import { EventDispatcher } from "@robotlegsjs/core";
+import { injectable, EventDispatcher } from "@robotlegsjs/core";
 
 import { IStateHandler } from "../api/IStateHandler";
 import { IStateManager } from "../api/IStateManager";

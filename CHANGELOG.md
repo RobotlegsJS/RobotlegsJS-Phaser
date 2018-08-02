@@ -1,10 +1,10 @@
 # RobotlegsJS Phaser Changelog:
 
-## RobotlegsJS Phaser 0.0.1
+## RobotlegsJS Phaser 0.1.0
 
-### v0.0.6
+### v0.1.0
 
-- Update @robotlegsjs/core to version 0.1.3 (see #33).
+- Update @robotlegsjs/core to version 0.2.0 (see #51).
 
 - Update phaser-ce to version 2.11.0 (see #46).
 
@@ -33,6 +33,8 @@
 - Adopts year-agnostic copyright message (see #47).
 
 - Update dev dependencies to latest version.
+
+## RobotlegsJS Phaser 0.0.1
 
 ### [v0.0.5](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.0.5) - 2017-09-26
 

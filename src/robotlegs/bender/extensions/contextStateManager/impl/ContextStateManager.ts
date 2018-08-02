@@ -5,12 +5,14 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { IConfig } from "@robotlegsjs/core";
+
 import { IContextStateManager } from "../api/IContextStateManager";
 
 /**
  * The Context StateManager represents the Phaser.StateManager for a Context
  */
-export class ContextStateManager implements IContextStateManager {
+export class ContextStateManager implements IContextStateManager, IConfig {
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -39,4 +41,9 @@ export class ContextStateManager implements IContextStateManager {
             throw new Error("StateManager can't be null or undefined");
         }
     }
+
+    /**
+     *
+     */
+    public configure(): void {}
 }
