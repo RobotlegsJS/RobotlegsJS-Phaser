@@ -12,7 +12,22 @@ RobotlegsJS Phaser Extension
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 Integrate [RobotlegsJS](https://github.com/RobotlegsJS/RobotlegsJS)
-framework with [Phaser](http://phaser.io).
+framework with [Phaser](https://github.com/photonstorm/phaser).
+
+Installation
+---
+
+You can get the latest release and the type definitions using [NPM](https://www.npmjs.com/):
+
+```bash
+npm install @robotlegsjs/phaser --save-prod
+```
+
+Or using [Yarn](https://yarnpkg.com/en/):
+
+```bash
+yarn add @robotlegsjs/phaser
+````
 
 Usage
 ---
@@ -65,6 +80,13 @@ new Game();
 ```
 
 [See example](example)
+
+RobotlegsJS integration with Phaser CE (Community Edition)
+---
+
+The `@robotlegsjs/phaser` package was updated to support [Phaser v3](https://www.npmjs.com/package/phaser) plugin.
+
+If you are looking for integration with [Phaser CE](https://github.com/photonstorm/phaser-ce) you can use the [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE) plugin.
 
 License
 ---
