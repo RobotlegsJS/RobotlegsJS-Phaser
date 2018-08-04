@@ -31,3 +31,6 @@ yarn.lock
 .prettierrc
 .publishrc
 .travis.yml
+.DS_Store
+.AppleDouble
+.LSOverride

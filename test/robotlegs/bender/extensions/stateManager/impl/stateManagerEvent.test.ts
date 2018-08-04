@@ -1,49 +1,46 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2017-present, RobotlegsJS. All Rights Reserved.
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import "../../../../../entry";
-
 import { assert } from "chai";
-
-import { IStateHandler } from "../../../../../../src/robotlegs/bender/extensions/stateManager/api/IStateHandler";
-import { StateManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/stateManager/impl/StateManagerEvent";
-
+import { ISceneHandler } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/api/ISceneHandler";
+import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerEvent";
+import "../../../../../entry";
 import { CallbackStateHandler } from "../support/CallbackStateHandler";
 
 describe("StateManagerEvent", () => {
-    let phaserStateManager: Phaser.StateManager = null;
-    let handler: IStateHandler = null;
-    let event: StateManagerEvent = null;
+    let game: Phaser.Game = null;
+    let handler: ISceneHandler = null;
+    let event: SceneManagerEvent = null;
 
     beforeEach(() => {
-        phaserStateManager = new Phaser.StateManager(null);
+        game = new Phaser.Game();
         handler = new CallbackStateHandler();
-        event = new StateManagerEvent(StateManagerEvent.STATE_MANAGER_ADD, phaserStateManager, handler);
+        event = new SceneManagerEvent(SceneManagerEvent.SCENE_MANAGER_ADD, game.scene, handler);
     });
 
     afterEach(() => {
-        phaserStateManager = null;
+        game = null;
         handler = null;
         event = null;
     });
 
     it("ensure_static_properties_will_not_change", () => {
-        assert.equal(StateManagerEvent.STATE_MANAGER_ADD, "stateManagerAdd");
-        assert.equal(StateManagerEvent.STATE_MANAGER_REMOVE, "stateManagerRemove");
-        assert.equal(StateManagerEvent.HANDLER_ADD, "handlerAdd");
-        assert.equal(StateManagerEvent.HANDLER_REMOVE, "handlerRemove");
+        assert.equal(SceneManagerEvent.SCENE_MANAGER_ADD, "sceneManagerAdd");
+        assert.equal(SceneManagerEvent.SCENE_MANAGER_REMOVE, "sceneManagerRemove");
+        assert.equal(SceneManagerEvent.HANDLER_ADD, "handlerAdd");
+        assert.equal(SceneManagerEvent.HANDLER_REMOVE, "handlerRemove");
     });
 
     it("type_is_stored", () => {
-        assert.equal(event.type, StateManagerEvent.STATE_MANAGER_ADD);
+        assert.equal(event.type, SceneManagerEvent.SCENE_MANAGER_ADD);
     });
 
     it("stateManager_is_stored", () => {
-        assert.equal(event.stateManager, phaserStateManager);
+        assert.equal(event.sceneManager, game.scene);
     });
 
     it("handler_is_stored", () => {
@@ -51,9 +48,9 @@ describe("StateManagerEvent", () => {
     });
 
     it("event_is_cloned", () => {
-        let clone: StateManagerEvent = event.clone();
+        let clone: SceneManagerEvent = event.clone();
         assert.equal(clone.type, event.type);
-        assert.equal(clone.stateManager, event.stateManager);
+        assert.equal(clone.sceneManager, event.sceneManager);
         assert.equal(clone.handler, event.handler);
         assert.notEqual(clone, event);
     });

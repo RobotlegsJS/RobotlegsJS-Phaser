@@ -6,39 +6,31 @@
 // ------------------------------------------------------------------------------
 
 import { assert } from "chai";
-import { ConfigureSceneEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/ConfigureSceneEvent";
+import { SceneManagerBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerBindingEvent";
 import "../../../../../entry";
 
-describe("ConfigureStateEvent", () => {
-    let scene: Phaser.Scene = null;
-    let event: ConfigureSceneEvent = null;
+describe("StateBindingEvent", () => {
+    let event: SceneManagerBindingEvent = null;
 
     beforeEach(() => {
-        scene = new Phaser.Scene("theScene");
-        event = new ConfigureSceneEvent(ConfigureSceneEvent.CONFIGURE_SCENE, scene);
+        event = new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY);
     });
 
     afterEach(() => {
-        scene = null;
         event = null;
     });
 
     it("ensure_static_properties_will_not_change", () => {
-        assert.equal(ConfigureSceneEvent.CONFIGURE_SCENE, "configureScene");
+        assert.equal(SceneManagerBindingEvent.BINDING_EMPTY, "bindingEmpty");
     });
 
     it("type_is_stored", () => {
-        assert.equal(event.type, ConfigureSceneEvent.CONFIGURE_SCENE);
-    });
-
-    it("state_is_stored", () => {
-        assert.equal(event.scene, scene);
+        assert.equal(event.type, SceneManagerBindingEvent.BINDING_EMPTY);
     });
 
     it("event_is_cloned", () => {
-        let clone: ConfigureSceneEvent = event.clone();
+        let clone: SceneManagerBindingEvent = event.clone();
         assert.equal(clone.type, event.type);
-        assert.equal(clone.scene, event.scene);
         assert.notEqual(clone, event);
     });
 });

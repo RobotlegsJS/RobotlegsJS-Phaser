@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------------------
-//  Copyright (c) 2017-present, RobotlegsJS. All Rights Reserved.
+//  Copyright (c) 2017 RobotlegsJS. All Rights Reserved.
 //
 //  NOTICE: You are permitted to use, modify, and distribute this file
 //  in accordance with the terms of the license agreement accompanying it.
@@ -7,11 +7,11 @@
 
 import { IBundle, IContext } from "@robotlegsjs/core";
 
-import { ContextStateManagerExtension } from "../../extensions/contextStateManager/ContextStateManagerExtension";
-import { StateManagerExtension } from "../../extensions/stateManager/StateManagerExtension";
-import { StateMediatorMapExtension } from "../../extensions/stateMediatorMap/StateMediatorMapExtension";
-import { ContextStateManagerListenerConfig } from "../../extensions/contextStateManager/impl/ContextStateManagerListenerConfig";
-import { StateManagerObserverExtension } from "../../extensions/stateManager/StateManagerObserverExtension";
+import { ContextSceneManagerExtension } from "../../extensions/contextSceneManager/ContextSceneManagerExtension";
+import { SceneManagerExtension } from "../../extensions/sceneManager/SceneManagerExtension";
+import { SceneMediatorMapExtension } from "../../extensions/sceneMediatorMap/SceneMediatorMapExtension";
+import { ContextSceneManagerListenerConfig } from "../../extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
+import { SceneManagerObserverExtension } from "../../extensions/sceneManager/SceneManagerObserverExtension";
 
 /**
  * For that Classic Robotlegs flavour
@@ -28,8 +28,8 @@ export class PhaserBundle implements IBundle {
      * @inheritDoc
      */
     public extend(context: IContext): void {
-        context.install(ContextStateManagerExtension, StateManagerExtension, StateManagerObserverExtension, StateMediatorMapExtension);
+        context.install(ContextSceneManagerExtension, SceneManagerExtension, SceneManagerObserverExtension, SceneMediatorMapExtension);
 
-        context.configure(ContextStateManagerListenerConfig);
+        context.configure(ContextSceneManagerListenerConfig);
     }
 }
