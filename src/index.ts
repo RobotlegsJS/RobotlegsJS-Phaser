@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-// ContextStateManager
+// ContextSceneManager
 /**
  * Bundles
  */
@@ -17,11 +17,11 @@ export { ContextSceneManager } from "./robotlegs/bender/extensions/contextSceneM
 export {
     ContextSceneManagerListenerConfig
 } from "./robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
-// StateManager
+// SceneManager
 export { ISceneHandler } from "./robotlegs/bender/extensions/sceneManager/api/ISceneHandler";
 export { ISceneManager } from "./robotlegs/bender/extensions/sceneManager/api/ISceneManager";
 export { SceneManagerExtension } from "./robotlegs/bender/extensions/sceneManager/SceneManagerExtension";
-// StateMediatorMap
+// SceneMediatorMap
 export { ISceneMediator } from "./robotlegs/bender/extensions/sceneMediatorMap/api/ISceneMediator";
 export { ISceneMediatorMap } from "./robotlegs/bender/extensions/sceneMediatorMap/api/ISceneMediatorMap";
 export { ISceneMediatorMapping } from "./robotlegs/bender/extensions/sceneMediatorMap/api/ISceneMediatorMapping";

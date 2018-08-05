@@ -10,7 +10,7 @@ import { IContextSceneManager } from "./api/IContextSceneManager";
 import { ContextSceneManager } from "./impl/ContextSceneManager";
 
 /**
- * <p>This Extension waits for a ContextStateManager to be added as a configuration
+ * <p>This Extension waits for a ContextSceneManager to be added as a configuration
  * and maps it into the context's injector.</p>
  *
  * <p>It should be installed before context initialization.</p>
@@ -35,14 +35,14 @@ export class ContextSceneManagerExtension implements IExtension {
         this._injector = context.injector;
         this._logger = context.getLogger(this);
         context.beforeInitializing(this.beforeInitializing.bind(this));
-        context.addConfigHandler(instanceOfType(ContextSceneManager), this.handleContextStateManager.bind(this));
+        context.addConfigHandler(instanceOfType(ContextSceneManager), this.handleContextSceneManager.bind(this));
     }
 
     /*============================================================================*/
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private handleContextStateManager(contextSceneManager: IContextSceneManager): void {
+    private handleContextSceneManager(contextSceneManager: IContextSceneManager): void {
         if (this._injector.isBound(IContextSceneManager)) {
             this._logger.warn("A contextSceneManager has already been installed, ignoring {0}", [contextSceneManager.sceneManager]);
         } else {
@@ -54,7 +54,7 @@ export class ContextSceneManagerExtension implements IExtension {
 
     private beforeInitializing(): void {
         if (!this._injector.isBound(IContextSceneManager)) {
-            this._logger.error("A ContextSceneManager must be installed if you install the ContextStateManagerExtension.");
+            this._logger.error("A ContextSceneManager must be installed if you install the ContextSceneManagerExtension.");
         }
     }
 }

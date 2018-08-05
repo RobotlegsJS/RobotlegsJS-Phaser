@@ -11,10 +11,10 @@ import { ISceneManager } from "../../sceneManager/api/ISceneManager";
 import { IContextSceneManager } from "../api/IContextSceneManager";
 
 /**
- * This configuration file adds the ContextStateManager to the stateManager.
+ * This configuration file adds the ContextSceneManager to the sceneManager.
  *
- * It requires that the StateManagerExtension, ContextStateManagerExtension
- * and a ContextStateManager have been installed.
+ * It requires that the SceneManagerExtension, ContextSceneManagerExtension
+ * and a ContextSceneManager have been installed.
  */
 @injectable()
 export class ContextSceneManagerListenerConfig implements IConfig {
@@ -22,27 +22,27 @@ export class ContextSceneManagerListenerConfig implements IConfig {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _contextStateManager: IContextSceneManager;
+    private _contextSceneManager: IContextSceneManager;
 
-    private _stateManager: ISceneManager;
+    private _sceneManager: ISceneManager;
 
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
 
     constructor(
-        @inject(IContextSceneManager) contextStateManager: IContextSceneManager,
-        @inject(ISceneManager) stateManager: ISceneManager
+        @inject(IContextSceneManager) contextSceneManager: IContextSceneManager,
+        @inject(ISceneManager) sceneManager: ISceneManager
     ) {
-        this._contextStateManager = contextStateManager;
-        this._stateManager = stateManager;
+        this._contextSceneManager = contextSceneManager;
+        this._sceneManager = sceneManager;
     }
 
     /**
      * @inheritDoc
      */
     public configure(): void {
-        // Adds the StateManager to the View Manager at startup
-        this._stateManager.addSceneManager(this._contextStateManager.sceneManager);
+        // Adds the SceneManager to the View Manager at startup
+        this._sceneManager.addSceneManager(this._contextSceneManager.sceneManager);
     }
 }

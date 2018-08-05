@@ -16,13 +16,13 @@ export class SceneRegistryEvent extends Event {
     /* Public Static Properties                                                   */
     /*============================================================================*/
 
-    public static STATE_MANAGER_ADD: string = "sceneManagerAdd";
+    public static SCENE_MANAGER_ADD: string = "sceneManagerAdd";
 
-    public static STATE_MANAGER_REMOVE: string = "sceneManagerRemove";
+    public static SCENE_MANAGER_REMOVE: string = "sceneManagerRemove";
 
-    public static ROOT_STATE_MANAGER_ADD: string = "rootSceneManagerAdd";
+    public static ROOT_SCENE_MANAGER_ADD: string = "rootSceneManagerAdd";
 
-    public static ROOT_STATE_MANAGER_REMOVE: string = "rootSceneManagerRemove";
+    public static ROOT_SCENE_MANAGER_REMOVE: string = "rootSceneManagerRemove";
 
     /*============================================================================*/
     /* Public Properties                                                          */

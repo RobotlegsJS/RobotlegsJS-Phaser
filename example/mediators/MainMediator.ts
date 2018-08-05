@@ -1,26 +1,20 @@
-// ------------------------------------------------------------------------------
-//  Copyright (c) 2017-present, RobotlegsJS. All Rights Reserved.
-//
-//  NOTICE: You are permitted to use, modify, and distribute this file
-//  in accordance with the terms of the license agreement accompanying it.
-// ------------------------------------------------------------------------------
-
 import { injectable, inject } from "@robotlegsjs/core";
 
-import { StateMediator } from "../../src/robotlegs/bender/extensions/stateMediatorMap/impl/StateMediator";
-
 import { GameModel } from "../models/GameModel";
-import { Main } from "../states/Main";
+import { Main } from "../scenes/Main";
+import { SceneMediator } from "../../src";
+import { MainEvent } from "../events/MainEven";
 
 @injectable()
-export class MainMediator extends StateMediator<Main> {
+export class MainMediator extends SceneMediator<Main> {
     @inject(GameModel)
     public gameModel: GameModel;
 
     public initialize(): void {
-        console.log("BootMediator: initialize");
+        console.log("MainMediator: initialize");
         console.log("score: " + this.gameModel.score);
         console.log("level: " + this.gameModel.level);
+        this.dispatch(new MainEvent(MainEvent.GAME_START, true, false, { data: this.gameModel.level }));
     }
 
     public destroy(): void {

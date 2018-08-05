@@ -12,7 +12,7 @@ import { SceneRegistry } from "./impl/SceneRegistry";
 let installCount: number = 0;
 
 /**
- * This extension install an automatic State Manager Observer
+ * This extension install an automatic Scene Manager Observer
  */
 export class SceneManagerObserverExtension implements IExtension {
     /*============================================================================*/
@@ -20,7 +20,7 @@ export class SceneManagerObserverExtension implements IExtension {
     /*============================================================================*/
 
     // Really? Yes, there can be only one.
-    private static _stageObserver: SceneManagerObserver = null;
+    private static _sceneObserver: SceneManagerObserver = null;
 
     /*============================================================================*/
     /* Private Properties                                                         */
@@ -51,19 +51,19 @@ export class SceneManagerObserverExtension implements IExtension {
 
     private whenInitializing(): void {
         // Hark, an actual Singleton!
-        if (!SceneManagerObserverExtension._stageObserver) {
+        if (!SceneManagerObserverExtension._sceneObserver) {
             const containerRegistry: SceneRegistry = this._injector.get<SceneRegistry>(SceneRegistry);
-            this._logger.debug("Creating genuine StateManagerObserver Singleton");
-            SceneManagerObserverExtension._stageObserver = new SceneManagerObserver(containerRegistry);
+            this._logger.debug("Creating genuine SceneManagerObserver Singleton");
+            SceneManagerObserverExtension._sceneObserver = new SceneManagerObserver(containerRegistry);
         }
     }
 
     private whenDestroying(): void {
         installCount--;
         if (installCount === 0) {
-            this._logger.debug("Destroying genuine StateManagerObserver Singleton");
-            SceneManagerObserverExtension._stageObserver.destroy();
-            SceneManagerObserverExtension._stageObserver = null;
+            this._logger.debug("Destroying genuine SceneManagerObserver Singleton");
+            SceneManagerObserverExtension._sceneObserver.destroy();
+            SceneManagerObserverExtension._sceneObserver = null;
         }
     }
 }

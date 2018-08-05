@@ -11,7 +11,7 @@ import { ISceneManager } from "../sceneManager/api/ISceneManager";
 import { SceneMediatorMap } from "./impl/SceneMediatorMap";
 
 /**
- * This extension installs a shared IStateMediatorMap into the context
+ * This extension installs a shared ISceneMediatorMap into the context
  */
 export class SceneMediatorMapExtension implements IExtension {
     /*============================================================================*/

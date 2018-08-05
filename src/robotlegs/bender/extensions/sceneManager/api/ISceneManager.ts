@@ -9,7 +9,7 @@ import { IEventDispatcher } from "@robotlegsjs/core";
 import { ISceneHandler } from "./ISceneHandler";
 
 /**
- * The State Manager allows you to add multiple "scene managers" to a context
+ * The Scene Manager allows you to add multiple "scene managers" to a context
  */
 export let ISceneManager = Symbol("ISceneManager");
 export interface ISceneManager extends IEventDispatcher {

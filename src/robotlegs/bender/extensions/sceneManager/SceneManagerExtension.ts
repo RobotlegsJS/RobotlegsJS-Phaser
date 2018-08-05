@@ -11,7 +11,7 @@ import { SceneManager } from "./impl/SceneManager";
 import { SceneRegistry } from "./impl/SceneRegistry";
 
 /**
- * This extension install a State Manager into the context
+ * This extension install a Scene Manager into the context
  */
 export class SceneManagerExtension implements IExtension {
     /*============================================================================*/

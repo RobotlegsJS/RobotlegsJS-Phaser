@@ -96,8 +96,8 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     /**
      * @inheritDoc
      */
-    public handleScene(state: any, type: any): void {
-        this._sceneHandler.handleScene(state, type);
+    public handleScene(scene: any, type: any): void {
+        this._sceneHandler.handleScene(scene, type);
     }
 
     /**

@@ -26,8 +26,8 @@ export class SceneManagerObserver {
         this._registry = containerRegistry;
 
         // We only care about roots
-        this._registry.addEventListener(SceneRegistryEvent.ROOT_STATE_MANAGER_ADD, this.onRootSceneManagerAdd, this);
-        this._registry.addEventListener(SceneRegistryEvent.ROOT_STATE_MANAGER_REMOVE, this.onRootSceneManagerRemove, this);
+        this._registry.addEventListener(SceneRegistryEvent.ROOT_SCENE_MANAGER_ADD, this.onRootSceneManagerAdd, this);
+        this._registry.addEventListener(SceneRegistryEvent.ROOT_SCENE_MANAGER_REMOVE, this.onRootSceneManagerRemove, this);
 
         // We might have arrived late on the scene
         this._registry.rootBindings.forEach((binding: SceneManagerBinding) => {
@@ -43,8 +43,8 @@ export class SceneManagerObserver {
      * @private
      */
     public destroy(): void {
-        this._registry.removeEventListener(SceneRegistryEvent.ROOT_STATE_MANAGER_ADD, this.onRootSceneManagerAdd, this);
-        this._registry.removeEventListener(SceneRegistryEvent.ROOT_STATE_MANAGER_REMOVE, this.onRootSceneManagerRemove, this);
+        this._registry.removeEventListener(SceneRegistryEvent.ROOT_SCENE_MANAGER_ADD, this.onRootSceneManagerAdd, this);
+        this._registry.removeEventListener(SceneRegistryEvent.ROOT_SCENE_MANAGER_REMOVE, this.onRootSceneManagerRemove, this);
 
         this._registry.rootBindings.forEach((binding: SceneManagerBinding) => {
             this.removeRootListener(binding.sceneManager);
@@ -90,13 +90,13 @@ export class SceneManagerObserver {
 
     private onSceneInit(scene: Phaser.Scene): void {
         let rootBindings: SceneManagerBinding[] = this._registry.rootBindings;
-        let stateManager: Phaser.Scenes.SceneManager;
+        let sceneManager: Phaser.Scenes.SceneManager;
 
         for (const rootBinding of rootBindings) {
-            stateManager = rootBinding.sceneManager;
+            sceneManager = rootBinding.sceneManager;
 
-            if (stateManager) {
-                let binding: SceneManagerBinding = this._registry.getBinding(scene.game.scene);
+            if (sceneManager) {
+                let binding: SceneManagerBinding = this._registry.getBinding(scene.sys.game.scene);
                 if (binding) {
                     // this.events.emit('resume', this);
                     // this.events.emit('wake', this);

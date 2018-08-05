@@ -8,12 +8,12 @@
 import { IClass } from "@robotlegsjs/core";
 
 /**
- * Unmaps a StateMediator
+ * Unmaps a SceneMediator
  */
 export interface ISceneMediatorUnmapper {
     /**
      * Unmaps a mediator from this matcher
-     * @param mediatorClass StateMediator to unmap
+     * @param mediatorClass SceneMediator to unmap
      */
     fromMediator(mediatorClass: IClass<any>): void;
 

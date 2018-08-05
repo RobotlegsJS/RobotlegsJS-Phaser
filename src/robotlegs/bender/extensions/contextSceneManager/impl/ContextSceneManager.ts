@@ -9,7 +9,7 @@ import { IContextSceneManager } from "../api/IContextSceneManager";
 import { IConfig } from "@robotlegsjs/core";
 
 /**
- * The Context StateManager represents the Phaser.Scenes.SceneManager for a Context
+ * The Context SceneManager represents the Phaser.Scenes.SceneManager for a Context
  */
 export class ContextSceneManager implements IContextSceneManager, IConfig {
     /*============================================================================*/
@@ -30,8 +30,8 @@ export class ContextSceneManager implements IContextSceneManager, IConfig {
     /*============================================================================*/
 
     /**
-     * The StateManager represents the root Phaser.Scenes.SceneManager for a Context
-     * @param sceneManager The root State Manager for this Context
+     * The SceneManager represents the root Phaser.Scenes.SceneManager for a Context
+     * @param sceneManager The root Scene Manager for this Context
      */
     constructor(sceneManager: Phaser.Scenes.SceneManager) {
         if (sceneManager !== null && sceneManager !== undefined) {

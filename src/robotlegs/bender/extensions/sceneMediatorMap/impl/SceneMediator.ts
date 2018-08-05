@@ -22,9 +22,11 @@ export abstract class SceneMediator<T extends Phaser.Scene> implements ISceneMed
     /* Protected Properties                                                       */
     /*============================================================================*/
 
-    @inject(IEventMap) protected eventMap: IEventMap;
+    @inject(IEventMap)
+    protected eventMap: IEventMap;
 
-    @inject(IEventDispatcher) protected eventDispatcher: IEventDispatcher;
+    @inject(IEventDispatcher)
+    protected eventDispatcher: IEventDispatcher;
 
     protected _sceneComponent: T;
 
@@ -67,7 +69,7 @@ export abstract class SceneMediator<T extends Phaser.Scene> implements ISceneMed
     /*============================================================================*/
 
     protected addViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.mapListener(this._stateComponent, eventString, listener, eventClass);
+        // this.eventMap.mapListener(this._sceneComponent, eventString, listener, eventClass);
     }
 
     protected addContextListener(eventString: string, listener: Function, eventClass?: Object): void {
@@ -75,7 +77,7 @@ export abstract class SceneMediator<T extends Phaser.Scene> implements ISceneMed
     }
 
     protected removeViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.unmapListener(this._stateComponent, eventString, listener, eventClass);
+        // this.eventMap.unmapListener(this._sceneComponent, eventString, listener, eventClass);
     }
 
     protected removeContextListener(eventString: string, listener: Function, eventClass?: Object): void {
