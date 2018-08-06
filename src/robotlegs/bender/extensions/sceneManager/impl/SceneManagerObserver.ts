@@ -111,7 +111,7 @@ export class SceneManagerObserver {
         sys.events.off("start", this.onSceneStart, this, false);
         const binding: SceneManagerBinding = this._registry.getBinding(sys.game.scene);
         if (binding) {
-            binding.handleScene(sys.scene, sys.scene["constructor"] as FunctionConstructor);
+            binding.handleScene(sys.scene, <any>sys.scene.constructor);
         }
     }
 

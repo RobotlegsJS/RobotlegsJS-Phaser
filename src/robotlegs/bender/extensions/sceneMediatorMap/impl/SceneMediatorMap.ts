@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
+import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
 
 import { ISceneMediatorMap } from "../api/ISceneMediatorMap";
 import { ISceneMediatorMapper } from "../dsl/ISceneMediatorMapper";
@@ -17,8 +17,6 @@ import { SceneMediatorFactory } from "./SceneMediatorFactory";
 import { SceneMediatorStateHandler } from "./SceneMediatorStateHandler";
 import { NullSceneMediatorUnmapper } from "./NullSceneMediatorUnmapper";
 import { SceneMediatorMapper } from "./SceneMediatorMapper";
-
-import { injectable, inject } from "inversify";
 
 /**
  * @private
@@ -104,7 +102,7 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
      * @inheritDoc
      */
     public mediate(item: any): void {
-        this._sceneHandler.handleItem(item, <any>item["constructor"]);
+        this._sceneHandler.handleItem(item, <any>item.constructor);
     }
 
     /**
