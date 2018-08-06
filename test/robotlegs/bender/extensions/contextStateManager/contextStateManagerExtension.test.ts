@@ -5,6 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
 import { Context, IContext, LogLevel } from "@robotlegsjs/core";
 import { assert } from "chai";
 import { ContextSceneManager, ContextSceneManagerExtension, IContextSceneManager } from "../../../../../src";

@@ -5,8 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-/// <reference types="mocha" />
 /// <reference path="../definitions/phaser.d.ts" />
+
+/// <reference types="mocha" />
+
 import "bluebird/js/browser/bluebird";
 import "es6-map/implement";
 import "es6-symbol/implement";

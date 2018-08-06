@@ -5,8 +5,11 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IContextSceneManager } from "../api/IContextSceneManager";
+import * as Phaser from "phaser";
+
 import { IConfig } from "@robotlegsjs/core";
+
+import { IContextSceneManager } from "../api/IContextSceneManager";
 
 /**
  * The Context SceneManager represents the Phaser.Scenes.SceneManager for a Context

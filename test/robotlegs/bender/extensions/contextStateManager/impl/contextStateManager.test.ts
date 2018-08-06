@@ -5,6 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
 import { assert } from "chai";
 import { ContextSceneManager, IContextSceneManager } from "../../../../../../src";
 import "../../../../../entry";

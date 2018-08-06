@@ -5,6 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
+
 import { EventDispatcher } from "@robotlegsjs/core";
 
 import { SceneManagerBinding } from "./SceneManagerBinding";

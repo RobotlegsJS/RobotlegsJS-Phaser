@@ -5,7 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
+
 import { IClass, ITypeMatcher } from "@robotlegsjs/core";
+
 import { ISceneMediatorMapper } from "../dsl/ISceneMediatorMapper";
 import { ISceneMediatorUnmapper } from "../dsl/ISceneMediatorUnmapper";
 

@@ -5,12 +5,14 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
+
+import { Event } from "@robotlegsjs/core";
+
 /**
  * SceneManager existence event
  * @private
  */
-import { Event } from "@robotlegsjs/core";
-
 export class SceneRegistryEvent extends Event {
     /*============================================================================*/
     /* Public Static Properties                                                   */

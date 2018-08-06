@@ -5,7 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
+
 import { IEventDispatcher } from "@robotlegsjs/core";
+
 import { ISceneHandler } from "./ISceneHandler";
 
 /**
