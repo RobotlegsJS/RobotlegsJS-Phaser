@@ -5,9 +5,15 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import { SceneKey } from "../constants/SceneKey";
+
 import { BaseScene } from "./BaseScene";
 
 export class Main extends BaseScene {
+    constructor() {
+        super(SceneKey.MAIN);
+    }
+
     public create(): void {
         super.create();
 

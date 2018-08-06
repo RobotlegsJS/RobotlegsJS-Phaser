@@ -5,7 +5,13 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
+
 export abstract class BaseScene extends Phaser.Scene {
+    constructor(scene: string) {
+        super({ key: scene });
+    }
+
     public init(): void {
         console.log(this + ": init");
     }

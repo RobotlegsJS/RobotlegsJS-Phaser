@@ -6,10 +6,14 @@
 // ------------------------------------------------------------------------------
 
 import { SceneKey } from "../constants/SceneKey";
+
 import { BaseScene } from "./BaseScene";
-import { Main } from "./Main";
 
 export class Preload extends BaseScene {
+    constructor() {
+        super(SceneKey.PRELOAD);
+    }
+
     public preload(): void {
         /* Preload required assets */
         this.load.image("player", "assets/player.png");
@@ -23,8 +27,6 @@ export class Preload extends BaseScene {
         // NOTE: Change to GameTitle if required
         // this.game.state.start(StateKey.MAIN);
 
-        (this as any).scene.add(SceneKey.MAIN, new Main(SceneKey.MAIN));
-        (<any>window).game.scene.remove(this);
-        (<any>window).game.scene.start(SceneKey.MAIN);
+        this.scene.start(SceneKey.MAIN);
     }
 }

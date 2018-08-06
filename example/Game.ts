@@ -5,14 +5,21 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import * as Phaser from "phaser";
+
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
-import { ContextSceneManager } from "../src";
+
+import { ContextSceneManager } from "../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
 import { PhaserBundle } from "../src/robotlegs/bender/bundles/phaser/PhaserBundle";
-import "phaser";
-import { SceneMediatorConfig } from "./config/SceneMediatorConfig";
-import { Boot } from "./scenes/Boot";
-import { SceneKey } from "./constants/SceneKey";
+
 import { GameConfig } from "./config/GameConfig";
+import { SceneMediatorConfig } from "./config/SceneMediatorConfig";
+
+import { SceneKey } from "./constants/SceneKey";
+
+import { Boot } from "./scenes/Boot";
+import { Main } from "./scenes/Main";
+import { Preload } from "./scenes/Preload";
 
 export class Game extends Phaser.Game {
     private _context: IContext;
@@ -29,11 +36,15 @@ export class Game extends Phaser.Game {
         this._context = new Context();
         this._context
             .install(MVCSBundle, PhaserBundle)
-            .configure(new ContextSceneManager((this as any).scene))
+            .configure(new ContextSceneManager(this.scene))
             .configure(SceneMediatorConfig)
             .configure(GameConfig)
             .initialize();
-        (this as any).scene.add(SceneKey.BOOT, new Boot(SceneKey.BOOT));
-        (this as any).scene.start(SceneKey.BOOT);
+
+        this.scene.add(SceneKey.BOOT, new Boot());
+        this.scene.add(SceneKey.PRELOAD, new Preload());
+        this.scene.add(SceneKey.MAIN, new Main());
+
+        this.scene.start(SceneKey.BOOT);
     }
 }

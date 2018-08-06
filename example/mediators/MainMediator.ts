@@ -7,10 +7,11 @@
 
 import { injectable, inject } from "@robotlegsjs/core";
 
+import { SceneMediator } from "../../src/robotlegs/bender/extensions/sceneMediatorMap/impl/SceneMediator";
+
+import { MainEvent } from "../events/MainEvent";
 import { GameModel } from "../models/GameModel";
 import { Main } from "../scenes/Main";
-import { SceneMediator } from "../../src";
-import { MainEvent } from "../events/MainEven";
 
 @injectable()
 export class MainMediator extends SceneMediator<Main> {

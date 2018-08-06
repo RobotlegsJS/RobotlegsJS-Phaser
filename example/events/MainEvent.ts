@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { Event } from "../../node_modules/@robotlegsjs/core";
+import { Event } from "@robotlegsjs/core";
 
 export class MainEvent extends Event {
     public static readonly GAME_START: string = "game_start";
