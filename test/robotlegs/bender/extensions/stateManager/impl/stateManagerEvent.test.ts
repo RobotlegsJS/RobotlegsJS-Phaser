@@ -9,16 +9,16 @@ import { assert } from "chai";
 import { ISceneHandler } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/api/ISceneHandler";
 import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerEvent";
 import "../../../../../entry";
-import { CallbackStateHandler } from "../support/CallbackStateHandler";
+import { CallbackSceneHandler } from "../support/CallbackSceneHandler";
 
-describe("StateManagerEvent", () => {
+describe("SceneManagerEvent", () => {
     let game: Phaser.Game = null;
     let handler: ISceneHandler = null;
     let event: SceneManagerEvent = null;
 
     beforeEach(() => {
         game = new Phaser.Game();
-        handler = new CallbackStateHandler();
+        handler = new CallbackSceneHandler();
         event = new SceneManagerEvent(SceneManagerEvent.SCENE_MANAGER_ADD, game.scene, handler);
     });
 
@@ -39,7 +39,7 @@ describe("StateManagerEvent", () => {
         assert.equal(event.type, SceneManagerEvent.SCENE_MANAGER_ADD);
     });
 
-    it("stateManager_is_stored", () => {
+    it("sceneManager_is_stored", () => {
         assert.equal(event.sceneManager, game.scene);
     });
 

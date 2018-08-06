@@ -9,13 +9,14 @@ import { MainMediator } from "../mediators/MainMediator";
 
 @injectable()
 export class SceneMediatorConfig implements IConfig {
-    @inject(ISceneMediatorMap) public sceneMediatorMap: ISceneMediatorMap;
+    @inject(ISceneMediatorMap)
+    public sceneMediatorMap: ISceneMediatorMap;
 
     public configure(): void {
-        this.mapStateMediators();
+        this.mapSceneMediators();
     }
 
-    private mapStateMediators(): void {
+    private mapSceneMediators(): void {
         this.sceneMediatorMap.map(Boot).toMediator(BootMediator);
         this.sceneMediatorMap.map(Preload).toMediator(PreloadMediator);
         // this.sceneMediatorMap.map(GameTitle).toMediator(GameTitleMediator);

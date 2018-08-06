@@ -9,7 +9,7 @@ import { assert } from "chai";
 import { SceneManagerBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerBindingEvent";
 import "../../../../../entry";
 
-describe("StateBindingEvent", () => {
+describe("SceneBindingEvent", () => {
     let event: SceneManagerBindingEvent = null;
 
     beforeEach(() => {

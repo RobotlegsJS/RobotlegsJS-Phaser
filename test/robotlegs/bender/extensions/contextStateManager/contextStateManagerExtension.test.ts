@@ -12,7 +12,7 @@ import "../../../../entry";
 import { CallbackLogTarget } from "./support/CallbackLogTarget";
 import { LogParams } from "./support/LogParams";
 
-describe("ContextStateManagerExtension", () => {
+describe("ContextSceneManagerExtension", () => {
     let context: IContext;
 
     beforeEach(() => {
@@ -32,7 +32,7 @@ describe("ContextStateManagerExtension", () => {
         assert.throws(installExtensionAfterInitialization, Error);
     });
 
-    it("contextStateManager_is_mapped", () => {
+    it("contextSceneManager_is_mapped", () => {
         let game: Phaser.Game = new Phaser.Game();
         let actual: ContextSceneManager = null;
         context.install(ContextSceneManagerExtension).configure(new ContextSceneManager(game.scene));
@@ -43,7 +43,7 @@ describe("ContextStateManagerExtension", () => {
         assert.equal(actual.sceneManager, game.scene);
     });
 
-    it("second_ContextStateManager_is_ignored", () => {
+    it("second_ContextSceneManager_is_ignored", () => {
         let game: Phaser.Game = new Phaser.Game();
         let actual: ContextSceneManager = null;
         let secondGame: Phaser.Game = new Phaser.Game();
@@ -57,7 +57,7 @@ describe("ContextStateManagerExtension", () => {
         assert.equal(actual.sceneManager, game.scene);
     });
 
-    it("extension_logs_error_when_context_initialized_with_no_ContextStateManager", () => {
+    it("extension_logs_error_when_context_initialized_with_no_ContextSceneManager", () => {
         let errorLogged: boolean = false;
         let logTarget: CallbackLogTarget = new CallbackLogTarget(function(log: LogParams): void {
             if (log.source instanceof ContextSceneManagerExtension && log.level === LogLevel.ERROR) {

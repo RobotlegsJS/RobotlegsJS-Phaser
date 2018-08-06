@@ -11,7 +11,7 @@ import "../../../../../entry";
 
 describe("ContextSceneManager", () => {
     let game: Phaser.Game;
-    let contextStateManager: IContextSceneManager;
+    let contextSceneManager: IContextSceneManager;
 
     beforeEach(() => {
         game = new Phaser.Game();
@@ -19,26 +19,26 @@ describe("ContextSceneManager", () => {
 
     afterEach(() => {
         game = null;
-        contextStateManager = null;
+        contextSceneManager = null;
     });
 
-    it("stateManager_is_stored", () => {
-        contextStateManager = new ContextSceneManager(game.scene);
-        assert.isNotNull(contextStateManager.sceneManager);
-        assert.equal(contextStateManager.sceneManager, game.scene);
+    it("sceneManager_is_stored", () => {
+        contextSceneManager = new ContextSceneManager(game.scene);
+        assert.isNotNull(contextSceneManager.sceneManager);
+        assert.equal(contextSceneManager.sceneManager, game.scene);
     });
 
-    it("ContextStateManager_throws_a_error_when_state_manager_is_null", () => {
-        function inicializeContextStateManagerWithNullStateManager(): void {
-            contextStateManager = new ContextSceneManager(null);
+    it("ContextSceneManager_throws_a_error_when_scene_manager_is_null", () => {
+        function inicializeContextSceneManagerWithNullSceneManager(): void {
+            contextSceneManager = new ContextSceneManager(null);
         }
-        assert.throws(inicializeContextStateManagerWithNullStateManager, Error);
+        assert.throws(inicializeContextSceneManagerWithNullSceneManager, Error);
     });
 
-    it("ContextStateManager_throws_a_error_when_state_manager_is_undefined", () => {
-        function inicializeContextStateManagerWithUndefinedStateManager(): void {
-            contextStateManager = new ContextSceneManager(undefined);
+    it("ContextSceneManager_throws_a_error_when_scene_manager_is_undefined", () => {
+        function inicializeContextSceneManagerWithUndefinedSceneManager(): void {
+            contextSceneManager = new ContextSceneManager(undefined);
         }
-        assert.throws(inicializeContextStateManagerWithUndefinedStateManager, Error);
+        assert.throws(inicializeContextSceneManagerWithUndefinedSceneManager, Error);
     });
 });

@@ -11,7 +11,7 @@ import { ISceneHandler } from "../../../../../../src/robotlegs/bender/extensions
 /**
  * @private
  */
-export class CallbackStateHandler implements ISceneHandler {
+export class CallbackSceneHandler implements ISceneHandler {
     private _callback: Function;
 
     constructor(callback: Function = null) {

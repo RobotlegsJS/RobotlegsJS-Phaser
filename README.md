@@ -1,5 +1,4 @@
-RobotlegsJS Phaser Extension
-===
+# RobotlegsJS Phaser Extension
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/blob/master/LICENSE)
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
@@ -14,8 +13,7 @@ RobotlegsJS Phaser Extension
 Integrate [RobotlegsJS](https://github.com/RobotlegsJS/RobotlegsJS)
 framework with [Phaser](https://github.com/photonstorm/phaser).
 
-Installation
----
+## Installation
 
 You can get the latest release and the type definitions using [NPM](https://www.npmjs.com/):
 
@@ -27,52 +25,42 @@ Or using [Yarn](https://yarnpkg.com/en/):
 
 ```bash
 yarn add @robotlegsjs/phaser
-````
+```
 
-Usage
----
+## Usage
 
 ```ts
-/// <reference path="../node_modules/phaser-ce/typescript/phaser.d.ts" />
-
-import "reflect-metadata";
+/// <reference path="../definitions/phaser.d.ts" />
 
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
-import { PhaserBundle, ContextStateManager } from "@robotlegsjs/phaser";
-
-import { StateKey } from "./constants/StateKey";
-
-import { Boot } from "./states/Boot";
-import { Preload } from "./states/Preload";
-import { GameTitle } from "./states/GameTitle";
-import { Main } from "./states/Main";
-import { GameOver } from "./states/GameOver";
-
+import { ContextSceneManager } from "../src";
+import { PhaserBundle } from "../src/robotlegs/bender/bundles/phaser/PhaserBundle";
+import "phaser";
+import { SceneMediatorConfig } from "./config/SceneMediatorConfig";
+import { SceneKey } from "./constants/SceneKey";
 import { GameConfig } from "./config/GameConfig";
-import { StateMediatorConfig } from "./config/StateMediatorConfig";
 
-class Game extends Phaser.Game {
-
+export class Game extends Phaser.Game {
     private _context: IContext;
 
     constructor() {
-
-        super(window.innerWidth * window.devicePixelRatio, window.innerHeight * window.devicePixelRatio, Phaser.AUTO);
+        super({
+            type: Phaser.CANVAS,
+            width: 800,
+            height: 600,
+            backgroundColor: "#010101",
+            parent: "phaser-example"
+        });
 
         this._context = new Context();
-        this._context.install(MVCSBundle, PhaserBundle)
-            .configure(new ContextStateManager(this.state))
-            .configure(StateMediatorConfig)
+        this._context
+            .install(MVCSBundle, PhaserBundle)
+            .configure(new ContextSceneManager((this as any).scene))
+            .configure(SceneMediatorConfig)
             .configure(GameConfig)
             .initialize();
-
-        this.state.add(StateKey.BOOT, Boot, false);
-        this.state.add(StateKey.PRELOAD, Preload, false);
-        this.state.add(StateKey.GAME_TITLE, GameTitle, false);
-        this.state.add(StateKey.MAIN, Main, false);
-        this.state.add(StateKey.GAME_OVER, GameOver, false);
-
-        this.state.start(StateKey.BOOT);
+        this.scene.add(SceneKey.BOOT, new Boot(SceneKey.BOOT));
+        this.scene.start(SceneKey.BOOT);
     }
 }
 
@@ -81,14 +69,12 @@ new Game();
 
 [See example](example)
 
-RobotlegsJS integration with Phaser CE (Community Edition)
----
+## RobotlegsJS integration with Phaser CE (Community Edition)
 
 The `@robotlegsjs/phaser` package was updated to support [Phaser v3](https://www.npmjs.com/package/phaser) plugin.
 
 If you are looking for integration with [Phaser CE](https://github.com/photonstorm/phaser-ce) you can use the [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE) plugin.
 
-License
----
+## License
 
 [MIT](LICENSE)

@@ -9,7 +9,7 @@ import { assert } from "chai";
 import { ConfigureSceneEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/ConfigureSceneEvent";
 import "../../../../../entry";
 
-describe("ConfigureStateEvent", () => {
+describe("ConfigureSceneEvent", () => {
     let scene: Phaser.Scene = null;
     let event: ConfigureSceneEvent = null;
 
@@ -31,7 +31,7 @@ describe("ConfigureStateEvent", () => {
         assert.equal(event.type, ConfigureSceneEvent.CONFIGURE_SCENE);
     });
 
-    it("state_is_stored", () => {
+    it("scene_is_stored", () => {
         assert.equal(event.scene, scene);
     });
 

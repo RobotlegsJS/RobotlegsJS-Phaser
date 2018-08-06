@@ -26,7 +26,7 @@ describe("PhaserBundle", () => {
         context = new Context();
         context
             .install(PhaserBundle)
-            .configure(new ContextStateManager(game.state))
+            .configure(new ContextSceneManager(game.scene))
             .initialize();
         */
         // Verify if all extensions are installed
