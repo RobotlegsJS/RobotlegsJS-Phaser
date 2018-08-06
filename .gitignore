@@ -64,6 +64,7 @@ typings/
 dist
 dist-test
 lib
+lib-example
 lib-test
 src/**/*.js
 src/**/*.js.map
