@@ -27,18 +27,55 @@ Or using [Yarn](https://yarnpkg.com/en/):
 yarn add @robotlegsjs/phaser
 ```
 
+From version `0.2.0` of this package, the [Phaser](https://github.com/photonstorm/phaser) dependency was moved to **peerDependencies**,
+allowing the final user to choose the desired version of the `phaser` library on each project.
+
+The `@robotlegsjs/phaser` package is compatible with versions between the `>=3.11.0 <4` version range of `phaser` library.
+
+As example, when you would like to use the version `3.11.0` of `phaser` library, you can run:
+
+```bash
+npm install phaser@3.11.0 reflect-metadata --save-prod
+```
+
+or
+
+```bash
+yarn add phaser@3.11.0 reflect-metadata
+```
+
+Then follow the [installation instructions](https://github.com/RobotlegsJS/RobotlegsJS/blob/master/README.md#installation) of **RobotlegsJS** library to complete the setup of your project.
+
+**Dependencies**
+
++ [RobotlegsJS](https://github.com/RobotlegsJS/RobotlegsJS)
++ [tslib](https://github.com/Microsoft/tslib)
+
+**Peer Dependencies**
+
++ [Phaser](https://github.com/photonstorm/phaser)
++ [reflect-metadata](https://github.com/rbuckton/reflect-metadata)
+
 ## Usage
 
 ```ts
-/// <reference path="../definitions/phaser.d.ts" />
+/// <reference path="../node_modules/@robotlegsjs/phaser/definitions/phaser.d.ts" />
+
+import * as Phaser from "phaser";
 
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
-import { ContextSceneManager } from "../src";
+
+import { ContextSceneManager } from "../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
 import { PhaserBundle } from "../src/robotlegs/bender/bundles/phaser/PhaserBundle";
-import "phaser";
-import { SceneMediatorConfig } from "./config/SceneMediatorConfig";
-import { SceneKey } from "./constants/SceneKey";
+
 import { GameConfig } from "./config/GameConfig";
+import { SceneMediatorConfig } from "./config/SceneMediatorConfig";
+
+import { SceneKey } from "./constants/SceneKey";
+
+import { Boot } from "./scenes/Boot";
+import { Main } from "./scenes/Main";
+import { Preload } from "./scenes/Preload";
 
 export class Game extends Phaser.Game {
     private _context: IContext;
@@ -55,19 +92,37 @@ export class Game extends Phaser.Game {
         this._context = new Context();
         this._context
             .install(MVCSBundle, PhaserBundle)
-            .configure(new ContextSceneManager((this as any).scene))
+            .configure(new ContextSceneManager(this.scene))
             .configure(SceneMediatorConfig)
             .configure(GameConfig)
             .initialize();
-        this.scene.add(SceneKey.BOOT, new Boot(SceneKey.BOOT));
+
+        this.scene.add(SceneKey.BOOT, new Boot());
+        this.scene.add(SceneKey.PRELOAD, new Preload());
+        this.scene.add(SceneKey.MAIN, new Main());
+
         this.scene.start(SceneKey.BOOT);
     }
 }
-
-new Game();
 ```
 
 [See example](example)
+
+## Running the example
+
+Run the following commands to run the example:
+
+```bash
+npm install
+npm start
+```
+
+or:
+
+```bash
+yarn install
+yarn start
+```
 
 ## RobotlegsJS integration with Phaser CE (Community Edition)
 
