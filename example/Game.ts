@@ -5,8 +5,6 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import * as Phaser from "phaser";
-
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
 
 import { ContextSceneManager } from "../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
