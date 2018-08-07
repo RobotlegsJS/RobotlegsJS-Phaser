@@ -5,8 +5,6 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import * as Phaser from "phaser";
-
 import { injectable, inject, IEventMap, IEventDispatcher, Event } from "@robotlegsjs/core";
 
 import { ISceneMediator } from "../api/ISceneMediator";
