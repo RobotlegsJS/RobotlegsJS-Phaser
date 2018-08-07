@@ -5,17 +5,13 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-/// <reference path="../node_modules/phaser-ce/typescript/phaser.d.ts" />
+/// <reference path="../definitions/phaser.d.ts" />
 
 import "reflect-metadata";
 
 import { Game } from "./Game";
 
 (<any>window).initGame = function() {
-    let game: Game = new Game(
-        window.innerWidth * window.devicePixelRatio,
-        window.innerHeight * window.devicePixelRatio,
-        Phaser.AUTO
-    );
+    let game: Game = new Game();
     (<any>window).game = game;
 };

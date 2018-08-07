@@ -64,8 +64,14 @@ typings/
 dist
 dist-test
 lib
+lib-example
 lib-test
 src/**/*.js
 src/**/*.js.map
 test/**/*.js
 test/**/*.js.map
+
+#os
+.DS_Store
+.AppleDouble
+.LSOverride

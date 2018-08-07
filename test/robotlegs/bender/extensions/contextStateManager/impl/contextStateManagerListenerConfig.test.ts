@@ -9,36 +9,38 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { IContextStateManager, ContextStateManager, ContextStateManagerListenerConfig } from "../../../../../../src";
+import { IContextSceneManager } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/api/IContextSceneManager";
+import { ContextSceneManager } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
+import { ContextSceneManagerListenerConfig } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
 
-import { StateRegistry } from "../../../../../../src/robotlegs/bender/extensions/stateManager/impl/StateRegistry";
-import { StateManager } from "../../../../../../src/robotlegs/bender/extensions/stateManager/impl/StateManager";
+import { SceneManager } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManager";
+import { SceneRegistry } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneRegistry";
 
-describe("ContextStateManagerListenerConfig", () => {
-    let phaserStateManager: Phaser.StateManager;
-    let contextStateManager: IContextStateManager;
-    let stateRegistry: StateRegistry;
-    let stateManager: StateManager;
-    let contextStateManagerListenerConfig: ContextStateManagerListenerConfig;
+describe("ContextSceneManagerListenerConfig", () => {
+    let game: Phaser.Game;
+    let contextSceneManager: IContextSceneManager;
+    let sceneRegistry: SceneRegistry;
+    let sceneManager: SceneManager;
+    let contextSceneManagerListenerConfig: ContextSceneManagerListenerConfig;
 
     beforeEach(() => {
-        phaserStateManager = new Phaser.StateManager(null);
-        contextStateManager = new ContextStateManager(phaserStateManager);
-        stateRegistry = new StateRegistry();
-        stateManager = new StateManager(stateRegistry);
-        contextStateManagerListenerConfig = new ContextStateManagerListenerConfig(contextStateManager, stateManager);
+        game = new Phaser.Game();
+        contextSceneManager = new ContextSceneManager(game.scene);
+        sceneRegistry = new SceneRegistry();
+        sceneManager = new SceneManager(sceneRegistry);
+        contextSceneManagerListenerConfig = new ContextSceneManagerListenerConfig(contextSceneManager, sceneManager);
     });
 
     afterEach(() => {
-        phaserStateManager = null;
-        contextStateManager = null;
-        stateRegistry = null;
-        stateManager = null;
-        contextStateManagerListenerConfig = null;
+        game = null;
+        contextSceneManager = null;
+        sceneRegistry = null;
+        sceneManager = null;
+        contextSceneManagerListenerConfig = null;
     });
 
     it("container_is_added_to_view_manager", () => {
-        contextStateManagerListenerConfig.configure();
-        assert.deepEqual(stateManager.stateManagers, [phaserStateManager]);
+        contextSceneManagerListenerConfig.configure();
+        assert.deepEqual(sceneManager.sceneManagers, [game.scene]);
     });
 });

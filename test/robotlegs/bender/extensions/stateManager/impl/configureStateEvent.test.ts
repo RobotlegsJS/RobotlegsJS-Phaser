@@ -9,38 +9,38 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { ConfigureStateEvent } from "../../../../../../src/robotlegs/bender/extensions/stateManager/impl/ConfigureStateEvent";
+import { ConfigureSceneEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/ConfigureSceneEvent";
 
-describe("ConfigureStateEvent", () => {
-    let state: Phaser.State = null;
-    let event: ConfigureStateEvent = null;
+describe("ConfigureSceneEvent", () => {
+    let scene: Phaser.Scene = null;
+    let event: ConfigureSceneEvent = null;
 
     beforeEach(() => {
-        state = new Phaser.State();
-        event = new ConfigureStateEvent(ConfigureStateEvent.CONFIGURE_STATE, state);
+        scene = new Phaser.Scene("theScene");
+        event = new ConfigureSceneEvent(ConfigureSceneEvent.CONFIGURE_SCENE, scene);
     });
 
     afterEach(() => {
-        state = null;
+        scene = null;
         event = null;
     });
 
     it("ensure_static_properties_will_not_change", () => {
-        assert.equal(ConfigureStateEvent.CONFIGURE_STATE, "configureState");
+        assert.equal(ConfigureSceneEvent.CONFIGURE_SCENE, "configureScene");
     });
 
     it("type_is_stored", () => {
-        assert.equal(event.type, ConfigureStateEvent.CONFIGURE_STATE);
+        assert.equal(event.type, ConfigureSceneEvent.CONFIGURE_SCENE);
     });
 
-    it("state_is_stored", () => {
-        assert.equal(event.state, state);
+    it("scene_is_stored", () => {
+        assert.equal(event.scene, scene);
     });
 
     it("event_is_cloned", () => {
-        let clone: ConfigureStateEvent = event.clone();
+        let clone: ConfigureSceneEvent = event.clone();
         assert.equal(clone.type, event.type);
-        assert.equal(clone.state, event.state);
+        assert.equal(clone.scene, event.scene);
         assert.notEqual(clone, event);
     });
 });

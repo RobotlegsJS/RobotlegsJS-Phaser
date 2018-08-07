@@ -7,11 +7,12 @@
 
 import "../../../../entry";
 
+import { Context, IContext } from "@robotlegsjs/core";
+
 import { assert } from "chai";
 
-import { IContext, Context } from "@robotlegsjs/core";
-
 describe("PhaserBundle", () => {
+    // let game: Phaser.Game;
     let context: IContext;
 
     afterEach(() => {
@@ -28,7 +29,7 @@ describe("PhaserBundle", () => {
         context = new Context();
         context
             .install(PhaserBundle)
-            .configure(new ContextStateManager(game.state))
+            .configure(new ContextSceneManager(game.scene))
             .initialize();
         */
         // Verify if all extensions are installed

@@ -6,49 +6,43 @@
 // ------------------------------------------------------------------------------
 
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
+
+import { ContextSceneManager } from "../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
 import { PhaserBundle } from "../src/robotlegs/bender/bundles/phaser/PhaserBundle";
-import { ContextStateManager } from "../src/robotlegs/bender/extensions/contextStateManager/impl/ContextStateManager";
-
-import { StateKey } from "./constants/StateKey";
-
-import { Boot } from "./states/Boot";
-import { Preload } from "./states/Preload";
-import { GameTitle } from "./states/GameTitle";
-import { Main } from "./states/Main";
-import { GameOver } from "./states/GameOver";
 
 import { GameConfig } from "./config/GameConfig";
-import { StateMediatorConfig } from "./config/StateMediatorConfig";
+import { SceneMediatorConfig } from "./config/SceneMediatorConfig";
+
+import { SceneKey } from "./constants/SceneKey";
+
+import { Boot } from "./scenes/Boot";
+import { Main } from "./scenes/Main";
+import { Preload } from "./scenes/Preload";
 
 export class Game extends Phaser.Game {
-
     private _context: IContext;
 
-    constructor(
-        width?: number | string,
-        height?: number | string,
-        renderer?: number,
-        parent?: any,
-        state?: any,
-        transparent?: boolean,
-        antialias?: boolean,
-        physicsConfig?: any
-    ) {
-        super(width, height, renderer, parent, state, transparent, antialias, physicsConfig);
+    constructor() {
+        super({
+            type: Phaser.CANVAS,
+            width: 800,
+            height: 600,
+            backgroundColor: "#010101",
+            parent: "phaser-example"
+        });
 
         this._context = new Context();
-        this._context.install(MVCSBundle, PhaserBundle)
-            .configure(new ContextStateManager(this.state))
-            .configure(StateMediatorConfig)
+        this._context
+            .install(MVCSBundle, PhaserBundle)
+            .configure(new ContextSceneManager(this.scene))
+            .configure(SceneMediatorConfig)
             .configure(GameConfig)
             .initialize();
 
-        this.state.add(StateKey.BOOT, Boot, false);
-        this.state.add(StateKey.PRELOAD, Preload, false);
-        this.state.add(StateKey.GAME_TITLE, GameTitle, false);
-        this.state.add(StateKey.MAIN, Main, false);
-        this.state.add(StateKey.GAME_OVER, GameOver, false);
+        this.scene.add(SceneKey.BOOT, new Boot());
+        this.scene.add(SceneKey.PRELOAD, new Preload());
+        this.scene.add(SceneKey.MAIN, new Main());
 
-        this.state.start(StateKey.BOOT);
+        this.scene.start(SceneKey.BOOT);
     }
 }

@@ -9,14 +9,16 @@ import "../../../../entry";
 
 import { assert } from "chai";
 
-import { IContext, Context, LogLevel } from "@robotlegsjs/core";
+import { Context, IContext, LogLevel } from "@robotlegsjs/core";
 
-import { IContextStateManager, ContextStateManager, ContextStateManagerExtension } from "../../../../../src";
+import { IContextSceneManager } from "../../../../../src/robotlegs/bender/extensions/contextSceneManager/api/IContextSceneManager";
+import { ContextSceneManager } from "../../../../../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
+import { ContextSceneManagerExtension } from "../../../../../src/robotlegs/bender/extensions/contextSceneManager/ContextSceneManagerExtension";
 
 import { CallbackLogTarget } from "./support/CallbackLogTarget";
 import { LogParams } from "./support/LogParams";
 
-describe("ContextStateManagerExtension", () => {
+describe("ContextSceneManagerExtension", () => {
     let context: IContext;
 
     beforeEach(() => {
@@ -31,44 +33,44 @@ describe("ContextStateManagerExtension", () => {
     it("installing_after_initialization_throws_error", () => {
         function installExtensionAfterInitialization(): void {
             context.initialize();
-            context.install(ContextStateManagerExtension);
+            context.install(ContextSceneManagerExtension);
         }
         assert.throws(installExtensionAfterInitialization, Error);
     });
 
-    it("contextStateManager_is_mapped", () => {
-        let phaserStateManager: Phaser.StateManager = new Phaser.StateManager(null);
-        let actual: ContextStateManager = null;
-        context.install(ContextStateManagerExtension).configure(new ContextStateManager(phaserStateManager));
+    it("contextSceneManager_is_mapped", () => {
+        let game: Phaser.Game = new Phaser.Game();
+        let actual: ContextSceneManager = null;
+        context.install(ContextSceneManagerExtension).configure(new ContextSceneManager(game.scene));
         context.whenInitializing(() => {
-            actual = context.injector.get<ContextStateManager>(IContextStateManager);
+            actual = context.injector.get<ContextSceneManager>(IContextSceneManager);
         });
         context.initialize();
-        assert.equal(actual.stateManager, phaserStateManager);
+        assert.equal(actual.sceneManager, game.scene);
     });
 
-    it("second_ContextStateManager_is_ignored", () => {
-        let phaserStateManager: Phaser.StateManager = new Phaser.StateManager(null);
-        let actual: ContextStateManager = null;
-        let secondPhaserStateManager: Phaser.StateManager = new Phaser.StateManager(null);
+    it("second_ContextSceneManager_is_ignored", () => {
+        let game: Phaser.Game = new Phaser.Game();
+        let actual: ContextSceneManager = null;
+        let secondGame: Phaser.Game = new Phaser.Game();
         context
-            .install(ContextStateManagerExtension)
-            .configure(new ContextStateManager(phaserStateManager), new ContextStateManager(secondPhaserStateManager));
+            .install(ContextSceneManagerExtension)
+            .configure(new ContextSceneManager(game.scene), new ContextSceneManager(secondGame.scene));
         context.whenInitializing(() => {
-            actual = context.injector.get<ContextStateManager>(IContextStateManager);
+            actual = context.injector.get<ContextSceneManager>(IContextSceneManager);
         });
         context.initialize();
-        assert.equal(actual.stateManager, phaserStateManager);
+        assert.equal(actual.sceneManager, game.scene);
     });
 
-    it("extension_logs_error_when_context_initialized_with_no_ContextStateManager", () => {
+    it("extension_logs_error_when_context_initialized_with_no_ContextSceneManager", () => {
         let errorLogged: boolean = false;
         let logTarget: CallbackLogTarget = new CallbackLogTarget(function(log: LogParams): void {
-            if (log.source instanceof ContextStateManagerExtension && log.level === LogLevel.ERROR) {
+            if (log.source instanceof ContextSceneManagerExtension && log.level === LogLevel.ERROR) {
                 errorLogged = true;
             }
         });
-        context.install(ContextStateManagerExtension);
+        context.install(ContextSceneManagerExtension);
         context.addLogTarget(logTarget);
         context.initialize();
         assert.isTrue(errorLogged);

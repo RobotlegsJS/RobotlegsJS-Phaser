@@ -25,7 +25,6 @@
     "./src/**/*.ts"
   ],
   "files": [
-    "./node_modules/phaser-ce/typescript/phaser.d.ts",
-    "./node_modules/phaser-ce/typescript/pixi.d.ts"
+    "./definitions/phaser.d.ts"
   ]
 }

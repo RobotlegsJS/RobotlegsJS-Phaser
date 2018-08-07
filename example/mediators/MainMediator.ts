@@ -7,20 +7,22 @@
 
 import { injectable, inject } from "@robotlegsjs/core";
 
-import { StateMediator } from "../../src/robotlegs/bender/extensions/stateMediatorMap/impl/StateMediator";
+import { SceneMediator } from "../../src/robotlegs/bender/extensions/sceneMediatorMap/impl/SceneMediator";
 
+import { MainEvent } from "../events/MainEvent";
 import { GameModel } from "../models/GameModel";
-import { Main } from "../states/Main";
+import { Main } from "../scenes/Main";
 
 @injectable()
-export class MainMediator extends StateMediator<Main> {
+export class MainMediator extends SceneMediator<Main> {
     @inject(GameModel)
     public gameModel: GameModel;
 
     public initialize(): void {
-        console.log("BootMediator: initialize");
+        console.log("MainMediator: initialize");
         console.log("score: " + this.gameModel.score);
         console.log("level: " + this.gameModel.level);
+        this.dispatch(new MainEvent(MainEvent.GAME_START, true, false, { data: this.gameModel.level }));
     }
 
     public destroy(): void {

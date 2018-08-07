@@ -7,12 +7,12 @@
 
 import { injectable } from "@robotlegsjs/core";
 
-import { StateMediator } from "../../src/robotlegs/bender/extensions/stateMediatorMap/impl/StateMediator";
+import { SceneMediator } from "../../src/robotlegs/bender/extensions/sceneMediatorMap/impl/SceneMediator";
 
-import { Boot } from "../states/Boot";
+import { Boot } from "../scenes/Boot";
 
 @injectable()
-export class BootMediator extends StateMediator<Boot> {
+export class BootMediator extends SceneMediator<Boot> {
     public initialize(): void {
         console.log("BootMediator: initialize");
     }

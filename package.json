@@ -1,7 +1,7 @@
 {
   "name": "@robotlegsjs/phaser",
   "version": "0.0.5",
-  "description": "RobotlegsJS integration with Phaser State Manager",
+  "description": "RobotlegsJS integration with Phaser Scene Manager",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
@@ -11,12 +11,15 @@
     "autoformat": "prettier --config .prettierrc --write {src,test,example}/**/*.ts",
     "tslint-check:src": "tslint-config-prettier-check ./tslint.json",
     "tslint-check:test": "tslint-config-prettier-check ./tslint.test.json",
+    "tslint-check:example": "tslint-config-prettier-check ./tslint.example.json",
     "tslint:src": "tslint --project tsconfig.json",
     "tslint:test": "tslint --config tslint.test.json --project tsconfig.test.json",
-    "tslint": "npm run tslint-check:src && npm run tslint-check:test && npm run tslint:src && npm run tslint:test",
-    "clean-up": "rimraf .nyc_output && rimraf coverage && rimraf lib && rimraf lib-test && rimraf dist && rimraf dist-test",
+    "tslint:example": "tslint --config tslint.example.json --project tsconfig.example.json",
+    "tslint": "npm run tslint-check:src && npm run tslint-check:test && npm run tslint-check:example && npm run tslint:src && npm run tslint:test && npm run tslint:example",
+    "clean-up": "rimraf .nyc_output && rimraf coverage && rimraf lib && rimraf lib-test && rimraf lib-example && rimraf dist && rimraf dist-test",
     "compile:src": "tsc -d --importHelpers",
     "compile:test": "tsc -p tsconfig.test.json -d --importHelpers",
+    "compile:example": "tsc -p tsconfig.example.json -d --importHelpers",
     "dev": "webpack",
     "build": "webpack --env.production",
     "prepare": "npm run clean-up && npm run compile:src",
@@ -39,6 +42,7 @@
   "author": "RobotlegsJS",
   "contributors": [
     "Endel Dreyer <endel.dreyer@gmail.com>",
+    "Sargis Sargsyan <sargsyan.sargis.89@gmail.com>",
     "Tiago Schenkel <tiago.schenkel@gmail.com>"
   ],
   "license": "MIT",
@@ -48,8 +52,11 @@
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
   "dependencies": {
     "@robotlegsjs/core": "^0.2.0",
-    "phaser-ce": "^2.11.0",
     "tslib": "^1.9.3"
+  },
+  "peerDependencies": {
+    "phaser": "^3.11.0",
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
     "@types/bluebird": "^3.5.23",
@@ -81,6 +88,7 @@
     "karma-sourcemap-writer": "^0.1.2",
     "karma-webpack": "^3.0.0",
     "mocha": "^5.2.0",
+    "phaser": "^3.11.0",
     "prettier": "^1.14.0",
     "publish-please": "^3.2.0",
     "reflect-metadata": "^0.1.12",
@@ -93,12 +101,9 @@
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.14.0",
     "typescript": "^3.0.1",
-    "webpack": "^4.16.4",
+    "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
     "webpack-concat-plugin": "^3.0.0",
     "webpack-dev-server": "^3.1.5"
-  },
-  "peerDependencies": {
-    "reflect-metadata": "^0.1.12"
   }
 }

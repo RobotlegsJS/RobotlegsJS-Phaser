@@ -18,7 +18,7 @@ module.exports = config => {
     files: [
       { pattern: "node_modules/reflect-metadata/Reflect.js", include: true },
       { pattern: "node_modules/bluebird/js/browser/bluebird.js", include: true },
-      { pattern: "node_modules/phaser-ce/build/phaser.js", include: true },
+      { pattern: "node_modules/phaser/dist/phaser.js", include: true },
       { pattern: "./test/**/**/**.test.ts", include: true },
       { pattern: '**/*.map', served: true, included: false, watched: true }
     ],

@@ -42,7 +42,7 @@ module.exports = options => {
       }),
 
       new ConcatPlugin(concatPluginConfigGenerator("phaser", [
-        path.resolve(__dirname, "node_modules/phaser-ce/build/phaser.js")
+        path.resolve(__dirname, "./node_modules/phaser/dist/phaser.js")
       ])),
     ],
 
