@@ -5,10 +5,13 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
+import "../../../../../entry";
+
 import { assert } from "chai";
+
 import { ISceneHandler } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/api/ISceneHandler";
 import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerEvent";
-import "../../../../../entry";
+
 import { CallbackSceneHandler } from "../support/CallbackSceneHandler";
 
 describe("SceneManagerEvent", () => {

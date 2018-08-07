@@ -5,12 +5,16 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import * as Phaser from "phaser";
+import "../../../../../entry";
+
 import { assert } from "chai";
-import { ContextSceneManager, ContextSceneManagerListenerConfig, IContextSceneManager } from "../../../../../../src";
+
+import { IContextSceneManager } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/api/IContextSceneManager";
+import { ContextSceneManager } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
+import { ContextSceneManagerListenerConfig } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
+
 import { SceneManager } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManager";
 import { SceneRegistry } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneRegistry";
-import "../../../../../entry";
 
 describe("ContextSceneManagerListenerConfig", () => {
     let game: Phaser.Game;

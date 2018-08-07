@@ -6,6 +6,7 @@
 // ------------------------------------------------------------------------------
 
 import { ILogTarget } from "@robotlegsjs/core";
+
 import { LogParams } from "./LogParams";
 
 export class CallbackLogTarget implements ILogTarget {

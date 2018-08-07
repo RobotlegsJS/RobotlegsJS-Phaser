@@ -5,9 +5,11 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { assert } from "chai";
-import { SceneManagerBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerBindingEvent";
 import "../../../../../entry";
+
+import { assert } from "chai";
+
+import { SceneManagerBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerBindingEvent";
 
 describe("SceneBindingEvent", () => {
     let event: SceneManagerBindingEvent = null;

@@ -6,7 +6,9 @@
 // ------------------------------------------------------------------------------
 
 import "../../../../entry";
+
 import { Context, IContext } from "@robotlegsjs/core";
+
 import { assert } from "chai";
 
 describe("PhaserBundle", () => {

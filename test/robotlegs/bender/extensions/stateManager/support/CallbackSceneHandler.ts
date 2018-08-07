@@ -5,8 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import * as Phaser from "phaser";
 import { IClass } from "@robotlegsjs/core";
+
 import { ISceneHandler } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/api/ISceneHandler";
 
 /**
