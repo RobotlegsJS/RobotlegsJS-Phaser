@@ -7,10 +7,10 @@
 
 import { ILogger, ITypeFilter, IClass } from "@robotlegsjs/core";
 
-import { ISceneMediatorMapping } from "../api/ISceneMediatorMapping";
-import { ISceneMediatorConfigurator } from "../dsl/ISceneMediatorConfigurator";
-import { ISceneMediatorMapper } from "../dsl/ISceneMediatorMapper";
-import { ISceneMediatorUnmapper } from "../dsl/ISceneMediatorUnmapper";
+import { IMediatorMapping } from "../api/IMediatorMapping";
+import { IMediatorConfigurator } from "../dsl/IMediatorConfigurator";
+import { IMediatorMapper } from "../dsl/IMediatorMapper";
+import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
 import { SceneMediatorStateHandler } from "./SceneMediatorStateHandler";
 import { SceneMediatorMapping } from "./SceneMediatorMapping";
@@ -18,12 +18,12 @@ import { SceneMediatorMapping } from "./SceneMediatorMapping";
 /**
  * @private
  */
-export class SceneMediatorMapper implements ISceneMediatorMapper, ISceneMediatorUnmapper {
+export class SceneMediatorMapper implements IMediatorMapper, IMediatorUnmapper {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappings: Map<IClass<any>, ISceneMediatorMapping> = new Map<IClass<any>, ISceneMediatorMapping>();
+    private _mappings: Map<IClass<any>, IMediatorMapping> = new Map<IClass<any>, IMediatorMapping>();
 
     private _typeFilter: ITypeFilter;
 
@@ -51,8 +51,8 @@ export class SceneMediatorMapper implements ISceneMediatorMapper, ISceneMediator
     /**
      * @inheritDoc
      */
-    public toMediator(mediatorClass: IClass<any>): ISceneMediatorConfigurator {
-        let mapping: ISceneMediatorMapping = this._mappings.get(mediatorClass);
+    public toMediator(mediatorClass: IClass<any>): IMediatorConfigurator {
+        let mapping: IMediatorMapping = this._mappings.get(mediatorClass);
         return mapping ? this.overwriteMapping(mapping) : this.createMapping(mediatorClass);
     }
 
@@ -60,7 +60,7 @@ export class SceneMediatorMapper implements ISceneMediatorMapper, ISceneMediator
      * @inheritDoc
      */
     public fromMediator(mediatorClass: IClass<any>): void {
-        let mapping: ISceneMediatorMapping = this._mappings.get(mediatorClass);
+        let mapping: IMediatorMapping = this._mappings.get(mediatorClass);
         if (mapping) {
             this.deleteMapping(mapping);
         }
@@ -87,7 +87,7 @@ export class SceneMediatorMapper implements ISceneMediatorMapper, ISceneMediator
         return mapping;
     }
 
-    private deleteMapping(mapping: ISceneMediatorMapping): void {
+    private deleteMapping(mapping: IMediatorMapping): void {
         this._handler.removeMapping(mapping);
         this._mappings.delete(mapping.mediatorClass);
         if (this._logger) {
@@ -95,7 +95,7 @@ export class SceneMediatorMapper implements ISceneMediatorMapper, ISceneMediator
         }
     }
 
-    private overwriteMapping(mapping: ISceneMediatorMapping): ISceneMediatorConfigurator {
+    private overwriteMapping(mapping: IMediatorMapping): IMediatorConfigurator {
         if (this._logger) {
             this._logger.warn(
                 "{0} already mapped to {1}\n" +

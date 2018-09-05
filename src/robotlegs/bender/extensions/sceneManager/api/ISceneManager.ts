@@ -7,7 +7,8 @@
 
 import { IEventDispatcher } from "@robotlegsjs/core";
 
-import { ISceneHandler } from "./ISceneHandler";
+import { ISceneHandler} from "./ISceneHandler";
+import { IViewHandler } from "./IViewHandler";
 
 /**
  * The Scene Manager allows you to add multiple "scene managers" to a context
@@ -43,8 +44,21 @@ export interface ISceneManager extends IEventDispatcher {
      */
     removeSceneHandler(handler: ISceneHandler): void;
 
+
     /**
-     * Removes all scene handlers from this context
+     * Registers a view handler
+     * @param handler
+     */
+    addViewHandler(handler: IViewHandler): void;
+
+    /**
+     * Removes a view handler
+     * @param handler
+     */
+    removeViewHandler(handler: IViewHandler): void;
+
+    /**
+     * Removes all scene and view handlers from this context
      */
     removeAllHandlers(): void;
 }

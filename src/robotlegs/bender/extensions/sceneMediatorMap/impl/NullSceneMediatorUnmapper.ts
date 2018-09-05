@@ -7,12 +7,12 @@
 
 import { IClass } from "@robotlegsjs/core";
 
-import { ISceneMediatorUnmapper } from "../dsl/ISceneMediatorUnmapper";
+import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
 /**
  * @private
  */
-export class NullSceneMediatorUnmapper implements ISceneMediatorUnmapper {
+export class NullSceneMediatorUnmapper implements IMediatorUnmapper {
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/

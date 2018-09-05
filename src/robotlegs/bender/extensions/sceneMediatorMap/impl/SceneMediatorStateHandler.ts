@@ -8,20 +8,21 @@
 import { IClass } from "@robotlegsjs/core";
 
 import { ISceneHandler } from "../../sceneManager/api/ISceneHandler";
-import { ISceneMediatorMapping } from "../api/ISceneMediatorMapping";
+import { IViewHandler } from "../../sceneManager/api/IViewHandler";
+import { IMediatorMapping } from "../api/IMediatorMapping";
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
 
 /**
  * @private
  */
-export class SceneMediatorStateHandler implements ISceneHandler {
+export class SceneMediatorStateHandler implements ISceneHandler, IViewHandler {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappings: ISceneMediatorMapping[] = [];
+    private _mappings: IMediatorMapping[] = [];
 
-    private _knownMappings: Map<IClass<any>, ISceneMediatorMapping[] | boolean> = new Map<IClass<any>, ISceneMediatorMapping[]>();
+    private _knownMappings: Map<IClass<any>, IMediatorMapping[] | boolean> = new Map<IClass<any>, IMediatorMapping[]>();
 
     private _factory: SceneMediatorFactory;
 
@@ -43,7 +44,7 @@ export class SceneMediatorStateHandler implements ISceneHandler {
     /**
      * @private
      */
-    public addMapping(mapping: ISceneMediatorMapping): void {
+    public addMapping(mapping: IMediatorMapping): void {
         let index: number = this._mappings.indexOf(mapping);
         if (index > -1) {
             return;
@@ -55,7 +56,7 @@ export class SceneMediatorStateHandler implements ISceneHandler {
     /**
      * @private
      */
-    public removeMapping(mapping: ISceneMediatorMapping): void {
+    public removeMapping(mapping: IMediatorMapping): void {
         let index: number = this._mappings.indexOf(mapping);
         if (index === -1) {
             return;
@@ -77,6 +78,16 @@ export class SceneMediatorStateHandler implements ISceneHandler {
     /**
      * @private
      */
+    public handleView(view: Phaser.GameObjects.Container, type: IClass<any>): void {
+        let interestedMappings = this.getInterestedMappingsFor(view, type);
+        if (interestedMappings) {
+            this._factory.createMediators(view, type, interestedMappings);
+        }
+    }
+
+    /**
+     * @private
+     */
     public handleItem(item: any, type: IClass<any>): void {
         let interestedMappings = this.getInterestedMappingsFor(item, type);
         if (interestedMappings) {
@@ -89,10 +100,10 @@ export class SceneMediatorStateHandler implements ISceneHandler {
     /*============================================================================*/
 
     private flushCache(): void {
-        this._knownMappings = new Map<IClass<any>, ISceneMediatorMapping[]>();
+        this._knownMappings = new Map<IClass<any>, IMediatorMapping[]>();
     }
 
-    private getInterestedMappingsFor(item: any, type: any): ISceneMediatorMapping[] {
+    private getInterestedMappingsFor(item: any, type: any): IMediatorMapping[] {
         // we've seen this type before and nobody was interested
         if (this._knownMappings.get(type) === false) {
             return null;
@@ -102,12 +113,12 @@ export class SceneMediatorStateHandler implements ISceneHandler {
         if (this._knownMappings.get(type) === undefined) {
             this._knownMappings.set(type, false);
 
-            this._mappings.forEach((mapping: ISceneMediatorMapping) => {
+            this._mappings.forEach((mapping: IMediatorMapping) => {
                 if (mapping.matcher.matches(item)) {
                     if (!this._knownMappings.get(type)) {
                         this._knownMappings.set(type, []);
                     }
-                    (this._knownMappings.get(type) as ISceneMediatorMapping[]).push(mapping);
+                    (this._knownMappings.get(type) as IMediatorMapping[]).push(mapping);
                 }
             });
 
@@ -118,6 +129,6 @@ export class SceneMediatorStateHandler implements ISceneHandler {
         }
 
         // these mappings really do care
-        return this._knownMappings.get(type) as ISceneMediatorMapping[];
+        return this._knownMappings.get(type) as IMediatorMapping[];
     }
 }

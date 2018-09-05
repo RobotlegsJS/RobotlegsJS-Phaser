@@ -7,18 +7,16 @@
 
 import { IClass } from "@robotlegsjs/core";
 
-/**
- * Unmaps a SceneMediator
- */
-export interface ISceneMediatorUnmapper {
-    /**
-     * Unmaps a mediator from this matcher
-     * @param mediatorClass SceneMediator to unmap
-     */
-    fromMediator(mediatorClass: IClass<any>): void;
+import { IMediatorConfigurator } from "./IMediatorConfigurator";
 
+/**
+ * Maps a matcher to a concrete SceneMediator class
+ */
+export interface IMediatorMapper {
     /**
-     * Unmaps all mediator mappings for this matcher
+     * Maps a matcher to a concrete SceneMediator or ViewMediator class
+     * @param mediatorClass The concrete mediator class
+     * @return Mapping configurator
      */
-    fromAll(): void;
+    toMediator(mediatorClass: IClass<any>): IMediatorConfigurator;
 }

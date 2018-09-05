@@ -8,20 +8,20 @@
 /**
  * Configures a mediator mapping
  */
-export interface ISceneMediatorConfigurator {
+export interface IMediatorConfigurator {
     /**
      * Guards to check before allowing a mediator to be created
      * @param guards Guards
      * @return Self
      */
-    withGuards(...guards: any[]): ISceneMediatorConfigurator;
+    withGuards(...guards: any[]): IMediatorConfigurator;
 
     /**
      * Hooks to run before a mediator is created
      * @param hooks Hooks
      * @return Self
      */
-    withHooks(...hooks: any[]): ISceneMediatorConfigurator;
+    withHooks(...hooks: any[]): IMediatorConfigurator;
 
     /**
      * Should the mediator be removed when the mediated item looses scope?
@@ -32,5 +32,5 @@ export interface ISceneMediatorConfigurator {
      * @param value Boolean
      * @return Self
      */
-    autoRemove(value: boolean): ISceneMediatorConfigurator;
+    autoRemove(value: boolean): IMediatorConfigurator;
 }

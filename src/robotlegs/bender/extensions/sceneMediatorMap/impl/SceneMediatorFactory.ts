@@ -7,7 +7,7 @@
 
 import { IClass, IType, IInjector, applyHooks, guardsApprove, instantiateUnmapped, ITypeFilter } from "@robotlegsjs/core";
 
-import { ISceneMediatorMapping } from "../api/ISceneMediatorMapping";
+import { IMediatorMapping } from "../api/IMediatorMapping";
 
 import { SceneMediatorManager } from "./SceneMediatorManager";
 
@@ -44,7 +44,7 @@ export class SceneMediatorFactory {
     /**
      * @private
      */
-    public getMediator(item: any, mapping: ISceneMediatorMapping): any {
+    public getMediator(item: any, mapping: IMediatorMapping): any {
         return this._mediators.get(item) ? this._mediators.get(item).get(<any>mapping) : null;
     }
 
@@ -55,7 +55,7 @@ export class SceneMediatorFactory {
         let createdMediators: any[] = [];
         let mediator: any;
 
-        mappings.forEach((mapping: ISceneMediatorMapping) => {
+        mappings.forEach((mapping: IMediatorMapping) => {
             mediator = this.getMediator(item, mapping);
 
             if (!mediator) {
@@ -76,7 +76,7 @@ export class SceneMediatorFactory {
      * @private
      */
     public removeMediators(item: any): void {
-        let mediators: Map<any, ISceneMediatorMapping> = this._mediators.get(item);
+        let mediators: Map<any, IMediatorMapping> = this._mediators.get(item);
         if (!mediators) {
             return;
         }
@@ -97,7 +97,7 @@ export class SceneMediatorFactory {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private createMediator(item: any, mapping: ISceneMediatorMapping): any {
+    private createMediator(item: any, mapping: IMediatorMapping): any {
         let mediator: any = this.getMediator(item, mapping);
 
         if (mediator) {
@@ -117,8 +117,8 @@ export class SceneMediatorFactory {
         return mediator;
     }
 
-    private addMediator(mediator: any, item: any, mapping: ISceneMediatorMapping): void {
-        let mediatorMap = this._mediators.get(item) || new Map<any, ISceneMediatorMapping>();
+    private addMediator(mediator: any, item: any, mapping: IMediatorMapping): void {
+        let mediatorMap = this._mediators.get(item) || new Map<any, IMediatorMapping>();
         this._mediators.set(item, mediatorMap);
         mediatorMap.set(<any>mapping, mediator);
         this._manager.addMediator(mediator, item, mapping);

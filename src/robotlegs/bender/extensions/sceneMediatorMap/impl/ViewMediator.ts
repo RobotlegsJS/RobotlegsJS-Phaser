@@ -15,7 +15,7 @@ import { IMediator } from "../api/IMediator";
  * <p>Override initialize and destroy to hook into the mediator lifecycle.</p>
  */
 @injectable()
-export abstract class SceneMediator<T extends Phaser.Scene> implements IMediator {
+export abstract class ViewMediator<T extends Phaser.GameObjects.Container> implements IMediator {
     /*============================================================================*/
     /* Protected Properties                                                       */
     /*============================================================================*/
@@ -26,18 +26,18 @@ export abstract class SceneMediator<T extends Phaser.Scene> implements IMediator
     @inject(IEventDispatcher)
     protected eventDispatcher: IEventDispatcher;
 
-    protected _sceneComponent: T;
+    protected _viewComponent: T;
 
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
 
-    public set scene(scene: T) {
-        this._sceneComponent = scene;
+    public set view(view: T) {
+        this._viewComponent = view;
     }
 
-    public get scene(): T {
-        return this._sceneComponent;
+    public get view(): T {
+        return this._viewComponent;
     }
 
     /*============================================================================*/
@@ -67,7 +67,7 @@ export abstract class SceneMediator<T extends Phaser.Scene> implements IMediator
     /*============================================================================*/
 
     protected addViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.mapListener(this._sceneComponent, eventString, listener, eventClass);
+        //  this.eventMap.mapListener(this._viewComponent, eventString, listener, eventClass);
     }
 
     protected addContextListener(eventString: string, listener: Function, eventClass?: Object): void {
@@ -75,7 +75,7 @@ export abstract class SceneMediator<T extends Phaser.Scene> implements IMediator
     }
 
     protected removeViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.unmapListener(this._sceneComponent, eventString, listener, eventClass);
+        // this.eventMap.unmapListener(this._viewComponent, eventString, listener, eventClass);
     }
 
     protected removeContextListener(eventString: string, listener: Function, eventClass?: Object): void {

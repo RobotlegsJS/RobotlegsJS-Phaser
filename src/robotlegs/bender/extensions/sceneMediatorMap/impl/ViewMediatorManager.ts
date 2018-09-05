@@ -11,7 +11,7 @@ import { SceneMediatorFactory } from "./SceneMediatorFactory";
 /**
  * @private
  */
-export class SceneMediatorManager {
+export class ViewMediatorManager {
     /*============================================================================*/
     /* Private Static Properties                                                  */
     /*============================================================================*/
@@ -23,7 +23,6 @@ export class SceneMediatorManager {
     /*============================================================================*/
 
     private _factory: SceneMediatorFactory;
-    private _autoRemoveMap: Map<string, Phaser.Scene> = new Map<string, Phaser.Scene>();
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -44,17 +43,11 @@ export class SceneMediatorManager {
      * @private
      */
     public addMediator(mediator: any, item: any, mapping: IMediatorMapping): void {
-        let scene: Phaser.Scene = <Phaser.Scene>item;
-
-        // Watch scene for removal
-        if (scene && mapping.autoRemoveEnabled) {
-            if (!this._autoRemoveMap.has(scene.sys.settings.key)) {
-                this._autoRemoveMap.set(scene.sys.settings.key, scene);
-            }
-            scene.sys.events.on("destroy", this.onSceneDestroy, this);
-            // scene.sys.events.on("shutdown", this.onSceneDestroy, this);
-            // scene.sys.events.on("sleep", this.onSceneDestroy, this);
-            // scene.sys.events.on("pause", this.onSceneDestroy, this);
+        let view: Phaser.GameObjects.Container = <Phaser.GameObjects.Container>item;
+        
+        // Watch view for destroy
+        if (view && mapping.autoRemoveEnabled) {
+           view.on("destroy", this.onViewDestroy, this)
         }
 
         // Synchronize with item life-cycle
@@ -72,15 +65,8 @@ export class SceneMediatorManager {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private onSceneDestroy(sys: Phaser.Scenes.Systems): void {
-        if (this._autoRemoveMap.has(sys.settings.key)) {
-            let scene: Phaser.Scene = this._autoRemoveMap.get(sys.settings.key);
-            this._autoRemoveMap.delete(sys.settings.key);
-            this._factory.removeMediators(scene);
-            if (this._autoRemoveMap.size === 0) {
-                scene.sys.events.off("destroy", this.onSceneDestroy, this, false);
-            }
-        }
+    private onViewDestroy(view : Phaser.GameObjects.Container): void {
+       this._factory.removeMediators(view);
     }
 
     private initializeMediator(mediator: any, mediatedItem: any): void {
@@ -88,8 +74,8 @@ export class SceneMediatorManager {
             mediator.preInitialize();
         }
 
-        if ("scene" in mediator) {
-            mediator.scene = mediatedItem;
+        if ("view" in mediator) {
+            mediator.view = mediatedItem;
         }
 
         if ("initialize" in mediator) {

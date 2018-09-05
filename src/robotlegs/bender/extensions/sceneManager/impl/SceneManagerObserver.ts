@@ -22,8 +22,8 @@ export class SceneManagerObserver {
     /**
      * @private
      */
-    constructor(containerRegistry: SceneRegistry) {
-        this._registry = containerRegistry;
+    constructor(sceneRegistry: SceneRegistry) {
+        this._registry = sceneRegistry;
 
         // We only care about roots
         this._registry.addEventListener(SceneRegistryEvent.ROOT_SCENE_MANAGER_ADD, this.onRootSceneManagerAdd, this);
@@ -77,6 +77,16 @@ export class SceneManagerObserver {
                 sceneManager,
                 (sceneManager as any).createSceneFromObject
             );
+
+         // .....
+        const originalAddExiting =   sceneManager.scenes[0].sys.add.existing;
+
+        sceneManager.scenes[0].sys.add.existing = function(){
+            // do staf here
+           return originalAddExiting.apply({}, arguments);
+
+        }
+
         }
     }
 

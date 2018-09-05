@@ -8,9 +8,9 @@
 import { IClass, ITypeFilter } from "@robotlegsjs/core";
 
 /**
- * Represents a SceneMediator mapping
+ * Represents a Mediator mapping
  */
-export interface ISceneMediatorMapping {
+export interface IMediatorMapping {
     /**
      * The matcher for this mapping
      */

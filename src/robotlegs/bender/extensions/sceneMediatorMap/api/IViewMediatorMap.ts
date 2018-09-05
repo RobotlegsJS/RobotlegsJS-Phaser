@@ -11,10 +11,10 @@ import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
 /**
- * The SceneMediator Map allows you to bind Mediators to Phaser.Scene objects
+ * The IViewMediatorMap Map allows you to bind Mediators to Phaser.GameObjects.Container objects
  */
-export let ISceneMediatorMap = Symbol("ISceneMediatorMap");
-export interface ISceneMediatorMap {
+export let IViewMediatorMap = Symbol("IViewMediatorMap");
+export interface IViewMediatorMap {
     /**
      * Maps a matcher that will be tested against incoming items to be handled.
      * @param matcher The type or package matcher specifying the rules for matching.
@@ -23,12 +23,12 @@ export interface ISceneMediatorMap {
     mapMatcher(matcher: ITypeMatcher): IMediatorMapper;
 
     /**
-     * Maps a Phaser.Scene that will be tested against incoming items to be handled.
-     * Under the hood this will create a TypeMatcher for this scene.
-     * @param scene The class or interface to be matched against.
+     * Maps a Phaser.GameObjects.Container that will be tested against incoming items to be handled.
+     * Under the hood this will create a TypeMatcher for this view container.
+     * @param view The class or interface to be matched against.
      * @return the mapper so that you can continue the mapping.
      */
-    map(scene: IClass<Phaser.Scene>): IMediatorMapper;
+    map(view: IClass<Phaser.GameObjects.Container>): IMediatorMapper;
 
     /**
      * Removes a mapping that was made against a matcher.
@@ -39,24 +39,24 @@ export interface ISceneMediatorMap {
     unmapMatcher(matcher: ITypeMatcher): IMediatorUnmapper;
 
     /**
-     * Removes a mapping that was made against a scene.
+     * Removes a mapping that was made against a view.
      * No error will be thrown if there isn't a mapping to remove.
-     * @param scene The class or interface to be matched against.
+     * @param view The class or interface to be matched against.
      * @return the unmapper so that you can continue the unmapping.
      */
-    unmap(scene: IClass<Phaser.Scene>): IMediatorUnmapper;
+    unmap(view: IClass<Phaser.GameObjects.Container>): IMediatorUnmapper;
 
     /**
-     * Mediates an scene directly. If the scene matches any mapped matchers or types then it will be mediated according to those mappings.
-     * @param scene The scene to create mediators for.
+     * Mediates an view directly. If the view matches any mapped matchers or types then it will be mediated according to those mappings.
+     * @param view The view to create mediators for.
      */
-    mediate(scene: IClass<Phaser.Scene>): void;
+    mediate(view: IClass<Phaser.GameObjects.Container>): void;
 
     /**
      * Removes the mediators for an scene if there are any.
-     * @param scene The scene to remove mediators for.
+     * @param view The view to remove mediators for.
      */
-    unmediate(scene: IClass<Phaser.Scene>): void;
+    unmediate(view: IClass<Phaser.GameObjects.Container>): void;
 
     /**
      * Removes all mediators

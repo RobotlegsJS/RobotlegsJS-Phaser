@@ -7,11 +7,11 @@
 
 import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
 
-import { ISceneMediatorMap } from "../api/ISceneMediatorMap";
+import { IViewMediatorMap } from "../api/IViewMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
-import { ISceneHandler } from "../../sceneManager/api/ISceneHandler";
+import { IViewHandler } from "../../sceneManager/api/IViewHandler";
 
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
 import { SceneMediatorStateHandler } from "./SceneMediatorStateHandler";
@@ -22,7 +22,7 @@ import { SceneMediatorMapper } from "./SceneMediatorMapper";
  * @private
  */
 @injectable()
-export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
+export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
 
     /*============================================================================*/
     /* Private Properties                                                         */
@@ -95,8 +95,8 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     /**
      * @inheritDoc
      */
-    public handleScene(scene: Phaser.Scene, type: any): void {
-        this._sceneHandler.handleScene(scene, type);
+    public handleView(view: Phaser.GameObjects.Container, type: any): void {
+        this._sceneHandler.handleView(view, type);
     }
 
     /**

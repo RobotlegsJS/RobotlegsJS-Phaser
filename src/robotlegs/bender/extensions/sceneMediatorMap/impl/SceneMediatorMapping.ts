@@ -7,13 +7,13 @@
 
 import { IGuard, IHook, ITypeFilter, IClass } from "@robotlegsjs/core";
 
-import { ISceneMediatorMapping } from "../api/ISceneMediatorMapping";
-import { ISceneMediatorConfigurator } from "../dsl/ISceneMediatorConfigurator";
+import { IMediatorMapping } from "../api/IMediatorMapping";
+import { IMediatorConfigurator } from "../dsl/IMediatorConfigurator";
 
 /**
  * @private
  */
-export class SceneMediatorMapping implements ISceneMediatorMapping, ISceneMediatorConfigurator {
+export class SceneMediatorMapping implements IMediatorMapping, IMediatorConfigurator {
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
@@ -82,7 +82,7 @@ export class SceneMediatorMapping implements ISceneMediatorMapping, ISceneMediat
     /**
      * @inheritDoc
      */
-    public withGuards(...guards: IGuard[]): ISceneMediatorConfigurator {
+    public withGuards(...guards: IGuard[]): IMediatorConfigurator {
         this._guards = this._guards.concat.apply(null, guards);
         return this;
     }
@@ -90,7 +90,7 @@ export class SceneMediatorMapping implements ISceneMediatorMapping, ISceneMediat
     /**
      * @inheritDoc
      */
-    public withHooks(...hooks: IHook[]): ISceneMediatorConfigurator {
+    public withHooks(...hooks: IHook[]): IMediatorConfigurator {
         this._hooks = this._hooks.concat.apply(null, hooks);
         return this;
     }
@@ -98,7 +98,7 @@ export class SceneMediatorMapping implements ISceneMediatorMapping, ISceneMediat
     /**
      * @inheritDoc
      */
-    public autoRemove(value: boolean = true): ISceneMediatorConfigurator {
+    public autoRemove(value: boolean = true): IMediatorConfigurator {
         this._autoRemoveEnabled = value;
         return this;
     }

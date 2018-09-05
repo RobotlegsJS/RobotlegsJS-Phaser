@@ -7,16 +7,14 @@
 
 import { IClass } from "@robotlegsjs/core";
 
-import { ISceneMediatorConfigurator } from "./ISceneMediatorConfigurator";
-
 /**
- * Maps a matcher to a concrete SceneMediator class
+ * Scene handler contract
  */
-export interface ISceneMediatorMapper {
+export interface IViewHandler {
     /**
-     * Maps a matcher to a concrete SceneMediator class
-     * @param mediatorClass The concrete mediator class
-     * @return Mapping configurator
+     * View handler method
+     * @param view The view (Phaser.GameObjects.Container) instance to handle
+     * @param type The class of the view instance
      */
-    toMediator(mediatorClass: IClass<any>): ISceneMediatorConfigurator;
+    handleView(view: Phaser.GameObjects.Container, type: IClass<any>): void;
 }

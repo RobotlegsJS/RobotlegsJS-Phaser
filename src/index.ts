@@ -22,7 +22,7 @@ export { SceneManagerObserverExtension } from "./robotlegs/bender/extensions/sce
 // SceneMediatorMap
 export { ISceneMediator } from "./robotlegs/bender/extensions/sceneMediatorMap/api/ISceneMediator";
 export { ISceneMediatorMap } from "./robotlegs/bender/extensions/sceneMediatorMap/api/ISceneMediatorMap";
-export { ISceneMediatorMapping } from "./robotlegs/bender/extensions/sceneMediatorMap/api/ISceneMediatorMapping";
+export { ISceneMediatorMapping } from "./robotlegs/bender/extensions/sceneMediatorMap/api/IMediatorMapping";
 export { SceneMediator } from "./robotlegs/bender/extensions/sceneMediatorMap/impl/SceneMediator";
 export { SceneMediatorMapExtension } from "./robotlegs/bender/extensions/sceneMediatorMap/SceneMediatorMapExtension";
 

@@ -14,6 +14,7 @@ import { SceneManagerEvent } from "./SceneManagerEvent";
 
 import { SceneRegistry } from "./SceneRegistry";
 import { SceneManagerBinding } from "./SceneManagerBinding";
+import { IViewHandler } from "../api/IViewHandler";
 
 /**
  * @private
@@ -37,7 +38,8 @@ export class SceneManager extends EventDispatcher implements ISceneManager {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _handlers: ISceneHandler[] = [];
+    private _sceneHandlers: ISceneHandler[] = [];
+    private _viewHandlers: IViewHandler[] = [];
 
     private _registry: SceneRegistry;
 
@@ -67,8 +69,12 @@ export class SceneManager extends EventDispatcher implements ISceneManager {
 
         this._sceneManagers.push(sceneManager);
 
-        this._handlers.forEach((handler: ISceneHandler) => {
-            this._registry.addSceneManager(sceneManager).addHandler(handler);
+        this._sceneHandlers.forEach((handler: ISceneHandler) => {
+            this._registry.addSceneManager(sceneManager).addSceneHandler(handler);
+        });
+
+        this._viewHandlers.forEach((handler: IViewHandler) => {
+            this._registry.addSceneManager(sceneManager).addViewHandler(handler);
         });
 
         this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.SCENE_MANAGER_ADD, sceneManager));
@@ -88,8 +94,12 @@ export class SceneManager extends EventDispatcher implements ISceneManager {
 
         let binding: SceneManagerBinding = this._registry.getBinding(sceneManager);
 
-        this._handlers.forEach((handler: ISceneHandler) => {
-            binding.removeHandler(handler);
+        this._sceneHandlers.forEach((handler: ISceneHandler) => {
+            binding.removeSceneHandler(handler);
+        });
+
+        this._viewHandlers.forEach((handler: IViewHandler) => {
+            binding.removeViewHandler(handler);
         });
 
         this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.SCENE_MANAGER_REMOVE, sceneManager));
@@ -99,36 +109,71 @@ export class SceneManager extends EventDispatcher implements ISceneManager {
      * @inheritDoc
      */
     public addSceneHandler(handler: ISceneHandler): void {
-        if (this._handlers.indexOf(handler) !== -1) {
+        if (this._sceneHandlers.indexOf(handler) !== -1) {
             return;
         }
 
-        this._handlers.push(handler);
+        this._sceneHandlers.push(handler);
 
         this._sceneManagers.forEach((sceneManager: Phaser.Scenes.SceneManager) => {
-            this._registry.addSceneManager(sceneManager).addHandler(handler);
+            this._registry.addSceneManager(sceneManager).addSceneHandler(handler);
         });
 
-        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.HANDLER_ADD, null, handler));
+        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.SCENE_HANDLER_ADD, null, handler));
     }
 
     /**
      * @inheritDoc
      */
     public removeSceneHandler(handler: ISceneHandler): void {
-        let index: number = this._handlers.indexOf(handler);
-
+        let index: number = this._sceneHandlers.indexOf(handler);
         if (index === -1) {
             return;
         }
 
-        this._handlers.splice(index, 1);
+        this._sceneHandlers.splice(index, 1);
 
         this._sceneManagers.forEach((sceneManager: Phaser.Scenes.SceneManager) => {
-            this._registry.getBinding(sceneManager).removeHandler(handler);
+            this._registry.getBinding(sceneManager).removeSceneHandler(handler);
         });
 
-        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.HANDLER_REMOVE, null, handler));
+        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.SCENE_HANDLER_REMOVE, null, handler));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public addViewHandler(handler: IViewHandler): void {
+        if (this._viewHandlers.indexOf(handler) !== -1) {
+            return;
+        }
+
+        this._viewHandlers.push(handler);
+
+        this._sceneManagers.forEach((sceneManager: Phaser.Scenes.SceneManager) => {
+            this._registry.addSceneManager(sceneManager).addViewHandler(handler);
+        });
+
+        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.VIEW_HANDLER_ADD, null, null, handler));
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public removeViewHandler(handler: IViewHandler): void {
+        let index: number = this._viewHandlers.indexOf(handler);
+        if (index === -1) {
+            return;
+        }
+
+        this._sceneHandlers.splice(index, 1);
+
+        this._sceneManagers.forEach((sceneManager: Phaser.Scenes.SceneManager) => {
+            this._registry.getBinding(sceneManager).removeViewHandler(handler);
+        });
+
+        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.SCENE_HANDLER_REMOVE, null, null, handler));
     }
 
     /**
@@ -138,8 +183,12 @@ export class SceneManager extends EventDispatcher implements ISceneManager {
         this._sceneManagers.forEach((sceneManager: Phaser.Scenes.SceneManager) => {
             let binding: SceneManagerBinding = this._registry.getBinding(sceneManager);
 
-            this._handlers.forEach((handler: ISceneHandler) => {
-                binding.removeHandler(handler);
+            this._sceneHandlers.forEach((handler: ISceneHandler) => {
+                binding.removeSceneHandler(handler);
+            });
+
+            this._viewHandlers.forEach((handler: IViewHandler) => {
+                binding.removeViewHandler(handler);
             });
         });
     }

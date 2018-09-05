@@ -10,6 +10,7 @@ import { IClass, EventDispatcher } from "@robotlegsjs/core";
 import { ISceneHandler } from "../api/ISceneHandler";
 
 import { SceneManagerBindingEvent } from "./SceneManagerBindingEvent";
+import { IViewHandler } from "../api/IViewHandler";
 
 /**
  * @private
@@ -48,7 +49,8 @@ export class SceneManagerBinding extends EventDispatcher {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _handlers: ISceneHandler[] = [];
+    private _sceneHandlers: ISceneHandler[] = [];
+    private _viewHandlers: IViewHandler[] = [];
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -69,21 +71,45 @@ export class SceneManagerBinding extends EventDispatcher {
     /**
      * @private
      */
-    public addHandler(handler: ISceneHandler): void {
-        if (this._handlers.indexOf(handler) > -1) {
+    public addSceneHandler(handler: ISceneHandler): void {
+        if (this._sceneHandlers.indexOf(handler) > -1) {
             return;
         }
-        this._handlers.push(handler);
+        this._sceneHandlers.push(handler);
     }
 
     /**
      * @private
      */
-    public removeHandler(handler: ISceneHandler): void {
-        let index: number = this._handlers.indexOf(handler);
+    public removeSceneHandler(handler: ISceneHandler): void {
+        let index: number = this._sceneHandlers.indexOf(handler);
         if (index > -1) {
-            this._handlers.splice(index, 1);
-            if (this._handlers.length === 0) {
+            this._sceneHandlers.splice(index, 1);
+            if (this._sceneHandlers.length === 0) {
+                this.dispatchEvent(new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY));
+            }
+        }
+    }
+
+    /**
+     * @private
+     */
+    public addViewHandler(handler: IViewHandler): void {
+        if (this._viewHandlers.indexOf(handler) > -1) {
+            return;
+        }
+        this._viewHandlers.push(handler);
+    }
+
+    /**
+     * @private
+     */
+    public removeViewHandler(handler: IViewHandler): void {
+        let index: number = this._viewHandlers.indexOf(handler);
+        if (index > -1) {
+            this._sceneHandlers.splice(index, 1);
+            if (this._sceneHandlers.length === 0) {
+                // ...
                 this.dispatchEvent(new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY));
             }
         }
@@ -93,8 +119,17 @@ export class SceneManagerBinding extends EventDispatcher {
      * @private
      */
     public handleScene(scene: Phaser.Scene, type: IClass<any>): void {
-        this._handlers.forEach((handler: ISceneHandler) => {
+        this._sceneHandlers.forEach((handler: ISceneHandler) => {
             handler.handleScene(scene, type);
+        });
+    }
+
+    /**
+     * @private
+     */
+    public handleView(view: Phaser.GameObjects.Container, type: IClass<any>): void {
+        this._viewHandlers.forEach((handler: IViewHandler) => {
+            handler.handleView(view, type);
         });
     }
 }

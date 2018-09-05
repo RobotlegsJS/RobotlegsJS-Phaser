@@ -27,7 +27,7 @@ export class SceneManagerExtension implements IExtension {
 
     private _injector: IInjector;
 
-    private _viewManager: ISceneManager;
+    private _sceneManager: ISceneManager;
 
     /*============================================================================*/
     /* Public Functions                                                           */
@@ -58,11 +58,11 @@ export class SceneManagerExtension implements IExtension {
     /*============================================================================*/
 
     private whenInitializing(): void {
-        this._viewManager = this._injector.get<ISceneManager>(ISceneManager);
+        this._sceneManager = this._injector.get<ISceneManager>(ISceneManager);
     }
 
     private whenDestroying(): void {
-        this._viewManager.removeAllHandlers();
+        this._sceneManager.removeAllHandlers();
         this._injector.unbind(ISceneManager);
         this._injector.unbind(SceneRegistry);
     }

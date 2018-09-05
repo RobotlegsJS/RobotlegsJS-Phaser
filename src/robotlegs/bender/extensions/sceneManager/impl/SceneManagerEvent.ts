@@ -8,6 +8,7 @@
 import { Event } from "@robotlegsjs/core";
 
 import { ISceneHandler } from "../api/ISceneHandler";
+import { IViewHandler } from "../api/IViewHandler";
 
 /**
  * SceneManager existence event
@@ -22,9 +23,13 @@ export class SceneManagerEvent extends Event {
 
     public static SCENE_MANAGER_REMOVE: string = "sceneManagerRemove";
 
-    public static HANDLER_ADD: string = "handlerAdd";
+    public static SCENE_HANDLER_ADD: string = "sceneHandlerAdd";
 
-    public static HANDLER_REMOVE: string = "handlerRemove";
+    public static SCENE_HANDLER_REMOVE: string = "sceneHandlerRemove";
+
+    public static VIEW_HANDLER_ADD: string = "viewHandlerAdd";
+
+    public static VIEW_HANDLER_REMOVE: string = "viewHandlerRemove";
 
     /*============================================================================*/
     /* Public Properties                                                          */
@@ -39,13 +44,21 @@ export class SceneManagerEvent extends Event {
         return this._sceneManager;
     }
 
-    private _handler: ISceneHandler;
+    private _sceneHandler: ISceneHandler;
+    private _viewHandler: IViewHandler;
 
     /**
      * The scene handler associated with this event
      */
-    public get handler(): ISceneHandler {
-        return this._handler;
+    public get sceneHandler(): ISceneHandler {
+        return this._sceneHandler;
+    }
+
+    /**
+     * The scene handler associated with this event
+     */
+    public get viewHandler(): IViewHandler {
+        return this._viewHandler;
     }
 
     /*============================================================================*/
@@ -58,10 +71,11 @@ export class SceneManagerEvent extends Event {
      * @param sceneManager The  Phaser.Scenes.SceneManager associated with this event
      * @param handler The scene handler associated with this event
      */
-    constructor(type: string, sceneManager?: Phaser.Scenes.SceneManager, handler?: ISceneHandler) {
+    constructor(type: string, sceneManager?: Phaser.Scenes.SceneManager, sceneHandler?: ISceneHandler, viewHandler?: IViewHandler) {
         super(type, true);
         this._sceneManager = sceneManager;
-        this._handler = handler;
+        this._sceneHandler = sceneHandler;
+        this._viewHandler = viewHandler;
     }
 
     /*============================================================================*/
@@ -72,6 +86,6 @@ export class SceneManagerEvent extends Event {
      * @inheritDoc
      */
     public clone(): SceneManagerEvent {
-        return new SceneManagerEvent(this.type, this._sceneManager, this._handler);
+        return new SceneManagerEvent(this.type, this._sceneManager, this._sceneHandler, this._viewHandler);
     }
 }

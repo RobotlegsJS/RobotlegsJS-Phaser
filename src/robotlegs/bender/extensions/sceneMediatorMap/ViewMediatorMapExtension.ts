@@ -6,21 +6,21 @@
 // ------------------------------------------------------------------------------
 
 import { IContext, IExtension, IInjector } from "@robotlegsjs/core";
-import { ISceneMediatorMap } from "./api/ISceneMediatorMap";
+import { IViewMediatorMap } from "./api/IViewMediatorMap";
 import { ISceneManager } from "../sceneManager/api/ISceneManager";
-import { SceneMediatorMap } from "./impl/SceneMediatorMap";
+import { ViewMediatorMap } from "./impl/ViewMediatorMap";
 
 /**
- * This extension installs a shared ISceneMediatorMap into the context
+ * This extension installs a shared IViewMediatorMap into the context
  */
-export class SceneMediatorMapExtension implements IExtension {
+export class ViewMediatorMapExtension implements IExtension {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
     private _injector: IInjector;
 
-    private _mediatorMap: SceneMediatorMap;
+    private _mediatorMap: ViewMediatorMap;
 
     private _sceneManager: ISceneManager;
 
@@ -38,8 +38,8 @@ export class SceneMediatorMapExtension implements IExtension {
             .whenDestroying(this.whenDestroying.bind(this));
         this._injector = context.injector;
         this._injector
-            .bind(ISceneMediatorMap)
-            .to(SceneMediatorMap)
+            .bind(IViewMediatorMap)
+            .to(ViewMediatorMap)
             .inSingletonScope();          
     }
 
@@ -48,10 +48,10 @@ export class SceneMediatorMapExtension implements IExtension {
     /*============================================================================*/
 
     private beforeInitializing(): void {
-        this._mediatorMap = this._injector.get<SceneMediatorMap>(ISceneMediatorMap);
+        this._mediatorMap = this._injector.get<ViewMediatorMap>(IViewMediatorMap);
         if (this._injector.isBound(ISceneManager)) {
             this._sceneManager = this._injector.get<ISceneManager>(ISceneManager);
-            this._sceneManager.addSceneHandler(this._mediatorMap);
+            this._sceneManager.addViewHandler(this._mediatorMap);
         }
     }
 
@@ -59,13 +59,13 @@ export class SceneMediatorMapExtension implements IExtension {
         this._mediatorMap.unmediateAll();
         if (this._injector.isBound(ISceneManager)) {
             this._sceneManager = this._injector.get<ISceneManager>(ISceneManager);
-            this._sceneManager.removeSceneHandler(this._mediatorMap);
+            this._sceneManager.removeViewHandler(this._mediatorMap);
         }
     }
 
     private whenDestroying(): void {
-        if (this._injector.isBound(ISceneMediatorMap)) {
-            this._injector.unbind(ISceneMediatorMap);
+        if (this._injector.isBound(IViewMediatorMap)) {
+            this._injector.unbind(IViewMediatorMap);
         }
     }
 }
