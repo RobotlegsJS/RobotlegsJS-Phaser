@@ -7,26 +7,27 @@
 
 import { injectable, inject } from "@robotlegsjs/core";
 
-import { SceneMediator } from "../../src/robotlegs/bender/extensions/mediatorMap/impl/SceneMediator";
-
-import { MainEvent } from "../events/MainEvent";
 import { GameModel } from "../models/GameModel";
-import { Main } from "../scenes/Main";
+import { ViewMediator } from "../../src/robotlegs/bender/extensions/mediatorMap/impl/ViewMediator";
+import PlayerView from "../views/PlayerView";
 
 @injectable()
-export class MainMediator extends SceneMediator<Main> {
+export class PlayerViewMediator extends ViewMediator<PlayerView> {
     @inject(GameModel)
     public gameModel: GameModel;
 
     public initialize(): void {
-        console.log("MainMediator: initialize");
+        console.log("PlayerViewMediator: initialize");
         console.log("score: " + this.gameModel.score);
         console.log("level: " + this.gameModel.level);
         
-        this.dispatch(new MainEvent(MainEvent.GAME_START, true, false, { data: this.gameModel.level }));
+        setTimeout( () =>  {
+            this.view.destroy();
+        } , 1000 )
+
     }
 
     public destroy(): void {
-        console.log("MainMediator: destroy");
+        console.log("PlayerViewMediator: destroy");
     }
 }

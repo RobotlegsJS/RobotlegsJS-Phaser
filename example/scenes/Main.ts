@@ -8,19 +8,21 @@
 import { SceneKey } from "../constants/SceneKey";
 
 import { BaseScene } from "./BaseScene";
+import PlayerView from "../views/PlayerView";
 
 export class Main extends BaseScene {
+
+    private player : PlayerView;
     constructor() {
         super(SceneKey.MAIN);
     }
 
     public create(): void {
         super.create();
+        this.player = new PlayerView(this, 400, 300);
+        this.add.existing(this.player);
 
-        // Enable Arcade Physics
-        // this.game.physics.startSystem(Phaser.Physics.ARCADE);
-
-        // Set the games background colour
-        // this.game.stage.backgroundColor = "#cecece";
+        this.add.image(100, 150, "koreez");
+        this.add.image(680, 130, "robotlegs");
     }
 }
