@@ -11,7 +11,7 @@ import { ISceneMediatorMap } from "../api/ISceneMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
-import { ISceneHandler } from "../../sceneManager/api/ISceneHandler";
+import { ISceneHandler } from "../../viewManager/api/ISceneHandler";
 
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
 import { MediatorStateHandler } from "./MediatorStateHandler";

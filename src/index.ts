@@ -14,17 +14,20 @@ export {
 export { ContextSceneManagerExtension } from "./robotlegs/bender/extensions/contextSceneManager/ContextSceneManagerExtension";
 
 // SceneManager
-export { ISceneHandler } from "./robotlegs/bender/extensions/sceneManager/api/ISceneHandler";
-export { ISceneManager } from "./robotlegs/bender/extensions/sceneManager/api/ISceneManager";
-export { SceneManagerExtension } from "./robotlegs/bender/extensions/sceneManager/SceneManagerExtension";
-export { SceneManagerObserverExtension } from "./robotlegs/bender/extensions/sceneManager/SceneManagerObserverExtension";
+export { ISceneHandler } from "./robotlegs/bender/extensions/viewManager/api/ISceneHandler";
+export { IViewHandler } from "./robotlegs/bender/extensions/viewManager/api/IViewHandler";
+export { ISceneManager } from "./robotlegs/bender/extensions/viewManager/api/ISceneManager";
 
-// SceneMediatorMap
-export { IMediator } from "./robotlegs/bender/extensions/sceneMediatorMap/api/IMediator";
-export { ISceneMediatorMap } from "./robotlegs/bender/extensions/sceneMediatorMap/api/ISceneMediatorMap";
-export { IMediatorMapping } from "./robotlegs/bender/extensions/sceneMediatorMap/api/IMediatorMapping";
-export { SceneMediator } from "./robotlegs/bender/extensions/sceneMediatorMap/impl/SceneMediator";
-export { SceneMediatorMapExtension } from "./robotlegs/bender/extensions/sceneMediatorMap/SceneMediatorMapExtension";
+export { SceneManagerExtension } from "./robotlegs/bender/extensions/viewManager/SceneManagerExtension";
+export { SceneManagerObserverExtension } from "./robotlegs/bender/extensions/viewManager/SceneManagerObserverExtension";
+
+// ViewMediatorMap
+export { IMediator } from "./robotlegs/bender/extensions/mediatorMap/api/IMediator";
+export { ISceneMediatorMap } from "./robotlegs/bender/extensions/mediatorMap/api/ISceneMediatorMap";
+export { IMediatorMapping } from "./robotlegs/bender/extensions/mediatorMap/api/IMediatorMapping";
+export { SceneMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediator";
+export { ViewMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediator";
+export { SceneMediatorMapExtension } from "./robotlegs/bender/extensions/mediatorMap/SceneMediatorMapExtension";
 
 /**
  * Bundles

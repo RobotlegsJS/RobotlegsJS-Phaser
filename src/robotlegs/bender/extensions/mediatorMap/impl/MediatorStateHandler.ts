@@ -7,8 +7,8 @@
 
 import { IClass } from "@robotlegsjs/core";
 
-import { ISceneHandler } from "../../sceneManager/api/ISceneHandler";
-import { IViewHandler } from "../../sceneManager/api/IViewHandler";
+import { ISceneHandler } from "../../viewManager/api/ISceneHandler";
+import { IViewHandler } from "../../viewManager/api/IViewHandler";
 import { IMediatorMapping } from "../api/IMediatorMapping";
 import { AbstractMediatorFactory } from "./AbstractMediatorFactory";
 

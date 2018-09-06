@@ -11,7 +11,7 @@ import { IViewMediatorMap } from "../api/IViewMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
-import { IViewHandler } from "../../sceneManager/api/IViewHandler";
+import { IViewHandler } from "../../viewManager/api/IViewHandler";
 
 import { ViewMediatorFactory } from "./ViewMediatorFactory";
 import { MediatorStateHandler } from "./MediatorStateHandler";

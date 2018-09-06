@@ -8,11 +8,11 @@
 import { IBundle, IContext } from "@robotlegsjs/core";
 
 import { ContextSceneManagerExtension } from "../../extensions/contextSceneManager/ContextSceneManagerExtension";
-import { SceneManagerExtension } from "../../extensions/sceneManager/SceneManagerExtension";
-import { SceneMediatorMapExtension } from "../../extensions/sceneMediatorMap/SceneMediatorMapExtension";
+import { SceneManagerExtension } from "../../extensions/viewManager/SceneManagerExtension";
+import { SceneMediatorMapExtension } from "../../extensions/mediatorMap/SceneMediatorMapExtension";
 import { ContextSceneManagerListenerConfig } from "../../extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
-import { SceneManagerObserverExtension } from "../../extensions/sceneManager/SceneManagerObserverExtension";
-import { ViewMediatorMapExtension } from "../../extensions/sceneMediatorMap/ViewMediatorMapExtension";
+import { SceneManagerObserverExtension } from "../../extensions/viewManager/SceneManagerObserverExtension";
+import { ViewMediatorMapExtension } from "../../extensions/mediatorMap/ViewMediatorMapExtension";
 
 /**
  * For that Classic Robotlegs flavour
