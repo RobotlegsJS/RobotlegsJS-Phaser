@@ -77,18 +77,9 @@ export class SceneManagerObserver {
                 sceneManager,
                 (sceneManager as any).createSceneFromObject
             );
-
-         // .....
-        const originalAddExiting =   sceneManager.scenes[0].sys.add.existing;
-
-        sceneManager.scenes[0].sys.add.existing = function(){
-            // do staf here
-           return originalAddExiting.apply({}, arguments);
-
-        }
-
         }
     }
+
 
     private patchCreateSceneMethod(sceneManager: Phaser.Scenes.SceneManager, originalMethod: any): (...args: any[]) => Phaser.Scene {
         return (...args) => {

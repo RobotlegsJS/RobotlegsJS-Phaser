@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
+import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher, IClass } from "@robotlegsjs/core";
 
 import { IViewMediatorMap } from "../api/IViewMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
@@ -13,10 +13,10 @@ import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
 import { IViewHandler } from "../../sceneManager/api/IViewHandler";
 
-import { SceneMediatorFactory } from "./SceneMediatorFactory";
-import { SceneMediatorStateHandler } from "./SceneMediatorStateHandler";
+import { ViewMediatorFactory } from "./ViewMediatorFactory";
+import { MediatorStateHandler } from "./MediatorStateHandler";
 import { NullSceneMediatorUnmapper } from "./NullSceneMediatorUnmapper";
-import { SceneMediatorMapper } from "./SceneMediatorMapper";
+import { MediatorMapper } from "./MediatorMapper";
 
 /**
  * @private
@@ -28,13 +28,13 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappers: Map<string, SceneMediatorMapper> = new Map<string, SceneMediatorMapper>();
+    private _mappers: Map<string, MediatorMapper> = new Map<string, MediatorMapper>();
 
     private _logger: ILogger;
 
-    private _factory: SceneMediatorFactory;
+    private _factory: ViewMediatorFactory;
 
-    private _sceneHandler: SceneMediatorStateHandler;
+    private _viewHandler: MediatorStateHandler;
 
     private NULL_UNMAPPER: IMediatorUnmapper = new NullSceneMediatorUnmapper();
 
@@ -47,8 +47,8 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
      */
     constructor(@inject(IContext) context: IContext) {
         this._logger = context.getLogger(this);
-        this._factory = new SceneMediatorFactory(context.injector);
-        this._sceneHandler = new SceneMediatorStateHandler(this._factory);
+        this._factory = new ViewMediatorFactory(context.injector);
+        this._viewHandler = new MediatorStateHandler(this._factory);
     }
 
     /*============================================================================*/
@@ -60,13 +60,13 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
      */
     public mapMatcher(matcher: ITypeMatcher): IMediatorMapper {
         const desc = matcher.createTypeFilter().descriptor;
-        let mapper: SceneMediatorMapper = this._mappers.get(desc);
+        let mapper: MediatorMapper = this._mappers.get(desc);
 
         if (mapper) {
             return mapper;
         }
 
-        mapper = this.createMapper(matcher) as SceneMediatorMapper;
+        mapper = this.createMapper(matcher) as MediatorMapper;
         this._mappers.set(desc, mapper);
         return mapper;
     }
@@ -74,8 +74,8 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
     /**
      * @inheritDoc
      */
-    public map(type: any): IMediatorMapper {
-        return this.mapMatcher(new TypeMatcher().allOf(type));
+    public map(view: IClass<Phaser.GameObjects.Container>): IMediatorMapper {
+        return this.mapMatcher(new TypeMatcher().allOf(view));
     }
 
     /**
@@ -88,29 +88,29 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
     /**
      * @inheritDoc
      */
-    public unmap(type: any): IMediatorUnmapper {
-        return this.unmapMatcher(new TypeMatcher().allOf(type));
+    public unmap(view: IClass<Phaser.GameObjects.Container>): IMediatorUnmapper {
+        return this.unmapMatcher(new TypeMatcher().allOf(view));
     }
 
     /**
      * @inheritDoc
      */
     public handleView(view: Phaser.GameObjects.Container, type: any): void {
-        this._sceneHandler.handleView(view, type);
+        this._viewHandler.handleView(view, type);
     }
 
     /**
      * @inheritDoc
      */
-    public mediate(item: any): void {
-        this._sceneHandler.handleItem(item, <any>item.constructor);
+    public mediate(view: IClass<Phaser.GameObjects.Container>): void {
+        this._viewHandler.handleItem(view, <any>view.constructor);
     }
 
     /**
      * @inheritDoc
      */
-    public unmediate(item: any): void {
-        this._factory.removeMediators(item);
+    public unmediate(view: IClass<Phaser.GameObjects.Container>): void {
+        this._factory.removeMediators(view);
     }
 
     /**
@@ -125,6 +125,6 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
     /*============================================================================*/
 
     private createMapper(matcher: ITypeMatcher): IMediatorMapper {
-        return new SceneMediatorMapper(matcher.createTypeFilter(), this._sceneHandler, this._logger);
+        return new MediatorMapper(matcher.createTypeFilter(), this._viewHandler, this._logger);
     }
 }

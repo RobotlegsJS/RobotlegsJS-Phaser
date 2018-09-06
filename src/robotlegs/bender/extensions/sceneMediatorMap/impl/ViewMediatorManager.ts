@@ -6,12 +6,13 @@
 // ------------------------------------------------------------------------------
 
 import { IMediatorMapping } from "../api/IMediatorMapping";
-import { SceneMediatorFactory } from "./SceneMediatorFactory";
+import { ViewMediatorFactory } from "./ViewMediatorFactory";
+import { IMediatorManager } from "../api/IMediatorManager";
 
 /**
  * @private
  */
-export class ViewMediatorManager {
+export class ViewMediatorManager implements IMediatorManager {
     /*============================================================================*/
     /* Private Static Properties                                                  */
     /*============================================================================*/
@@ -22,7 +23,7 @@ export class ViewMediatorManager {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _factory: SceneMediatorFactory;
+    private _factory: ViewMediatorFactory;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -31,7 +32,7 @@ export class ViewMediatorManager {
     /**
      * @private
      */
-    constructor(factory: SceneMediatorFactory) {
+    constructor(factory: ViewMediatorFactory) {
         this._factory = factory;
     }
 

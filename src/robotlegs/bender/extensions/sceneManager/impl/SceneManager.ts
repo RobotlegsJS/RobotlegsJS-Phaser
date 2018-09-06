@@ -173,7 +173,7 @@ export class SceneManager extends EventDispatcher implements ISceneManager {
             this._registry.getBinding(sceneManager).removeViewHandler(handler);
         });
 
-        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.SCENE_HANDLER_REMOVE, null, null, handler));
+        this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.VIEW_HANDLER_REMOVE, null, null, handler));
     }
 
     /**

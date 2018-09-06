@@ -5,14 +5,14 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IInjector } from "@robotlegsjs/core";
-import { SceneMediatorManager } from "./SceneMediatorManager";
+import { IInjector} from "@robotlegsjs/core";
+import { ViewMediatorManager } from "./ViewMediatorManager";
 import { AbstractMediatorFactory } from "./AbstractMediatorFactory";
 
-export class SceneMediatorFactory extends AbstractMediatorFactory {
-    
-    constructor(injector: IInjector, manager?: SceneMediatorManager) {
+export class ViewMediatorFactory extends AbstractMediatorFactory {
+   
+    constructor(injector: IInjector, manager?: ViewMediatorManager) {
         super(injector);
-        this._manager = manager || new SceneMediatorManager(this);
+        this._manager = manager || new ViewMediatorManager(this);
     }
 }

@@ -10,12 +10,12 @@ import { IClass } from "@robotlegsjs/core";
 import { ISceneHandler } from "../../sceneManager/api/ISceneHandler";
 import { IViewHandler } from "../../sceneManager/api/IViewHandler";
 import { IMediatorMapping } from "../api/IMediatorMapping";
-import { SceneMediatorFactory } from "./SceneMediatorFactory";
+import { AbstractMediatorFactory } from "./AbstractMediatorFactory";
 
 /**
  * @private
  */
-export class SceneMediatorStateHandler implements ISceneHandler, IViewHandler {
+export class MediatorStateHandler implements ISceneHandler, IViewHandler {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
@@ -24,7 +24,7 @@ export class SceneMediatorStateHandler implements ISceneHandler, IViewHandler {
 
     private _knownMappings: Map<IClass<any>, IMediatorMapping[] | boolean> = new Map<IClass<any>, IMediatorMapping[]>();
 
-    private _factory: SceneMediatorFactory;
+    private _factory: AbstractMediatorFactory;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -33,7 +33,7 @@ export class SceneMediatorStateHandler implements ISceneHandler, IViewHandler {
     /**
      * @private
      */
-    constructor(factory: SceneMediatorFactory) {
+    constructor(factory: AbstractMediatorFactory) {
         this._factory = factory;
     }
 

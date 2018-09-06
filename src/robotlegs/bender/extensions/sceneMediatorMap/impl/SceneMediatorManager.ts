@@ -7,11 +7,12 @@
 
 import { IMediatorMapping } from "../api/IMediatorMapping";
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
+import { IMediatorManager } from "../api/IMediatorManager";
 
 /**
  * @private
  */
-export class SceneMediatorManager {
+export class SceneMediatorManager implements IMediatorManager {
     /*============================================================================*/
     /* Private Static Properties                                                  */
     /*============================================================================*/

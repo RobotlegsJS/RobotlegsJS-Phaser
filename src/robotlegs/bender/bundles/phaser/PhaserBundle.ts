@@ -12,6 +12,7 @@ import { SceneManagerExtension } from "../../extensions/sceneManager/SceneManage
 import { SceneMediatorMapExtension } from "../../extensions/sceneMediatorMap/SceneMediatorMapExtension";
 import { ContextSceneManagerListenerConfig } from "../../extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
 import { SceneManagerObserverExtension } from "../../extensions/sceneManager/SceneManagerObserverExtension";
+import { ViewMediatorMapExtension } from "../../extensions/sceneMediatorMap/ViewMediatorMapExtension";
 
 /**
  * For that Classic Robotlegs flavour
@@ -28,7 +29,13 @@ export class PhaserBundle implements IBundle {
      * @inheritDoc
      */
     public extend(context: IContext): void {
-        context.install(ContextSceneManagerExtension, SceneManagerExtension, SceneManagerObserverExtension, SceneMediatorMapExtension);
+        context.install(
+            ContextSceneManagerExtension,
+            SceneManagerExtension,
+            SceneManagerObserverExtension,
+            SceneMediatorMapExtension,
+            ViewMediatorMapExtension
+        );
 
         context.configure(ContextSceneManagerListenerConfig);
     }

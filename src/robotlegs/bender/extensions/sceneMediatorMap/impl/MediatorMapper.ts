@@ -12,24 +12,24 @@ import { IMediatorConfigurator } from "../dsl/IMediatorConfigurator";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
-import { SceneMediatorStateHandler } from "./SceneMediatorStateHandler";
+import { MediatorStateHandler } from "./MediatorStateHandler";
 import { SceneMediatorMapping } from "./SceneMediatorMapping";
 
 /**
  * @private
  */
-export class SceneMediatorMapper implements IMediatorMapper, IMediatorUnmapper {
+export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappings: Map<IClass<any>, IMediatorMapping> = new Map<IClass<any>, IMediatorMapping>();
+    protected _mappings: Map<IClass<any>, IMediatorMapping> = new Map<IClass<any>, IMediatorMapping>();
 
-    private _typeFilter: ITypeFilter;
+    protected _typeFilter: ITypeFilter;
 
-    private _handler: SceneMediatorStateHandler;
+    protected _handler: MediatorStateHandler;
 
-    private _logger: ILogger;
+    protected _logger: ILogger;
 
     /*============================================================================*/
     /* Constructor                                                                */
@@ -38,7 +38,7 @@ export class SceneMediatorMapper implements IMediatorMapper, IMediatorUnmapper {
     /**
      * @private
      */
-    constructor(typeFilter: ITypeFilter, handler: SceneMediatorStateHandler, logger?: ILogger) {
+    constructor(typeFilter: ITypeFilter, handler: MediatorStateHandler, logger?: ILogger) {
         this._typeFilter = typeFilter;
         this._handler = handler;
         this._logger = logger;
@@ -74,10 +74,10 @@ export class SceneMediatorMapper implements IMediatorMapper, IMediatorUnmapper {
     }
 
     /*============================================================================*/
-    /* Private Functions                                                          */
+    /* protected Functions                                                          */
     /*============================================================================*/
 
-    private createMapping(mediatorClass: IClass<any>): SceneMediatorMapping {
+    protected createMapping(mediatorClass: IClass<any>): SceneMediatorMapping {
         let mapping: SceneMediatorMapping = new SceneMediatorMapping(this._typeFilter, mediatorClass);
         this._handler.addMapping(mapping);
         this._mappings.set(mediatorClass, mapping);
@@ -87,7 +87,7 @@ export class SceneMediatorMapper implements IMediatorMapper, IMediatorUnmapper {
         return mapping;
     }
 
-    private deleteMapping(mapping: IMediatorMapping): void {
+    protected deleteMapping(mapping: IMediatorMapping): void {
         this._handler.removeMapping(mapping);
         this._mappings.delete(mapping.mediatorClass);
         if (this._logger) {
@@ -95,7 +95,7 @@ export class SceneMediatorMapper implements IMediatorMapper, IMediatorUnmapper {
         }
     }
 
-    private overwriteMapping(mapping: IMediatorMapping): IMediatorConfigurator {
+    protected overwriteMapping(mapping: IMediatorMapping): IMediatorConfigurator {
         if (this._logger) {
             this._logger.warn(
                 "{0} already mapped to {1}\n" +

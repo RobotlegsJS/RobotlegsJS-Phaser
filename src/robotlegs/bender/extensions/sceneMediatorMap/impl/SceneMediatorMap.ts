@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
+import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher, IClass } from "@robotlegsjs/core";
 
 import { ISceneMediatorMap } from "../api/ISceneMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
@@ -14,9 +14,9 @@ import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 import { ISceneHandler } from "../../sceneManager/api/ISceneHandler";
 
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
-import { SceneMediatorStateHandler } from "./SceneMediatorStateHandler";
+import { MediatorStateHandler } from "./MediatorStateHandler";
 import { NullSceneMediatorUnmapper } from "./NullSceneMediatorUnmapper";
-import { SceneMediatorMapper } from "./SceneMediatorMapper";
+import { MediatorMapper } from "./MediatorMapper";
 
 /**
  * @private
@@ -28,13 +28,13 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     /* Private Properties                                                         */
     /*============================================================================*/
 
-    private _mappers: Map<string, SceneMediatorMapper> = new Map<string, SceneMediatorMapper>();
+    private _mappers: Map<string, MediatorMapper> = new Map<string, MediatorMapper>();
 
     private _logger: ILogger;
 
     private _factory: SceneMediatorFactory;
 
-    private _sceneHandler: SceneMediatorStateHandler;
+    private _sceneHandler: MediatorStateHandler;
 
     private NULL_UNMAPPER: IMediatorUnmapper = new NullSceneMediatorUnmapper();
 
@@ -48,7 +48,7 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     constructor(@inject(IContext) context: IContext) {
         this._logger = context.getLogger(this);
         this._factory = new SceneMediatorFactory(context.injector);
-        this._sceneHandler = new SceneMediatorStateHandler(this._factory);
+        this._sceneHandler = new MediatorStateHandler(this._factory);
     }
 
     /*============================================================================*/
@@ -60,13 +60,13 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
      */
     public mapMatcher(matcher: ITypeMatcher): IMediatorMapper {
         const desc = matcher.createTypeFilter().descriptor;
-        let mapper: SceneMediatorMapper = this._mappers.get(desc);
+        let mapper: MediatorMapper = this._mappers.get(desc);
 
         if (mapper) {
             return mapper;
         }
 
-        mapper = this.createMapper(matcher) as SceneMediatorMapper;
+        mapper = this.createMapper(matcher) as MediatorMapper;
         this._mappers.set(desc, mapper);
         return mapper;
     }
@@ -74,8 +74,8 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     /**
      * @inheritDoc
      */
-    public map(type: any): IMediatorMapper {
-        return this.mapMatcher(new TypeMatcher().allOf(type));
+    public map(scene: IClass<Phaser.Scene>): IMediatorMapper {
+        return this.mapMatcher(new TypeMatcher().allOf(scene));
     }
 
     /**
@@ -88,8 +88,8 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     /**
      * @inheritDoc
      */
-    public unmap(type: any): IMediatorUnmapper {
-        return this.unmapMatcher(new TypeMatcher().allOf(type));
+    public unmap(scene: IClass<Phaser.Scene>): IMediatorUnmapper {
+        return this.unmapMatcher(new TypeMatcher().allOf(scene));
     }
 
     /**
@@ -102,15 +102,15 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     /**
      * @inheritDoc
      */
-    public mediate(item: any): void {
-        this._sceneHandler.handleItem(item, <any>item.constructor);
+    public mediate(scene: IClass<Phaser.Scene>): void {
+        this._sceneHandler.handleItem(scene, <any>scene.constructor);
     }
 
     /**
      * @inheritDoc
      */
-    public unmediate(item: any): void {
-        this._factory.removeMediators(item);
+    public unmediate(scene: IClass<Phaser.Scene>): void {
+        this._factory.removeMediators(scene);
     }
 
     /**
@@ -125,6 +125,6 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     /*============================================================================*/
 
     private createMapper(matcher: ITypeMatcher): IMediatorMapper {
-        return new SceneMediatorMapper(matcher.createTypeFilter(), this._sceneHandler, this._logger);
+        return new MediatorMapper(matcher.createTypeFilter(), this._sceneHandler, this._logger);
     }
 }
