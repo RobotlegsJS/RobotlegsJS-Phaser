@@ -17,8 +17,8 @@ import { Boot } from "../scenes/Boot";
 import { Main } from "../scenes/Main";
 import { Preload } from "../scenes/Preload";
 import { IViewMediatorMap } from "../../src/robotlegs/bender/extensions/mediatorMap/api/IViewMediatorMap";
-import PlayerView from "../views/PlayerView";
-import { PlayerViewMediator } from "../mediators/PlayerViewMediator";
+import PlayerView from "../views/ScoreView";
+import { ScoreViewMediator } from "../mediators/ScoreViewMediator";
 
 @injectable()
 export class SceneMediatorConfig implements IConfig {
@@ -29,16 +29,17 @@ export class SceneMediatorConfig implements IConfig {
     public viewMediatorMap: IViewMediatorMap;  
 
     public configure(): void {
-        this.mapMediators();
+        this.mapSceneMediators();
+        this.mapViewMediators();
     }
 
-    private mapMediators(): void {
-        // mapping scenes with mediators
+    private mapSceneMediators(): void {
         this.sceneMediatorMap.map(Boot).toMediator(BootMediator);
         this.sceneMediatorMap.map(Preload).toMediator(PreloadMediator);
         this.sceneMediatorMap.map(Main).toMediator(MainMediator);
+    }
 
-        // mapping views (Container) with mediators
-        this.viewMediatorMap.map(PlayerView).toMediator(PlayerViewMediator);
+    private mapViewMediators():void {
+        this.viewMediatorMap.map(PlayerView).toMediator(ScoreViewMediator);
     }
 }

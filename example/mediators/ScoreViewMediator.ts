@@ -9,25 +9,26 @@ import { injectable, inject } from "@robotlegsjs/core";
 
 import { GameModel } from "../models/GameModel";
 import { ViewMediator } from "../../src/robotlegs/bender/extensions/mediatorMap/impl/ViewMediator";
-import PlayerView from "../views/PlayerView";
+import ScoreView from "../views/ScoreView";
+import { MainEvent } from "../events/MainEvent";
 
 @injectable()
-export class PlayerViewMediator extends ViewMediator<PlayerView> {
+export class ScoreViewMediator extends ViewMediator<ScoreView> {
     @inject(GameModel)
     public gameModel: GameModel;
 
     public initialize(): void {
         console.log("PlayerViewMediator: initialize");
-        console.log("score: " + this.gameModel.score);
-        console.log("level: " + this.gameModel.level);
-        
-        setTimeout( () =>  {
-            this.view.destroy();
-        } , 1000 )
-
+        console.log("score: " + this.gameModel.robotlegsScore);
+        this.view.setText(0);
+        this.addContextListener(MainEvent.ADDED_ROBOTLEGS_IMAGE, this.onRobotlegsImageAdded, this);
     }
 
     public destroy(): void {
         console.log("PlayerViewMediator: destroy");
+    }
+
+    private onRobotlegsImageAdded():void {
+       this.view.setText(this.gameModel.robotlegsScore);
     }
 }

@@ -8,21 +8,28 @@
 import { SceneKey } from "../constants/SceneKey";
 
 import { BaseScene } from "./BaseScene";
-import PlayerView from "../views/PlayerView";
+import ScoreView from "../views/ScoreView";
 
 export class Main extends BaseScene {
 
-    private player : PlayerView;
+    private scoreView : ScoreView;
+
     constructor() {
         super(SceneKey.MAIN);
     }
 
     public create(): void {
         super.create();
-        this.player = new PlayerView(this, 400, 300);
-        this.add.existing(this.player);
+        
+        this.scoreView = new ScoreView(this);
+        // initilizing ScoreViewMediator
+        this.add.existing(this.scoreView);
 
-        this.add.image(100, 150, "koreez");
-        this.add.image(680, 130, "robotlegs");
+        this.add.image(20, 30, "koreez");
+    }
+
+    public addRobotlesgImage(x: number, y: number, textureKey: string): void {
+        const image: Phaser.GameObjects.Image = this.add.image( x, y, textureKey);
+        image.setAngle(Math.floor(Math.random()*(360 + 1)));
     }
 }
