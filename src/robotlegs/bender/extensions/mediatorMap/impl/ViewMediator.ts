@@ -71,7 +71,7 @@ export abstract class ViewMediator<T extends Phaser.GameObjects.Container> imple
     }
 
     protected addContextListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.mapListener(this.eventDispatcher, eventString, listener, eventClass);
+        this.eventMap.mapListener(this.eventDispatcher, eventString, listener, eventClass);
     }
 
     protected removeViewListener(eventString: string, listener: Function, eventClass?: Object): void {
@@ -79,7 +79,7 @@ export abstract class ViewMediator<T extends Phaser.GameObjects.Container> imple
     }
 
     protected removeContextListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.unmapListener(this.eventDispatcher, eventString, listener, eventClass);
+        this.eventMap.unmapListener(this.eventDispatcher, eventString, listener, eventClass);
     }
 
     protected dispatch(event: Event): void {
