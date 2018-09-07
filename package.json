@@ -56,7 +56,7 @@
     "tslib": "^1.9.3"
   },
   "peerDependencies": {
-    "phaser": "^3.12.0",
+    "phaser": "^3.11.0",
     "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {

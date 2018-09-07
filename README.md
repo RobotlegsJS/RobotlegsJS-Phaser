@@ -32,16 +32,16 @@ allowing the final user to choose the desired version of the `phaser` library on
 
 The `@robotlegsjs/phaser` package is compatible with versions between the `>=3.11.0 <4` version range of `phaser` library.
 
-As example, when you would like to use the version `3.12.0` of `phaser` library, you can run:
+As example, when you would like to use the version `3.11.0` of `phaser` library, you can run:
 
 ```bash
-npm install phaser@3.12.0 reflect-metadata --save-prod
+npm install phaser@3.11.0 reflect-metadata --save-prod
 ```
 
 or
 
 ```bash
-yarn add phaser@3.12.0 reflect-metadata
+yarn add phaser@3.11.0 reflect-metadata
 ```
 
 Then follow the [installation instructions](https://github.com/RobotlegsJS/RobotlegsJS/blob/master/README.md#installation) of **RobotlegsJS** library to complete the setup of your project.
