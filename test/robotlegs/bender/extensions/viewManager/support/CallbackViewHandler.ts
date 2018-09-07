@@ -6,7 +6,8 @@
 // ------------------------------------------------------------------------------
 
 import { IClass } from "@robotlegsjs/core";
-import { IViewHandler } from "../../../../../../src";
+
+import { IViewHandler } from "../../../../../../src/robotlegs/bender/extensions/viewManager/api/IViewHandler";
 
 /**
  * @private

@@ -8,6 +8,7 @@
 import "../../../../../entry";
 
 import { assert } from "chai";
+
 import { ConfigureViewEvent } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/ConfigureViewEvent";
 
 describe("ConfigureViewEvent", () => {

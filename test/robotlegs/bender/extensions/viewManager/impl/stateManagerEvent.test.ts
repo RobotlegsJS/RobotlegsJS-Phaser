@@ -9,9 +9,11 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { CallbackSceneHandler } from "../support/CallbackSceneHandler";
-import { ISceneHandler, IViewHandler } from "../../../../../../src";
+import { ISceneHandler } from "../../../../../../src/robotlegs/bender/extensions/viewManager/api/ISceneHandler";
+import { IViewHandler } from "../../../../../../src/robotlegs/bender/extensions/viewManager/api/IViewHandler";
 import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/SceneManagerEvent";
+
+import { CallbackSceneHandler } from "../support/CallbackSceneHandler";
 import { CallbackViewHandler } from "../support/CallbackViewHandler";
 
 describe("SceneManagerEvent", () => {
