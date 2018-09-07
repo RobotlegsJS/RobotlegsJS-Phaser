@@ -4,6 +4,11 @@ process.env.NODE_ENV = "test";
 const webpackConfig = require("./webpack.config.js")({ production: false, karma: true });
 
 delete webpackConfig.entry;
+/*
+The [name] part will make the filename dynamic for karma. 
+Each key will be used as a name in replacement of the [name].js.
+*/
+webpackConfig.output.filename = '[name].js'
 
 module.exports = config => {
 
