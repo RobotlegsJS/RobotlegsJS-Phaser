@@ -8,7 +8,7 @@
 import { injectable, inject, IConfig, IContext, IEventCommandMap } from "@robotlegsjs/core";
 
 import { MainCommand } from "../commands/MainCommand";
-import { AddRobotlegsScoreCommand } from "./../commands/AddRobotlegsScoreCommand";
+import { AddRobotlegsScoreCommand } from "../commands/AddRobotlegsScoreCommand";
 import { MainEvent } from "../events/MainEvent";
 import { GameModel } from "../models/GameModel";
 
