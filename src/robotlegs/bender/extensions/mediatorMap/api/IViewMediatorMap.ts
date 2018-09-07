@@ -13,7 +13,7 @@ import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 /**
  * The IViewMediatorMap Map allows you to bind Mediators to Phaser.GameObjects.Container objects
  */
-export let IViewMediatorMap = Symbol("IViewMediatorMap");
+export const IViewMediatorMap = Symbol("IViewMediatorMap");
 export interface IViewMediatorMap {
     /**
      * Maps a matcher that will be tested against incoming items to be handled.

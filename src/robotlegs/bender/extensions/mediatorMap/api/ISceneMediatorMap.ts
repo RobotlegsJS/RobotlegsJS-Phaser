@@ -13,7 +13,7 @@ import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 /**
  * The SceneMediator Map allows you to bind Mediators to Phaser.Scene objects
  */
-export let ISceneMediatorMap = Symbol("ISceneMediatorMap");
+export const ISceneMediatorMap = Symbol("ISceneMediatorMap");
 export interface ISceneMediatorMap {
     /**
      * Maps a matcher that will be tested against incoming items to be handled.

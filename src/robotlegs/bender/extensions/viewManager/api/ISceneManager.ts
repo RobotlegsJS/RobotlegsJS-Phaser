@@ -13,7 +13,7 @@ import { IViewHandler } from "./IViewHandler";
 /**
  * The Scene Manager allows you to add multiple "scene managers" to a context
  */
-export let ISceneManager = Symbol("ISceneManager");
+export const ISceneManager = Symbol("ISceneManager");
 export interface ISceneManager extends IEventDispatcher {
     /**
      * A list of currently registered SceneManagers
