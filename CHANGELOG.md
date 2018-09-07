@@ -1,5 +1,13 @@
 # RobotlegsJS Phaser Changelog:
 
+## RobotlegsJS Phaser 0.3.0
+
+- add support for `Phaser.GameObject.Container` (Containers can own mediators)
+- update dependencies
+- add additional tests
+- update example app
+- minor chnage on kamra config 
+
 ## RobotlegsJS Phaser 0.2.0
 
 ### v0.2.1
