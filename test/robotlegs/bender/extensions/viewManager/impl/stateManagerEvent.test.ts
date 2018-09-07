@@ -11,23 +11,27 @@ import { assert } from "chai";
 
 
 import { CallbackSceneHandler } from "../support/CallbackSceneHandler";
-import { ISceneHandler } from "../../../../../../src";
+import { ISceneHandler, IViewHandler } from "../../../../../../src";
 import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/SceneManagerEvent";
+import { CallbackViewHandler } from "../support/CallbackViewHandler";
 
 describe("SceneManagerEvent", () => {
     let game: Phaser.Game = null;
-    let handler: ISceneHandler = null;
+    let sceneHandler: ISceneHandler = null;
+    let viewHandler: IViewHandler = null; 
     let event: SceneManagerEvent = null;
 
     beforeEach(() => {
         game = new Phaser.Game();
-        handler = new CallbackSceneHandler();
-        event = new SceneManagerEvent(SceneManagerEvent.SCENE_MANAGER_ADD, game.scene, handler);
+        sceneHandler = new CallbackSceneHandler();
+        viewHandler = new CallbackViewHandler();
+        event = new SceneManagerEvent(SceneManagerEvent.SCENE_MANAGER_ADD, game.scene, sceneHandler, viewHandler);
     });
 
     afterEach(() => {
         game = null;
-        handler = null;
+        sceneHandler = null;
+        viewHandler = null;
         event = null;
     });
 
@@ -36,6 +40,8 @@ describe("SceneManagerEvent", () => {
         assert.equal(SceneManagerEvent.SCENE_MANAGER_REMOVE, "sceneManagerRemove");
         assert.equal(SceneManagerEvent.SCENE_HANDLER_ADD, "sceneHandlerAdd");
         assert.equal(SceneManagerEvent.SCENE_HANDLER_REMOVE, "sceneHandlerRemove");
+        assert.equal(SceneManagerEvent.VIEW_HANDLER_ADD, "viewHandlerAdd");
+        assert.equal(SceneManagerEvent.VIEW_HANDLER_REMOVE, "viewHandlerRemove");
     });
 
     it("type_is_stored", () => {
@@ -46,8 +52,12 @@ describe("SceneManagerEvent", () => {
         assert.equal(event.sceneManager, game.scene);
     });
 
-    it("handler_is_stored", () => {
-        assert.equal(event.sceneHandler, handler);
+    it("scene_handler_is_stored", () => {
+        assert.equal(event.sceneHandler, sceneHandler);
+    });
+
+    it("view_handler_is_stored", () => {
+        assert.equal(event.viewHandler, viewHandler);
     });
 
     it("event_is_cloned", () => {
@@ -55,6 +65,7 @@ describe("SceneManagerEvent", () => {
         assert.equal(clone.type, event.type);
         assert.equal(clone.sceneManager, event.sceneManager);
         assert.equal(clone.sceneHandler, event.sceneHandler);
+        assert.equal(clone.viewHandler, event.viewHandler);
         assert.notEqual(clone, event);
     });
 });
