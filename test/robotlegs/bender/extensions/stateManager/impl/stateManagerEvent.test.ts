@@ -9,10 +9,10 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-import { ISceneHandler } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/api/ISceneHandler";
-import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerEvent";
 
 import { CallbackSceneHandler } from "../support/CallbackSceneHandler";
+import { ISceneHandler } from "../../../../../../src";
+import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/SceneManagerEvent";
 
 describe("SceneManagerEvent", () => {
     let game: Phaser.Game = null;
@@ -34,8 +34,8 @@ describe("SceneManagerEvent", () => {
     it("ensure_static_properties_will_not_change", () => {
         assert.equal(SceneManagerEvent.SCENE_MANAGER_ADD, "sceneManagerAdd");
         assert.equal(SceneManagerEvent.SCENE_MANAGER_REMOVE, "sceneManagerRemove");
-        assert.equal(SceneManagerEvent.HANDLER_ADD, "handlerAdd");
-        assert.equal(SceneManagerEvent.HANDLER_REMOVE, "handlerRemove");
+        assert.equal(SceneManagerEvent.SCENE_HANDLER_ADD, "sceneHandlerAdd");
+        assert.equal(SceneManagerEvent.SCENE_HANDLER_REMOVE, "sceneHandlerRemove");
     });
 
     it("type_is_stored", () => {
@@ -47,14 +47,14 @@ describe("SceneManagerEvent", () => {
     });
 
     it("handler_is_stored", () => {
-        assert.equal(event.handler, handler);
+        assert.equal(event.sceneHandler, handler);
     });
 
     it("event_is_cloned", () => {
         let clone: SceneManagerEvent = event.clone();
         assert.equal(clone.type, event.type);
         assert.equal(clone.sceneManager, event.sceneManager);
-        assert.equal(clone.handler, event.handler);
+        assert.equal(clone.sceneHandler, event.sceneHandler);
         assert.notEqual(clone, event);
     });
 });

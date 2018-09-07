@@ -8,8 +8,8 @@
 import "../../../../../entry";
 
 import { assert } from "chai";
+import { SceneManagerBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/SceneManagerBindingEvent";
 
-import { SceneManagerBindingEvent } from "../../../../../../src/robotlegs/bender/extensions/sceneManager/impl/SceneManagerBindingEvent";
 
 describe("SceneBindingEvent", () => {
     let event: SceneManagerBindingEvent = null;
