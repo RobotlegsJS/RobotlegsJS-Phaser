@@ -9,7 +9,6 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
-
 import { CallbackSceneHandler } from "../support/CallbackSceneHandler";
 import { ISceneHandler, IViewHandler } from "../../../../../../src";
 import { SceneManagerEvent } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/SceneManagerEvent";
@@ -18,7 +17,7 @@ import { CallbackViewHandler } from "../support/CallbackViewHandler";
 describe("SceneManagerEvent", () => {
     let game: Phaser.Game = null;
     let sceneHandler: ISceneHandler = null;
-    let viewHandler: IViewHandler = null; 
+    let viewHandler: IViewHandler = null;
     let event: SceneManagerEvent = null;
 
     beforeEach(() => {

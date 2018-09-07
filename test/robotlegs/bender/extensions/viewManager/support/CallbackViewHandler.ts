@@ -8,7 +8,6 @@
 import { IClass } from "@robotlegsjs/core";
 import { IViewHandler } from "../../../../../../src";
 
-
 /**
  * @private
  */

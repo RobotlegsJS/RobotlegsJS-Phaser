@@ -10,7 +10,6 @@ import "../../../../../entry";
 import { assert } from "chai";
 import { ConfigureSceneEvent } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/ConfigureSceneEvent";
 
-
 describe("ConfigureSceneEvent", () => {
     let scene: Phaser.Scene = null;
     let event: ConfigureSceneEvent = null;

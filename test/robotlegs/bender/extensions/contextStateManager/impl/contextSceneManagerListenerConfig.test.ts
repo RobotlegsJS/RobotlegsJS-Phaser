@@ -15,7 +15,6 @@ import { ContextSceneManagerListenerConfig } from "../../../../../../src/robotle
 import { SceneRegistry } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/SceneRegistry";
 import { SceneManager } from "../../../../../../src/robotlegs/bender/extensions/viewManager/impl/SceneManager";
 
-
 describe("ContextSceneManagerListenerConfig", () => {
     let game: Phaser.Game;
     let contextSceneManager: IContextSceneManager;
