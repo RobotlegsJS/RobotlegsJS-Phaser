@@ -9,7 +9,7 @@ import { injectable, inject } from "@robotlegsjs/core";
 
 import { GameModel } from "../models/GameModel";
 import { ViewMediator } from "../../src/robotlegs/bender/extensions/mediatorMap/impl/ViewMediator";
-import ScoreView from "../views/ScoreView";
+import { ScoreView } from "../views/ScoreView";
 import { MainEvent } from "../events/MainEvent";
 
 @injectable()

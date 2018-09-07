@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-class ScoreView extends Phaser.GameObjects.Container {
+export class ScoreView extends Phaser.GameObjects.Container {
     public text: Phaser.GameObjects.Text;
 
     constructor(scene: Phaser.Scene, x?: number, y?: number, children?: Phaser.GameObjects.GameObject[]) {
@@ -20,5 +20,3 @@ class ScoreView extends Phaser.GameObjects.Container {
         this.text.setText(`Score : ${value}`);
     }
 }
-
-export default ScoreView;

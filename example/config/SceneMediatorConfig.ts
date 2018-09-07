@@ -17,7 +17,7 @@ import { Boot } from "../scenes/Boot";
 import { Main } from "../scenes/Main";
 import { Preload } from "../scenes/Preload";
 import { IViewMediatorMap } from "../../src/robotlegs/bender/extensions/mediatorMap/api/IViewMediatorMap";
-import PlayerView from "../views/ScoreView";
+import { ScoreView } from "../views/ScoreView";
 import { ScoreViewMediator } from "../mediators/ScoreViewMediator";
 
 @injectable()
@@ -40,6 +40,6 @@ export class SceneMediatorConfig implements IConfig {
     }
 
     private mapViewMediators(): void {
-        this.viewMediatorMap.map(PlayerView).toMediator(ScoreViewMediator);
+        this.viewMediatorMap.map(ScoreView).toMediator(ScoreViewMediator);
     }
 }
