@@ -82,23 +82,22 @@ export class SceneManagerObserver {
         }
     }
 
+    private patchGameObjectFactoryAddExistingMethod(sceneManager: Phaser.Scenes.SceneManager) {
+        const originalMethod: (child: Phaser.GameObjects.GameObject) => Phaser.GameObjects.GameObject =
+            Phaser.GameObjects.GameObjectFactory.prototype.existing;
 
-   private patchGameObjectFactoryAddExistingMethod(sceneManager:Phaser.Scenes.SceneManager) {
+        const self = this;
 
-    const originalMethod: (child: Phaser.GameObjects.GameObject ) =>  Phaser.GameObjects.GameObject = Phaser.GameObjects.GameObjectFactory.prototype.existing;
-
-    const self = this;
-
-    Phaser.GameObjects.GameObjectFactory.prototype.existing = function(child: Phaser.GameObjects.GameObject) {       
-            if( child instanceof Phaser.GameObjects.Container) {
+        Phaser.GameObjects.GameObjectFactory.prototype.existing = function(child: Phaser.GameObjects.GameObject) {
+            if (child instanceof Phaser.GameObjects.Container) {
                 let binding: SceneManagerBinding = self._registry.getBinding(sceneManager);
                 if (binding) {
-                    binding.handleView(child , <any>child.constructor);
+                    binding.handleView(child, <any>child.constructor);
                 }
             }
             return originalMethod.apply((child as any).scene.sys.add, arguments);
-        } 
-   }
+        };
+    }
 
     private patchCreateSceneMethod(sceneManager: Phaser.Scenes.SceneManager, originalMethod: any): (...args: any[]) => Phaser.Scene {
         return (...args) => {

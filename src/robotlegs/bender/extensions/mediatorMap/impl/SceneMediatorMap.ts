@@ -23,7 +23,6 @@ import { MediatorMapper } from "./MediatorMapper";
  */
 @injectable()
 export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/

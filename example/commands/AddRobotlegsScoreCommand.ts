@@ -6,17 +6,16 @@
 // ------------------------------------------------------------------------------
 
 import { injectable, Event, ICommand, inject, IEventDispatcher } from "@robotlegsjs/core";
-import { GameModel } from './../models/GameModel';
-import { MainEvent } from './../events/MainEvent';
+import { GameModel } from "./../models/GameModel";
+import { MainEvent } from "./../events/MainEvent";
 
 @injectable()
 export class AddRobotlegsScoreCommand implements ICommand {
-
     @inject(GameModel)
     private gameModel: GameModel;
 
     @inject(IEventDispatcher)
-    private eventDispatcher:IEventDispatcher;
+    private eventDispatcher: IEventDispatcher;
 
     public execute(event: Event): void {
         console.log(event.type, event.data);

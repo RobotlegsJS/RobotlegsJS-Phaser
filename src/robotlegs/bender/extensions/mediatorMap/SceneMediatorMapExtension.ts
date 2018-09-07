@@ -40,7 +40,7 @@ export class SceneMediatorMapExtension implements IExtension {
         this._injector
             .bind(ISceneMediatorMap)
             .to(SceneMediatorMap)
-            .inSingletonScope();          
+            .inSingletonScope();
     }
 
     /*============================================================================*/

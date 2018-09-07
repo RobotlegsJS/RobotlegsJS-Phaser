@@ -13,7 +13,7 @@ export interface IMediator {
      * Initializes the mediator. This is run automatically by the sceneMediatorMap when a mediator is created.
      * Normally the initialize function is where you would add handlers using the eventMap.
      */
-   initialize(): void;
+    initialize(): void;
 
     /**
      * Destroys the mediator. This is run automatically by the sceneMediatorMap when a mediator is destroyed.

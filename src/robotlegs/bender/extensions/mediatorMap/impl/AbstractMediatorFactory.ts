@@ -14,7 +14,7 @@ import { IMediatorManager } from "../api/IMediatorManager";
 /**
  * @protected
  */
-export abstract class AbstractMediatorFactory{
+export abstract class AbstractMediatorFactory {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/

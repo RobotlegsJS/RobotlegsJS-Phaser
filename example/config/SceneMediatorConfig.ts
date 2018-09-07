@@ -26,7 +26,7 @@ export class SceneMediatorConfig implements IConfig {
     public sceneMediatorMap: ISceneMediatorMap;
 
     @inject(IViewMediatorMap)
-    public viewMediatorMap: IViewMediatorMap;  
+    public viewMediatorMap: IViewMediatorMap;
 
     public configure(): void {
         this.mapSceneMediators();
@@ -39,7 +39,7 @@ export class SceneMediatorConfig implements IConfig {
         this.sceneMediatorMap.map(Main).toMediator(MainMediator);
     }
 
-    private mapViewMediators():void {
+    private mapViewMediators(): void {
         this.viewMediatorMap.map(PlayerView).toMediator(ScoreViewMediator);
     }
 }

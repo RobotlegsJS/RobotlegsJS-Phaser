@@ -28,7 +28,7 @@ export class ScoreViewMediator extends ViewMediator<ScoreView> {
         console.log("PlayerViewMediator: destroy");
     }
 
-    private onRobotlegsImageAdded():void {
-       this.view.setText(this.gameModel.robotlegsScore);
+    private onRobotlegsImageAdded(): void {
+        this.view.setText(this.gameModel.robotlegsScore);
     }
 }

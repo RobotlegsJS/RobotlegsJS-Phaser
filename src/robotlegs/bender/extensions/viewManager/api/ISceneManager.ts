@@ -7,7 +7,7 @@
 
 import { IEventDispatcher } from "@robotlegsjs/core";
 
-import { ISceneHandler} from "./ISceneHandler";
+import { ISceneHandler } from "./ISceneHandler";
 import { IViewHandler } from "./IViewHandler";
 
 /**
@@ -43,7 +43,6 @@ export interface ISceneManager extends IEventDispatcher {
      * @param handler
      */
     removeSceneHandler(handler: ISceneHandler): void;
-
 
     /**
      * Registers a view handler

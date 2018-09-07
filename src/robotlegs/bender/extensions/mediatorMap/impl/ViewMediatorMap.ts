@@ -23,7 +23,6 @@ import { MediatorMapper } from "./MediatorMapper";
  */
 @injectable()
 export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
-
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/

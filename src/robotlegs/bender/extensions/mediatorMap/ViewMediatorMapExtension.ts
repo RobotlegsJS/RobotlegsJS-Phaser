@@ -40,7 +40,7 @@ export class ViewMediatorMapExtension implements IExtension {
         this._injector
             .bind(IViewMediatorMap)
             .to(ViewMediatorMap)
-            .inSingletonScope();          
+            .inSingletonScope();
     }
 
     /*============================================================================*/

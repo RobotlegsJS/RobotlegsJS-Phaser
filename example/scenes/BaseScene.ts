@@ -10,7 +10,7 @@ export abstract class BaseScene extends Phaser.Scene {
         super({ key: scene });
     }
 
-    public preload():void {
+    public preload(): void {
         console.log(this + ": preload");
     }
 

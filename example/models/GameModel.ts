@@ -9,7 +9,6 @@ import { injectable } from "@robotlegsjs/core";
 
 @injectable()
 export class GameModel {
-
     public robotlegsScore: number;
 
     constructor() {

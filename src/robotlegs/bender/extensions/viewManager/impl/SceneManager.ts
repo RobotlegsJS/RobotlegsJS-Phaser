@@ -157,7 +157,6 @@ export class SceneManager extends EventDispatcher implements ISceneManager {
         this.dispatchEvent(new SceneManagerEvent(SceneManagerEvent.VIEW_HANDLER_ADD, null, null, handler));
     }
 
-
     /**
      * @inheritDoc
      */

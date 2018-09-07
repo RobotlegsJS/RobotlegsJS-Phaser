@@ -45,10 +45,10 @@ export class ViewMediatorManager implements IMediatorManager {
      */
     public addMediator(mediator: any, item: any, mapping: IMediatorMapping): void {
         let view: Phaser.GameObjects.Container = <Phaser.GameObjects.Container>item;
-        
+
         // Watch view for destroy
         if (view && mapping.autoRemoveEnabled) {
-           view.on("destroy", this.onViewDestroy, this)
+            view.on("destroy", this.onViewDestroy, this);
         }
 
         // Synchronize with item life-cycle
@@ -66,8 +66,8 @@ export class ViewMediatorManager implements IMediatorManager {
     /* Private Functions                                                          */
     /*============================================================================*/
 
-    private onViewDestroy(view : Phaser.GameObjects.Container): void {
-       this._factory.removeMediators(view);
+    private onViewDestroy(view: Phaser.GameObjects.Container): void {
+        this._factory.removeMediators(view);
     }
 
     private initializeMediator(mediator: any, mediatedItem: any): void {
