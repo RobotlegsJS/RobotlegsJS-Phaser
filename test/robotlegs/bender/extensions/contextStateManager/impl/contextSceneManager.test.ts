@@ -9,6 +9,8 @@ import "../../../../../entry";
 
 import { assert } from "chai";
 
+import { IConfig } from "@robotlegsjs/core";
+
 import { IContextSceneManager } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/api/IContextSceneManager";
 import { ContextSceneManager } from "../../../../../../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
 
@@ -43,5 +45,11 @@ describe("ContextSceneManager", () => {
             contextSceneManager = new ContextSceneManager(undefined);
         }
         assert.throws(inicializeContextSceneManagerWithUndefinedSceneManager, Error);
+    });
+
+    it("ContextSceneManager_has_configure_method_implementation", () => {
+        let config: IConfig = new ContextSceneManager(game.scene);
+        config.configure();
+        assert.isNotNull(config.configure);
     });
 });
