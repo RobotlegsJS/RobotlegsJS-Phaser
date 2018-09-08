@@ -7,7 +7,7 @@
 
 import "../../../../entry";
 
-import { Context, IContext } from "@robotlegsjs/core";
+import { Context, IContext, LogLevel } from "@robotlegsjs/core";
 
 import { PhaserBundle } from "../../../../../src/robotlegs/bender/bundles/phaser/PhaserBundle";
 
@@ -21,12 +21,17 @@ import { SceneRegistry } from "../../../../../src/robotlegs/bender/extensions/vi
 
 import { assert } from "chai";
 
+import { CallbackLogTarget } from "../../extensions/contextStateManager/support/CallbackLogTarget";
+import { LogParams } from "../../extensions/contextStateManager/support/LogParams";
+
 describe("PhaserBundle", () => {
     let game: Phaser.Game;
     let context: IContext;
 
     afterEach(() => {
-        game.destroy(true);
+        if (game) {
+            game.destroy(true);
+        }
 
         if (context.initialized) {
             context.destroy();
@@ -56,5 +61,19 @@ describe("PhaserBundle", () => {
         assert.isTrue(context.injector.isBound(IViewMediatorMap));
         assert.isTrue(context.injector.isBound(ISceneManager));
         assert.isTrue(context.injector.isBound(SceneRegistry));
+    });
+
+    it("bundle_logs_an_error_message_when_context_scene_manager_is_not_provided", () => {
+        let errorLogged: boolean = false;
+        let logTarget: CallbackLogTarget = new CallbackLogTarget((log: LogParams) => {
+            if (log.source instanceof PhaserBundle && log.level === LogLevel.ERROR) {
+                errorLogged = log.message === "PhaserBundle requires IContextSceneManager.";
+            }
+        });
+
+        context = new Context();
+        context.addLogTarget(logTarget);
+        context.install(PhaserBundle).initialize();
+        assert.isTrue(errorLogged);
     });
 });
