@@ -100,7 +100,7 @@ export class SceneRegistry extends EventDispatcher {
         this._bindings.push(binding);
 
         // Add a listener so that we can remove this binding when it has no handlers
-        binding.addEventListener(SceneManagerBindingEvent.BINDING_EMPTY, this.onBindingEmpty);
+        binding.addEventListener(SceneManagerBindingEvent.BINDING_EMPTY, this.onBindingEmpty, this);
 
         // If the new binding doesn't have a parent it is a Root
         binding.parent = this.findParentBinding(sceneManager);
@@ -120,7 +120,7 @@ export class SceneRegistry extends EventDispatcher {
         this._bindings.splice(index, 1);
 
         // Drop the empty binding listener
-        binding.removeEventListener(SceneManagerBindingEvent.BINDING_EMPTY, this.onBindingEmpty);
+        binding.removeEventListener(SceneManagerBindingEvent.BINDING_EMPTY, this.onBindingEmpty, this);
 
         if (!binding.parent) {
             // This binding didn't have a parent, so it was a Root
