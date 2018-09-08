@@ -45,7 +45,6 @@ export class SceneManagerEvent extends Event {
     }
 
     private _sceneHandler: ISceneHandler;
-    private _viewHandler: IViewHandler;
 
     /**
      * The scene handler associated with this event
@@ -54,8 +53,10 @@ export class SceneManagerEvent extends Event {
         return this._sceneHandler;
     }
 
+    private _viewHandler: IViewHandler;
+
     /**
-     * The scene handler associated with this event
+     * The view handler associated with this event
      */
     public get viewHandler(): IViewHandler {
         return this._viewHandler;
@@ -69,7 +70,8 @@ export class SceneManagerEvent extends Event {
      * Creates a scene manager event
      * @param type The event type
      * @param sceneManager The  Phaser.Scenes.SceneManager associated with this event
-     * @param handler The scene handler associated with this event
+     * @param sceneHandler The scene handler associated with this event
+     * @param viewHandler The view handler associated with this event
      */
     constructor(type: string, sceneManager?: Phaser.Scenes.SceneManager, sceneHandler?: ISceneHandler, viewHandler?: IViewHandler) {
         super(type, true);
