@@ -85,7 +85,8 @@ export class SceneManagerBinding extends EventDispatcher {
         let index: number = this._sceneHandlers.indexOf(handler);
         if (index > -1) {
             this._sceneHandlers.splice(index, 1);
-            if (this._sceneHandlers.length === 0) {
+
+            if (this._sceneHandlers.length === 0 && this._viewHandlers.length === 0) {
                 this.dispatchEvent(new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY));
             }
         }
@@ -107,9 +108,9 @@ export class SceneManagerBinding extends EventDispatcher {
     public removeViewHandler(handler: IViewHandler): void {
         let index: number = this._viewHandlers.indexOf(handler);
         if (index > -1) {
-            this._sceneHandlers.splice(index, 1);
-            if (this._sceneHandlers.length === 0) {
-                // ...
+            this._viewHandlers.splice(index, 1);
+
+            if (this._sceneHandlers.length === 0 && this._viewHandlers.length === 0) {
                 this.dispatchEvent(new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY));
             }
         }
