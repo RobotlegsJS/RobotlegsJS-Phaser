@@ -14,7 +14,7 @@ import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 import { ISceneHandler } from "../../viewManager/api/ISceneHandler";
 
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
-import { MediatorStateHandler } from "./MediatorStateHandler";
+import { MediatorSceneHandler } from "./MediatorSceneHandler";
 import { NullSceneMediatorUnmapper } from "./NullSceneMediatorUnmapper";
 import { MediatorMapper } from "./MediatorMapper";
 
@@ -33,7 +33,7 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
 
     private _factory: SceneMediatorFactory;
 
-    private _sceneHandler: MediatorStateHandler;
+    private _sceneHandler: MediatorSceneHandler;
 
     private NULL_UNMAPPER: IMediatorUnmapper = new NullSceneMediatorUnmapper();
 
@@ -47,7 +47,7 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
     constructor(@inject(IContext) context: IContext) {
         this._logger = context.getLogger(this);
         this._factory = new SceneMediatorFactory(context.injector);
-        this._sceneHandler = new MediatorStateHandler(this._factory);
+        this._sceneHandler = new MediatorSceneHandler(this._factory);
     }
 
     /*============================================================================*/

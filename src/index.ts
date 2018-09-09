@@ -30,7 +30,7 @@ export { IMediatorUnmapper } from "./robotlegs/bender/extensions/mediatorMap/dsl
 
 export { AbstractMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/AbstractMediatorFactory";
 export { MediatorMapper } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorMapper";
-export { MediatorStateHandler } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorStateHandler";
+export { MediatorSceneHandler } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorSceneHandler";
 export { NullSceneMediatorUnmapper } from "./robotlegs/bender/extensions/mediatorMap/impl/NullSceneMediatorUnmapper";
 export { SceneMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediator";
 export { SceneMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorFactory";
