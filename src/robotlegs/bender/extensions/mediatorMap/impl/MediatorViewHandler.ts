@@ -7,14 +7,14 @@
 
 import { IClass } from "@robotlegsjs/core";
 
-import { ISceneHandler } from "../../viewManager/api/ISceneHandler";
+import { IViewHandler } from "../../viewManager/api/IViewHandler";
 
 import { AbstractMediatorHandler } from "./AbstractMediatorHandler";
 
 /**
  * @private
  */
-export class MediatorSceneHandler extends AbstractMediatorHandler implements ISceneHandler {
+export class MediatorViewHandler extends AbstractMediatorHandler implements IViewHandler {
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -22,10 +22,10 @@ export class MediatorSceneHandler extends AbstractMediatorHandler implements ISc
     /**
      * @private
      */
-    public handleScene(scene: Phaser.Scene, type: IClass<any>): void {
-        let interestedMappings = this.getInterestedMappingsFor(scene, type);
+    public handleView(view: Phaser.GameObjects.Container, type: IClass<any>): void {
+        let interestedMappings = this.getInterestedMappingsFor(view, type);
         if (interestedMappings) {
-            this._factory.createMediators(scene, type, interestedMappings);
+            this._factory.createMediators(view, type, interestedMappings);
         }
     }
 }

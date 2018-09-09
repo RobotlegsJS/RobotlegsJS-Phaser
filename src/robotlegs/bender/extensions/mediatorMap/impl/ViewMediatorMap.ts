@@ -5,16 +5,16 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher, IClass } from "@robotlegsjs/core";
+import { injectable, inject, IClass, IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
+
+import { IViewHandler } from "../../viewManager/api/IViewHandler";
 
 import { IViewMediatorMap } from "../api/IViewMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
-import { IViewHandler } from "../../viewManager/api/IViewHandler";
-
 import { ViewMediatorFactory } from "./ViewMediatorFactory";
-import { MediatorSceneHandler } from "./MediatorSceneHandler";
+import { MediatorViewHandler } from "./MediatorViewHandler";
 import { NullSceneMediatorUnmapper } from "./NullSceneMediatorUnmapper";
 import { MediatorMapper } from "./MediatorMapper";
 
@@ -33,7 +33,7 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
 
     private _factory: ViewMediatorFactory;
 
-    private _viewHandler: MediatorSceneHandler;
+    private _viewHandler: MediatorViewHandler;
 
     private NULL_UNMAPPER: IMediatorUnmapper = new NullSceneMediatorUnmapper();
 
@@ -47,7 +47,7 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
     constructor(@inject(IContext) context: IContext) {
         this._logger = context.getLogger(this);
         this._factory = new ViewMediatorFactory(context.injector);
-        this._viewHandler = new MediatorSceneHandler(this._factory);
+        this._viewHandler = new MediatorViewHandler(this._factory);
     }
 
     /*============================================================================*/

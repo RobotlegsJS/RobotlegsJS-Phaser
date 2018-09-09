@@ -12,7 +12,7 @@ import { IMediatorConfigurator } from "../dsl/IMediatorConfigurator";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
-import { MediatorSceneHandler } from "./MediatorSceneHandler";
+import { AbstractMediatorHandler } from "./AbstractMediatorHandler";
 import { SceneMediatorMapping } from "./SceneMediatorMapping";
 
 /**
@@ -27,7 +27,7 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
 
     protected _typeFilter: ITypeFilter;
 
-    protected _handler: MediatorSceneHandler;
+    protected _handler: AbstractMediatorHandler;
 
     protected _logger: ILogger;
 
@@ -38,7 +38,7 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
     /**
      * @private
      */
-    constructor(typeFilter: ITypeFilter, handler: MediatorSceneHandler, logger?: ILogger) {
+    constructor(typeFilter: ITypeFilter, handler: AbstractMediatorHandler, logger?: ILogger) {
         this._typeFilter = typeFilter;
         this._handler = handler;
         this._logger = logger;
