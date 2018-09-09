@@ -29,20 +29,23 @@ export { IMediatorMapper } from "./robotlegs/bender/extensions/mediatorMap/dsl/I
 export { IMediatorUnmapper } from "./robotlegs/bender/extensions/mediatorMap/dsl/IMediatorUnmapper";
 
 export { AbstractMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/AbstractMediatorFactory";
+export { AbstractMediatorHandler } from "./robotlegs/bender/extensions/mediatorMap/impl/AbstractMediatorHandler";
 export { MediatorMapper } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorMapper";
+export { MediatorMapping } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorMapping";
 export { MediatorSceneHandler } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorSceneHandler";
+export { MediatorViewHandler } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorViewHandler";
 export { NullMediatorUnmapper } from "./robotlegs/bender/extensions/mediatorMap/impl/NullMediatorUnmapper";
 export { SceneMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediator";
 export { SceneMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorFactory";
 export { SceneMediatorManager } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorManager";
 export { SceneMediatorMap } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorMap";
-export { MediatorMapping } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorMapping";
 export { ViewMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediator";
 export { ViewMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediatorFactory";
 export { ViewMediatorManager } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediatorManager";
 export { ViewMediatorMap } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediatorMap";
 
 export { SceneMediatorMapExtension } from "./robotlegs/bender/extensions/mediatorMap/SceneMediatorMapExtension";
+export { ViewMediatorMapExtension } from "./robotlegs/bender/extensions/mediatorMap/ViewMediatorMapExtension";
 
 /**
  * ViewManager extension
