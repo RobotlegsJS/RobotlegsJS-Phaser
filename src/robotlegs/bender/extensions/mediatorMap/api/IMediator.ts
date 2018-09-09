@@ -6,7 +6,7 @@
 // ------------------------------------------------------------------------------
 
 /**
- * Optional SceneMediator interface
+ * Optional Mediator interface
  */
 export interface IMediator {
     /**
