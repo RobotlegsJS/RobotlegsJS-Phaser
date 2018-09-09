@@ -16,7 +16,7 @@ import { AbstractMediatorFactory } from "./AbstractMediatorFactory";
  */
 export abstract class AbstractMediatorHandler {
     /*============================================================================*/
-    /* Protected Properties                                                         */
+    /* Protected Properties                                                       */
     /*============================================================================*/
 
     protected _mappings: IMediatorMapping[] = [];
@@ -75,7 +75,7 @@ export abstract class AbstractMediatorHandler {
     }
 
     /*============================================================================*/
-    /* Protected Functions                                                          */
+    /* Protected Functions                                                        */
     /*============================================================================*/
 
     protected getInterestedMappingsFor(item: any, type: IClass<any>): IMediatorMapping[] {
