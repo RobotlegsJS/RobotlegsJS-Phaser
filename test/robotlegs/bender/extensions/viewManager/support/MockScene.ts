@@ -8,17 +8,20 @@
 import { MockView } from "./MockView";
 
 export class MockScene extends Phaser.Scene {
+    public sceneId: string;
+
     public view: MockView;
 
-    constructor(scene: string) {
-        super({ key: scene });
-    }
+    constructor(sceneId: string) {
+        super({ key: sceneId });
 
-    public preload(): void {}
+        this.sceneId = sceneId;
+    }
 
     public create(): void {
         this.view = new MockView(this);
-
         this.add.existing(this.view);
+
+        this.game.events.emit(this.sceneId + "Created");
     }
 }
