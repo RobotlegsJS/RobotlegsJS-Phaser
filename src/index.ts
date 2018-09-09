@@ -36,7 +36,7 @@ export { SceneMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/Sc
 export { SceneMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorFactory";
 export { SceneMediatorManager } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorManager";
 export { SceneMediatorMap } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorMap";
-export { SceneMediatorMapping } from "./robotlegs/bender/extensions/mediatorMap/impl/SceneMediatorMapping";
+export { MediatorMapping } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorMapping";
 export { ViewMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediator";
 export { ViewMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediatorFactory";
 export { ViewMediatorManager } from "./robotlegs/bender/extensions/mediatorMap/impl/ViewMediatorManager";

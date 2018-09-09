@@ -13,7 +13,7 @@ import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
 import { AbstractMediatorHandler } from "./AbstractMediatorHandler";
-import { SceneMediatorMapping } from "./SceneMediatorMapping";
+import { MediatorMapping } from "./MediatorMapping";
 
 /**
  * @private
@@ -77,8 +77,8 @@ export class MediatorMapper implements IMediatorMapper, IMediatorUnmapper {
     /* protected Functions                                                          */
     /*============================================================================*/
 
-    protected createMapping(mediatorClass: IClass<any>): SceneMediatorMapping {
-        let mapping: SceneMediatorMapping = new SceneMediatorMapping(this._typeFilter, mediatorClass);
+    protected createMapping(mediatorClass: IClass<any>): MediatorMapping {
+        let mapping: MediatorMapping = new MediatorMapping(this._typeFilter, mediatorClass);
         this._handler.addMapping(mapping);
         this._mappings.set(mediatorClass, mapping);
         if (this._logger) {
