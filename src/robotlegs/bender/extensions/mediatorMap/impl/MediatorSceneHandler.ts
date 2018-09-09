@@ -15,7 +15,7 @@ import { AbstractMediatorFactory } from "./AbstractMediatorFactory";
 /**
  * @private
  */
-export class MediatorStateHandler implements ISceneHandler, IViewHandler {
+export class MediatorSceneHandler implements ISceneHandler, IViewHandler {
     /*============================================================================*/
     /* Private Properties                                                         */
     /*============================================================================*/
