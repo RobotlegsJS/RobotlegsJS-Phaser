@@ -13,7 +13,7 @@ import { IMediatorConfigurator } from "../dsl/IMediatorConfigurator";
 /**
  * @private
  */
-export class SceneMediatorMapping implements IMediatorMapping, IMediatorConfigurator {
+export class MediatorMapping implements IMediatorMapping, IMediatorConfigurator {
     /*============================================================================*/
     /* Public Properties                                                          */
     /*============================================================================*/
