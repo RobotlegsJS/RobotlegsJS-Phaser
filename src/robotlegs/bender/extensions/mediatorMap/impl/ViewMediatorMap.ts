@@ -15,7 +15,7 @@ import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
 import { ViewMediatorFactory } from "./ViewMediatorFactory";
 import { MediatorViewHandler } from "./MediatorViewHandler";
-import { NullSceneMediatorUnmapper } from "./NullSceneMediatorUnmapper";
+import { NullMediatorUnmapper } from "./NullMediatorUnmapper";
 import { MediatorMapper } from "./MediatorMapper";
 
 /**
@@ -35,7 +35,7 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
 
     private _viewHandler: MediatorViewHandler;
 
-    private NULL_UNMAPPER: IMediatorUnmapper = new NullSceneMediatorUnmapper();
+    private NULL_UNMAPPER: IMediatorUnmapper = new NullMediatorUnmapper();
 
     /*============================================================================*/
     /* Constructor                                                                */

@@ -15,7 +15,7 @@ import { ISceneHandler } from "../../viewManager/api/ISceneHandler";
 
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
 import { MediatorSceneHandler } from "./MediatorSceneHandler";
-import { NullSceneMediatorUnmapper } from "./NullSceneMediatorUnmapper";
+import { NullMediatorUnmapper } from "./NullMediatorUnmapper";
 import { MediatorMapper } from "./MediatorMapper";
 
 /**
@@ -35,7 +35,7 @@ export class SceneMediatorMap implements ISceneMediatorMap, ISceneHandler {
 
     private _sceneHandler: MediatorSceneHandler;
 
-    private NULL_UNMAPPER: IMediatorUnmapper = new NullSceneMediatorUnmapper();
+    private NULL_UNMAPPER: IMediatorUnmapper = new NullMediatorUnmapper();
 
     /*============================================================================*/
     /* Constructor                                                                */
