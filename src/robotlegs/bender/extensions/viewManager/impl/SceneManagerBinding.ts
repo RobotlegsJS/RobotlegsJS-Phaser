@@ -8,9 +8,9 @@
 import { IClass, EventDispatcher } from "@robotlegsjs/core";
 
 import { ISceneHandler } from "../api/ISceneHandler";
+import { IViewHandler } from "../api/IViewHandler";
 
 import { SceneManagerBindingEvent } from "./SceneManagerBindingEvent";
-import { IViewHandler } from "../api/IViewHandler";
 
 /**
  * @private
@@ -86,9 +86,7 @@ export class SceneManagerBinding extends EventDispatcher {
         if (index > -1) {
             this._sceneHandlers.splice(index, 1);
 
-            if (this._sceneHandlers.length === 0 && this._viewHandlers.length === 0) {
-                this.dispatchEvent(new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY));
-            }
+            this.dispatchBindingEmpty();
         }
     }
 
@@ -110,9 +108,7 @@ export class SceneManagerBinding extends EventDispatcher {
         if (index > -1) {
             this._viewHandlers.splice(index, 1);
 
-            if (this._sceneHandlers.length === 0 && this._viewHandlers.length === 0) {
-                this.dispatchEvent(new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY));
-            }
+            this.dispatchBindingEmpty();
         }
     }
 
@@ -132,5 +128,18 @@ export class SceneManagerBinding extends EventDispatcher {
         this._viewHandlers.forEach((handler: IViewHandler) => {
             handler.handleView(view, type);
         });
+    }
+
+    /*============================================================================*/
+    /* Private Functions                                                           */
+    /*============================================================================*/
+
+    /**
+     * @private
+     */
+    private dispatchBindingEmpty(): void {
+        if (this._sceneHandlers.length === 0 && this._viewHandlers.length === 0) {
+            this.dispatchEvent(new SceneManagerBindingEvent(SceneManagerBindingEvent.BINDING_EMPTY));
+        }
     }
 }
