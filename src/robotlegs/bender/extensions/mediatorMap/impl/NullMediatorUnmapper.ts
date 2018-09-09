@@ -12,7 +12,7 @@ import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 /**
  * @private
  */
-export class NullSceneMediatorUnmapper implements IMediatorUnmapper {
+export class NullMediatorUnmapper implements IMediatorUnmapper {
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
