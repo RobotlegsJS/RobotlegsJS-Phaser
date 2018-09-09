@@ -105,14 +105,18 @@ export abstract class AbstractMediatorFactory {
 
         if (mapping.guards.length === 0 || guardsApprove(mapping.guards, this._injector)) {
             let mediatorClass: IClass<any> = mapping.mediatorClass;
+
             mediator = instantiateUnmapped(this._injector, mediatorClass);
+
             if (mapping.hooks.length > 0) {
                 this._injector.bind(mediatorClass).toConstantValue(mediator);
                 applyHooks(mapping.hooks, this._injector);
                 this._injector.unbind(mediatorClass);
             }
+
             this.addMediator(mediator, item, mapping);
         }
+
         return mediator;
     }
 
