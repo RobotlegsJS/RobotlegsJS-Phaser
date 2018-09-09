@@ -5,13 +5,13 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject, IContext, ILogger, ITypeMatcher, TypeMatcher, IClass } from "@robotlegsjs/core";
+import { injectable, inject, IClass, IContext, ILogger, ITypeMatcher, TypeMatcher } from "@robotlegsjs/core";
+
+import { ISceneHandler } from "../../viewManager/api/ISceneHandler";
 
 import { ISceneMediatorMap } from "../api/ISceneMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
-
-import { ISceneHandler } from "../../viewManager/api/ISceneHandler";
 
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
 import { MediatorSceneHandler } from "./MediatorSceneHandler";
