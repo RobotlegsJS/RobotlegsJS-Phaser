@@ -1,12 +1,53 @@
 # RobotlegsJS Phaser Changelog:
 
-## RobotlegsJS Phaser 0.2.0
+## RobotlegsJS Phaser 1.0.0
 
-### v0.2.1
+### v1.0.0 - Planned stable version
+
+- [ ] Improve how mediators for `Phaser.Scene` and `Phaser.GameObjects.Container` are handled:
+
+  - [ ] Improve how `SceneMediators` are created and destroyed based on how `Phaser.Scenes.SceneManager` is handling scenes.
+
+  - [ ] Improve how `ViewMediators` are created and destroyed based on how `Phaser.Scene` and `Phaser.GameObjects.Container` are handled.
+
+- [ ] Use [**Function Types**](https://www.typescriptlang.org/docs/handbook/functions.html) for handlers and callbacks instead of generic **Function** type.
+
+- [ ] Evaluate if **IMediator** interface should be mandatory.
+
+- [ ] Improve Code Coverage to reach 100%.
+
+- [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript and Phaser.
+
+## RobotlegsJS Phaser 0.3.0
+
+### v0.3.0
+
+Major Breaking Changes:
+---
+
+- Add support for `Phaser.GameObject.Container`, allowing the creation of mediators for `Phaser.Scene` and `Phaser.GameObjects.Container` (see #54 and #55).
+
+  - Package `sceneMediatorMap` renamed to `mediatorMap`
+    - Interface `ISceneMediator` renamed to `IMediator`
+    - Interface `ISceneMediatorMapping` renamed to `IMediatorMapping`
+    - Interface `ISceneMediatorConfigurator` renamed to `IMediatorConfigurator`
+    - Interface `ISceneMediatorMapper` renamed to `IMediatorMapper`
+    - Interface `ISceneMediatorUnmapper` renamed to `IMediatorUnmapper`
+    - Class `NullSceneMediatorUnmapper` renamed to `NullMediatorUnmapper`
+    - Class `SceneMediatorMapper` renamed to `MediatorMapper`
+    - Class `SceneMediatorMapping` renamed to `MediatorMapping`
+    - Class `SceneMediatorStateHandler` renamed to `MediatorSceneHandler`
+
+  - Package `sceneManager` renamed to `viewManager`
+
+Features Or Improvements:
+---
 
 - Update `karma` setup to generate code coverage report only for `src` folder (see #53).
 
 - Update dev dependencies to latest version.
+
+## RobotlegsJS Phaser 0.2.0
 
 ### [v0.2.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.2.0) - 2018-08-07
 

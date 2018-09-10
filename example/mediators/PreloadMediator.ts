@@ -7,7 +7,7 @@
 
 import { injectable } from "@robotlegsjs/core";
 
-import { SceneMediator } from "../../src/robotlegs/bender/extensions/sceneMediatorMap/impl/SceneMediator";
+import { SceneMediator } from "../../src/robotlegs/bender/extensions/mediatorMap/impl/SceneMediator";
 
 import { Preload } from "../scenes/Preload";
 

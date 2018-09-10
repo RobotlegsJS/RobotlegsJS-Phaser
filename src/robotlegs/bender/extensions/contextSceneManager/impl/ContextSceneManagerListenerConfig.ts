@@ -7,7 +7,7 @@
 
 import { inject, injectable, IConfig } from "@robotlegsjs/core";
 
-import { ISceneManager } from "../../sceneManager/api/ISceneManager";
+import { ISceneManager } from "../../viewManager/api/ISceneManager";
 import { IContextSceneManager } from "../api/IContextSceneManager";
 
 /**

@@ -8,6 +8,11 @@ delete webpackConfig.entry;
 module.exports = config => {
 
   var configuration = {
+    client: {
+      mocha: {
+        timeout : 5000
+      }
+    },
     basePath: "",
     frameworks: [
       "mocha",
@@ -61,6 +66,7 @@ module.exports = config => {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
+    concurrency: Infinity,
     browsers: [],
     browserNoActivityTimeout: 50000
   };

@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-export let IContextSceneManager = Symbol("IContextSceneManager");
+export const IContextSceneManager = Symbol("IContextSceneManager");
 export interface IContextSceneManager {
     sceneManager: Phaser.Scenes.SceneManager;
 }

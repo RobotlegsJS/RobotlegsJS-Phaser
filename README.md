@@ -61,12 +61,11 @@ Then follow the [installation instructions](https://github.com/RobotlegsJS/Robot
 ```ts
 /// <reference path="../node_modules/@robotlegsjs/phaser/definitions/phaser.d.ts" />
 
-import * as Phaser from "phaser";
+import "reflect-metadata";
 
 import { Context, IContext, MVCSBundle } from "@robotlegsjs/core";
 
-import { ContextSceneManager } from "../src/robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
-import { PhaserBundle } from "../src/robotlegs/bender/bundles/phaser/PhaserBundle";
+import { ContextSceneManager, PhaserBundle } from "@robotlegsjs/phaser";
 
 import { GameConfig } from "./config/GameConfig";
 import { SceneMediatorConfig } from "./config/SceneMediatorConfig";
