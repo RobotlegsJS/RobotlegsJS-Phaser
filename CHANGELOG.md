@@ -36,7 +36,7 @@ Major Breaking Changes:
     - Class `NullSceneMediatorUnmapper` renamed to `NullMediatorUnmapper`
     - Class `SceneMediatorMapper` renamed to `MediatorMapper`
     - Class `SceneMediatorMapping` renamed to `MediatorMapping`
-    - Class `SceneMediatorStateHandler` renamed to `MediatorSceneHandler`
+    - Class `SceneMediatorStateHandler` renamed to `SceneMediatorHandler`
 
   - Package `sceneManager` renamed to `viewManager`
 
