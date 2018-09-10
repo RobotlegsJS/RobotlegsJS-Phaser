@@ -14,7 +14,7 @@ import { AbstractMediatorHandler } from "./AbstractMediatorHandler";
 /**
  * @private
  */
-export class MediatorViewHandler extends AbstractMediatorHandler implements IViewHandler {
+export class ViewMediatorHandler extends AbstractMediatorHandler implements IViewHandler {
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
