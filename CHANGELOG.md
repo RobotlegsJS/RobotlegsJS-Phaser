@@ -27,6 +27,19 @@ Major Breaking Changes:
 
 - Add support for `Phaser.GameObject.Container`, allowing the creation of mediators for `Phaser.Scene` and `Phaser.GameObjects.Container` (see #54 and #55).
 
+  - Package `sceneMediatorMap` renamed to `mediatorMap`
+    - Interface `ISceneMediator` renamed to `IMediator`
+    - Interface `ISceneMediatorMapping` renamed to `IMediatorMapping`
+    - Interface `ISceneMediatorConfigurator` renamed to `IMediatorConfigurator`
+    - Interface `ISceneMediatorMapper` renamed to `IMediatorMapper`
+    - Interface `ISceneMediatorUnmapper` renamed to `IMediatorUnmapper`
+    - Class `NullSceneMediatorUnmapper` renamed to `NullMediatorUnmapper`
+    - Class `SceneMediatorMapper` renamed to `MediatorMapper`
+    - Class `SceneMediatorMapping` renamed to `MediatorMapping`
+    - Class `SceneMediatorStateHandler` renamed to `MediatorSceneHandler`
+
+  - Package `sceneManager` renamed to `viewManager`
+
 Features Or Improvements:
 ---
 
