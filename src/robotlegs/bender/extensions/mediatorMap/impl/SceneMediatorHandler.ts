@@ -14,7 +14,7 @@ import { AbstractMediatorHandler } from "./AbstractMediatorHandler";
 /**
  * @private
  */
-export class MediatorSceneHandler extends AbstractMediatorHandler implements ISceneHandler {
+export class SceneMediatorHandler extends AbstractMediatorHandler implements ISceneHandler {
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
