@@ -14,7 +14,7 @@ import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
 import { ViewMediatorFactory } from "./ViewMediatorFactory";
-import { MediatorViewHandler } from "./MediatorViewHandler";
+import { ViewMediatorHandler } from "./ViewMediatorHandler";
 import { NullMediatorUnmapper } from "./NullMediatorUnmapper";
 import { MediatorMapper } from "./MediatorMapper";
 
@@ -33,7 +33,7 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
 
     private _factory: ViewMediatorFactory;
 
-    private _viewHandler: MediatorViewHandler;
+    private _viewHandler: ViewMediatorHandler;
 
     private NULL_UNMAPPER: IMediatorUnmapper = new NullMediatorUnmapper();
 
@@ -47,7 +47,7 @@ export class ViewMediatorMap implements IViewMediatorMap, IViewHandler {
     constructor(@inject(IContext) context: IContext) {
         this._logger = context.getLogger(this);
         this._factory = new ViewMediatorFactory(context.injector);
-        this._viewHandler = new MediatorViewHandler(this._factory);
+        this._viewHandler = new ViewMediatorHandler(this._factory);
     }
 
     /*============================================================================*/
