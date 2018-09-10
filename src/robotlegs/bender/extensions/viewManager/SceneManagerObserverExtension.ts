@@ -6,6 +6,7 @@
 // ------------------------------------------------------------------------------
 
 import { IContext, IExtension, IInjector, ILogger } from "@robotlegsjs/core";
+
 import { SceneManagerObserver } from "./impl/SceneManagerObserver";
 import { SceneRegistry } from "./impl/SceneRegistry";
 

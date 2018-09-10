@@ -6,8 +6,9 @@
 // ------------------------------------------------------------------------------
 
 import { IMediatorMapping } from "../api/IMediatorMapping";
-import { SceneMediatorFactory } from "./SceneMediatorFactory";
 import { IMediatorManager } from "../api/IMediatorManager";
+
+import { SceneMediatorFactory } from "./SceneMediatorFactory";
 
 /**
  * @private

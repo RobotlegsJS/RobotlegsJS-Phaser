@@ -13,10 +13,10 @@ import { ISceneMediatorMap } from "../api/ISceneMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
+import { MediatorMapper } from "./MediatorMapper";
+import { NullMediatorUnmapper } from "./NullMediatorUnmapper";
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
 import { SceneMediatorHandler } from "./SceneMediatorHandler";
-import { NullMediatorUnmapper } from "./NullMediatorUnmapper";
-import { MediatorMapper } from "./MediatorMapper";
 
 /**
  * @private

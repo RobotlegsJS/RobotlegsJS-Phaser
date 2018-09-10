@@ -6,8 +6,9 @@
 // ------------------------------------------------------------------------------
 
 import { IInjector } from "@robotlegsjs/core";
-import { ViewMediatorManager } from "./ViewMediatorManager";
+
 import { AbstractMediatorFactory } from "./AbstractMediatorFactory";
+import { ViewMediatorManager } from "./ViewMediatorManager";
 
 export class ViewMediatorFactory extends AbstractMediatorFactory {
     constructor(injector: IInjector, manager?: ViewMediatorManager) {

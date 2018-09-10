@@ -5,9 +5,10 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IMediatorMapping } from "../api/IMediatorMapping";
-import { ViewMediatorFactory } from "./ViewMediatorFactory";
 import { IMediatorManager } from "../api/IMediatorManager";
+import { IMediatorMapping } from "../api/IMediatorMapping";
+
+import { ViewMediatorFactory } from "./ViewMediatorFactory";
 
 /**
  * @private

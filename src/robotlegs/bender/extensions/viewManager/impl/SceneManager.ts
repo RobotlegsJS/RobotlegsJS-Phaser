@@ -9,12 +9,11 @@ import { injectable, EventDispatcher } from "@robotlegsjs/core";
 
 import { ISceneHandler } from "../api/ISceneHandler";
 import { ISceneManager } from "../api/ISceneManager";
-
-import { SceneManagerEvent } from "./SceneManagerEvent";
-
-import { SceneRegistry } from "./SceneRegistry";
-import { SceneManagerBinding } from "./SceneManagerBinding";
 import { IViewHandler } from "../api/IViewHandler";
+
+import { SceneManagerBinding } from "./SceneManagerBinding";
+import { SceneManagerEvent } from "./SceneManagerEvent";
+import { SceneRegistry } from "./SceneRegistry";
 
 /**
  * @private

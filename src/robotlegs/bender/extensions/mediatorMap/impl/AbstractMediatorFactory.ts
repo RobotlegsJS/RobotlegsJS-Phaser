@@ -7,9 +7,8 @@
 
 import { IClass, IType, IInjector, applyHooks, guardsApprove, instantiateUnmapped, ITypeFilter } from "@robotlegsjs/core";
 
-import { IMediatorMapping } from "../api/IMediatorMapping";
-
 import { IMediatorManager } from "../api/IMediatorManager";
+import { IMediatorMapping } from "../api/IMediatorMapping";
 
 /**
  * @protected

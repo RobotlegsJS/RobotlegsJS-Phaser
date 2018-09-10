@@ -6,8 +6,10 @@
 // ------------------------------------------------------------------------------
 
 import { IContext, IExtension, IInjector } from "@robotlegsjs/core";
-import { ISceneMediatorMap } from "./api/ISceneMediatorMap";
+
 import { ISceneManager } from "../viewManager/api/ISceneManager";
+
+import { ISceneMediatorMap } from "./api/ISceneMediatorMap";
 import { SceneMediatorMap } from "./impl/SceneMediatorMap";
 
 /**

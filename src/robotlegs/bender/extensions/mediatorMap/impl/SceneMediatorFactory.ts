@@ -6,8 +6,9 @@
 // ------------------------------------------------------------------------------
 
 import { IInjector } from "@robotlegsjs/core";
-import { SceneMediatorManager } from "./SceneMediatorManager";
+
 import { AbstractMediatorFactory } from "./AbstractMediatorFactory";
+import { SceneMediatorManager } from "./SceneMediatorManager";
 
 export class SceneMediatorFactory extends AbstractMediatorFactory {
     constructor(injector: IInjector, manager?: SceneMediatorManager) {

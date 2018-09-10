@@ -13,10 +13,10 @@ import { IViewMediatorMap } from "../api/IViewMediatorMap";
 import { IMediatorMapper } from "../dsl/IMediatorMapper";
 import { IMediatorUnmapper } from "../dsl/IMediatorUnmapper";
 
+import { MediatorMapper } from "./MediatorMapper";
+import { NullMediatorUnmapper } from "./NullMediatorUnmapper";
 import { ViewMediatorFactory } from "./ViewMediatorFactory";
 import { ViewMediatorHandler } from "./ViewMediatorHandler";
-import { NullMediatorUnmapper } from "./NullMediatorUnmapper";
-import { MediatorMapper } from "./MediatorMapper";
 
 /**
  * @private
