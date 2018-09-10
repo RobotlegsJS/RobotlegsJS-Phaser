@@ -20,7 +20,7 @@
 
 ## RobotlegsJS Phaser 0.3.0
 
-### v0.3.0
+### [v0.3.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.2.0) - 2018-09-10
 
 Major Breaking Changes:
 ---
