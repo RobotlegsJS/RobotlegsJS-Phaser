@@ -24,7 +24,7 @@
 
 #### Major Breaking Changes
 
-- Enable view listeners on `SceneMediator` and `ViewMediator` classes (see #59).
+- Enable view listeners on `SceneMediator` and `ViewMediator` classes (see #56 and #59).
 
   - Methods `addViewListener` and `removeViewListener` were removed from scene and view mediators.
 
