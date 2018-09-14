@@ -41,7 +41,7 @@ describe("PhaserBundle", () => {
         context = null;
     });
 
-    it("bundle_is_properly_installed_into_context", () => {
+    it("bundle_is_properly_installed_into_context", done => {
         game = new Phaser.Game({
             type: Phaser.CANVAS,
             width: 800,
@@ -61,9 +61,11 @@ describe("PhaserBundle", () => {
         assert.isTrue(context.injector.isBound(IViewMediatorMap));
         assert.isTrue(context.injector.isBound(ISceneManager));
         assert.isTrue(context.injector.isBound(SceneRegistry));
+
+        done();
     });
 
-    it("bundle_logs_an_error_message_when_context_scene_manager_is_not_provided", () => {
+    it("bundle_logs_an_error_message_when_context_scene_manager_is_not_provided", done => {
         let errorLogged: boolean = false;
         let logTarget: CallbackLogTarget = new CallbackLogTarget((log: LogParams) => {
             if (log.source instanceof PhaserBundle && log.level === LogLevel.ERROR) {
@@ -75,5 +77,7 @@ describe("PhaserBundle", () => {
         context.addLogTarget(logTarget);
         context.install(PhaserBundle).initialize();
         assert.isTrue(errorLogged);
+
+        done();
     });
 });
