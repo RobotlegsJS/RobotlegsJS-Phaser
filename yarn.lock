@@ -104,27 +104,34 @@
     inversify "^4.13.0"
     tslib "^1.9.3"
 
+"@robotlegsjs/eventemitter3@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/@robotlegsjs/eventemitter3/-/eventemitter3-0.0.1.tgz#2c25cfce18fbbc0898bbce69048f51fc2e17cce1"
+  dependencies:
+    "@robotlegsjs/core" "^0.2.1"
+    tslib "^1.9.3"
+
 "@sinonjs/commons@^1.0.2":
   version "1.0.2"
   resolved "https://registry.npmjs.org/@sinonjs/commons/-/commons-1.0.2.tgz#3e0ac737781627b8844257fadc3d803997d0526e"
   dependencies:
     type-detect "4.0.8"
 
-"@sinonjs/formatio@3.0.0":
+"@sinonjs/formatio@3.0.0", "@sinonjs/formatio@^3.0.0":
   version "3.0.0"
   resolved "https://registry.npmjs.org/@sinonjs/formatio/-/formatio-3.0.0.tgz#9d282d81030a03a03fa0c5ce31fd8786a4da311a"
   dependencies:
     "@sinonjs/samsam" "2.1.0"
 
-"@sinonjs/formatio@^2.0.0":
-  version "2.0.0"
-  resolved "http://registry.npmjs.org/@sinonjs/formatio/-/formatio-2.0.0.tgz#84db7e9eb5531df18a8c5e0bfb6e449e55e654b2"
-  dependencies:
-    samsam "1.3.0"
-
-"@sinonjs/samsam@2.1.0", "@sinonjs/samsam@^2.0.0":
+"@sinonjs/samsam@2.1.0":
   version "2.1.0"
   resolved "https://registry.npmjs.org/@sinonjs/samsam/-/samsam-2.1.0.tgz#b8b8f5b819605bd63601a6ede459156880f38ea3"
+  dependencies:
+    array-from "^2.1.1"
+
+"@sinonjs/samsam@^2.1.0":
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/@sinonjs/samsam/-/samsam-2.1.1.tgz#f352621c24c9e9ab2ed293a7655e8d46bfd64c16"
   dependencies:
     array-from "^2.1.1"
 
@@ -4489,7 +4496,7 @@ nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.npmjs.org/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
 
-nise@^1.4.4:
+nise@^1.4.5:
   version "1.4.5"
   resolved "https://registry.npmjs.org/nise/-/nise-1.4.5.tgz#979a97a19c48d627bb53703726ae8d53ce8d4b3e"
   dependencies:
@@ -5653,10 +5660,6 @@ safe-regex@^1.1.0:
   version "2.1.2"
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
 
-samsam@1.3.0:
-  version "1.3.0"
-  resolved "https://registry.npmjs.org/samsam/-/samsam-1.3.0.tgz#8d1d9350e25622da30de3e44ba692b5221ab7c50"
-
 sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -5826,16 +5829,16 @@ sinon-chai@^3.2.0:
   resolved "https://registry.npmjs.org/sinon-chai/-/sinon-chai-3.2.0.tgz#ed995e13a8a3cfccec18f218d9b767edc47e0715"
 
 sinon@^6.3.2:
-  version "6.3.2"
-  resolved "https://registry.npmjs.org/sinon/-/sinon-6.3.2.tgz#9d5f39689638285683e6625d0f68c4b670d13b36"
+  version "6.3.3"
+  resolved "https://registry.npmjs.org/sinon/-/sinon-6.3.3.tgz#c3a55b7046174c139e87a3c94c922cbf4323a4e7"
   dependencies:
     "@sinonjs/commons" "^1.0.2"
-    "@sinonjs/formatio" "^2.0.0"
-    "@sinonjs/samsam" "^2.0.0"
+    "@sinonjs/formatio" "^3.0.0"
+    "@sinonjs/samsam" "^2.1.0"
     diff "^3.5.0"
     lodash.get "^4.4.2"
     lolex "^2.7.4"
-    nise "^1.4.4"
+    nise "^1.4.5"
     supports-color "^5.5.0"
     type-detect "^4.0.8"
 

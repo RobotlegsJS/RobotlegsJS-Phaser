@@ -53,6 +53,7 @@ Then follow the [installation instructions](https://github.com/RobotlegsJS/Robot
 
 **Peer Dependencies**
 
++ [eventemitter3](https://github.com/primus/eventemitter3)
 + [Phaser](https://github.com/photonstorm/phaser)
 + [reflect-metadata](https://github.com/rbuckton/reflect-metadata)
 

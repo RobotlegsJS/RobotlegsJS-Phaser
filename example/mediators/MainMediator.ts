@@ -25,7 +25,7 @@ export class MainMediator extends SceneMediator<Main> {
 
         this.dispatch(new MainEvent(MainEvent.GAME_START, true, false, { data: this.gameModel }));
 
-        this.scene.input.on("pointerdown", this.onPointerdown, this);
+        this.on(this.scene.input, "pointerdown", this.onPointerdown);
     }
 
     public destroy(): void {

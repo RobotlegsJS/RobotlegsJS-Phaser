@@ -53,9 +53,11 @@
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
   "dependencies": {
     "@robotlegsjs/core": "^0.2.1",
+    "@robotlegsjs/eventemitter3": "^0.0.1",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {
+    "eventemitter3": "*",
     "phaser": "^3.11.0",
     "reflect-metadata": "^0.1.12"
   },

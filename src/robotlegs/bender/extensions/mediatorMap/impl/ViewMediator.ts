@@ -5,27 +5,17 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject, IEventMap, IEventDispatcher, Event } from "@robotlegsjs/core";
+import { injectable } from "@robotlegsjs/core";
 
-import { IMediator } from "../api/IMediator";
+import { AbstractMediator } from "./AbstractMediator";
 
 /**
- * Classic Robotlegs mediator implementation
+ * Classic Robotlegs mediator implementation for the <code>Phaser.GameObjects.Container</code>.
  *
  * <p>Override initialize and destroy to hook into the mediator lifecycle.</p>
  */
 @injectable()
-export abstract class ViewMediator<T extends Phaser.GameObjects.Container> implements IMediator {
-    /*============================================================================*/
-    /* Protected Properties                                                       */
-    /*============================================================================*/
-
-    @inject(IEventMap)
-    protected eventMap: IEventMap;
-
-    @inject(IEventDispatcher)
-    protected eventDispatcher: IEventDispatcher;
-
+export abstract class ViewMediator<T extends Phaser.GameObjects.Container> extends AbstractMediator {
     protected _viewComponent: T;
 
     /*============================================================================*/
@@ -38,53 +28,5 @@ export abstract class ViewMediator<T extends Phaser.GameObjects.Container> imple
 
     public get view(): T {
         return this._viewComponent;
-    }
-
-    /*============================================================================*/
-    /* Public Functions                                                           */
-    /*============================================================================*/
-
-    /**
-     * @inheritDoc
-     */
-    public abstract initialize(): void;
-
-    /**
-     * @inheritDoc
-     */
-    public abstract destroy(): void;
-
-    /**
-     * Runs after the mediator has been destroyed.
-     * Cleans up listeners mapped through the local EventMap.
-     */
-    public postDestroy(): void {
-        this.eventMap.unmapListeners();
-    }
-
-    /*============================================================================*/
-    /* Protected Functions                                                        */
-    /*============================================================================*/
-
-    protected addViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        //  this.eventMap.mapListener(this._viewComponent, eventString, listener, eventClass);
-    }
-
-    protected addContextListener(eventString: string, listener: Function, eventClass?: Object): void {
-        this.eventMap.mapListener(this.eventDispatcher, eventString, listener, eventClass);
-    }
-
-    protected removeViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.unmapListener(this._viewComponent, eventString, listener, eventClass);
-    }
-
-    protected removeContextListener(eventString: string, listener: Function, eventClass?: Object): void {
-        this.eventMap.unmapListener(this.eventDispatcher, eventString, listener, eventClass);
-    }
-
-    protected dispatch(event: Event): void {
-        if (this.eventDispatcher.hasEventListener(event.type)) {
-            this.eventDispatcher.dispatchEvent(event);
-        }
     }
 }
