@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
   "dependencies": {
-    "@robotlegsjs/core": "^0.2.0",
+    "@robotlegsjs/core": "^0.2.1",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {
@@ -95,14 +95,14 @@
     "reflect-metadata": "^0.1.12",
     "remap-istanbul": "^0.12.0",
     "rimraf": "^2.6.2",
-    "sinon": "^6.2.0",
+    "sinon": "^6.3.2",
     "sinon-chai": "^3.2.0",
     "ts-loader": "^5.1.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",
     "typescript": "^3.0.3",
-    "webpack": "^4.18.0",
+    "webpack": "^4.19.0",
     "webpack-cli": "^3.1.0",
     "webpack-concat-plugin": "^3.0.0",
     "webpack-dev-server": "^3.1.8"
