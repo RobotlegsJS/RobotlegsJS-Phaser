@@ -1,4 +1,4 @@
-# RobotlegsJS Phaser Changelog:
+# RobotlegsJS Phaser Changelog
 
 ## RobotlegsJS Phaser 1.0.0
 
@@ -18,16 +18,31 @@
 
 - [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript and Phaser.
 
-## RobotlegsJS Phaser 0.3.0
+## RobotlegsJS Phaser 0.4.0
 
-### v0.3.1
+### v0.4.0
+
+#### Major Breaking Changes
+
+- Enable view listeners on `SceneMediator` and `ViewMediator` classes (see #59).
+
+  - Methods `addViewListener` and `removeViewListener` were removed from scene and view mediators.
+
+  - Added `on`, `once` and `off` methods to the scene and view mediators allowing the mediators to handle events dispatched by `EventEmitter` views.
+
+  - Signature `addContextListener` and `removeContextListener` changed in order to fully support the `IEventDispatcher` interface.
+
+  - New methods `addDomListener` and `removeDomListener` were added to add support to `DOM` events dispatched by an `EventTarget`.
+
+#### Features Or Improvements
 
 - Update dev dependencies to latest version.
 
+## RobotlegsJS Phaser 0.3.0
+
 ### [v0.3.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.3.0) - 2018-09-10
 
-Major Breaking Changes:
----
+#### Major Breaking Changes
 
 - Add support for `Phaser.GameObject.Container`, allowing the creation of mediators for `Phaser.Scene` and `Phaser.GameObjects.Container` (see #54 and #55).
 
@@ -44,8 +59,7 @@ Major Breaking Changes:
 
   - Package `sceneManager` renamed to `viewManager`
 
-Features Or Improvements:
----
+#### Features Or Improvements
 
 - Update `karma` setup to generate code coverage report only for `src` folder (see #53).
 
@@ -55,8 +69,7 @@ Features Or Improvements:
 
 ### [v0.2.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.2.0) - 2018-08-07
 
-Major Breaking Changes:
----
+#### Major Breaking Changes
 
 - Implement support for [phaser](https://github.com/photonstorm/phaser) plugin version 3. Suppor for [phaser-ce](https://github.com/photonstorm/phaser-ce) plugin was moved to [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE) (see #52).
 
@@ -66,8 +79,7 @@ Major Breaking Changes:
 
 - Remove `eventemitter3` dependency (see #45).
 
-Features Or Improvements:
----
+#### Features Or Improvements
 
 - Add changelog (see #35).
 
