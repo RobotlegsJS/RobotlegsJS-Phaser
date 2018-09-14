@@ -28,6 +28,7 @@ export { IMediatorConfigurator } from "./robotlegs/bender/extensions/mediatorMap
 export { IMediatorMapper } from "./robotlegs/bender/extensions/mediatorMap/dsl/IMediatorMapper";
 export { IMediatorUnmapper } from "./robotlegs/bender/extensions/mediatorMap/dsl/IMediatorUnmapper";
 
+export { AbstractMediator } from "./robotlegs/bender/extensions/mediatorMap/impl/AbstractMediator";
 export { AbstractMediatorFactory } from "./robotlegs/bender/extensions/mediatorMap/impl/AbstractMediatorFactory";
 export { AbstractMediatorHandler } from "./robotlegs/bender/extensions/mediatorMap/impl/AbstractMediatorHandler";
 export { MediatorMapper } from "./robotlegs/bender/extensions/mediatorMap/impl/MediatorMapper";
