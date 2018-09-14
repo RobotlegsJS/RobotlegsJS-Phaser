@@ -7,6 +7,8 @@
 
 import { IBundle, IContext, ILogger, instanceOfType } from "@robotlegsjs/core";
 
+import { LocalEventEmitterMapExtension } from "@robotlegsjs/eventemitter3";
+
 import { IContextSceneManager } from "../../extensions/contextSceneManager/api/IContextSceneManager";
 import { ContextSceneManager } from "../../extensions/contextSceneManager/impl/ContextSceneManager";
 import { ContextSceneManagerListenerConfig } from "../../extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
@@ -45,6 +47,7 @@ export class PhaserBundle implements IBundle {
 
         this._context.install(
             ContextSceneManagerExtension,
+            LocalEventEmitterMapExtension,
             SceneManagerExtension,
             SceneManagerObserverExtension,
             SceneMediatorMapExtension,
