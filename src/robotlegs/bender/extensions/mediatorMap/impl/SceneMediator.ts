@@ -5,27 +5,17 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { injectable, inject, IEventMap, IEventDispatcher, Event } from "@robotlegsjs/core";
+import { injectable } from "@robotlegsjs/core";
 
-import { IMediator } from "../api/IMediator";
+import { AbstractMediator } from "./AbstractMediator";
 
 /**
- * Classic Robotlegs mediator implementation
+ * Classic Robotlegs mediator implementation for the <code>Phaser.Scene</code>.
  *
  * <p>Override initialize and destroy to hook into the mediator lifecycle.</p>
  */
 @injectable()
-export abstract class SceneMediator<T extends Phaser.Scene> implements IMediator {
-    /*============================================================================*/
-    /* Protected Properties                                                       */
-    /*============================================================================*/
-
-    @inject(IEventMap)
-    protected eventMap: IEventMap;
-
-    @inject(IEventDispatcher)
-    protected eventDispatcher: IEventDispatcher;
-
+export abstract class SceneMediator<T extends Phaser.Scene> extends AbstractMediator {
     protected _sceneComponent: T;
 
     /*============================================================================*/
@@ -33,58 +23,11 @@ export abstract class SceneMediator<T extends Phaser.Scene> implements IMediator
     /*============================================================================*/
 
     public set scene(scene: T) {
+        this._eventEmitter = scene.events;
         this._sceneComponent = scene;
     }
 
     public get scene(): T {
         return this._sceneComponent;
-    }
-
-    /*============================================================================*/
-    /* Public Functions                                                           */
-    /*============================================================================*/
-
-    /**
-     * @inheritDoc
-     */
-    public abstract initialize(): void;
-
-    /**
-     * @inheritDoc
-     */
-    public abstract destroy(): void;
-
-    /**
-     * Runs after the mediator has been destroyed.
-     * Cleans up listeners mapped through the local EventMap.
-     */
-    public postDestroy(): void {
-        this.eventMap.unmapListeners();
-    }
-
-    /*============================================================================*/
-    /* Protected Functions                                                        */
-    /*============================================================================*/
-
-    protected addViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.mapListener(this._sceneComponent, eventString, listener, eventClass);
-    }
-
-    protected addContextListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.mapListener(this.eventDispatcher, eventString, listener, eventClass);
-    }
-
-    protected removeViewListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.unmapListener(this._sceneComponent, eventString, listener, eventClass);
-    }
-
-    protected removeContextListener(eventString: string, listener: Function, eventClass?: Object): void {
-        // this.eventMap.unmapListener(this.eventDispatcher, eventString, listener, eventClass);
-    }
-
-    protected dispatch(event: Event): void {
-        if (this.eventDispatcher.hasEventListener(event.type)) {
-            this.eventDispatcher.dispatchEvent(event);
-        }
     }
 }
