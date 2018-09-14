@@ -28,8 +28,6 @@ export abstract class AbstractMediator implements IMediator {
     @inject(IEventDispatcher)
     protected _eventDispatcher: IEventDispatcher;
 
-    protected _eventEmitter: EventEmitter;
-
     /*============================================================================*/
     /* Public Functions                                                           */
     /*============================================================================*/
@@ -57,54 +55,56 @@ export abstract class AbstractMediator implements IMediator {
     /*============================================================================*/
 
     /**
-     * Use this method to listen for events dispatched by the <code>Phaser.Scene</code> or <code>Phaser.GameObjects.Container</code>
-     * mediated by this mediator. All the registered listeners will be automatically removed when this mediator is destroyed.
+     * Use this method to listen for events dispatched by the <code>EventEmitter</code>.
+     * All the registered listeners will be automatically removed when this mediator is destroyed.
      *
      * Call this method is the same as calling <code>on</code> or <code>addListener</code> directly on the
-     * <code>view</code> emitter, but keeps a list of listeners for easy (usually automatic) removal.
+     * <code>EventEmitter</code>, but keeps a list of listeners for easy (usually automatic) removal.
      *
-     * The <code>context</code> will be automatically set to <code>this</code> when no context information is provided.
+     * The <code>context</code> will be automatically mapped to <code>this</code> when no context information is provided.
      *
+     * @param emitter The <code>EventEmitter</code> to listen to
      * @param event The <code>event</code> type to listen for
      * @param listener The <code>event</code> handler
      * @param context The listener function's "this"
      */
-    protected on(event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
-        this._eventEmitterMap.on(this._eventEmitter, event, listener, context || this);
+    protected on(emitter: EventEmitter, event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
+        this._eventEmitterMap.on(emitter, event, listener, context || this);
     }
 
     /**
-     * Use this method to listen for events dispatched by the <code>Phaser.Scene</code> or <code>Phaser.GameObjects.Container</code>
-     * mediated by this mediator. All the registered listeners will be automatically removed when this mediator is destroyed.
+     * Use this method to listen for events dispatched by the <code>EventEmitter</code>.
+     * All the registered listeners will be automatically removed when this mediator is destroyed.
      *
      * Call this method is the same as calling <code>once</code> directly on the
-     * <code>view</code> emitter, but keeps a list of listeners for easy (usually automatic) removal.
+     * <code>EventEmitter</code>, but keeps a list of listeners for easy (usually automatic) removal.
      *
-     * The <code>context</code> will be automatically set to <code>this</code> when no context information is provided.
+     * The <code>context</code> will be automatically mapped to <code>this</code> when no context information is provided.
      *
+     * @param emitter The <code>EventEmitter</code> to listen to
      * @param event The <code>event</code> type to listen for
      * @param listener The <code>event</code> handler
      * @param context The listener function's "this"
      */
-    protected once(event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
-        this._eventEmitterMap.once(this._eventEmitter, event, listener, context || this);
+    protected once(emitter: EventEmitter, event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
+        this._eventEmitterMap.once(emitter, event, listener, context || this);
     }
 
     /**
-     * Use this method to remove listeners from events dispatched by the <code>Phaser.Scene</code> or <code>Phaser.GameObjects.Container</code>
-     * mediated by this mediator.
+     * Use this method to remove listeners from events dispatched by the <code>EventEmitter</code>.
      *
      * Call this method is the same as calling <code>off</code> directly on the
-     * <code>view</code> emitter, but updates our local list of listeners.
+     * <code>EventEmitter</code> emitter, but updates our local list of listeners.
      *
-     * The <code>context</code> will be automatically set to <code>this</code> when no context information is provided.
+     * The <code>context</code> will be automatically mapped to <code>this</code> when no context information is provided.
      *
+     * @param emitter The <code>EventEmitter</code> to listen to
      * @param event The <code>event</code> type to listen for
      * @param listener The <code>event</code> handler
      * @param contextt The listener function's "this"
      */
-    protected off(event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
-        this._eventEmitterMap.off(this._eventEmitter, event, listener, context || this);
+    protected off(emitter: EventEmitter, event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
+        this._eventEmitterMap.off(emitter, event, listener, context || this);
     }
 
     /**

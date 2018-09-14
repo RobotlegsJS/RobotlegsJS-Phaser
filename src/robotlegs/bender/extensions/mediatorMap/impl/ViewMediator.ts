@@ -23,7 +23,6 @@ export abstract class ViewMediator<T extends Phaser.GameObjects.Container> exten
     /*============================================================================*/
 
     public set view(view: T) {
-        this._eventEmitter = view;
         this._viewComponent = view;
     }
 

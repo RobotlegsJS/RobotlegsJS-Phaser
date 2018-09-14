@@ -23,7 +23,6 @@ export abstract class SceneMediator<T extends Phaser.Scene> extends AbstractMedi
     /*============================================================================*/
 
     public set scene(scene: T) {
-        this._eventEmitter = scene.events;
         this._sceneComponent = scene;
     }
 
