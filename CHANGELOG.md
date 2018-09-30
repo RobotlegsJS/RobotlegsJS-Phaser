@@ -22,6 +22,8 @@
 
 ### v0.4.1
 
+- Update `phaser` to version 3.13.0 (see #63).
+
 - Update dev dependencies to latest version.
 
 ### [v0.4.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.4.0) - 2018-09-14
