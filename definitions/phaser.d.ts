@@ -243,93 +243,93 @@ declare type BootCallback = (game: Phaser.Game) => void;
 
 declare type InputConfig = {
     /**
-     * [description]
+     * Keyboard input configuration. `true` uses the default configuration and `false` disables keyboard input.
      */
     keyboard?: boolean | KeyboardInputConfig;
     /**
-     * [description]
+     * Mouse input configuration. `true` uses the default configuration and `false` disables mouse input.
      */
     mouse?: boolean | MouseInputConfig;
     /**
-     * [description]
+     * Touch input configuration. `true` uses the default configuration and `false` disables touch input.
      */
     touch?: boolean | TouchInputConfig;
     /**
-     * [description]
+     * Gamepad input configuration. `true` enables gamepad input.
      */
     gamepad?: boolean | GamepadInputConfig;
     /**
-     * [description]
+     * The maximum number of touch pointers. See {@link Phaser.Input.InputManager#pointers}.
      */
     activePointers?: integer;
 };
 
 declare type MouseInputConfig = {
     /**
-     * [description]
+     * Where the Mouse Manager listens for mouse input events. The default is the game canvas.
      */
     target?: any;
     /**
-     * [description]
+     * Whether mouse input events have preventDefault() called on them.
      */
     capture?: boolean;
 };
 
 declare type KeyboardInputConfig = {
     /**
-     * [description]
+     * Where the Keyboard Manager listens for keyboard input events.
      */
     target?: any;
 };
 
 declare type TouchInputConfig = {
     /**
-     * [description]
+     * Where the Touch Manager listens for touch input events. The default is the game canvas.
      */
     target?: any;
     /**
-     * [description]
+     * Whether touch input events have preventDefault() called on them.
      */
     capture?: boolean;
 };
 
 declare type GamepadInputConfig = {
     /**
-     * [description]
+     * Where the Gamepad Manager listens for gamepad input events.
      */
     target?: any;
 };
 
 declare type BannerConfig = {
     /**
-     * [description]
+     * Omit Phaser's name and version from the banner.
      */
     hidePhaser?: boolean;
     /**
-     * [description]
+     * The color of the banner text.
      */
     text?: string;
     /**
-     * [description]
+     * The background colors of the banner.
      */
     background?: string[];
 };
 
 declare type FPSConfig = {
     /**
-     * [description]
+     * The minimum acceptable rendering rate, in frames per second.
      */
     min?: integer;
     /**
-     * [description]
+     * The optimum rendering rate, in frames per second.
      */
     target?: integer;
     /**
-     * [description]
+     * Use setTimeout instead of requestAnimationFrame to run the game loop.
      */
     forceSetTimeOut?: boolean;
     /**
-     * [description]
+     * Calculate the average frame delta from this many consecutive frame intervals.
      */
     deltaHistory?: integer;
     /**
@@ -340,11 +340,11 @@ declare type FPSConfig = {
 
 declare type RenderConfig = {
     /**
-     * [description]
+     * When set to `true`, WebGL uses linear interpolation to draw scaled or rotated textures, giving a smooth appearance. When set to `false`, WebGL uses nearest-neighbor interpolation, giving a crisper appearance. `false` also disables antialiasing of the game canvas itself, if the browser supports it, when the game canvas is scaled.
      */
     antialias?: boolean;
     /**
-     * [description]
+     * Sets `antialias` and `roundPixels` to true. This is the best setting for pixel-art games.
      */
     pixelArt?: boolean;
     /**
@@ -352,31 +352,31 @@ declare type RenderConfig = {
      */
     autoResize?: boolean;
     /**
-     * [description]
+     * Draw texture-based Game Objects at only whole-integer positions. Game Objects without textures, like Graphics, ignore this property.
      */
     roundPixels?: boolean;
     /**
-     * [description]
+     * Whether the game canvas will be transparent.
      */
     transparent?: boolean;
     /**
-     * [description]
+     * Whether the game canvas will be cleared between each rendering frame.
      */
     clearBeforeRender?: boolean;
     /**
-     * [description]
+     * In WebGL mode, the drawing buffer contains colors with pre-multiplied alpha.
      */
     premultipliedAlpha?: boolean;
     /**
-     * [description]
+     * In WebGL mode, the drawing buffer won't be cleared automatically each frame.
      */
     preserveDrawingBuffer?: boolean;
     /**
-     * [description]
+     * Let the browser abort creating a WebGL context if it judges performance would be unacceptable.
      */
     failIfMajorPerformanceCaveat?: boolean;
     /**
-     * "high-performance", "low-power" or "default"
+     * "high-performance", "low-power" or "default". A hint to the browser on how much device power the game might use.
      */
     powerPreference?: string;
     /**
@@ -403,11 +403,11 @@ declare type ScaleConfig = {
      */
     resolution?: number;
     /**
-     * The parent DOM element.
+     * The DOM element that will contain the game canvas, or its `id`. If null (the default) or if the named element doesn't exist, the game canvas is inserted directly into the document body.
      */
-    parent?: any;
+    parent?: HTMLElement | string;
     /**
-     * The scale mode to apply to the canvas.
+     * The scale mode to apply to the canvas. SHOW_ALL, EXACT_FIT, USER_SCALE, or RESIZE.
      */
     mode?: integer;
     /**
@@ -430,50 +430,50 @@ declare type ScaleConfig = {
 
 declare type CallbacksConfig = {
     /**
-     * [description]
+     * A function to run at the start of the boot sequence.
      */
     preBoot?: BootCallback;
     /**
-     * [description]
+     * A function to run at the end of the boot sequence. At this point, all the game systems have started and plugins have been loaded.
      */
     postBoot?: BootCallback;
 };
 
 declare type LoaderConfig = {
     /**
-     * [description]
+     * An URL used to resolve paths given to the loader. Example: 'http://labs.phaser.io/assets/'.
      */
     baseURL?: string;
     /**
-     * [description]
+     * An URL path used to resolve relative paths given to the loader. Example: 'images/sprites/'.
      */
     path?: string;
     /**
-     * [description]
+     * The maximum number of resources the loader will start loading at once.
      */
     maxParallelDownloads?: integer;
     /**
-     * [description]
+     * 'anonymous', 'use-credentials', or `undefined`. If you're not making cross-origin requests, leave this as `undefined`. See {@link https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes}.
      */
     crossOrigin?: string | undefined;
     /**
-     * [description]
+     * The response type of the XHR request, e.g. `blob`, `text`, etc.
      */
     responseType?: string;
     /**
-     * [description]
+     * Should the XHR request use async or not?
      */
     async?: boolean;
     /**
-     * [description]
+     * Optional username for the XHR request.
      */
     user?: string;
     /**
-     * [description]
+     * Optional password for the XHR request.
      */
     password?: string;
     /**
-     * [description]
+     * Optional XHR timeout value, in ms.
      */
     timeout?: integer;
 };
@@ -491,92 +491,111 @@ declare type DOMContainerConfig = {
 
 declare type ImagesConfig = {
     /**
-     * [description]
+     * URL to use for the 'default' texture.
      */
     default?: string;
     /**
-     * [description]
+     * URL to use for the 'missing' texture.
      */
     missing?: string;
 };
 
+declare type PhysicsConfig = {
+    /**
+     * The default physics system. It will be started for each scene. Phaser provides 'arcade', 'impact', and 'matter'.
+     */
+    default?: string;
+    /**
+     * Arcade Physics configuration.
+     */
+    arcade?: ArcadeWorldConfig;
+    /**
+     * Impact Physics configuration.
+     */
+    impact?: Phaser.Physics.Impact.WorldConfig;
+    /**
+     * Matter Physics configuration.
+     */
+    matter?: object;
+};
+
 declare type PluginObjectItem = {
     /**
-     * [description]
+     * A key to identify the plugin in the Plugin Manager.
      */
     key?: string;
     /**
-     * [description]
+     * The plugin itself. Usually a class/constructor.
      */
     plugin?: any;
     /**
-     * [description]
+     * Whether the plugin should be started automatically.
      */
     start?: boolean;
     /**
-     * [description]
+     * For a scene plugin, add the plugin to the scene's systems object under this key (`this.sys.KEY`, from the scene).
      */
     systemKey?: string;
     /**
-     * [description]
+     * For a scene plugin, add the plugin to the scene object under this key (`this.KEY`, from the scene).
      */
     sceneKey?: string;
     /**
-     * [description]
+     * Arbitrary data passed to the plugin's init() method.
      */
     data?: any;
 };
 
 declare type PluginObject = {
     /**
-     * [description]
+     * Global plugins to install.
      */
     global?: PluginObjectItem[];
     /**
-     * [description]
+     * Scene plugins to install.
      */
     scene?: PluginObjectItem[];
     /**
-     * [description]
+     * The default set of scene plugins (names).
      */
     default?: string[];
     /**
-     * [description]
+     * Plugins to *add* to the default set of scene plugins.
      */
-    defaultMerge?: any;
+    defaultMerge?: string[];
 };
 
 declare type GameConfig = {
     /**
-     * [description]
+     * The width of the game, in game pixels.
      */
     width?: integer | string;
     /**
-     * [description]
+     * The height of the game, in game pixels.
      */
     height?: integer | string;
     /**
-     * [description]
+     * Simple scale applied to the game canvas. 2 is double size, 0.5 is half size, etc.
      */
     zoom?: number;
     /**
-     * [description]
+     * The size of each game pixel, in canvas pixels. Values larger than 1 are "high" resolution.
      */
     resolution?: number;
     /**
-     * [description]
+     * Which renderer to use. Phaser.AUTO, Phaser.CANVAS, Phaser.HEADLESS, or Phaser.WEBGL. AUTO picks WEBGL if available, otherwise CANVAS.
      */
     type?: number;
     /**
-     * [description]
+     * The DOM element that will contain the game canvas, or its `id`. If null (the default) or if the named element doesn't exist, the game canvas is inserted directly into the document body.
      */
-    parent?: any;
+    parent?: HTMLElement | string;
     /**
      * Provide your own Canvas element for Phaser to use instead of creating one.
      */
     canvas?: HTMLCanvasElement;
     /**
-     * [description]
+     * CSS styles to apply to the game canvas instead of Phaser's default styles.
      */
     canvasStyle?: string;
     /**
@@ -584,39 +603,39 @@ declare type GameConfig = {
      */
     context?: CanvasRenderingContext2D;
     /**
-     * [description]
+     * A scene or scenes to add to the game. If several are given, the first is started; the remainder are started only if they have { active: true }.
      */
     scene?: object;
     /**
-     * [description]
+     * Seed for the random number generator.
      */
     seed?: string[];
     /**
-     * [description]
+     * The title of the game. Shown in the browser console.
      */
     title?: string;
     /**
-     * [description]
+     * The URL of the game. Shown in the browser console.
      */
     url?: string;
     /**
-     * [description]
+     * The version of the game. Shown in the browser console.
      */
     version?: string;
     /**
-     * Automatically call window.focus() when the game boots.
+     * Automatically call window.focus() when the game boots. Usually necessary to capture input events if the game is in a separate frame.
      */
     autoFocus?: boolean;
     /**
-     * [description]
+     * Input configuration, or `false` to disable all game input.
      */
     input?: boolean | InputConfig;
     /**
-     * [description]
+     * Disable the browser's default 'contextmenu' event (usually triggered by a right-button mouse click).
      */
     disableContextMenu?: boolean;
     /**
-     * [description]
+     * Configuration for the banner printed in the browser console when the game starts.
      */
     banner?: boolean | BannerConfig;
     /**
@@ -624,35 +643,35 @@ declare type GameConfig = {
      */
     dom?: DOMContainerConfig;
     /**
-     * [description]
+     * Game loop configuration.
      */
     fps?: FPSConfig;
     /**
-     * [description]
+     * Game renderer configuration.
      */
     render?: RenderConfig;
     /**
-     * [description]
+     * The background color of the game canvas. The default is black.
      */
     backgroundColor?: string | number;
     /**
-     * [description]
+     * Optional callbacks to run before or after game boot.
      */
     callbacks?: CallbacksConfig;
     /**
-     * [description]
+     * Loader configuration.
      */
     loader?: LoaderConfig;
     /**
-     * [description]
+     * Images configuration.
      */
     images?: ImagesConfig;
     /**
-     * [description]
+     * Physics configuration.
      */
     physics?: object;
     /**
-     * [description]
+     * Plugins to install.
      */
     plugins?: PluginObject | PluginObjectItem[];
 };
@@ -904,11 +923,11 @@ declare type GenerateTextureConfig = {
      */
     palette?: Palette;
     /**
-     * [description]
+     * The width of each 'pixel' in the generated texture.
      */
     pixelWidth?: number;
     /**
-     * [description]
+     * The height of each 'pixel' in the generated texture.
      */
     pixelHeight?: number;
     /**
@@ -1002,11 +1021,11 @@ declare type JSONEllipseCurve = {
      */
     type: string;
     /**
-     * [description]
+     * The x coordinate of the ellipse.
      */
     x: number;
     /**
-     * [description]
+     * The y coordinate of the ellipse.
      */
     y: number;
     /**
@@ -1018,54 +1037,54 @@ declare type JSONEllipseCurve = {
      */
     yRadius: number;
     /**
-     * The start angle of ellipse.
+     * The start angle of the ellipse, in degrees.
      */
     startAngle: integer;
     /**
-     * The end angle of ellipse.
+     * The end angle of the ellipse, in degrees.
      */
     endAngle: integer;
     /**
-     * The clockwise of ellipse.
+     * Sets if the the ellipse rotation is clockwise (true) or anti-clockwise (false)
      */
     clockwise: boolean;
     /**
-     * The rotation of ellipse.
+     * The rotation of ellipse, in degrees.
      */
     rotation: integer;
 };
 
 declare type EllipseCurveConfig = {
     /**
-     * [description]
+     * The x coordinate of the ellipse.
      */
     x?: number;
     /**
-     * [description]
+     * The y coordinate of the ellipse.
      */
     y?: number;
     /**
-     * [description]
+     * The horizontal radius of the ellipse.
      */
     xRadius?: number;
     /**
-     * [description]
+     * The vertical radius of the ellipse.
      */
     yRadius?: number;
     /**
-     * [description]
+     * The start angle of the ellipse, in degrees.
      */
     startAngle?: integer;
     /**
-     * [description]
+     * The end angle of the ellipse, in degrees.
      */
     endAngle?: integer;
     /**
-     * [description]
+     * Sets if the the ellipse rotation is clockwise (true) or anti-clockwise (false)
      */
     clockwise?: boolean;
     /**
-     * [description]
+     * The rotation of the ellipse, in degrees.
      */
     rotation?: integer;
 };
@@ -2743,6 +2762,9 @@ declare namespace Phaser.GameObjects.Text {
 
         /**
          * Set the shadow settings.
+         *
+         * Calling this method always re-measures the parent Text object,
+         * so only call it when you actually change the shadow settings.
          * @param x The horizontal shadow offset. Default 0.
          * @param y The vertical shadow offset. Default 0.
          * @param color The shadow color. Default '#000'.
@@ -3244,11 +3266,13 @@ declare namespace Phaser {
         ): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them on evenly spaced points around the perimeter of a Circle.
+         *
+         * If you wish to pass a `Phaser.GameObjects.Circle` Shape to this function, you should pass its `geom` property.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param circle [description]
-         * @param startAngle [description] Default 0.
-         * @param endAngle [description] Default 6.28.
+         * @param circle The Circle to position the Game Objects on.
+         * @param startAngle Optional angle to start position from, in radians. Default 0.
+         * @param endAngle Optional angle to stop position at, in radians. Default 6.28.
          */
         function PlaceOnCircle<G extends Phaser.GameObjects.GameObject[]>(
             items: G,
@@ -3258,11 +3282,13 @@ declare namespace Phaser {
         ): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them on evenly spaced points around the perimeter of an Ellipse.
+         *
+         * If you wish to pass a `Phaser.GameObjects.Ellipse` Shape to this function, you should pass its `geom` property.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param ellipse [description]
-         * @param startAngle [description] Default 0.
-         * @param endAngle [description] Default 6.28.
+         * @param ellipse The Ellipse to position the Game Objects on.
+         * @param startAngle Optional angle to start position from, in radians. Default 0.
+         * @param endAngle Optional angle to stop position at, in radians. Default 6.28.
          */
         function PlaceOnEllipse<G extends Phaser.GameObjects.GameObject[]>(
             items: G,
@@ -3272,25 +3298,30 @@ declare namespace Phaser {
         ): G;
 
         /**
-         * [description]
+         * Positions an array of Game Objects on evenly spaced points of a Line.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param line [description]
+         * @param line The Line to position the Game Objects on.
          */
         function PlaceOnLine<G extends Phaser.GameObjects.GameObject[]>(items: G, line: Phaser.Geom.Line): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them on evenly spaced points around the perimeter of a Rectangle.
+         *
+         * Placement starts from the top-left of the rectangle, and proceeds in a clockwise direction.
+         * If the `shift` parameter is given you can offset where placement begins.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param rect [description]
-         * @param shift [description] Default 1.
+         * @param rect The Rectangle to position the Game Objects on.
+         * @param shift An optional positional offset. Default 1.
          */
         function PlaceOnRectangle<G extends Phaser.GameObjects.GameObject[]>(items: G, rect: Phaser.Geom.Rectangle, shift?: integer): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them on evenly spaced points around the edges of a Triangle.
+         *
+         * If you wish to pass a `Phaser.GameObjects.Triangle` Shape to this function, you should pass its `geom` property.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param triangle [description]
-         * @param stepRate [description] Default 1.
+         * @param triangle The Triangle to position the Game Objects on.
+         * @param stepRate An optional step rate, to increase or decrease the packing of the Game Objects on the lines. Default 1.
          */
         function PlaceOnTriangle<G extends Phaser.GameObjects.GameObject[]>(items: G, triangle: Phaser.Geom.Triangle, stepRate?: number): G;
 
@@ -3349,37 +3380,45 @@ declare namespace Phaser {
         ): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them at random locations within the Circle.
+         *
+         * If you wish to pass a `Phaser.GameObjects.Circle` Shape to this function, you should pass its `geom` property.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param circle [description]
+         * @param circle The Circle to position the Game Objects within.
          */
         function RandomCircle<G extends Phaser.GameObjects.GameObject[]>(items: G, circle: Phaser.Geom.Circle): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them at random locations within the Ellipse.
+         *
+         * If you wish to pass a `Phaser.GameObjects.Ellipse` Shape to this function, you should pass its `geom` property.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param ellipse [description]
+         * @param ellipse The Ellipse to position the Game Objects within.
          */
         function RandomEllipse<G extends Phaser.GameObjects.GameObject[]>(items: G, ellipse: Phaser.Geom.Ellipse): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them at random locations on the Line.
+         *
+         * If you wish to pass a `Phaser.GameObjects.Line` Shape to this function, you should pass its `geom` property.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param line [description]
+         * @param line The Line to position the Game Objects randomly on.
          */
         function RandomLine<G extends Phaser.GameObjects.GameObject[]>(items: G, line: Phaser.Geom.Line): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them at random locations within the Ellipse.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param rect [description]
+         * @param rect The Rectangle to position the Game Objects within.
          */
         function RandomRectangle<G extends Phaser.GameObjects.GameObject[]>(items: G, rect: Phaser.Geom.Rectangle): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and positions them at random locations within the Triangle.
+         *
+         * If you wish to pass a `Phaser.GameObjects.Triangle` Shape to this function, you should pass its `geom` property.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param triangle [description]
+         * @param triangle The Triangle to position the Game Objects within.
          */
         function RandomTriangle<G extends Phaser.GameObjects.GameObject[]>(items: G, triangle: Phaser.Geom.Triangle): G;
 
@@ -3413,7 +3452,7 @@ declare namespace Phaser {
         function RotateAround<G extends Phaser.GameObjects.GameObject[]>(items: G, point: object, angle: number): G;
 
         /**
-         * [description]
+         * Rotates an array of Game Objects around a point by the given angle and distance.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
          * @param point Any object with public `x` and `y` properties.
          * @param angle The angle to rotate by, in radians.
@@ -3550,10 +3589,10 @@ declare namespace Phaser {
         ): G;
 
         /**
-         * [description]
+         * Passes all provided Game Objects to the Input Manager to enable them for input with identical areas and callbacks.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param hitArea [description]
-         * @param hitAreaCallback [description]
+         * @param hitArea Either an input configuration object, or a geometric shape that defines the hit area for the Game Object. If not specified a Rectangle will be used.
+         * @param hitAreaCallback A callback to be invoked when the Game Object is interacted with. If you provide a shape you must also provide a callback.
          */
         function SetHitArea<G extends Phaser.GameObjects.GameObject[]>(items: G, hitArea: any, hitAreaCallback: HitAreaCallback): G;
 
@@ -3671,12 +3710,12 @@ declare namespace Phaser {
         ): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects, or any objects that have the public method setTint() and then updates it to the given value(s). You can specify tint color per corner or provide only one color value for `topLeft` parameter, in which case whole item will be tinted with that color.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param topLeft [description]
-         * @param topRight [description]
-         * @param bottomLeft [description]
-         * @param bottomRight [description]
+         * @param topLeft The tint being applied to top-left corner of item. If other parameters are given no value, this tint will be applied to whole item.
+         * @param topRight The tint to be applied to top-right corner of item.
+         * @param bottomLeft The tint to be applied to the bottom-left corner of item.
+         * @param bottomRight The tint to be applied to the bottom-right corner of item.
          */
         function SetTint<G extends Phaser.GameObjects.GameObject[]>(
             items: G,
@@ -3766,15 +3805,17 @@ declare namespace Phaser {
         ): G;
 
         /**
-         * Iterate through items changing the position of each element to
-         * be that of the element that came before it in the array (or after it if direction = 1)
+         * Iterate through the items array changing the position of each element to be that of the element that came before
+         * it in the array (or after it if direction = 1)
+         *
          * The first items position is set to x/y.
+         *
          * The final x/y coords are returned
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param x [description]
-         * @param y [description]
-         * @param direction [description] Default 0.
-         * @param output [description]
+         * @param x The x coordinate to place the first item in the array at.
+         * @param y The y coordinate to place the first item in the array at.
+         * @param direction The iteration direction. 0 = first to last and 1 = last to first. Default 0.
+         * @param output An optional objec to store the final objects position in.
          */
         function ShiftPosition<G extends Phaser.GameObjects.GameObject[], O extends Phaser.Math.Vector2>(
             items: G,
@@ -3791,49 +3832,63 @@ declare namespace Phaser {
         function Shuffle<G extends Phaser.GameObjects.GameObject[]>(items: G): G;
 
         /**
-         * [description]
+         * Smootherstep is a sigmoid-like interpolation and clamping function.
+         *
+         * The function depends on three parameters, the input x, the "left edge" and the "right edge", with the left edge being assumed smaller than the right edge. The function receives a real number x as an argument and returns 0 if x is less than or equal to the left edge, 1 if x is greater than or equal to the right edge, and smoothly interpolates, using a Hermite polynomial, between 0 and 1 otherwise. The slope of the smoothstep function is zero at both edges. This is convenient for creating a sequence of transitions using smoothstep to interpolate each segment as an alternative to using more sophisticated or expensive interpolation techniques.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param property [description]
-         * @param min [description]
-         * @param max [description]
-         * @param inc [description]
+         * @param property The property of the Game Object to interpolate.
+         * @param min The minimum interpolation value.
+         * @param max The maximum interpolation value.
+         * @param inc Should the values be incremented? `true` or set (`false`) Default false.
          */
         function SmootherStep<G extends Phaser.GameObjects.GameObject[]>(
             items: G,
             property: string,
             min: number,
             max: number,
-            inc: number
+            inc?: boolean
         ): G;
 
         /**
-         * [description]
+         * Smoothstep is a sigmoid-like interpolation and clamping function.
+         *
+         * The function depends on three parameters, the input x, the "left edge" and the "right edge", with the left edge being assumed smaller than the right edge. The function receives a real number x as an argument and returns 0 if x is less than or equal to the left edge, 1 if x is greater than or equal to the right edge, and smoothly interpolates, using a Hermite polynomial, between 0 and 1 otherwise. The slope of the smoothstep function is zero at both edges. This is convenient for creating a sequence of transitions using smoothstep to interpolate each segment as an alternative to using more sophisticated or expensive interpolation techniques.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param property [description]
-         * @param min [description]
-         * @param max [description]
-         * @param inc [description]
+         * @param property The property of the Game Object to interpolate.
+         * @param min The minimum interpolation value.
+         * @param max The maximum interpolation value.
+         * @param inc Should the values be incremented? `true` or set (`false`) Default false.
          */
         function SmoothStep<G extends Phaser.GameObjects.GameObject[]>(
             items: G,
             property: string,
             min: number,
             max: number,
-            inc: number
+            inc?: boolean
         ): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and then modifies their `property` so the value equals, or is incremented, the
+         * calculated spread value.
+         *
+         * The spread value is derived from the given `min` and `max` values and the total number of items in the array.//#endregion
+         *
+         * For example, to cause an array of Sprites to change in alpha from 0 to 1 you could call:
+         *
+         * ```javascript
+         * Phaser.Actions.Spread(itemsArray, 'alpha', 0, 1);
+         * ```
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
-         * @param property [description]
-         * @param min [description]
-         * @param max [description]
-         * @param inc [description] Default false.
+         * @param property The property of the Game Object to spread.
+         * @param min The minimum value.
+         * @param max The maximum value.
+         * @param inc Should the values be incremented? `true` or set (`false`) Default false.
          */
-        function Spread<G extends Phaser.GameObjects.GameObject[]>(items: G, property: string, min: number, max: number, inc?: number): G;
+        function Spread<G extends Phaser.GameObjects.GameObject[]>(items: G, property: string, min: number, max: number, inc?: boolean): G;
 
         /**
-         * [description]
+         * Takes an array of Game Objects and toggles the visibility of each one.
+         * Those previously `visible = false` will become `visible = true`, and vice versa.
          * @param items An array of Game Objects. The contents of this array are updated by this Action.
          */
         function ToggleVisible<G extends Phaser.GameObjects.GameObject[]>(items: G): G;
@@ -4561,7 +4616,7 @@ declare namespace Phaser {
 
     namespace Boot {
         /**
-         * [description]
+         * The active game configuration settings, parsed from a {@link GameConfig} object.
          */
         class Config {
             /**
@@ -4631,17 +4686,17 @@ declare namespace Phaser {
             readonly seed: string[];
 
             /**
-             * [description]
+             * The title of the game.
              */
             readonly gameTitle: string;
 
             /**
-             * [description]
+             * The URL of the game.
              */
             readonly gameURL: string;
 
             /**
-             * [description]
+             * The version of the game.
              */
             readonly gameVersion: string;
 
@@ -4716,7 +4771,7 @@ declare namespace Phaser {
             readonly inputGamepadEventTarget: any;
 
             /**
-             * [description]
+             * Set to `true` to disable context menu. Default value is `false`.
              */
             readonly disableContextMenu: boolean;
 
@@ -4766,7 +4821,7 @@ declare namespace Phaser {
             readonly roundPixels: boolean;
 
             /**
-             * [description]
+             * Prevent pixel art from becoming blurred when scaled. It will remain crisp (tells the WebGL renderer to automatically create textures using a linear filter mode).
              */
             readonly pixelArt: boolean;
 
@@ -4841,7 +4896,7 @@ declare namespace Phaser {
             readonly loaderPath: string;
 
             /**
-             * [description]
+             * Maximum parallel downloads allowed for resources (Default to 32).
              */
             readonly loaderMaxParallelDownloads: integer;
 
@@ -7537,7 +7592,7 @@ declare namespace Phaser {
 
     namespace Curves {
         /**
-         * [description]
+         * A higher-order Bézier curve constructed of four points.
          */
         class CubicBezier extends Phaser.Curves.Curve {
             /**
@@ -7555,22 +7610,22 @@ declare namespace Phaser {
             );
 
             /**
-             * [description]
+             * The start point of this curve.
              */
             p0: Phaser.Math.Vector2;
 
             /**
-             * [description]
+             * The first control point of this curve.
              */
             p1: Phaser.Math.Vector2;
 
             /**
-             * [description]
+             * The second control point of this curve.
              */
             p2: Phaser.Math.Vector2;
 
             /**
-             * [description]
+             * The end point of this curve.
              */
             p3: Phaser.Math.Vector2;
 
@@ -7581,7 +7636,7 @@ declare namespace Phaser {
             getStartPoint<O extends Phaser.Math.Vector2>(out?: O): O;
 
             /**
-             * [description]
+             * Returns the resolution of this curve.
              * @param divisions The amount of divisions used by this curve.
              */
             getResolution(divisions: number): number;
@@ -7594,19 +7649,19 @@ declare namespace Phaser {
             getPoint<O extends Phaser.Math.Vector2>(t: number, out?: O): O;
 
             /**
-             * [description]
-             * @param graphics [description]
-             * @param pointsTotal [description] Default 32.
+             * Draws this curve to the specified graphics object.
+             * @param graphics The graphics object this curve should be drawn to.
+             * @param pointsTotal The number of intermediary points that make up this curve. A higher number of points will result in a smoother curve. Default 32.
              */
             draw<G extends Phaser.GameObjects.Graphics>(graphics: G, pointsTotal?: integer): G;
 
             /**
-             * [description]
+             * Returns a JSON object that describes this curve.
              */
             toJSON(): JSONCurve;
 
             /**
-             * [description]
+             * Generates a curve from a JSON object.
              * @param data The JSON object containing this curve data.
              */
             static fromJSON(data: JSONCurve): Phaser.Curves.CubicBezier;
@@ -7683,9 +7738,9 @@ declare namespace Phaser {
 
             /**
              * [description]
-             * @param out [description]
+             * @param out Optional Vector object to store the result in.
              */
-            getEndPoint(out: Phaser.Math.Vector2): Phaser.Math.Vector2;
+            getEndPoint(out?: Phaser.Math.Vector2): Phaser.Math.Vector2;
 
             /**
              * [description]
@@ -7765,19 +7820,21 @@ declare namespace Phaser {
         }
 
         /**
-         * [description]
+         * An Elliptical Curve derived from the Base Curve class.
+         *
+         * See https://en.wikipedia.org/wiki/Elliptic_curve for more details.
          */
         class Ellipse extends Phaser.Curves.Curve {
             /**
              *
-             * @param x [description] Default 0.
-             * @param y [description] Default 0.
-             * @param xRadius [description] Default 0.
-             * @param yRadius [description] Default 0.
-             * @param startAngle [description] Default 0.
-             * @param endAngle [description] Default 360.
-             * @param clockwise [description] Default false.
-             * @param rotation [description] Default 0.
+             * @param x The x coordinate of the ellipse, or an Ellipse Curve configuration object. Default 0.
+             * @param y The y coordinate of the ellipse. Default 0.
+             * @param xRadius The horizontal radius of ellipse. Default 0.
+             * @param yRadius The vertical radius of ellipse. Default 0.
+             * @param startAngle The start angle of the ellipse, in degrees. Default 0.
+             * @param endAngle The end angle of the ellipse, in degrees. Default 360.
+             * @param clockwise Sets if the the ellipse rotation is clockwise (true) or anti-clockwise (false) Default false.
+             * @param rotation The rotation of the ellipse, in degrees. Default 0.
              */
             constructor(
                 x?: number | EllipseCurveConfig,
@@ -7791,7 +7848,7 @@ declare namespace Phaser {
             );
 
             /**
-             * [description]
+             * The center point of the ellipse. Used for calculating rotation.
              */
             p0: Phaser.Math.Vector2;
 
@@ -7863,52 +7920,57 @@ declare namespace Phaser {
             setRotation(value: number): Phaser.Curves.Ellipse;
 
             /**
-             * [description]
+             * The x coordinate of the center of the ellipse.
              */
             x: number;
 
             /**
-             * [description]
+             * The y coordinate of the center of the ellipse.
              */
             y: number;
 
             /**
-             * [description]
+             * The horizontal radius of the ellipse.
              */
             xRadius: number;
 
             /**
-             * [description]
+             * The vertical radius of the ellipse.
              */
             yRadius: number;
 
             /**
-             * [description]
+             * The start angle of the ellipse in degrees.
              */
             startAngle: number;
 
             /**
-             * [description]
+             * The end angle of the ellipse in degrees.
              */
             endAngle: number;
 
             /**
-             * [description]
+             * `true` if the ellipse rotation is clockwise or `false` if anti-clockwise.
              */
             clockwise: boolean;
 
             /**
-             * [description]
+             * The rotation of the ellipse, relative to the center, in degrees.
+             */
+            angle: number;
+
+            /**
+             * The rotation of the ellipse, relative to the center, in radians.
              */
             rotation: number;
 
             /**
-             * [description]
+             * JSON serialization of the curve.
              */
             toJSON(): JSONEllipseCurve;
 
             /**
-             * [description]
+             * Creates a curve from the provided Ellipse Curve Configuration object.
              * @param data The JSON object containing this curve data.
              */
             static fromJSON(data: JSONEllipseCurve): Phaser.Curves.Ellipse;
@@ -8189,7 +8251,7 @@ declare namespace Phaser {
 
             /**
              * [description]
-             * @param divisions Get random point on path. Default 12.
+             * @param divisions The number of points to divide the path in to. Default 12.
              */
             getPoints(divisions?: integer): Phaser.Math.Vector2[];
 
@@ -10067,32 +10129,36 @@ declare namespace Phaser {
             }
 
             /**
-             * [description]
+             * A Geometry Mask can be applied to a Game Object to hide any pixels of it which don't intersect a visible pixel from the geometry mask. The mask is essentially a clipping path which can only make a masked pixel fully visible or fully invisible without changing its alpha (opacity).
+             *
+             * A Geometry Mask uses a Graphics Game Object to determine which pixels of the masked Game Object(s) should be clipped. For any given point of a masked Game Object's texture, the pixel will only be displayed if the Graphics Game Object of the Geometry Mask has a visible pixel at the same position. The color and alpha of the pixel from the Geometry Mask do not matter.
+             *
+             * The Geometry Mask's location matches the location of its Graphics object, not the location of the masked objects. Moving or transforming the underlying Graphics object will change the mask (and affect the visibility of any masked objects), whereas moving or transforming a masked object will not affect the mask. You can think of the Geometry Mask (or rather, of the its Graphics object) as an invisible curtain placed in front of all masked objects which has its own visual properties and, naturally, respects the camera's visual properties, but isn't affected by and doesn't follow the masked objects by itself.
              */
             class GeometryMask {
                 /**
                  *
-                 * @param scene [description]
-                 * @param graphicsGeometry [description]
+                 * @param scene This parameter is not used.
+                 * @param graphicsGeometry The Graphics Game Object to use for the Geometry Mask. Doesn't have to be in the Display List.
                  */
                 constructor(scene: Phaser.Scene, graphicsGeometry: Phaser.GameObjects.Graphics);
 
                 /**
-                 * [description]
+                 * The Graphics object which describes the Geometry Mask.
                  */
                 geometryMask: Phaser.GameObjects.Graphics;
 
                 /**
-                 * [description]
-                 * @param graphicsGeometry [description]
+                 * Sets a new Graphics object for the Geometry Mask.
+                 * @param graphicsGeometry The Graphics object which will be used for the Geometry Mask.
                  */
                 setShape(graphicsGeometry: Phaser.GameObjects.Graphics): void;
 
                 /**
-                 * [description]
-                 * @param renderer [description]
-                 * @param mask [description]
-                 * @param camera [description]
+                 * Renders the Geometry Mask's underlying Graphics object to the OpenGL stencil buffer and enables the stencil test, which clips rendered pixels according to the mask.
+                 * @param renderer The WebGL Renderer instance to draw to.
+                 * @param mask The Game Object being rendered.
+                 * @param camera The camera the Game Object is being rendered through.
                  */
                 preRenderWebGL(
                     renderer: Phaser.Renderer.WebGL.WebGLRenderer,
@@ -10101,16 +10167,16 @@ declare namespace Phaser {
                 ): void;
 
                 /**
-                 * [description]
-                 * @param renderer [description]
+                 * Flushes all rendered pixels and disables the stencil test of a WebGL context, thus disabling the mask for it.
+                 * @param renderer The WebGL Renderer instance to draw flush.
                  */
                 postRenderWebGL(renderer: Phaser.Renderer.WebGL.WebGLRenderer): void;
 
                 /**
-                 * [description]
-                 * @param renderer [description]
-                 * @param mask [description]
-                 * @param camera [description]
+                 * Sets the clipping path of a 2D canvas context to the Geometry Mask's underlying Graphics object.
+                 * @param renderer The Canvas Renderer instance to set the clipping path on.
+                 * @param mask The Game Object being rendered.
+                 * @param camera The camera the Game Object is being rendered through.
                  */
                 preRenderCanvas(
                     renderer: Phaser.Renderer.Canvas.CanvasRenderer,
@@ -10119,8 +10185,8 @@ declare namespace Phaser {
                 ): void;
 
                 /**
-                 * [description]
-                 * @param renderer [description]
+                 * Restore the canvas context's previous clipping path, thus turning off the mask for it.
+                 * @param renderer The Canvas Renderer instance being restored.
                  */
                 postRenderCanvas(renderer: Phaser.Renderer.Canvas.CanvasRenderer): void;
 
@@ -17866,12 +17932,12 @@ declare namespace Phaser {
             /**
              *
              * @param scene The scene this group belongs to.
-             * @param children Game objects to add to this group; or the `config` argument.
+             * @param children Game Objects to add to this group; or the `config` argument.
              * @param config Settings for this group. If `key` is set, Phaser.GameObjects.Group#createMultiple is also called with these settings.
              */
             constructor(
                 scene: Phaser.Scene,
-                children?: Phaser.GameObjects.GameObject[] | GroupConfig,
+                children?: Phaser.GameObjects.GameObject[] | GroupConfig | GroupCreateConfig,
                 config?: GroupConfig | GroupCreateConfig
             );
 
@@ -28763,6 +28829,12 @@ declare namespace Phaser {
             );
 
             /**
+             * The width (or thickness) of the line.
+             * See the setLineWidth method for extra details on changing this on WebGL.
+             */
+            lineWidth: number;
+
+            /**
              * Sets the width of the line.
              *
              * When using the WebGL renderer you can have different start and end widths.
@@ -29391,6 +29463,7 @@ declare namespace Phaser {
          * The Polygon Shape is created by providing a list of points, which are then used to create an
          * internal Polygon geometry object. The points can be set from a variety of formats:
          *
+         * - A string containing paired values separated by a single space: `'40 0 40 20 100 20 100 80 40 80 40 100 0 50'`
          * - An array of Point or Vector2 objects: `[new Phaser.Math.Vec2(x1, y1), ...]`
          * - An array of objects with public x/y properties: `[obj1, obj2, ...]`
          * - An array of paired numbers that represent point coordinates: `[x1,y1, x2,y2, ...]`
@@ -36675,9 +36748,9 @@ declare namespace Phaser {
 
         namespace Intersects {
             /**
-             * [description]
-             * @param circleA [description]
-             * @param circleB [description]
+             * Checks if two Circles intersect.
+             * @param circleA The first Circle to check for intersection.
+             * @param circleB The second Circle to check for intersection.
              */
             function CircleToCircle(circleA: Phaser.Geom.Circle, circleB: Phaser.Geom.Circle): boolean;
 
@@ -36689,10 +36762,14 @@ declare namespace Phaser {
             function CircleToRectangle(circle: Phaser.Geom.Circle, rect: Phaser.Geom.Rectangle): boolean;
 
             /**
-             * [description]
-             * @param rectA [description]
-             * @param rectB [description]
-             * @param output [description]
+             * Checks if two Rectangle shapes intersect and returns the area of this intersection as Rectangle object.
+             *
+             * If optional `output` parameter is omitted, new Rectangle object is created and returned. If there is intersection, it will contain intersection area. If there is no intersection, it wil be empty Rectangle (all values set to zero).
+             *
+             * If Rectangle object is passed as `output` and there is intersection, then intersection area data will be loaded into it and it will be returned. If there is no intersetion, it will be returned without any change.
+             * @param rectA The first Rectangle object.
+             * @param rectB The second Rectangle object.
+             * @param output Optional Rectangle object. If given, the intersection data will be loaded into it (in case of no intersection, it will be left unchanged). Otherwise, new Rectangle object will be created and returned with either intersection data or empty (all values set to zero), if there is no intersection.
              */
             function GetRectangleIntersection<O extends Phaser.Geom.Rectangle>(
                 rectA: Phaser.Geom.Rectangle,
@@ -36709,10 +36786,10 @@ declare namespace Phaser {
             function LineToCircle(line: Phaser.Geom.Line, circle: Phaser.Geom.Circle, nearest?: Phaser.Geom.Point): boolean;
 
             /**
-             * [description]
-             * @param line1 [description]
-             * @param line2 [description]
-             * @param out [description]
+             * Checks if two Lines intersect. If the Lines are identical, they will be treated as parallel and thus non-intersecting.
+             * @param line1 The first Line to check.
+             * @param line2 The second Line to check.
+             * @param out A Point in which to optionally store the point of intersection.
              */
             function LineToLine(line1: Phaser.Geom.Line, line2: Phaser.Geom.Line, out?: Phaser.Geom.Point): boolean;
 
@@ -36753,9 +36830,9 @@ declare namespace Phaser {
             function RectangleToRectangle(rectA: Phaser.Geom.Rectangle, rectB: Phaser.Geom.Rectangle): boolean;
 
             /**
-             * [description]
-             * @param rect [description]
-             * @param triangle [description]
+             * Checks for intersection between Rectangle shape and Triangle shape.
+             * @param rect Rectangle object to test.
+             * @param triangle Triangle object to test.
              */
             function RectangleToTriangle(rect: Phaser.Geom.Rectangle, triangle: Phaser.Geom.Triangle): boolean;
 
@@ -36785,9 +36862,11 @@ declare namespace Phaser {
             function TriangleToCircle(triangle: Phaser.Geom.Triangle, circle: Phaser.Geom.Circle): boolean;
 
             /**
-             * [description]
-             * @param triangle [description]
-             * @param line [description]
+             * Checks if a Triangle and a Line intersect.
+             *
+             * The Line intersects the Triangle if it starts inside of it, ends inside of it, or crosses any of the Triangle's sides. Thus, the Triangle is considered "solid".
+             * @param triangle The Triangle to check with.
+             * @param line The Line to check with.
              */
             function TriangleToLine(triangle: Phaser.Geom.Triangle, line: Phaser.Geom.Line): boolean;
 
@@ -37158,7 +37237,7 @@ declare namespace Phaser {
             static GetRectangleFromPoints<O extends Phaser.Geom.Rectangle>(points: Phaser.Geom.Point[], out?: O): O;
 
             /**
-             * [description]
+             * Interpolate two given Point objects, based on `t` value. Return result either as new Point if `out` parameter is omitted or load result into Point passed as `out` parameter and return it. For `out` parameter you can also use any object with public x/y properties.
              * @param pointA [description]
              * @param pointB [description]
              * @param t [description] Default 0.
@@ -37167,8 +37246,8 @@ declare namespace Phaser {
             static Interpolate<O extends Phaser.Geom.Point>(pointA: Phaser.Geom.Point, pointB: Phaser.Geom.Point, t?: number, out?: O): O;
 
             /**
-             * [description]
-             * @param point [description]
+             * Swaps the X and the Y coordinate of a point.
+             * @param point The Point to modify.
              */
             static Invert<O extends Phaser.Geom.Point>(point: O): O;
 
@@ -37237,10 +37316,10 @@ declare namespace Phaser {
             static Clone(polygon: Phaser.Geom.Polygon): Phaser.Geom.Polygon;
 
             /**
-             * [description]
-             * @param polygon [description]
-             * @param x [description]
-             * @param y [description]
+             * Checks if a point is within the bounds of a Polygon.
+             * @param polygon The Polygon to check against.
+             * @param x The X coordinate of the point to check.
+             * @param y The Y coordinate of the point to check.
              */
             static Contains(polygon: Phaser.Geom.Polygon, x: number, y: number): boolean;
 
@@ -37259,9 +37338,11 @@ declare namespace Phaser {
             static GetAABB<O extends Phaser.Geom.Rectangle>(polygon: Phaser.Geom.Polygon, out?: O): O;
 
             /**
-             * [description]
-             * @param polygon [description]
-             * @param output [description]
+             * Stores all of the points of a Polygon into a flat array of numbers following the sequence [ x,y, x,y, x,y ],
+             * i.e. each point of the Polygon, in the order it's defined, corresponds to two elements of the resultant
+             * array for the point's X and Y coordinate.
+             * @param polygon The Polygon whose points to export.
+             * @param output An array to which the points' coordinates should be appended.
              */
             static GetNumberArray<O extends number[]>(polygon: Phaser.Geom.Polygon, output?: O): O;
 
@@ -37303,6 +37384,7 @@ declare namespace Phaser {
              *
              * The points can be set from a variety of formats:
              *
+             * - A string containing paired values separated by a single space: `'40 0 40 20 100 20 100 80 40 80 40 100 0 50'`
              * - An array of Point objects: `[new Phaser.Point(x1, y1), ...]`
              * - An array of objects with public x/y properties: `[obj1, obj2, ...]`
              * - An array of paired numbers that represent point coordinates: `[x1,y1, x2,y2, ...]`
@@ -37346,10 +37428,10 @@ declare namespace Phaser {
         class Rectangle {
             /**
              *
-             * @param x [description] Default 0.
-             * @param y [description] Default 0.
-             * @param width [description] Default 0.
-             * @param height [description] Default 0.
+             * @param x The X coordinate of the top left corner of the Rectangle. Default 0.
+             * @param y The Y coordinate of the top left corner of the Rectangle. Default 0.
+             * @param width The width of the Rectangle. Default 0.
+             * @param height The height of the Rectangle. Default 0.
              */
             constructor(x?: number, y?: number, width?: number, height?: number);
 
@@ -37360,8 +37442,8 @@ declare namespace Phaser {
             static Area(rect: Phaser.Geom.Rectangle): number;
 
             /**
-             * [description]
-             * @param rect [description]
+             * Rounds a Rectangle's position up to the smallest integer greater than or equal to each current coordinate.
+             * @param rect The Rectangle to adjust.
              */
             static Ceil<O extends Phaser.Geom.Rectangle>(rect: O): O;
 
@@ -37372,16 +37454,16 @@ declare namespace Phaser {
             static CeilAll<O extends Phaser.Geom.Rectangle>(rect: O): O;
 
             /**
-             * [description]
-             * @param rect [description]
-             * @param x [description]
-             * @param y [description]
+             * Moves the top-left corner of a Rectangle so that its center is at the given coordinates.
+             * @param rect The Rectangle to be centered.
+             * @param x The X coordinate of the Rectangle's center.
+             * @param y The Y coordinate of the Rectangle's center.
              */
             static CenterOn<O extends Phaser.Geom.Rectangle>(rect: O, x: number, y: number): O;
 
             /**
-             * [description]
-             * @param source [description]
+             * Creates a new Rectangle which is identical to the given one.
+             * @param source The Rectangle to clone.
              */
             static Clone(source: Phaser.Geom.Rectangle): Phaser.Geom.Rectangle;
 
@@ -37450,15 +37532,15 @@ declare namespace Phaser {
             static Floor<O extends Phaser.Geom.Rectangle>(rect: O): O;
 
             /**
-             * [description]
-             * @param rect [description]
+             * Rounds a Rectangle's position and size down to the largest integer less than or equal to each current coordinate or dimension.
+             * @param rect The Rectangle to adjust.
              */
             static FloorAll<O extends Phaser.Geom.Rectangle>(rect: O): O;
 
             /**
-             * [description]
-             * @param points [description]
-             * @param out [description]
+             * Constructs new Rectangle or repositions and resizes an existing Rectangle so that all of the given points are on or within its bounds.
+             * @param points An array of points (either arrays with two elements corresponding to the X and Y coordinate or an object with public `x` and `y` properties) which should be surrounded by the Rectangle.
+             * @param out Optional Rectangle to adjust.
              */
             static FromPoints<O extends Phaser.Geom.Rectangle>(points: any[], out?: O): O;
 
@@ -37469,9 +37551,9 @@ declare namespace Phaser {
             static GetAspectRatio(rect: Phaser.Geom.Rectangle): number;
 
             /**
-             * [description]
-             * @param rect [description]
-             * @param out [description]
+             * Returns the center of a Rectangle as a Point.
+             * @param rect The Rectangle to get the center of.
+             * @param out Optional point-like object to update with the center coordinates.
              */
             static GetCenter<O extends Phaser.Geom.Point>(rect: Phaser.Geom.Rectangle, out?: O): O;
 
@@ -37484,11 +37566,11 @@ declare namespace Phaser {
             static GetPoint<O extends Phaser.Geom.Point>(rectangle: Phaser.Geom.Rectangle, position: number, out?: O): O;
 
             /**
-             * [description]
-             * @param rectangle [description]
+             * Return an array of points from the perimeter of the rectangle, each spaced out based on the quantity or step required.
+             * @param rectangle The Rectangle object to get the points from.
              * @param step [description]
              * @param quantity [description]
-             * @param out [description]
+             * @param out An optional array to store the points in.
              */
             static GetPoints<O extends Phaser.Geom.Point[]>(rectangle: Phaser.Geom.Rectangle, step: number, quantity: integer, out?: O): O;
 
@@ -37531,41 +37613,42 @@ declare namespace Phaser {
             static MarchingAnts<O extends Phaser.Geom.Point[]>(rect: Phaser.Geom.Rectangle, step: number, quantity: integer, out?: O): O;
 
             /**
-             * [description]
-             * @param target [description]
-             * @param points [description]
+             * Merges a Rectangle with a list of points by repositioning and/or resizing it such that all points are located on or within its bounds.
+             * @param target The Rectangle which should be merged.
+             * @param points An array of Points (or any object with public `x` and `y` properties) which should be merged with the Rectangle.
              */
             static MergePoints<O extends Phaser.Geom.Rectangle>(target: O, points: Phaser.Geom.Point[]): O;
 
             /**
-             * [description]
-             * @param target [description]
-             * @param source [description]
+             * Merges the source rectangle into the target rectangle and returns the target.
+             * Neither rectangle should have a negative width or height.
+             * @param target Target rectangle. Will be modified to include source rectangle.
+             * @param source Rectangle that will be merged into target rectangle.
              */
             static MergeRect<O extends Phaser.Geom.Rectangle>(target: O, source: Phaser.Geom.Rectangle): O;
 
             /**
-             * [description]
-             * @param target [description]
-             * @param x [description]
-             * @param y [description]
+             * Merges a Rectangle with a point by repositioning and/or resizing it so that the point is on or within its bounds.
+             * @param target The Rectangle which should be merged and modified.
+             * @param x The X coordinate of the point which should be merged.
+             * @param y The Y coordinate of the point which should be merged.
              */
             static MergeXY<O extends Phaser.Geom.Rectangle>(target: O, x: number, y: number): O;
 
             /**
-             * [description]
-             * @param rect [description]
-             * @param x [description]
-             * @param y [description]
+             * Nudges (translates) the top left corner of a Rectangle by a given offset.
+             * @param rect The Rectangle to adjust.
+             * @param x The distance to move the Rectangle horizontally.
+             * @param y The distance to move the Rectangle vertically.
              */
             static Offset<O extends Phaser.Geom.Rectangle>(rect: O, x: number, y: number): O;
 
             /**
-             * [description]
-             * @param rect [description]
-             * @param point [description]
+             * Nudges (translates) the top-left corner of a Rectangle by the coordinates of a point (translation vector).
+             * @param rect The Rectangle to adjust.
+             * @param point The point whose coordinates should be used as an offset.
              */
-            static OffsetPoint<O extends Phaser.Geom.Rectangle>(rect: O, point: Phaser.Geom.Point): O;
+            static OffsetPoint<O extends Phaser.Geom.Rectangle>(rect: O, point: Phaser.Geom.Point | Phaser.Math.Vector2): O;
 
             /**
              * [description]
@@ -37589,9 +37672,9 @@ declare namespace Phaser {
             static PerimeterPoint<O extends Phaser.Geom.Point>(rectangle: Phaser.Geom.Rectangle, angle: integer, out?: O): O;
 
             /**
-             * [description]
-             * @param rect [description]
-             * @param out [description]
+             * Returns a random point within a Rectangle.
+             * @param rect The Rectangle to return a point from.
+             * @param out The object to update with the point's coordinates.
              */
             static Random<O extends Phaser.Geom.Point>(rect: Phaser.Geom.Rectangle, out: O): O;
 
@@ -37605,83 +37688,87 @@ declare namespace Phaser {
             static RandomOutside<O extends Phaser.Geom.Point>(outer: Phaser.Geom.Rectangle, inner: Phaser.Geom.Rectangle, out?: O): O;
 
             /**
-             * [description]
+             * The X coordinate of the top left corner of the Rectangle.
              */
             x: number;
 
             /**
-             * [description]
+             * The Y coordinate of the top left corner of the Rectangle.
              */
             y: number;
 
             /**
-             * [description]
+             * The width of the Rectangle, i.e. the distance between its left side (defined by `x`) and its right side.
              */
             width: number;
 
             /**
-             * [description]
+             * The height of the Rectangle, i.e. the distance between its top side (defined by `y`) and its bottom side.
              */
             height: number;
 
             /**
-             * [description]
-             * @param x [description]
-             * @param y [description]
+             * Checks if the given point is inside the Rectangle's bounds.
+             * @param x The X coordinate of the point to check.
+             * @param y The Y coordinate of the point to check.
              */
             contains(x: number, y: number): boolean;
 
             /**
-             * [description]
-             * @param position [description]
-             * @param output [description]
+             * Calculates the coordinates of a point at a certain `position` on the Rectangle's perimeter.
+             *
+             * The `position` is a fraction between 0 and 1 which defines how far into the perimeter the point is.
+             *
+             * A value of 0 or 1 returns the point at the top left corner of the rectangle, while a value of 0.5 returns the point at the bottom right corner of the rectangle. Values between 0 and 0.5 are on the top or the right side and values between 0.5 and 1 are on the bottom or the left side.
+             * @param position The normalized distance into the Rectangle's perimeter to return.
+             * @param output An object to update with the `x` and `y` coordinates of the point.
              */
             getPoint<O extends Phaser.Geom.Point>(position: number, output?: O): O;
 
             /**
-             * [description]
-             * @param quantity [description]
-             * @param stepRate [description]
-             * @param output [description]
+             * Returns an array of points from the perimeter of the Rectangle, each spaced out based on the quantity or step required.
+             * @param quantity The number of points to return. Set to `false` or 0 to return an arbitrary number of points (`perimeter / stepRate`) evenly spaced around the Rectangle based on the `stepRate`.
+             * @param stepRate If `quantity` is 0, determines the normalized distance between each returned point.
+             * @param output An array to which to append the points.
              */
             getPoints<O extends Phaser.Geom.Point[]>(quantity: integer, stepRate?: number, output?: O): O;
 
             /**
-             * [description]
-             * @param point [description]
+             * Returns a random point within the Rectangle's bounds.
+             * @param point The object in which to store the `x` and `y` coordinates of the point.
              */
             getRandomPoint<O extends Phaser.Geom.Point>(point?: O): O;
 
             /**
-             * [description]
-             * @param x [description]
-             * @param y [description]
-             * @param width [description]
-             * @param height [description]
+             * Sets the position, width, and height of the Rectangle.
+             * @param x The X coordinate of the top left corner of the Rectangle.
+             * @param y The Y coordinate of the top left corner of the Rectangle.
+             * @param width The width of the Rectangle.
+             * @param height The height of the Rectangle.
              */
             setTo(x: number, y: number, width: number, height: number): Phaser.Geom.Rectangle;
 
             /**
-             * [description]
+             * Resets the position, width, and height of the Rectangle to 0.
              */
             setEmpty(): Phaser.Geom.Rectangle;
 
             /**
-             * [description]
-             * @param x [description]
-             * @param y [description] Default x.
+             * Sets the position of the Rectangle.
+             * @param x The X coordinate of the top left corner of the Rectangle.
+             * @param y The Y coordinate of the top left corner of the Rectangle. Default x.
              */
             setPosition(x: number, y?: number): Phaser.Geom.Rectangle;
 
             /**
-             * [description]
-             * @param width [description]
-             * @param height [description] Default width.
+             * Sets the width and height of the Rectangle.
+             * @param width The width to set the Rectangle to.
+             * @param height The height to set the Rectangle to. Default width.
              */
             setSize(width: number, height?: number): Phaser.Geom.Rectangle;
 
             /**
-             * [description]
+             * Determines if the Rectangle is empty. A Rectangle is empty if its width or height is less than or equal to 0.
              */
             isEmpty(): boolean;
 
@@ -37710,32 +37797,36 @@ declare namespace Phaser {
             getLineD<O extends Phaser.Geom.Line>(line?: O): O;
 
             /**
-             * [description]
+             * The x coordinate of the left of the Rectangle.
+             * Changing the left property of a Rectangle object has no effect on the y and height properties. However it does affect the width property, whereas changing the x value does not affect the width property.
              */
             left: number;
 
             /**
-             * [description]
+             * The sum of the x and width properties.
+             * Changing the right property of a Rectangle object has no effect on the x, y and height properties, however it does affect the width property.
              */
             right: number;
 
             /**
-             * [description]
+             * The y coordinate of the top of the Rectangle. Changing the top property of a Rectangle object has no effect on the x and width properties.
+             * However it does affect the height property, whereas changing the y value does not affect the height property.
              */
             top: number;
 
             /**
-             * [description]
+             * The sum of the y and height properties.
+             * Changing the bottom property of a Rectangle object has no effect on the x, y and width properties, but does change the height property.
              */
             bottom: number;
 
             /**
-             * [description]
+             * The x coordinate of the center of the Rectangle.
              */
             centerX: number;
 
             /**
-             * [description]
+             * The y coordinate of the center of the Rectangle.
              */
             centerY: number;
 
@@ -37748,10 +37839,10 @@ declare namespace Phaser {
             static Scale<O extends Phaser.Geom.Rectangle>(rect: O, x: number, y: number): O;
 
             /**
-             * [description]
-             * @param rectA [description]
-             * @param rectB [description]
-             * @param out [description]
+             * Creates a new Rectangle or repositions and/or resizes an existing Rectangle so that it encompasses the two given Rectangles, i.e. calculates their union.
+             * @param rectA The first Rectangle to use.
+             * @param rectB The second Rectangle to use.
+             * @param out The Rectangle to store the union in.
              */
             static Union<O extends Phaser.Geom.Rectangle>(rectA: Phaser.Geom.Rectangle, rectB: Phaser.Geom.Rectangle, out?: O): O;
         }
@@ -37764,12 +37855,12 @@ declare namespace Phaser {
         class Triangle {
             /**
              *
-             * @param x1 [description] Default 0.
-             * @param y1 [description] Default 0.
-             * @param x2 [description] Default 0.
-             * @param y2 [description] Default 0.
-             * @param x3 [description] Default 0.
-             * @param y3 [description] Default 0.
+             * @param x1 `x` coordinate of the first point. Default 0.
+             * @param y1 `y` coordinate of the first point. Default 0.
+             * @param x2 `x` coordinate of the second point. Default 0.
+             * @param y2 `y` coordinate of the second point. Default 0.
+             * @param x3 `x` coordinate of the third point. Default 0.
+             * @param y3 `y` coordinate of the third point. Default 0.
              */
             constructor(x1?: number, y1?: number, x2?: number, y2?: number, x3?: number, y3?: number);
 
@@ -37780,10 +37871,11 @@ declare namespace Phaser {
             static Area(triangle: Phaser.Geom.Triangle): number;
 
             /**
-             * [description]
-             * @param x [description]
-             * @param y [description]
-             * @param length [description]
+             * Builds an equilateral triangle. In the equilateral triangle, all the sides are the same length (congruent) and all the angles are the same size (congruent).
+             * The x/y specifies the top-middle of the triangle (x1/y1) and length is the length of each side.
+             * @param x x coordinate of the top point of the triangle.
+             * @param y y coordinate of the top point of the triangle.
+             * @param length Length of each side of the triangle.
              */
             static BuildEquilateral(x: number, y: number, length: number): Phaser.Geom.Triangle;
 
@@ -37804,20 +37896,20 @@ declare namespace Phaser {
             ): O;
 
             /**
-             * [description]
-             * @param x [description]
-             * @param y [description]
-             * @param width [description]
-             * @param height [description]
+             * Builds a right triangle, i.e. one which has a 90-degree angle and two acute angles.
+             * @param x The X coordinate of the right angle, which will also be the first X coordinate of the constructed Triangle.
+             * @param y The Y coordinate of the right angle, which will also be the first Y coordinate of the constructed Triangle.
+             * @param width The length of the side which is to the left or to the right of the right angle.
+             * @param height The length of the side which is above or below the right angle.
              */
             static BuildRight(x: number, y: number, width: number, height: number): Phaser.Geom.Triangle;
 
             /**
-             * [description]
-             * @param triangle [description]
-             * @param x [description]
-             * @param y [description]
-             * @param centerFunc [description]
+             * Positions the Triangle so that it is centered on the given coordinates.
+             * @param triangle The triangle to be positioned.
+             * @param x The horizontal coordinate to center on.
+             * @param y The vertical coordinate to center on.
+             * @param centerFunc The function used to center the triangle. Defaults to Centroid centering.
              */
             static CenterOn<O extends Phaser.Geom.Triangle>(triangle: O, x: number, y: number, centerFunc?: CenterFunction): O;
 
@@ -37861,11 +37953,12 @@ declare namespace Phaser {
             static Contains(triangle: Phaser.Geom.Triangle, x: number, y: number): boolean;
 
             /**
-             * [description]
-             * @param triangle [description]
-             * @param points [description]
-             * @param returnFirst [description]
-             * @param out [description]
+             * Filters an array of point-like objects to only those contained within a triangle.
+             * If `returnFirst` is true, will return an array containing only the first point in the provided array that is within the triangle (or an empty array if there are no such points).
+             * @param triangle The triangle that the points are being checked in.
+             * @param points An array of point-like objects (objects that have an `x` and `y` property)
+             * @param returnFirst If `true`, return an array containing only the first point found that is within the triangle. Default false.
+             * @param out If provided, the points that are within the triangle will be appended to this array instead of being added to a new array. If `returnFirst` is true, only the first point found within the triangle will be appended. This array will also be returned by this function.
              */
             static ContainsArray(
                 triangle: Phaser.Geom.Triangle,
@@ -37896,9 +37989,9 @@ declare namespace Phaser {
             static Decompose(triangle: Phaser.Geom.Triangle, out?: any[]): any[];
 
             /**
-             * [description]
-             * @param triangle [description]
-             * @param toCompare [description]
+             * Returns true if two triangles have the same coordinates.
+             * @param triangle The first triangle to check.
+             * @param toCompare The second triangle to check.
              */
             static Equals(triangle: Phaser.Geom.Triangle, toCompare: Phaser.Geom.Triangle): boolean;
 
@@ -37911,11 +38004,11 @@ declare namespace Phaser {
             static GetPoint<O extends Phaser.Geom.Point>(triangle: Phaser.Geom.Triangle, position: number, out?: O): O;
 
             /**
-             * [description]
-             * @param triangle [description]
-             * @param quantity [description]
-             * @param stepRate [description]
-             * @param out [description]
+             * Returns an array of evenly spaced points on the perimeter of a Triangle.
+             * @param triangle The Triangle to get the points from.
+             * @param quantity The number of evenly spaced points to return. Set to 0 to return an arbitrary number of points based on the `stepRate`.
+             * @param stepRate If `quantity` is 0, the distance between each returned point.
+             * @param out An array to which the points should be appended.
              */
             static GetPoints<O extends Phaser.Geom.Point>(triangle: Phaser.Geom.Triangle, quantity: integer, stepRate: number, out?: O): O;
 
@@ -37935,7 +38028,7 @@ declare namespace Phaser {
             static Offset<O extends Phaser.Geom.Triangle>(triangle: O, x: number, y: number): O;
 
             /**
-             * [description]
+             * Gets the length of the perimeter of the given triangle.
              * @param triangle [description]
              */
             static Perimeter(triangle: Phaser.Geom.Triangle): number;
@@ -37972,71 +38065,71 @@ declare namespace Phaser {
             static RotateAroundXY<O extends Phaser.Geom.Triangle>(triangle: O, x: number, y: number, angle: number): O;
 
             /**
-             * [description]
+             * `x` coordinate of the first point.
              */
             x1: number;
 
             /**
-             * [description]
+             * `y` coordinate of the first point.
              */
             y1: number;
 
             /**
-             * [description]
+             * `x` coordinate of the second point.
              */
             x2: number;
 
             /**
-             * [description]
+             * `y` coordinate of the second point.
              */
             y2: number;
 
             /**
-             * [description]
+             * `x` coordinate of the third point.
              */
             x3: number;
 
             /**
-             * [description]
+             * `y` coordinate of the third point.
              */
             y3: number;
 
             /**
-             * [description]
-             * @param x [description]
-             * @param y [description]
+             * Checks whether a given points lies within the triangle.
+             * @param x The x coordinate of the point to check.
+             * @param y The y coordinate of the point to check.
              */
             contains(x: number, y: number): boolean;
 
             /**
-             * [description]
-             * @param position [description]
-             * @param output [description]
+             * Returns a specific point  on the triangle.
+             * @param position Position as float within `0` and `1`. `0` equals the first point.
+             * @param output Optional Point, or point-like object, that the calculated point will be written to.
              */
             getPoint<O extends Phaser.Geom.Point>(position: number, output?: O): O;
 
             /**
-             * [description]
-             * @param quantity [description]
-             * @param stepRate [description]
-             * @param output [description]
+             * Calculates a list of evenly distributed points on the triangle. It is either possible to pass an amount of points to be generated (`quantity`) or the distance between two points (`stepRate`).
+             * @param quantity Number of points to be generated. Can be falsey when `stepRate` should be used. All points have the same distance along the triangle.
+             * @param stepRate Distance between two points. Will only be used when `quantity` is falsey.
+             * @param output Optional Array for writing the calculated points into. Otherwise a new array will be created.
              */
             getPoints<O extends Phaser.Geom.Point[]>(quantity: integer, stepRate?: number, output?: O): O;
 
             /**
-             * [description]
-             * @param point [description]
+             * Returns a random point along the triangle.
+             * @param point Optional `Point` that should be modified. Otherwise a new one will be created.
              */
             getRandomPoint<O extends Phaser.Geom.Point>(point?: O): O;
 
             /**
-             * [description]
-             * @param x1 [description] Default 0.
-             * @param y1 [description] Default 0.
-             * @param x2 [description] Default 0.
-             * @param y2 [description] Default 0.
-             * @param x3 [description] Default 0.
-             * @param y3 [description] Default 0.
+             * Sets all three points of the triangle. Leaving out any coordinate sets it to be `0`.
+             * @param x1 `x` coordinate of the first point. Default 0.
+             * @param y1 `y` coordinate of the first point. Default 0.
+             * @param x2 `x` coordinate of the second point. Default 0.
+             * @param y2 `y` coordinate of the second point. Default 0.
+             * @param x3 `x` coordinate of the third point. Default 0.
+             * @param y3 `y` coordinate of the third point. Default 0.
              */
             setTo(x1?: number, y1?: number, x2?: number, y2?: number, x3?: number, y3?: number): Phaser.Geom.Triangle;
 
@@ -38059,22 +38152,22 @@ declare namespace Phaser {
             getLineC<O extends Phaser.Geom.Line>(line?: O): O;
 
             /**
-             * [description]
+             * Left most X coordinate of the triangle. Setting it moves the triangle on the X axis accordingly.
              */
             left: number;
 
             /**
-             * [description]
+             * Right most X coordinate of the triangle. Setting it moves the triangle on the X axis accordingly.
              */
             right: number;
 
             /**
-             * [description]
+             * Top most Y coordinate of the triangle. Setting it moves the triangle on the Y axis accordingly.
              */
             top: number;
 
             /**
-             * [description]
+             * Bottom most Y coordinate of the triangle. Setting it moves the triangle on the Y axis accordingly.
              */
             bottom: number;
         }
@@ -46715,9 +46808,9 @@ declare namespace Phaser {
             clone(): Phaser.Math.Vector3;
 
             /**
-             * [description]
-             * @param a [description]
-             * @param b [description]
+             * Calculate the cross (vector) product of two given Vectors.
+             * @param a The first Vector to multiply.
+             * @param b The second Vector to multiply.
              */
             crossVectors(a: Phaser.Math.Vector3, b: Phaser.Math.Vector3): Phaser.Math.Vector3;
 
@@ -46818,8 +46911,8 @@ declare namespace Phaser {
             dot(v: Phaser.Math.Vector3): number;
 
             /**
-             * [description]
-             * @param v [description]
+             * Calculate the cross (vector) product of this Vector (which will be modified) and the given Vector.
+             * @param v The Vector to cross product with.
              */
             cross(v: Phaser.Math.Vector3): Phaser.Math.Vector3;
 
@@ -46933,7 +47026,7 @@ declare namespace Phaser {
              * Check whether this Vector is equal to a given Vector.
              *
              * Performs a strict quality check against each Vector's components.
-             * @param v [description]
+             * @param v The vector to check equality with.
              */
             equals(v: Phaser.Math.Vector4): boolean;
 
@@ -47014,7 +47107,7 @@ declare namespace Phaser {
 
             /**
              * Calculate the distance between this Vector and the given Vector.
-             * @param v [description]
+             * @param v The Vector to calculate the distance to.
              */
             distance(v: Phaser.Math.Vector2 | Phaser.Math.Vector3 | Phaser.Math.Vector4): number;
 
@@ -47938,20 +48031,20 @@ declare namespace Phaser {
                 setVisible(value: boolean): this;
 
                 /**
-                 * [description]
+                 * Sets the body's horizontal and vertical acceleration. If the vertical acceleration value is not provided, the vertical acceleration is set to the same value as the horizontal acceleration.
                  * @param x The horizontal acceleration
                  * @param y The vertical acceleration Default x.
                  */
                 setAcceleration(x: number, y?: number): this;
 
                 /**
-                 * [description]
+                 * Sets the body's horizontal acceleration.
                  * @param value The horizontal acceleration
                  */
                 setAccelerationX(value: number): this;
 
                 /**
-                 * [description]
+                 * Sets the body's vertical acceleration.
                  * @param value The vertical acceleration
                  */
                 setAccelerationY(value: number): this;
@@ -48054,24 +48147,24 @@ declare namespace Phaser {
                 setDamping(value: boolean): this;
 
                 /**
-                 * [description]
-                 * @param reset [description]
-                 * @param x [description]
-                 * @param y [description]
-                 * @param enableGameObject [description]
-                 * @param showGameObject [description]
+                 * Enables this Game Object's Body.
+                 * @param reset Also reset the Body and place it at (x, y).
+                 * @param x The horizontal position to place the Game Object and Body.
+                 * @param y The horizontal position to place the Game Object and Body.
+                 * @param enableGameObject Also activate this Game Object.
+                 * @param showGameObject Also show this Game Object.
                  */
                 enableBody(reset: boolean, x: number, y: number, enableGameObject: boolean, showGameObject: boolean): this;
 
                 /**
-                 * [description]
-                 * @param disableGameObject [description] Default false.
-                 * @param hideGameObject [description] Default false.
+                 * Stops and disables this Game Object's Body.
+                 * @param disableGameObject Also deactivate this Game Object. Default false.
+                 * @param hideGameObject Also hide this Game Object. Default false.
                  */
                 disableBody(disableGameObject?: boolean, hideGameObject?: boolean): this;
 
                 /**
-                 * Syncs the Bodies position and size with its parent Game Object.
+                 * Syncs the Body's position and size with its parent Game Object.
                  * You don't need to call this for Dynamic Bodies, as it happens automatically.
                  * But for Static bodies it's a useful way of modifying the position of a Static Body
                  * in the Physics World, based on its Game Object.
@@ -48079,40 +48172,45 @@ declare namespace Phaser {
                 refreshBody(): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving.
+                 * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                 * @param x The amount of horizontal friction to apply.
+                 * @param y The amount of vertical friction to apply. Default x.
                  */
                 setFriction(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving horizontally in the X axis.
+                 * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                 * @param x The amount of friction to apply.
                  */
                 setFrictionX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving vertically in the Y axis.
+                 * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                 * @param x The amount of friction to apply.
                  */
-                setFrictionY(y: number): this;
+                setFrictionY(x: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Set the X and Y values of the gravitational pull to act upon this Arcade Physics Game Object. Values can be positive or negative. Larger values result in a stronger effect.
+                 *
+                 * If only one value is provided, this value will be used for both the X and Y axis.
+                 * @param x The gravitational force to be applied to the X-axis.
+                 * @param y The gravitational force to be applied to the Y-axis. If this is not specified, the X value will be used. Default x.
                  */
                 setGravity(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Set the gravitational force to be applied to the X axis. Value can be positive or negative. Larger values result in a stronger effect.
+                 * @param x The gravitational force to be applied to the X-axis.
                  */
                 setGravityX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Set the gravitational force to be applied to the Y axis. Value can be positive or negative. Larger values result in a stronger effect.
+                 * @param y The gravitational force to be applied to the Y-axis.
                  */
                 setGravityY(y: number): this;
 
@@ -48129,17 +48227,18 @@ declare namespace Phaser {
                 setMass(value: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the body offset. This allows you to adjust the difference between the center of the body
+                 * and the x and y coordinates of the parent Game Object.
+                 * @param x The amount to offset the body from the parent Game Object along the x-axis.
+                 * @param y The amount to offset the body from the parent Game Object along the y-axis. Defaults to the value given for the x-axis. Default x.
                  */
                 setOffset(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param radius [description]
-                 * @param offsetX [description]
-                 * @param offsetY [description]
+                 * Sets this physics body to use a circle for collision instead of a rectangle.
+                 * @param radius The radius of the physics body, in pixels.
+                 * @param offsetX The amount to offset the body from the parent Game Object along the x-axis.
+                 * @param offsetY The amount to offset the body from the parent Game Object along the y-axis.
                  */
                 setCircle(radius: number, offsetX?: number, offsetY?: number): this;
 
@@ -48171,97 +48270,87 @@ declare namespace Phaser {
             }
 
             /**
-             * [description]
+             * The Arcade Physics Plugin belongs to a Scene and sets up and manages the Scene's physics simulation.
+             * It also holds some useful methods for moving and rotating Arcade Physics Bodies.
+             *
+             * You can access it from within a Scene using `this.physics`.
              */
             class ArcadePhysics {
                 /**
                  *
-                 * @param scene [description]
+                 * @param scene The Scene that this Plugin belongs to.
                  */
                 constructor(scene: Phaser.Scene);
 
                 /**
-                 * [description]
+                 * The Scene that this Plugin belongs to.
                  */
                 scene: Phaser.Scene;
 
                 /**
-                 * [description]
+                 * The Scene's Systems.
                  */
                 systems: Phaser.Scenes.Systems;
 
                 /**
-                 * [description]
+                 * A configuration object. Union of the `physics.arcade.*` properties of the GameConfig and SceneConfig objects.
                  */
                 config: object;
 
                 /**
-                 * [description]
+                 * The physics simulation.
                  */
                 world: Phaser.Physics.Arcade.World;
 
                 /**
-                 * [description]
+                 * An object holding the Arcade Physics factory methods.
                  */
                 add: Phaser.Physics.Arcade.Factory;
 
                 /**
-                 * [description]
+                 * Creates the physics configuration for the current Scene.
                  */
                 getConfig(): object;
 
                 /**
-                 * Checks for overlaps between two Game Objects. The objects can be any Game Object that have an Arcade Physics Body.
-                 *
-                 * Unlike {@link #collide} the objects are NOT automatically separated or have any physics applied, they merely test for overlap results.
-                 *
-                 * Both the first and second parameter can be arrays of objects, of differing types.
-                 * If two arrays are passed, the contents of the first parameter will be tested against all contents of the 2nd parameter.
-                 *
-                 * ##### Tilemaps
-                 *
-                 * Any overlapping tiles, including blank/null tiles, will give a positive result. Tiles marked via {@link Phaser.Tilemap#setCollision} (and similar methods) have no special status, and callbacks added via {@link Phaser.Tilemap#setTileIndexCallback} or {@link Phaser.Tilemap#setTileLocationCallback} are not invoked. So calling this method without any callbacks isn't very useful.
-                 *
-                 * If you're interested only in whether an object overlaps a certain tile or class of tiles, filter the tiles with `processCallback` and then use the result returned by this method. Blank/null tiles can be excluded by their {@link Phaser.Tile#index index} (-1).
-                 *
-                 * If you want to take action on certain overlaps, examine the tiles in `collideCallback` and then handle as you like.
-                 * @param object1 The first object or array of objects to check. Can be any Game Object that has an Arcade Physics Body.
-                 * @param object2 The second object or array of objects to check. Can be any Game Object that has an Arcade Physics Body.
-                 * @param overlapCallback An optional callback function that is called if the objects overlap. The two objects will be passed to this function in the same order in which you specified them, unless you are checking Group vs. Sprite, in which case Sprite will always be the first parameter. Default null.
-                 * @param processCallback A callback function that lets you perform additional checks against the two objects if they overlap. If this is set then `overlapCallback` will only be called if this callback returns `true`. Default null.
+                 * Tests if Game Objects overlap. See {@link Phaser.Physics.Arcade.World#overlap}
+                 * @param object1 The first object or array of objects to check.
+                 * @param object2 The second object or array of objects to check, or `undefined`.
+                 * @param collideCallback An optional callback function that is called if the objects collide.
+                 * @param processCallback An optional callback function that lets you perform additional checks against the two objects if they overlap. If this is set then `collideCallback` will only be called if this callback returns `true`.
                  * @param callbackContext The context in which to run the callbacks.
                  */
                 overlap(
-                    object1: Phaser.GameObjects.GameObject | any[],
-                    object2: Phaser.GameObjects.GameObject | any[],
-                    overlapCallback?: ArcadePhysicsCallback,
-                    processCallback?: ArcadePhysicsCallback,
-                    callbackContext?: any
-                ): boolean;
-
-                /**
-                 * [description]
-                 * @param object1 The first object or array of objects to check. Can be any Game Object that has an Arcade Physics Body.
-                 * @param object2 The second object or array of objects to check. Can be any Game Object that has an Arcade Physics Body.
-                 * @param collideCallback An optional callback function that is called if the objects collide. The two objects will be passed to this function in the same order in which you specified them, unless you are checking Group vs. Sprite, in which case Sprite will always be the first parameter. Default null.
-                 * @param processCallback A callback function that lets you perform additional checks against the two objects if they collide. If this is set then `collideCallback` will only be called if this callback returns `true`. Default null.
-                 * @param callbackContext The context in which to run the callbacks.
-                 */
-                collide(
-                    object1: Phaser.GameObjects.GameObject | any[],
-                    object2: Phaser.GameObjects.GameObject | any[],
+                    object1: ArcadeColliderType,
+                    object2?: ArcadeColliderType,
                     collideCallback?: ArcadePhysicsCallback,
                     processCallback?: ArcadePhysicsCallback,
                     callbackContext?: any
                 ): boolean;
 
                 /**
-                 * [description]
+                 * Tests if Game Objects overlap and separates them (if possible). See {@link Phaser.Physics.Arcade.World#collide}.
+                 * @param object1 The first object or array of objects to check.
+                 * @param object2 The second object or array of objects to check, or `undefined`.
+                 * @param collideCallback An optional callback function that is called if the objects collide.
+                 * @param processCallback An optional callback function that lets you perform additional checks against the two objects if they collide. If this is set then `collideCallback` will only be called if this callback returns `true`.
+                 * @param callbackContext The context in which to run the callbacks.
+                 */
+                collide(
+                    object1: ArcadeColliderType,
+                    object2?: ArcadeColliderType,
+                    collideCallback?: ArcadePhysicsCallback,
+                    processCallback?: ArcadePhysicsCallback,
+                    callbackContext?: any
+                ): boolean;
+
+                /**
+                 * Pauses the simulation.
                  */
                 pause(): Phaser.Physics.Arcade.World;
 
                 /**
-                 * [description]
+                 * Resumes the simulation (if paused).
                  */
                 resume(): Phaser.Physics.Arcade.World;
 
@@ -49256,20 +49345,20 @@ declare namespace Phaser {
                 setVisible(value: boolean): this;
 
                 /**
-                 * [description]
+                 * Sets the body's horizontal and vertical acceleration. If the vertical acceleration value is not provided, the vertical acceleration is set to the same value as the horizontal acceleration.
                  * @param x The horizontal acceleration
                  * @param y The vertical acceleration Default x.
                  */
                 setAcceleration(x: number, y?: number): this;
 
                 /**
-                 * [description]
+                 * Sets the body's horizontal acceleration.
                  * @param value The horizontal acceleration
                  */
                 setAccelerationX(value: number): this;
 
                 /**
-                 * [description]
+                 * Sets the body's vertical acceleration.
                  * @param value The vertical acceleration
                  */
                 setAccelerationY(value: number): this;
@@ -49372,24 +49461,24 @@ declare namespace Phaser {
                 setDamping(value: boolean): this;
 
                 /**
-                 * [description]
-                 * @param reset [description]
-                 * @param x [description]
-                 * @param y [description]
-                 * @param enableGameObject [description]
-                 * @param showGameObject [description]
+                 * Enables this Game Object's Body.
+                 * @param reset Also reset the Body and place it at (x, y).
+                 * @param x The horizontal position to place the Game Object and Body.
+                 * @param y The horizontal position to place the Game Object and Body.
+                 * @param enableGameObject Also activate this Game Object.
+                 * @param showGameObject Also show this Game Object.
                  */
                 enableBody(reset: boolean, x: number, y: number, enableGameObject: boolean, showGameObject: boolean): this;
 
                 /**
-                 * [description]
-                 * @param disableGameObject [description] Default false.
-                 * @param hideGameObject [description] Default false.
+                 * Stops and disables this Game Object's Body.
+                 * @param disableGameObject Also deactivate this Game Object. Default false.
+                 * @param hideGameObject Also hide this Game Object. Default false.
                  */
                 disableBody(disableGameObject?: boolean, hideGameObject?: boolean): this;
 
                 /**
-                 * Syncs the Bodies position and size with its parent Game Object.
+                 * Syncs the Body's position and size with its parent Game Object.
                  * You don't need to call this for Dynamic Bodies, as it happens automatically.
                  * But for Static bodies it's a useful way of modifying the position of a Static Body
                  * in the Physics World, based on its Game Object.
@@ -49397,40 +49486,45 @@ declare namespace Phaser {
                 refreshBody(): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving.
+                 * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                 * @param x The amount of horizontal friction to apply.
+                 * @param y The amount of vertical friction to apply. Default x.
                  */
                 setFriction(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving horizontally in the X axis.
+                 * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                 * @param x The amount of friction to apply.
                  */
                 setFrictionX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving vertically in the Y axis.
+                 * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                 * @param x The amount of friction to apply.
                  */
-                setFrictionY(y: number): this;
+                setFrictionY(x: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Set the X and Y values of the gravitational pull to act upon this Arcade Physics Game Object. Values can be positive or negative. Larger values result in a stronger effect.
+                 *
+                 * If only one value is provided, this value will be used for both the X and Y axis.
+                 * @param x The gravitational force to be applied to the X-axis.
+                 * @param y The gravitational force to be applied to the Y-axis. If this is not specified, the X value will be used. Default x.
                  */
                 setGravity(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Set the gravitational force to be applied to the X axis. Value can be positive or negative. Larger values result in a stronger effect.
+                 * @param x The gravitational force to be applied to the X-axis.
                  */
                 setGravityX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Set the gravitational force to be applied to the Y axis. Value can be positive or negative. Larger values result in a stronger effect.
+                 * @param y The gravitational force to be applied to the Y-axis.
                  */
                 setGravityY(y: number): this;
 
@@ -49447,17 +49541,18 @@ declare namespace Phaser {
                 setMass(value: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the body offset. This allows you to adjust the difference between the center of the body
+                 * and the x and y coordinates of the parent Game Object.
+                 * @param x The amount to offset the body from the parent Game Object along the x-axis.
+                 * @param y The amount to offset the body from the parent Game Object along the y-axis. Defaults to the value given for the x-axis. Default x.
                  */
                 setOffset(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param radius [description]
-                 * @param offsetX [description]
-                 * @param offsetY [description]
+                 * Sets this physics body to use a circle for collision instead of a rectangle.
+                 * @param radius The radius of the physics body, in pixels.
+                 * @param offsetX The amount to offset the body from the parent Game Object along the x-axis.
+                 * @param offsetY The amount to offset the body from the parent Game Object along the y-axis.
                  */
                 setCircle(radius: number, offsetX?: number, offsetY?: number): this;
 
@@ -49490,6 +49585,8 @@ declare namespace Phaser {
 
             /**
              * A Dynamic Arcade Body.
+             *
+             * Its static counterpart is {@link Phaser.Physics.Arcade.StaticBody}.
              */
             class Body {
                 /**
@@ -49540,8 +49637,8 @@ declare namespace Phaser {
                 isCircle: boolean;
 
                 /**
-                 * The unscaled radius of this Body's boundary (if circular), as set by setCircle, in source pixels.
-                 * The true radius (if circular) is equal to halfWidth.
+                 * If this Body is circular, this is the unscaled radius of the Body's boundary, as set by setCircle(), in source pixels.
+                 * The true radius is equal to `halfWidth`.
                  */
                 radius: number;
 
@@ -49561,12 +49658,12 @@ declare namespace Phaser {
                 prev: Phaser.Math.Vector2;
 
                 /**
-                 * Whether this Body's rotation is affected by its angular acceleration and velocity.
+                 * Whether this Body's `rotation` is affected by its angular acceleration and angular velocity.
                  */
                 allowRotation: boolean;
 
                 /**
-                 * This body's rotation, in degrees, based on its angular acceleration and velocity.
+                 * This body's rotation, in degrees, based on its angular acceleration and angular velocity.
                  * The Body's rotation controls the `angle` of its Game Object.
                  * It doesn't rotate the Body's boundary, which is always an axis-aligned rectangle or a circle.
                  */
@@ -49578,47 +49675,52 @@ declare namespace Phaser {
                 preRotation: number;
 
                 /**
-                 * The width of the Body's boundary. If circular, this is also the Body's diameter.
+                 * The width of the Body's boundary, in pixels.
+                 * If the Body is circular, this is also the Body's diameter.
                  */
                 width: number;
 
                 /**
-                 * The height of the Body's boundary. If circular, this is also the Body's diameter.
+                 * The height of the Body's boundary, in pixels.
+                 * If the Body is circular, this is also the Body's diameter.
                  */
                 height: number;
 
                 /**
-                 * The unscaled width of the Body, in source pixels. The default is the width of the Body's Game Object's texture frame.
+                 * The unscaled width of the Body, in source pixels, as set by setSize().
+                 * The default is the width of the Body's Game Object's texture frame.
                  */
                 sourceWidth: number;
 
                 /**
-                 * The unscaled height of the Body, in source pixels. The default is the height of the Body's Game Object's texture frame.
+                 * The unscaled height of the Body, in source pixels, as set by setSize().
+                 * The default is the height of the Body's Game Object's texture frame.
                  */
                 sourceHeight: number;
 
                 /**
-                 * Half the Body's width.
+                 * Half the Body's width, in pixels.
                  */
                 halfWidth: number;
 
                 /**
-                 * Half the Body's height.
+                 * Half the Body's height, in pixels.
                  */
                 halfHeight: number;
 
                 /**
-                 * The center of the Body's boundary. The midpoint of its `position` (top-left corner) and its bottom-right corner.
+                 * The center of the Body's boundary.
+                 * The midpoint of its `position` (top-left corner) and its bottom-right corner.
                  */
                 center: Phaser.Math.Vector2;
 
                 /**
-                 * The Body's change in position, in pixels per second.
+                 * The Body's velocity, in pixels per second.
                  */
                 velocity: Phaser.Math.Vector2;
 
                 /**
-                 * The Body's calculated change in position, in pixels, at the last step.
+                 * The Body's calculated velocity, in pixels per second, at the last step.
                  */
                 readonly newVelocity: Phaser.Math.Vector2;
 
@@ -49633,17 +49735,25 @@ declare namespace Phaser {
                 acceleration: Phaser.Math.Vector2;
 
                 /**
-                 * Whether this Body's velocity is affected by its drag vector.
+                 * Whether this Body's velocity is affected by its `drag`.
                  */
                 allowDrag: boolean;
 
                 /**
                  * Absolute loss of velocity due to movement, in pixels per second squared.
+                 * The x and y components are applied separately.
+                 *
+                 * When `useDamping` is true, this is 1 minus the damping factor.
+                 * A value of 1 means the Body loses no velocity.
+                 * A value of 0.95 means the Body loses 5% of its velocity per step.
+                 * A value of 0.5 means the Body loses 50% of its velocity per step.
+                 *
+                 * Drag is applied only when `acceleration` is zero.
                  */
-                drag: Phaser.Math.Vector2;
+                drag: Phaser.Math.Vector2 | number;
 
                 /**
-                 * Whether this Body's position is affected by its gravity vector.
+                 * Whether this Body's position is affected by gravity (local or world).
                  */
                 allowGravity: boolean;
 
@@ -49660,7 +49770,7 @@ declare namespace Phaser {
 
                 /**
                  * Rebound following a collision with the world boundary, relative to 1.
-                 * If empty, `bounce` is used instead.
+                 * If null, `bounce` is used instead.
                  */
                 worldBounce: Phaser.Math.Vector2;
 
@@ -49680,15 +49790,16 @@ declare namespace Phaser {
                 onOverlap: boolean;
 
                 /**
-                 * The Body's absolute maximum velocity.
-                 *
-                 * This limits the Body's rate of movement but not its `velocity` values (which can still exceed `maxVelocity`).
+                 * The Body's absolute maximum velocity, in pixels per second.
+                 * The horizontal and vertical components are applied separately.
                  */
                 maxVelocity: Phaser.Math.Vector2;
 
                 /**
-                 * If this Body is `immovable` and in motion, this the proportion of this Body's movement received by the riding body on each axis, relative to 1.
-                 * The default value (1, 0) moves the riding body horizontally in equal proportion and vertically not at all.
+                 * If this Body is `immovable` and in motion, `friction` is the proportion of this Body's motion received by the riding Body on each axis, relative to 1.
+                 * The default value (1, 0) moves the riding Body horizontally in equal proportion to this Body and vertically not at all.
+                 * The horizontal component (x) is applied only when two colliding Bodies are separated vertically.
+                 * The vertical component (y) is applied only when two colliding Bodies are separated horizontally.
                  */
                 friction: Phaser.Math.Vector2;
 
@@ -49706,17 +49817,19 @@ declare namespace Phaser {
                 useDamping: boolean;
 
                 /**
-                 * The rate of change of this Body's rotation, in degrees per second.
+                 * The rate of change of this Body's `rotation`, in degrees per second.
                  */
                 angularVelocity: number;
 
                 /**
-                 * The rate of change of this Body's angular velocity, in degrees per second squared.
+                 * The Body's angular acceleration (change in angular velocity), in degrees per second squared.
                  */
                 angularAcceleration: number;
 
                 /**
                  * Loss of angular velocity due to angular movement, in degrees per second.
+                 *
+                 * Angular drag is applied only when angular acceleration is zero.
                  */
                 angularDrag: number;
 
@@ -49732,22 +49845,23 @@ declare namespace Phaser {
                 mass: number;
 
                 /**
-                 * The angle of this Body's velocity vector, in degrees.
+                 * The calculated angle of this Body's velocity vector, in degrees, during the last step.
                  */
                 angle: number;
 
                 /**
-                 * The magnitude of the Body's velocity, as calculated during the last update.
+                 * The calculated magnitude of the Body's velocity, in pixels per second, during the last step.
                  */
                 speed: number;
 
                 /**
-                 * The calculated direction of the Body's velocity.
+                 * The direction of the Body's velocity, as calculated during the last step.
+                 * If the Body is moving on both axes (diagonally), this describes motion on the vertical axis only.
                  */
                 facing: integer;
 
                 /**
-                 * Whether this object can be moved by collisions with another body.
+                 * Whether this Body can be moved by collisions with another Body.
                  */
                 immovable: boolean;
 
@@ -49757,12 +49871,14 @@ declare namespace Phaser {
                 moves: boolean;
 
                 /**
-                 * A flag disabling the default horizontal separation of colliding bodies. Pass your own `processHandler` to the collider.
+                 * A flag disabling the default horizontal separation of colliding bodies.
+                 * Pass your own `collideCallback` to the collider.
                  */
                 customSeparateX: boolean;
 
                 /**
-                 * A flag disabling the default vertical separation of colliding bodies. Pass your own `processHandler` to the collider.
+                 * A flag disabling the default vertical separation of colliding bodies.
+                 * Pass your own `collideCallback` to the collider.
                  */
                 customSeparateY: boolean;
 
@@ -49838,7 +49954,7 @@ declare namespace Phaser {
                 updateBounds(): void;
 
                 /**
-                 * Updates the Body's `center` from its `position` and dimensions.
+                 * Updates the Body's `center` from its `position`, `width`, and `height`.
                  */
                 updateCenter(): void;
 
@@ -50262,22 +50378,22 @@ declare namespace Phaser {
 
             namespace Components {
                 /**
-                 * [description]
+                 * Provides methods used for setting the acceleration properties of an Arcade Body.
                  */
                 interface Acceleration {
                     /**
-                     * [description]
+                     * Sets the body's horizontal and vertical acceleration. If the vertical acceleration value is not provided, the vertical acceleration is set to the same value as the horizontal acceleration.
                      * @param x The horizontal acceleration
                      * @param y The vertical acceleration Default x.
                      */
                     setAcceleration(x: number, y?: number): this;
                     /**
-                     * [description]
+                     * Sets the body's horizontal acceleration.
                      * @param value The horizontal acceleration
                      */
                     setAccelerationX(value: number): this;
                     /**
-                     * [description]
+                     * Sets the body's vertical acceleration.
                      * @param value The vertical acceleration
                      */
                     setAccelerationY(value: number): this;
@@ -50393,22 +50509,22 @@ declare namespace Phaser {
                  */
                 interface Enable {
                     /**
-                     * [description]
-                     * @param reset [description]
-                     * @param x [description]
-                     * @param y [description]
-                     * @param enableGameObject [description]
-                     * @param showGameObject [description]
+                     * Enables this Game Object's Body.
+                     * @param reset Also reset the Body and place it at (x, y).
+                     * @param x The horizontal position to place the Game Object and Body.
+                     * @param y The horizontal position to place the Game Object and Body.
+                     * @param enableGameObject Also activate this Game Object.
+                     * @param showGameObject Also show this Game Object.
                      */
                     enableBody(reset: boolean, x: number, y: number, enableGameObject: boolean, showGameObject: boolean): this;
                     /**
-                     * [description]
-                     * @param disableGameObject [description] Default false.
-                     * @param hideGameObject [description] Default false.
+                     * Stops and disables this Game Object's Body.
+                     * @param disableGameObject Also deactivate this Game Object. Default false.
+                     * @param hideGameObject Also hide this Game Object. Default false.
                      */
                     disableBody(disableGameObject?: boolean, hideGameObject?: boolean): this;
                     /**
-                     * Syncs the Bodies position and size with its parent Game Object.
+                     * Syncs the Body's position and size with its parent Game Object.
                      * You don't need to call this for Dynamic Bodies, as it happens automatically.
                      * But for Static bodies it's a useful way of modifying the position of a Static Body
                      * in the Physics World, based on its Game Object.
@@ -50417,45 +50533,51 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving horizontally in the X axis. The higher than friction, the faster the body will slow down once force stops being applied to it.
                  */
                 interface Friction {
                     /**
-                     * [description]
-                     * @param x [description]
-                     * @param y [description] Default x.
+                     * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving.
+                     * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                     * @param x The amount of horizontal friction to apply.
+                     * @param y The amount of vertical friction to apply. Default x.
                      */
                     setFriction(x: number, y?: number): this;
                     /**
-                     * [description]
-                     * @param x [description]
+                     * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving horizontally in the X axis.
+                     * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                     * @param x The amount of friction to apply.
                      */
                     setFrictionX(x: number): this;
                     /**
-                     * [description]
-                     * @param y [description]
+                     * Sets the friction (e.g. the amount of velocity reduced over time) of the physics body when moving vertically in the Y axis.
+                     * The higher than friction, the faster the body will slow down once force stops being applied to it.
+                     * @param x The amount of friction to apply.
                      */
-                    setFrictionY(y: number): this;
+                    setFrictionY(x: number): this;
                 }
 
                 /**
-                 * [description]
+                 * Provides methods for setting the gravity properties of an Arcade Physics Game Object.
+                 * Should be applied as a mixin and not used directly.
                  */
                 interface Gravity {
                     /**
-                     * [description]
-                     * @param x [description]
-                     * @param y [description] Default x.
+                     * Set the X and Y values of the gravitational pull to act upon this Arcade Physics Game Object. Values can be positive or negative. Larger values result in a stronger effect.
+                     *
+                     * If only one value is provided, this value will be used for both the X and Y axis.
+                     * @param x The gravitational force to be applied to the X-axis.
+                     * @param y The gravitational force to be applied to the Y-axis. If this is not specified, the X value will be used. Default x.
                      */
                     setGravity(x: number, y?: number): this;
                     /**
-                     * [description]
-                     * @param x [description]
+                     * Set the gravitational force to be applied to the X axis. Value can be positive or negative. Larger values result in a stronger effect.
+                     * @param x The gravitational force to be applied to the X-axis.
                      */
                     setGravityX(x: number): this;
                     /**
-                     * [description]
-                     * @param y [description]
+                     * Set the gravitational force to be applied to the Y axis. Value can be positive or negative. Larger values result in a stronger effect.
+                     * @param y The gravitational force to be applied to the Y-axis.
                      */
                     setGravityY(y: number): this;
                 }
@@ -50483,27 +50605,30 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * Provides methods for setting the size of an Arcade Physics Game Object.
+                 * Should be applied as a mixin and not used directly.
                  */
                 interface Size {
                     /**
-                     * [description]
-                     * @param x [description]
-                     * @param y [description] Default x.
+                     * Sets the body offset. This allows you to adjust the difference between the center of the body
+                     * and the x and y coordinates of the parent Game Object.
+                     * @param x The amount to offset the body from the parent Game Object along the x-axis.
+                     * @param y The amount to offset the body from the parent Game Object along the y-axis. Defaults to the value given for the x-axis. Default x.
                      */
                     setOffset(x: number, y?: number): this;
                     /**
-                     * [description]
-                     * @param width [description]
-                     * @param height [description]
-                     * @param center [description] Default true.
+                     * Sets the size of this physics body. Setting the size does not adjust the dimensions
+                     * of the parent Game Object.
+                     * @param width The new width of the physics body, in pixels.
+                     * @param height The new height of the physics body, in pixels.
+                     * @param center Should the body be re-positioned so its center aligns with the parent Game Object? Default true.
                      */
                     setSize(width: number, height: number, center?: boolean): this;
                     /**
-                     * [description]
-                     * @param radius [description]
-                     * @param offsetX [description]
-                     * @param offsetY [description]
+                     * Sets this physics body to use a circle for collision instead of a rectangle.
+                     * @param radius The radius of the physics body, in pixels.
+                     * @param offsetX The amount to offset the body from the parent Game Object along the x-axis.
+                     * @param offsetY The amount to offset the body from the parent Game Object along the y-axis.
                      */
                     setCircle(radius: number, offsetX?: number, offsetY?: number): this;
                 }
@@ -50538,12 +50663,12 @@ declare namespace Phaser {
             }
 
             /**
-             * [description]
+             * Dynamic Body.
              */
             var DYNAMIC_BODY: number;
 
             /**
-             * [description]
+             * Static Body.
              */
             var STATIC_BODY: number;
 
@@ -50558,27 +50683,27 @@ declare namespace Phaser {
             var TILEMAPLAYER: number;
 
             /**
-             * [description]
+             * Facing no direction (initial value).
              */
             var FACING_NONE: number;
 
             /**
-             * [description]
+             * Facing up.
              */
             var FACING_UP: number;
 
             /**
-             * [description]
+             * Facing down.
              */
             var FACING_DOWN: number;
 
             /**
-             * [description]
+             * Facing left.
              */
             var FACING_LEFT: number;
 
             /**
-             * [description]
+             * Facing right.
              */
             var FACING_RIGHT: number;
 
@@ -50658,8 +50783,8 @@ declare namespace Phaser {
 
                 /**
                  * Adds an Arcade Physics Body to the given Game Object.
-                 * @param gameObject [description]
-                 * @param isStatic Set to true to create a Static body, otherwise it will create a Dynamic body. Default false.
+                 * @param gameObject A Game Object.
+                 * @param isStatic Create a Static body (true) or Dynamic body (false). Default false.
                  */
                 existing(gameObject: Phaser.GameObjects.GameObject, isStatic?: boolean): Phaser.GameObjects.GameObject;
 
@@ -50702,18 +50827,24 @@ declare namespace Phaser {
                 /**
                  * Creates a Static Physics Group object.
                  * All Game Objects created by this Group will automatically be static Arcade Physics objects.
-                 * @param children [description]
-                 * @param config [description]
+                 * @param children Game Objects to add to this group; or the `config` argument.
+                 * @param config Settings for this group.
                  */
-                staticGroup(children?: object | object[], config?: GroupConfig): Phaser.Physics.Arcade.StaticGroup;
+                staticGroup(
+                    children?: Phaser.GameObjects.GameObject[] | GroupConfig | GroupCreateConfig,
+                    config?: GroupConfig | GroupCreateConfig
+                ): Phaser.Physics.Arcade.StaticGroup;
 
                 /**
                  * Creates a Physics Group object.
                  * All Game Objects created by this Group will automatically be dynamic Arcade Physics objects.
-                 * @param children [description]
-                 * @param config [description]
+                 * @param children Game Objects to add to this group; or the `config` argument.
+                 * @param config Settings for this group.
                  */
-                group(children?: object | object[], config?: PhysicsGroupConfig): Phaser.Physics.Arcade.Group;
+                group(
+                    children?: Phaser.GameObjects.GameObject[] | PhysicsGroupConfig | GroupCreateConfig,
+                    config?: PhysicsGroupConfig | GroupCreateConfig
+                ): Phaser.Physics.Arcade.Group;
 
                 /**
                  * Destroys this Factory.
@@ -50752,71 +50883,79 @@ declare namespace Phaser {
             /**
              * An Arcade Physics Group object.
              *
-             * All Game Objects created by this Group will automatically be dynamic Arcade Physics objects.
+             * All Game Objects created by this Group will automatically be given dynamic Arcade Physics bodies.
+             *
+             * Its static counterpart is {@link Phaser.Physics.Arcade.StaticGroup}.
              */
             class Group extends Phaser.GameObjects.Group {
                 /**
                  *
-                 * @param world [description]
-                 * @param scene [description]
-                 * @param children [description]
-                 * @param config [description]
+                 * @param world The physics simulation.
+                 * @param scene The scene this group belongs to.
+                 * @param children Game Objects to add to this group; or the `config` argument.
+                 * @param config Settings for this group.
                  */
-                constructor(world: Phaser.Physics.Arcade.World, scene: Phaser.Scene, children: any[], config?: PhysicsGroupConfig);
+                constructor(
+                    world: Phaser.Physics.Arcade.World,
+                    scene: Phaser.Scene,
+                    children?: Phaser.GameObjects.GameObject[] | PhysicsGroupConfig | GroupCreateConfig,
+                    config?: PhysicsGroupConfig | GroupCreateConfig
+                );
 
                 /**
-                 * [description]
+                 * The physics simulation.
                  */
                 world: Phaser.Physics.Arcade.World;
 
                 /**
                  * The class to create new group members from.
+                 * This should be ArcadeImage, ArcadeSprite, or a class extending one of those.
                  */
-                classType: Phaser.Physics.Arcade.Sprite;
+                classType: Phaser.Physics.Arcade.Image | Phaser.Physics.Arcade.Sprite;
 
                 /**
-                 * [description]
+                 * The physics type of the Group's members.
                  */
                 physicsType: integer;
 
                 /**
-                 * [description]
+                 * Default physics properties applied to Game Objects added to the Group or created by the Group. Derived from the `config` argument.
                  */
                 defaults: PhysicsGroupDefaults;
 
                 /**
-                 * [description]
-                 * @param child [description]
+                 * Enables a Game Object's Body and assigns `defaults`. Called when a Group member is added or created.
+                 * @param child The Game Object being added.
                  */
                 createCallbackHandler(child: Phaser.GameObjects.GameObject): void;
 
                 /**
-                 * [description]
-                 * @param child [description]
+                 * Disables a Game Object's Body. Called when a Group member is removed.
+                 * @param child The Game Object being removed.
                  */
                 removeCallbackHandler(child: Phaser.GameObjects.GameObject): void;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
-                 * @param step [description]
+                 * Sets the velocity of each Group member.
+                 * @param x The horizontal velocity.
+                 * @param y The vertical velocity.
+                 * @param step The velocity increment. When set, the first member receives velocity (x, y), the second (x + step, y + step), and so on. Default 0.
                  */
-                setVelocity(x: number, y: number, step: number): Phaser.Physics.Arcade.Group;
+                setVelocity(x: number, y: number, step?: number): Phaser.Physics.Arcade.Group;
 
                 /**
-                 * [description]
-                 * @param value [description]
-                 * @param step [description]
+                 * Sets the horizontal velocity of each Group member.
+                 * @param value The velocity value.
+                 * @param step The velocity increment. When set, the first member receives velocity (x), the second (x + step), and so on. Default 0.
                  */
-                setVelocityX(value: number, step: number): Phaser.Physics.Arcade.Group;
+                setVelocityX(value: number, step?: number): Phaser.Physics.Arcade.Group;
 
                 /**
-                 * [description]
-                 * @param value [description]
-                 * @param step [description]
+                 * Sets the vertical velocity of each Group member.
+                 * @param value The velocity value.
+                 * @param step The velocity increment. When set, the first member receives velocity (y), the second (y + step), and so on. Default 0.
                  */
-                setVelocityY(value: number, step: number): Phaser.Physics.Arcade.Group;
+                setVelocityY(value: number, step?: number): Phaser.Physics.Arcade.Group;
             }
 
             /**
@@ -50848,7 +50987,14 @@ declare namespace Phaser {
             ): boolean;
 
             /**
-             * [description]
+             * A Static Arcade Physics Body.
+             *
+             * A Static Body never moves, and isn't automatically synchronized with its parent Game Object.
+             * That means if you make any change to the parent's origin, position, or scale after creating or adding the body, you'll need to update the Body manually.
+             *
+             * A Static Body can collide with other Bodies, but is never moved by collisions.
+             *
+             * Its dynamic counterpart is {@link Phaser.Physics.Arcade.Body}.
              */
             class StaticBody {
                 /**
@@ -50931,105 +51077,105 @@ declare namespace Phaser {
                 /**
                  * [description]
                  */
-                velocity: Phaser.Math.Vector2;
+                readonly velocity: Phaser.Math.Vector2;
 
                 /**
                  * [description]
                  */
-                allowGravity: boolean;
+                readonly allowGravity: boolean;
 
                 /**
-                 * [description]
+                 * Gravitational force applied specifically to this Body. Values are in pixels per second squared. Always zero for a Static Body.
                  */
-                gravity: Phaser.Math.Vector2;
+                readonly gravity: Phaser.Math.Vector2;
 
                 /**
-                 * [description]
+                 * Rebound, or restitution, following a collision, relative to 1. Always zero for a Static Body.
                  */
-                bounce: Phaser.Math.Vector2;
+                readonly bounce: Phaser.Math.Vector2;
 
                 /**
-                 * [description]
+                 * Whether the simulation emits a `worldbounds` event when this StaticBody collides with the world boundary (and `collideWorldBounds` is also true).
                  */
                 onWorldBounds: boolean;
 
                 /**
-                 * [description]
+                 * Whether the simulation emits a `collide` event when this StaticBody collides with another.
                  */
                 onCollide: boolean;
 
                 /**
-                 * [description]
+                 * Whether the simulation emits an `overlap` event when this StaticBody overlaps with another.
                  */
                 onOverlap: boolean;
 
                 /**
-                 * [description]
+                 * The StaticBody's inertia, relative to a default unit (1). With `bounce`, this affects the exchange of momentum (velocities) during collisions.
                  */
                 mass: number;
 
                 /**
-                 * [description]
+                 * Whether this object can be moved by collisions with another body.
                  */
                 immovable: boolean;
 
                 /**
-                 * [description]
+                 * A flag disabling the default horizontal separation of colliding bodies. Pass your own `processHandler` to the collider.
                  */
                 customSeparateX: boolean;
 
                 /**
-                 * [description]
+                 * A flag disabling the default vertical separation of colliding bodies. Pass your own `processHandler` to the collider.
                  */
                 customSeparateY: boolean;
 
                 /**
-                 * [description]
+                 * The amount of horizontal overlap (before separation), if this Body is colliding with another.
                  */
                 overlapX: number;
 
                 /**
-                 * [description]
+                 * The amount of vertical overlap (before separation), if this Body is colliding with another.
                  */
                 overlapY: number;
 
                 /**
-                 * [description]
+                 * The amount of overlap (before separation), if this StaticBody is circular and colliding with another circular body.
                  */
                 overlapR: number;
 
                 /**
-                 * [description]
+                 * Whether this StaticBody is overlapped with another and both have zero velocity.
                  */
                 embedded: boolean;
 
                 /**
-                 * [description]
+                 * Whether this StaticBody interacts with the world boundary.
                  */
                 collideWorldBounds: boolean;
 
                 /**
-                 * [description]
+                 * Whether this StaticBody is checked for collisions and for which directions. You can set `checkCollision.none = false` to disable collision checks.
                  */
                 checkCollision: ArcadeBodyCollision;
 
                 /**
-                 * [description]
+                 * Whether this StaticBody is colliding with another and in which direction.
                  */
                 touching: ArcadeBodyCollision;
 
                 /**
-                 * [description]
+                 * Whether this StaticBody was colliding with another during the last step, and in which direction.
                  */
                 wasTouching: ArcadeBodyCollision;
 
                 /**
-                 * [description]
+                 * Whether this StaticBody is colliding with a tile or the world boundary.
                  */
                 blocked: ArcadeBodyCollision;
 
                 /**
-                 * [description]
+                 * The StaticBody's physics type (static by default).
                  */
                 physicsType: integer;
 
@@ -51066,40 +51212,41 @@ declare namespace Phaser {
                 setSize(width?: integer, height?: integer, offsetX?: number, offsetY?: number): Phaser.Physics.Arcade.StaticBody;
 
                 /**
-                 * [description]
-                 * @param radius [description]
-                 * @param offsetX [description]
-                 * @param offsetY [description]
+                 * Sets this Static Body to have a circular body and sets its sizes and position.
+                 * @param radius The radius of the StaticBody, in pixels.
+                 * @param offsetX The horizontal offset of the StaticBody from its Game Object, in pixels.
+                 * @param offsetY The vertical offset of the StaticBody from its Game Object, in pixels.
                  */
                 setCircle(radius: number, offsetX?: number, offsetY?: number): Phaser.Physics.Arcade.StaticBody;
 
                 /**
-                 * [description]
+                 * Updates the StaticBody's `center` from its `position` and dimensions.
                  */
                 updateCenter(): void;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
+                 * Updates this Static Body's position based on the current Game Object it is bound to.
+                 * Similar to `updateFromGameObject`, but doesn't modify the Body's dimensions.
+                 * @param x The x coordinate to reset the body to.
+                 * @param y The y coordinate to reset the body to.
                  */
                 reset(x: number, y: number): void;
 
                 /**
-                 * [description]
+                 * NOOP function. A Static Body cannot be stopped.
                  */
                 stop(): Phaser.Physics.Arcade.StaticBody;
 
                 /**
-                 * [description]
-                 * @param obj [description]
+                 * Returns the x and y coordinates of the top left and bottom right points of the StaticBody.
+                 * @param obj The object which will hold the coordinates of the bounds.
                  */
                 getBounds(obj: ArcadeBodyBounds): ArcadeBodyBounds;
 
                 /**
                  * Checks to see if a given x,y coordinate is colliding with this Static Body.
-                 * @param x [description]
-                 * @param y [description]
+                 * @param x The x coordinate to check against this body.
+                 * @param y The y coordinate to check against this body.
                  */
                 hitTest(x: number, y: number): boolean;
 
@@ -51109,22 +51256,22 @@ declare namespace Phaser {
                 postUpdate(): void;
 
                 /**
-                 * [description]
+                 * The absolute (non-negative) change in this StaticBody's horizontal position from the previous step. Always zero.
                  */
                 deltaAbsX(): number;
 
                 /**
-                 * [description]
+                 * The absolute (non-negative) change in this StaticBody's vertical position from the previous step. Always zero.
                  */
                 deltaAbsY(): number;
 
                 /**
-                 * [description]
+                 * The change in this StaticBody's horizontal position from the previous step. Always zero.
                  */
                 deltaX(): number;
 
                 /**
-                 * [description]
+                 * The change in this StaticBody's vertical position from the previous step. Always zero.
                  */
                 deltaY(): number;
 
@@ -51134,101 +51281,111 @@ declare namespace Phaser {
                 deltaZ(): number;
 
                 /**
-                 * [description]
+                 * Disables this Body and marks it for destruction during the next step.
                  */
                 destroy(): void;
 
                 /**
-                 * [description]
-                 * @param graphic [description]
+                 * Draws a graphical representation of the StaticBody for visual debugging purposes.
+                 * @param graphic The Graphics object to use for the debug drawing of the StaticBody.
                  */
                 drawDebug(graphic: Phaser.GameObjects.Graphics): void;
 
                 /**
-                 * [description]
+                 * Indicates whether the StaticBody is going to be showing a debug visualization during postUpdate.
                  */
                 willDrawDebug(): boolean;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * Sets the Mass of the StaticBody. Will set the Mass to 0.1 if the value passed is less than or equal to zero.
+                 * @param value The value to set the Mass to. Values of zero or less are changed to 0.1.
                  */
                 setMass(value: number): Phaser.Physics.Arcade.StaticBody;
 
                 /**
-                 * [description]
+                 * The x coordinate of the StaticBody.
                  */
                 x: number;
 
                 /**
-                 * [description]
+                 * The y coordinate of the StaticBody.
                  */
                 y: number;
 
                 /**
-                 * [description]
+                 * Returns the left-most x coordinate of the area of the StaticBody.
                  */
                 readonly left: number;
 
                 /**
-                 * [description]
+                 * The right-most x coordinate of the area of the StaticBody.
                  */
                 readonly right: number;
 
                 /**
-                 * [description]
+                 * The highest y coordinate of the area of the StaticBody.
                  */
                 readonly top: number;
 
                 /**
-                 * [description]
+                 * The lowest y coordinate of the area of the StaticBody. (y + height)
                  */
                 readonly bottom: number;
             }
 
             /**
-             * [description]
+             * An Arcade Physics Static Group object.
+             *
+             * All Game Objects created by this Group will automatically be given static Arcade Physics bodies.
+             *
+             * Its dynamic counterpart is {@link Phaser.Physics.Arcade.Group}.
              */
             class StaticGroup extends Phaser.GameObjects.Group {
                 /**
                  *
-                 * @param world [description]
-                 * @param scene [description]
-                 * @param children [description]
-                 * @param config [description]
+                 * @param world The physics simulation.
+                 * @param scene The scene this group belongs to.
+                 * @param children Game Objects to add to this group; or the `config` argument.
+                 * @param config Settings for this group.
                  */
-                constructor(world: Phaser.Physics.Arcade.World, scene: Phaser.Scene, children: any[], config: GroupConfig);
+                constructor(
+                    world: Phaser.Physics.Arcade.World,
+                    scene: Phaser.Scene,
+                    children?: Phaser.GameObjects.GameObject[] | GroupConfig | GroupCreateConfig,
+                    config?: GroupConfig | GroupCreateConfig
+                );
 
                 /**
-                 * [description]
+                 * The physics simulation.
                  */
                 world: Phaser.Physics.Arcade.World;
 
                 /**
-                 * [description]
+                 * The scene this group belongs to.
                  */
                 physicsType: integer;
 
                 /**
-                 * [description]
-                 * @param child [description]
+                 * Adds a static physics body to the new group member (if it lacks one) and adds it to the simulation.
+                 * @param child The new group member.
                  */
                 createCallbackHandler(child: Phaser.GameObjects.GameObject): void;
 
                 /**
-                 * [description]
-                 * @param child [description]
+                 * Disables the group member's physics body, removing it from the simulation.
+                 * @param child The group member being removed.
                  */
                 removeCallbackHandler(child: Phaser.GameObjects.GameObject): void;
 
                 /**
-                 * [description]
-                 * @param entries [description]
+                 * Refreshes the group.
+                 * @param entries The newly created group members.
                  */
-                createMultipleCallbackHandler(entries: object): void;
+                createMultipleCallbackHandler(entries: Phaser.GameObjects.GameObject[]): void;
 
                 /**
-                 * [description]
+                 * Resets each Body to the position of its parent Game Object.
+                 * Body sizes aren't changed (use {@link Phaser.Physics.Arcade.Components.Enable#refreshBody} for that).
                  */
                 refresh(): Phaser.Physics.Arcade.StaticGroup;
             }
@@ -51810,11 +51967,11 @@ declare namespace Phaser {
 
                 /**
                  * Tests if Game Objects overlap.
-                 * @param object1 [description]
-                 * @param object2 [description]
-                 * @param overlapCallback [description]
-                 * @param processCallback [description]
-                 * @param callbackContext [description]
+                 * @param object1 The first object or array of objects to check.
+                 * @param object2 The second object or array of objects to check, or `undefined`.
+                 * @param overlapCallback An optional callback function that is called if the objects overlap.
+                 * @param processCallback An optional callback function that lets you perform additional checks against the two objects if they overlap. If this is set then `overlapCallback` will only be called if this callback returns `true`.
+                 * @param callbackContext The context in which to run the callbacks.
                  */
                 overlap(
                     object1: ArcadeColliderType,
@@ -51841,11 +51998,11 @@ declare namespace Phaser {
                  * for 'arcade' style games it lacks stability when multiple objects are in close proximity or resting upon each other.
                  * The separation that stops two objects penetrating may create a new penetration against a different object. If you
                  * require a high level of stability please consider using an alternative physics system, such as Matter.js.
-                 * @param object1 [description]
-                 * @param object2 [description]
-                 * @param collideCallback [description]
-                 * @param processCallback [description]
-                 * @param callbackContext [description]
+                 * @param object1 The first object or array of objects to check.
+                 * @param object2 The second object or array of objects to check, or `undefined`.
+                 * @param collideCallback An optional callback function that is called if the objects collide.
+                 * @param processCallback An optional callback function that lets you perform additional checks against the two objects if they collide. If this is set then `collideCallback` will only be called if this callback returns `true`.
+                 * @param callbackContext The context in which to run the callbacks.
                  */
                 collide(
                     object1: ArcadeColliderType,
@@ -51862,7 +52019,7 @@ declare namespace Phaser {
                  * @param collideCallback [description]
                  * @param processCallback [description]
                  * @param callbackContext [description]
-                 * @param overlapOnly [description]
+                 * @param overlapOnly Whether this is a collision or overlap check.
                  */
                 collideObjects(
                     object1: ArcadeColliderType,
@@ -51880,7 +52037,7 @@ declare namespace Phaser {
                  * @param collideCallback [description]
                  * @param processCallback [description]
                  * @param callbackContext [description]
-                 * @param overlapOnly [description]
+                 * @param overlapOnly Whether this is a collision or overlap check.
                  */
                 collideHandler(
                     object1: ArcadeColliderType,
@@ -51898,7 +52055,7 @@ declare namespace Phaser {
                  * @param collideCallback [description]
                  * @param processCallback [description]
                  * @param callbackContext [description]
-                 * @param overlapOnly [description]
+                 * @param overlapOnly Whether this is a collision or overlap check.
                  */
                 collideSpriteVsSprite(
                     sprite1: Phaser.GameObjects.GameObject,
@@ -51916,7 +52073,7 @@ declare namespace Phaser {
                  * @param collideCallback [description]
                  * @param processCallback [description]
                  * @param callbackContext [description]
-                 * @param overlapOnly [description]
+                 * @param overlapOnly Whether this is a collision or overlap check.
                  */
                 collideSpriteVsGroup(
                     sprite: Phaser.GameObjects.GameObject,
@@ -51934,7 +52091,7 @@ declare namespace Phaser {
                  * @param collideCallback [description]
                  * @param processCallback [description]
                  * @param callbackContext [description]
-                 * @param overlapOnly [description]
+                 * @param overlapOnly Whether this is a collision or overlap check.
                  */
                 collideGroupVsTilemapLayer(
                     group: Phaser.GameObjects.Group,
@@ -51952,7 +52109,7 @@ declare namespace Phaser {
                  * @param collideCallback [description]
                  * @param processCallback [description]
                  * @param callbackContext [description]
-                 * @param overlapOnly [description]
+                 * @param overlapOnly Whether this is a collision or overlap check.
                  */
                 collideSpriteVsTilemapLayer(
                     sprite: Phaser.GameObjects.GameObject,
@@ -51970,7 +52127,7 @@ declare namespace Phaser {
                  * @param collideCallback [description]
                  * @param processCallback [description]
                  * @param callbackContext [description]
-                 * @param overlapOnly [description]
+                 * @param overlapOnly Whether this is a collision or overlap check.
                  */
                 collideGroupVsGroup(
                     group1: Phaser.GameObjects.Group,
@@ -52226,11 +52383,11 @@ declare namespace Phaser {
                 touches(other: Phaser.Physics.Impact.Body): boolean;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
-                 * @param width [description]
-                 * @param height [description]
+                 * Reset the size and position of the physics body.
+                 * @param x The x coordinate to position the body.
+                 * @param y The y coordinate to position the body.
+                 * @param width The width of the body.
+                 * @param height The height of the body.
                  */
                 resetSize(x: number, y: number, width: number, height: number): Phaser.Physics.Impact.Body;
 
@@ -52409,47 +52566,50 @@ declare namespace Phaser {
 
             namespace Components {
                 /**
-                 * [description]
+                 * The Impact Acceleration component.
+                 * Should be applied as a mixin.
                  */
                 interface Acceleration {
                     /**
-                     * [description]
-                     * @param x [description]
+                     * Sets the horizontal acceleration of this body.
+                     * @param x The amount of acceleration to apply.
                      */
-                    setAccelerationX(x: number): Phaser.GameObjects.GameObject;
+                    setAccelerationX(x: number): this;
                     /**
-                     * [description]
-                     * @param y [description]
+                     * Sets the vertical acceleration of this body.
+                     * @param y The amount of acceleration to apply.
                      */
-                    setAccelerationY(y: number): Phaser.GameObjects.GameObject;
+                    setAccelerationY(y: number): this;
                     /**
-                     * [description]
-                     * @param x [description]
-                     * @param y [description]
+                     * Sets the horizontal and vertical acceleration of this body.
+                     * @param x The amount of horizontal acceleration to apply.
+                     * @param y The amount of vertical acceleration to apply.
                      */
-                    setAcceleration(x: number, y: number): Phaser.GameObjects.GameObject;
+                    setAcceleration(x: number, y: number): this;
                 }
 
                 /**
-                 * [description]
+                 * The Impact Body Scale component.
+                 * Should be applied as a mixin.
                  */
                 interface BodyScale {
                     /**
-                     * [description]
-                     * @param width [description]
-                     * @param height [description] Default width.
+                     * Sets the size of the physics body.
+                     * @param width The width of the body in pixels.
+                     * @param height The height of the body in pixels. Default width.
                      */
-                    setBodySize(width: number, height?: number): Phaser.GameObjects.GameObject;
+                    setBodySize(width: number, height?: number): this;
                     /**
-                     * [description]
-                     * @param scaleX [description]
-                     * @param scaleY [description]
+                     * Sets the scale of the physics body.
+                     * @param scaleX The horizontal scale of the body.
+                     * @param scaleY The vertical scale of the body. If not given, will use the horizontal scale value.
                      */
-                    setBodyScale(scaleX: number, scaleY?: number): Phaser.GameObjects.GameObject;
+                    setBodyScale(scaleX: number, scaleY?: number): this;
                 }
 
                 /**
-                 * [description]
+                 * The Impact Body Type component.
+                 * Should be applied as a mixin.
                  */
                 interface BodyType {
                     /**
@@ -52471,27 +52631,30 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Bounce component.
+                 * Should be applied as a mixin.
                  */
                 interface Bounce {
                     /**
-                     * [description]
-                     * @param value [description]
+                     * Sets the impact physics bounce, or restitution, value.
+                     * @param value A value between 0 (no rebound) and 1 (full rebound)
                      */
                     setBounce(value: number): Phaser.GameObjects.GameObject;
                     /**
-                     * [description]
-                     * @param value [description]
+                     * Sets the minimum velocity the body is allowed to be moving to be considered for rebound.
+                     * @param value The minimum allowed velocity.
                      */
                     setMinBounceVelocity(value: number): Phaser.GameObjects.GameObject;
                     /**
-                     * [description]
+                     * The bounce, or restitution, value of this body.
+                     * A value between 0 (no rebound) and 1 (full rebound)
                      */
                     bounce: number;
                 }
 
                 /**
-                 * [description]
+                 * The Impact Check Against component.
+                 * Should be applied as a mixin.
                  */
                 interface CheckAgainst {
                     /**
@@ -52521,7 +52684,8 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Collides component.
+                 * Should be applied as a mixin.
                  */
                 interface Collides {
                     /**
@@ -52557,7 +52721,8 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Debug component.
+                 * Should be applied as a mixin.
                  */
                 interface Debug {
                     /**
@@ -52587,7 +52752,8 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Friction component.
+                 * Should be applied as a mixin.
                  */
                 interface Friction {
                     /**
@@ -52609,7 +52775,8 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Gravity component.
+                 * Should be applied as a mixin.
                  */
                 interface Gravity {
                     /**
@@ -52624,7 +52791,8 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Offset component.
+                 * Should be applied as a mixin.
                  */
                 interface Offset {
                     /**
@@ -52638,7 +52806,8 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Set Game Object component.
+                 * Should be applied as a mixin.
                  */
                 interface SetGameObject {
                     /**
@@ -52654,31 +52823,32 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * The Impact Velocity component.
+                 * Should be applied as a mixin.
                  */
                 interface Velocity {
                     /**
-                     * [description]
-                     * @param x [description]
+                     * Sets the horizontal velocity of the physics body.
+                     * @param x The horizontal velocity value.
                      */
-                    setVelocityX(x: number): Phaser.GameObjects.GameObject;
+                    setVelocityX(x: number): this;
                     /**
-                     * [description]
-                     * @param y [description]
+                     * Sets the vertical velocity of the physics body.
+                     * @param y The vertical velocity value.
                      */
-                    setVelocityY(y: number): Phaser.GameObjects.GameObject;
+                    setVelocityY(y: number): this;
                     /**
-                     * [description]
-                     * @param x [description]
-                     * @param y [description] Default x.
+                     * Sets the horizontal and vertical velocities of the physics body.
+                     * @param x The horizontal velocity value.
+                     * @param y The vertical velocity value. If not given, defaults to the horizontal value. Default x.
                      */
-                    setVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                    setVelocity(x: number, y?: number): this;
                     /**
-                     * [description]
-                     * @param x [description]
-                     * @param y [description] Default x.
+                     * Sets the maximum velocity this body can travel at.
+                     * @param x The maximum allowed horizontal velocity.
+                     * @param y The maximum allowed vertical velocity. If not given, defaults to the horizontal value. Default x.
                      */
-                    setMaxVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                    setMaxVelocity(x: number, y?: number): this;
                 }
             }
 
@@ -52689,12 +52859,12 @@ declare namespace Phaser {
             class Factory {
                 /**
                  *
-                 * @param world [description]
+                 * @param world A reference to the Impact Physics world.
                  */
                 constructor(world: Phaser.Physics.Impact.World);
 
                 /**
-                 * [description]
+                 * A reference to the Impact Physics world.
                  */
                 world: Phaser.Physics.Impact.World;
 
@@ -52704,22 +52874,22 @@ declare namespace Phaser {
                 sys: Phaser.Scenes.Systems;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
-                 * @param width [description]
-                 * @param height [description]
+                 * Creates a new ImpactBody object and adds it to the physics simulation.
+                 * @param x The horizontal position of the body in the physics world.
+                 * @param y The vertical position of the body in the physics world.
+                 * @param width The width of the body.
+                 * @param height The height of the body.
                  */
                 body(x: number, y: number, width: number, height: number): Phaser.Physics.Impact.ImpactBody;
 
                 /**
                  * Adds an Impact Physics Body to the given Game Object.
-                 * @param gameObject [description]
+                 * @param gameObject The Game Object to receive the physics body.
                  */
                 existing(gameObject: Phaser.GameObjects.GameObject): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
+                 * Creates a new ImpactImage object and adds it to the physics world.
                  * @param x The horizontal position of this Game Object in the world.
                  * @param y The vertical position of this Game Object in the world.
                  * @param key The key of the Texture this Game Object will use to render with, as stored in the Texture Manager.
@@ -52728,7 +52898,7 @@ declare namespace Phaser {
                 image(x: number, y: number, key: string, frame?: string | integer): Phaser.Physics.Impact.ImpactImage;
 
                 /**
-                 * [description]
+                 * Creates a new ImpactSprite object and adds it to the physics world.
                  * @param x The horizontal position of this Game Object in the world.
                  * @param y The vertical position of this Game Object in the world.
                  * @param key The key of the Texture this Game Object will use to render with, as stored in the Texture Manager.
@@ -52815,37 +52985,37 @@ declare namespace Phaser {
                 maxVel: Object;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the horizontal acceleration of this body.
+                 * @param x The amount of acceleration to apply.
                  */
-                setAccelerationX(x: number): Phaser.GameObjects.GameObject;
+                setAccelerationX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the vertical acceleration of this body.
+                 * @param y The amount of acceleration to apply.
                  */
-                setAccelerationY(y: number): Phaser.GameObjects.GameObject;
+                setAccelerationY(y: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
+                 * Sets the horizontal and vertical acceleration of this body.
+                 * @param x The amount of horizontal acceleration to apply.
+                 * @param y The amount of vertical acceleration to apply.
                  */
-                setAcceleration(x: number, y: number): Phaser.GameObjects.GameObject;
+                setAcceleration(x: number, y: number): this;
 
                 /**
-                 * [description]
-                 * @param width [description]
-                 * @param height [description] Default width.
+                 * Sets the size of the physics body.
+                 * @param width The width of the body in pixels.
+                 * @param height The height of the body in pixels. Default width.
                  */
-                setBodySize(width: number, height?: number): Phaser.GameObjects.GameObject;
+                setBodySize(width: number, height?: number): this;
 
                 /**
-                 * [description]
-                 * @param scaleX [description]
-                 * @param scaleY [description]
+                 * Sets the scale of the physics body.
+                 * @param scaleX The horizontal scale of the body.
+                 * @param scaleY The vertical scale of the body. If not given, will use the horizontal scale value.
                  */
-                setBodyScale(scaleX: number, scaleY?: number): Phaser.GameObjects.GameObject;
+                setBodyScale(scaleX: number, scaleY?: number): this;
 
                 /**
                  * [description]
@@ -52868,19 +53038,20 @@ declare namespace Phaser {
                 setTypeB(): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * Sets the impact physics bounce, or restitution, value.
+                 * @param value A value between 0 (no rebound) and 1 (full rebound)
                  */
                 setBounce(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * Sets the minimum velocity the body is allowed to be moving to be considered for rebound.
+                 * @param value The minimum allowed velocity.
                  */
                 setMinBounceVelocity(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
+                 * The bounce, or restitution, value of this body.
+                 * A value between 0 (no rebound) and 1 (full rebound)
                  */
                 bounce: number;
 
@@ -53032,30 +53203,30 @@ declare namespace Phaser {
                 syncGameObject(): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the horizontal velocity of the physics body.
+                 * @param x The horizontal velocity value.
                  */
-                setVelocityX(x: number): Phaser.GameObjects.GameObject;
+                setVelocityX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the vertical velocity of the physics body.
+                 * @param y The vertical velocity value.
                  */
-                setVelocityY(y: number): Phaser.GameObjects.GameObject;
+                setVelocityY(y: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the horizontal and vertical velocities of the physics body.
+                 * @param x The horizontal velocity value.
+                 * @param y The vertical velocity value. If not given, defaults to the horizontal value. Default x.
                  */
-                setVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                setVelocity(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the maximum velocity this body can travel at.
+                 * @param x The maximum allowed horizontal velocity.
+                 * @param y The maximum allowed vertical velocity. If not given, defaults to the horizontal value. Default x.
                  */
-                setMaxVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                setMaxVelocity(x: number, y?: number): this;
             }
 
             /**
@@ -53960,37 +54131,37 @@ declare namespace Phaser {
                 setVisible(value: boolean): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the horizontal acceleration of this body.
+                 * @param x The amount of acceleration to apply.
                  */
-                setAccelerationX(x: number): Phaser.GameObjects.GameObject;
+                setAccelerationX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the vertical acceleration of this body.
+                 * @param y The amount of acceleration to apply.
                  */
-                setAccelerationY(y: number): Phaser.GameObjects.GameObject;
+                setAccelerationY(y: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
+                 * Sets the horizontal and vertical acceleration of this body.
+                 * @param x The amount of horizontal acceleration to apply.
+                 * @param y The amount of vertical acceleration to apply.
                  */
-                setAcceleration(x: number, y: number): Phaser.GameObjects.GameObject;
+                setAcceleration(x: number, y: number): this;
 
                 /**
-                 * [description]
-                 * @param width [description]
-                 * @param height [description] Default width.
+                 * Sets the size of the physics body.
+                 * @param width The width of the body in pixels.
+                 * @param height The height of the body in pixels. Default width.
                  */
-                setBodySize(width: number, height?: number): Phaser.GameObjects.GameObject;
+                setBodySize(width: number, height?: number): this;
 
                 /**
-                 * [description]
-                 * @param scaleX [description]
-                 * @param scaleY [description]
+                 * Sets the scale of the physics body.
+                 * @param scaleX The horizontal scale of the body.
+                 * @param scaleY The vertical scale of the body. If not given, will use the horizontal scale value.
                  */
-                setBodyScale(scaleX: number, scaleY?: number): Phaser.GameObjects.GameObject;
+                setBodyScale(scaleX: number, scaleY?: number): this;
 
                 /**
                  * [description]
@@ -54013,19 +54184,20 @@ declare namespace Phaser {
                 setTypeB(): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * Sets the impact physics bounce, or restitution, value.
+                 * @param value A value between 0 (no rebound) and 1 (full rebound)
                  */
                 setBounce(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * Sets the minimum velocity the body is allowed to be moving to be considered for rebound.
+                 * @param value The minimum allowed velocity.
                  */
                 setMinBounceVelocity(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
+                 * The bounce, or restitution, value of this body.
+                 * A value between 0 (no rebound) and 1 (full rebound)
                  */
                 bounce: number;
 
@@ -54177,30 +54349,30 @@ declare namespace Phaser {
                 syncGameObject(): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the horizontal velocity of the physics body.
+                 * @param x The horizontal velocity value.
                  */
-                setVelocityX(x: number): Phaser.GameObjects.GameObject;
+                setVelocityX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the vertical velocity of the physics body.
+                 * @param y The vertical velocity value.
                  */
-                setVelocityY(y: number): Phaser.GameObjects.GameObject;
+                setVelocityY(y: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the horizontal and vertical velocities of the physics body.
+                 * @param x The horizontal velocity value.
+                 * @param y The vertical velocity value. If not given, defaults to the horizontal value. Default x.
                  */
-                setVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                setVelocity(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the maximum velocity this body can travel at.
+                 * @param x The maximum allowed horizontal velocity.
+                 * @param y The maximum allowed vertical velocity. If not given, defaults to the horizontal value. Default x.
                  */
-                setMaxVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                setMaxVelocity(x: number, y?: number): this;
             }
 
             /**
@@ -55159,37 +55331,37 @@ declare namespace Phaser {
                 setVisible(value: boolean): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the horizontal acceleration of this body.
+                 * @param x The amount of acceleration to apply.
                  */
-                setAccelerationX(x: number): Phaser.GameObjects.GameObject;
+                setAccelerationX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the vertical acceleration of this body.
+                 * @param y The amount of acceleration to apply.
                  */
-                setAccelerationY(y: number): Phaser.GameObjects.GameObject;
+                setAccelerationY(y: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
+                 * Sets the horizontal and vertical acceleration of this body.
+                 * @param x The amount of horizontal acceleration to apply.
+                 * @param y The amount of vertical acceleration to apply.
                  */
-                setAcceleration(x: number, y: number): Phaser.GameObjects.GameObject;
+                setAcceleration(x: number, y: number): this;
 
                 /**
-                 * [description]
-                 * @param width [description]
-                 * @param height [description] Default width.
+                 * Sets the size of the physics body.
+                 * @param width The width of the body in pixels.
+                 * @param height The height of the body in pixels. Default width.
                  */
-                setBodySize(width: number, height?: number): Phaser.GameObjects.GameObject;
+                setBodySize(width: number, height?: number): this;
 
                 /**
-                 * [description]
-                 * @param scaleX [description]
-                 * @param scaleY [description]
+                 * Sets the scale of the physics body.
+                 * @param scaleX The horizontal scale of the body.
+                 * @param scaleY The vertical scale of the body. If not given, will use the horizontal scale value.
                  */
-                setBodyScale(scaleX: number, scaleY?: number): Phaser.GameObjects.GameObject;
+                setBodyScale(scaleX: number, scaleY?: number): this;
 
                 /**
                  * [description]
@@ -55212,19 +55384,20 @@ declare namespace Phaser {
                 setTypeB(): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * Sets the impact physics bounce, or restitution, value.
+                 * @param value A value between 0 (no rebound) and 1 (full rebound)
                  */
                 setBounce(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * Sets the minimum velocity the body is allowed to be moving to be considered for rebound.
+                 * @param value The minimum allowed velocity.
                  */
                 setMinBounceVelocity(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
+                 * The bounce, or restitution, value of this body.
+                 * A value between 0 (no rebound) and 1 (full rebound)
                  */
                 bounce: number;
 
@@ -55376,30 +55549,30 @@ declare namespace Phaser {
                 syncGameObject(): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param x [description]
+                 * Sets the horizontal velocity of the physics body.
+                 * @param x The horizontal velocity value.
                  */
-                setVelocityX(x: number): Phaser.GameObjects.GameObject;
+                setVelocityX(x: number): this;
 
                 /**
-                 * [description]
-                 * @param y [description]
+                 * Sets the vertical velocity of the physics body.
+                 * @param y The vertical velocity value.
                  */
-                setVelocityY(y: number): Phaser.GameObjects.GameObject;
+                setVelocityY(y: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the horizontal and vertical velocities of the physics body.
+                 * @param x The horizontal velocity value.
+                 * @param y The vertical velocity value. If not given, defaults to the horizontal value. Default x.
                  */
-                setVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                setVelocity(x: number, y?: number): this;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description] Default x.
+                 * Sets the maximum velocity this body can travel at.
+                 * @param x The maximum allowed horizontal velocity.
+                 * @param y The maximum allowed vertical velocity. If not given, defaults to the horizontal value. Default x.
                  */
-                setMaxVelocity(x: number, y?: number): Phaser.GameObjects.GameObject;
+                setMaxVelocity(x: number, y?: number): this;
             }
 
             /**
@@ -55480,15 +55653,15 @@ declare namespace Phaser {
 
             type WorldConfig = {
                 /**
-                 * [description]
+                 * Sets {@link Phaser.Physics.Impact.World#gravity}
                  */
                 gravity?: number;
                 /**
-                 * [description]
+                 * The size of the cells used for the broadphase pass. Increase this value if you have lots of large objects in the world.
                  */
                 cellSize?: number;
                 /**
-                 * [description]
+                 * A `Number` that allows per-body time scaling, e.g. a force-field where bodies inside are in slow-motion, while others are at full speed.
                  */
                 timeScale?: number;
                 /**
@@ -55496,87 +55669,87 @@ declare namespace Phaser {
                  */
                 maxStep?: number;
                 /**
-                 * [description]
+                 * Sets {@link Phaser.Physics.Impact.World#debug}.
                  */
                 debug?: boolean;
                 /**
-                 * [description]
+                 * The maximum velocity a body can move.
                  */
                 maxVelocity?: number;
                 /**
-                 * [description]
+                 * Whether the Body's boundary is drawn to the debug display.
                  */
                 debugShowBody?: boolean;
                 /**
-                 * [description]
+                 * Whether the Body's velocity is drawn to the debug display.
                  */
                 debugShowVelocity?: boolean;
                 /**
-                 * [description]
+                 * The color of this Body on the debug display.
                  */
                 debugBodyColor?: number;
                 /**
-                 * [description]
+                 * The color of the Body's velocity on the debug display.
                  */
                 debugVelocityColor?: number;
                 /**
-                 * [description]
+                 * Maximum X velocity objects can move.
                  */
                 maxVelocityX?: number;
                 /**
-                 * [description]
+                 * Maximum Y velocity objects can move.
                  */
                 maxVelocityY?: number;
                 /**
-                 * [description]
+                 * The minimum velocity an object can be moving at to be considered for bounce.
                  */
                 minBounceVelocity?: number;
                 /**
-                 * [description]
+                 * Gravity multiplier. Set to 0 for no gravity.
                  */
                 gravityFactor?: number;
                 /**
-                 * [description]
+                 * The default bounce, or restitution, of bodies in the world.
                  */
                 bounciness?: number;
                 /**
-                 * [description]
+                 * Should the world have bounds enabled by default?
                  */
                 setBounds?: object | boolean;
                 /**
-                 * [description]
+                 * The x coordinate of the world bounds.
                  */
                 "setBounds.x"?: number;
                 /**
-                 * [description]
+                 * The y coordinate of the world bounds.
                  */
                 "setBounds.y"?: number;
                 /**
-                 * [description]
+                 * The width of the world bounds.
                  */
                 "setBounds.width"?: number;
                 /**
-                 * [description]
+                 * The height of the world bounds.
                  */
                 "setBounds.height"?: number;
                 /**
-                 * [description]
+                 * The thickness of the walls of the world bounds.
                  */
                 "setBounds.thickness"?: number;
                 /**
-                 * [description]
+                 * Should the left-side world bounds wall be created?
                  */
                 "setBounds.left"?: boolean;
                 /**
-                 * [description]
+                 * Should the right-side world bounds wall be created?
                  */
                 "setBounds.right"?: boolean;
                 /**
-                 * [description]
+                 * Should the top world bounds wall be created?
                  */
                 "setBounds.top"?: boolean;
                 /**
-                 * [description]
+                 * Should the bottom world bounds wall be created?
                  */
                 "setBounds.bottom"?: boolean;
             };
@@ -55586,58 +55759,58 @@ declare namespace Phaser {
              */
             type WorldDefaults = {
                 /**
-                 * [description]
+                 * Whether the Body's boundary is drawn to the debug display.
                  */
                 debugShowBody: boolean;
                 /**
-                 * [description]
+                 * Whether the Body's velocity is drawn to the debug display.
                  */
                 debugShowVelocity: boolean;
                 /**
-                 * [description]
+                 * The color of this Body on the debug display.
                  */
                 bodyDebugColor: number;
                 /**
-                 * [description]
+                 * The color of the Body's velocity on the debug display.
                  */
                 velocityDebugColor: number;
                 /**
-                 * [description]
+                 * Maximum X velocity objects can move.
                  */
                 maxVelocityX: number;
                 /**
-                 * [description]
+                 * Maximum Y velocity objects can move.
                  */
                 maxVelocityY: number;
                 /**
-                 * [description]
+                 * The minimum velocity an object can be moving at to be considered for bounce.
                  */
                 minBounceVelocity: number;
                 /**
-                 * [description]
+                 * Gravity multiplier. Set to 0 for no gravity.
                  */
                 gravityFactor: number;
                 /**
-                 * [description]
+                 * The default bounce, or restitution, of bodies in the world.
                  */
                 bounciness: number;
             };
 
             type WorldWalls = {
                 /**
-                 * [description]
+                 * The left-side wall of the world bounds.
                  */
                 left: Phaser.Physics.Impact.Body;
                 /**
-                 * [description]
+                 * The right-side wall of the world bounds.
                  */
                 right: Phaser.Physics.Impact.Body;
                 /**
-                 * [description]
+                 * The top wall of the world bounds.
                  */
                 top: Phaser.Physics.Impact.Body;
                 /**
-                 * [description]
+                 * The bottom wall of the world bounds.
                  */
                 bottom: Phaser.Physics.Impact.Body;
             };
@@ -55791,7 +55964,7 @@ declare namespace Phaser {
                 updateWall(add: boolean, position: string, x: number, y: number, width: number, height: number): void;
 
                 /**
-                 * [description]
+                 * Creates a Graphics Game Object used for debug display and enables the world for debug drawing.
                  */
                 createDebugGraphic(): Phaser.GameObjects.Graphics;
 
@@ -55972,38 +56145,38 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * A component to apply force to Matter.js bodies.
                  */
                 interface Force {
                     /**
-                     * [description]
-                     * @param force [description]
+                     * Applies a force to a body.
+                     * @param force A Vector that specifies the force to apply.
                      */
                     applyForce(force: Phaser.Math.Vector2): Phaser.GameObjects.GameObject;
                     /**
-                     * [description]
-                     * @param position [description]
-                     * @param force [description]
+                     * Applies a force to a body from a given position.
+                     * @param position The position in which the force comes from.
+                     * @param force A Vector that specifies the force to apply.
                      */
                     applyForceFrom(position: Phaser.Math.Vector2, force: Phaser.Math.Vector2): Phaser.GameObjects.GameObject;
                     /**
-                     * [description]
-                     * @param speed [description]
+                     * Apply thrust to the forward position of the body.
+                     * @param speed A speed value to be applied to a directional force.
                      */
                     thrust(speed: number): Phaser.GameObjects.GameObject;
                     /**
-                     * [description]
-                     * @param speed [description]
+                     * Apply thrust to the left position of the body.
+                     * @param speed A speed value to be applied to a directional force.
                      */
                     thrustLeft(speed: number): Phaser.GameObjects.GameObject;
                     /**
-                     * [description]
-                     * @param speed [description]
+                     * Apply thrust to the right position of the body.
+                     * @param speed A speed value to be applied to a directional force.
                      */
                     thrustRight(speed: number): Phaser.GameObjects.GameObject;
                     /**
-                     * [description]
-                     * @param speed [description]
+                     * Apply thrust to the back position of the body.
+                     * @param speed A speed value to be applied to a directional force.
                      */
                     thrustBack(speed: number): Phaser.GameObjects.GameObject;
                 }
@@ -56032,12 +56205,12 @@ declare namespace Phaser {
                 }
 
                 /**
-                 * [description]
+                 * A component to manipulate world gravity for Matter.js bodies.
                  */
                 interface Gravity {
                     /**
-                     * [description]
-                     * @param value [description]
+                     * A togglable function for ignoring world gravity in real-time on the current body.
+                     * @param value Set to true to ignore the effect of world gravity, or false to not ignore it.
                      */
                     setIgnoreGravity(value: boolean): Phaser.GameObjects.GameObject;
                 }
@@ -56186,40 +56359,40 @@ declare namespace Phaser {
                      */
                     scaleY: number;
                     /**
-                     * [description]
+                     * Use `angle` to set or get rotation of the physics body associated to this GameObject. Unlike rotation, when using set the value can be in degrees, which will be converted to radians internally.
                      */
                     angle: number;
                     /**
-                     * [description]
+                     * Use `rotation` to set or get the rotation of the physics body associated with this GameObject. The value when set must be in radians.
                      */
                     rotation: number;
                     /**
-                     * [description]
-                     * @param x [description] Default 0.
-                     * @param y [description] Default x.
+                     * Sets the position of the physics body along x and y axes. Both the parameters to this function are optional and if not passed any they default to 0.
+                     * @param x The horizontal position of the body. Default 0.
+                     * @param y The vertical position of the body. Default x.
                      */
-                    setPosition(x?: number, y?: number): void;
+                    setPosition(x?: number, y?: number): this;
                     /**
                      * [description]
                      * @param radians [description] Default 0.
                      */
-                    setRotation(radians?: number): Phaser.GameObjects.GameObject;
+                    setRotation(radians?: number): this;
                     /**
                      * [description]
                      */
-                    setFixedRotation(): Phaser.GameObjects.GameObject;
+                    setFixedRotation(): this;
                     /**
                      * [description]
                      * @param degrees [description] Default 0.
                      */
-                    setAngle(degrees?: number): Phaser.GameObjects.GameObject;
+                    setAngle(degrees?: number): this;
                     /**
                      * Sets the scale of this Game Object.
                      * @param x The horizontal scale of this Game Object. Default 1.
                      * @param y The vertical scale of this Game Object. If not set it will use the x value. Default x.
                      * @param point The point (Vector2) from which scaling will occur.
                      */
-                    setScale(x?: number, y?: number, point?: Phaser.Math.Vector2): Phaser.GameObjects.GameObject;
+                    setScale(x?: number, y?: number, point?: Phaser.Math.Vector2): this;
                 }
 
                 /**
@@ -56594,9 +56767,9 @@ declare namespace Phaser {
 
             /**
              * [description]
-             * @param world [description]
-             * @param gameObject [description]
-             * @param options [description]
+             * @param world The Matter world to add the body to.
+             * @param gameObject The Game Object that will have the Matter body applied to it.
+             * @param options Matter options config object.
              */
             function MatterGameObject(
                 world: Phaser.Physics.Matter.World,
@@ -57508,39 +57681,39 @@ declare namespace Phaser {
                 setCollidesWith(categories: number | number[]): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param force [description]
+                 * Applies a force to a body.
+                 * @param force A Vector that specifies the force to apply.
                  */
                 applyForce(force: Phaser.Math.Vector2): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param position [description]
-                 * @param force [description]
+                 * Applies a force to a body from a given position.
+                 * @param position The position in which the force comes from.
+                 * @param force A Vector that specifies the force to apply.
                  */
                 applyForceFrom(position: Phaser.Math.Vector2, force: Phaser.Math.Vector2): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the forward position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrust(speed: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the left position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrustLeft(speed: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the right position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrustRight(speed: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the back position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrustBack(speed: number): Phaser.GameObjects.GameObject;
 
@@ -57565,8 +57738,8 @@ declare namespace Phaser {
                 setFrictionStatic(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * A togglable function for ignoring world gravity in real-time on the current body.
+                 * @param value Set to true to ignore the effect of world gravity, or false to not ignore it.
                  */
                 setIgnoreGravity(value: boolean): Phaser.GameObjects.GameObject;
 
@@ -57683,7 +57856,7 @@ declare namespace Phaser {
                 /**
                  * [description]
                  */
-                setFixedRotation(): Phaser.GameObjects.GameObject;
+                setFixedRotation(): this;
 
                 /**
                  * [description]
@@ -57745,6 +57918,13 @@ declare namespace Phaser {
                  * [description]
                  */
                 add: Phaser.Physics.Matter.Factory;
+
+                /**
+                 * A reference to the `Matter.Vertices` module which contains methods for creating and manipulating sets of vertices.
+                 * A set of vertices is an array of `Matter.Vector` with additional indexing properties inserted by `Vertices.create`.
+                 * A `Matter.Body` maintains a set of vertices to represent the shape of the object (its convex hull).
+                 */
+                verts: MatterJS.Vertices;
 
                 /**
                  * [description]
@@ -58716,39 +58896,39 @@ declare namespace Phaser {
                 setCollidesWith(categories: number | number[]): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param force [description]
+                 * Applies a force to a body.
+                 * @param force A Vector that specifies the force to apply.
                  */
                 applyForce(force: Phaser.Math.Vector2): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param position [description]
-                 * @param force [description]
+                 * Applies a force to a body from a given position.
+                 * @param position The position in which the force comes from.
+                 * @param force A Vector that specifies the force to apply.
                  */
                 applyForceFrom(position: Phaser.Math.Vector2, force: Phaser.Math.Vector2): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the forward position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrust(speed: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the left position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrustLeft(speed: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the right position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrustRight(speed: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param speed [description]
+                 * Apply thrust to the back position of the body.
+                 * @param speed A speed value to be applied to a directional force.
                  */
                 thrustBack(speed: number): Phaser.GameObjects.GameObject;
 
@@ -58773,8 +58953,8 @@ declare namespace Phaser {
                 setFrictionStatic(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * A togglable function for ignoring world gravity in real-time on the current body.
+                 * @param value Set to true to ignore the effect of world gravity, or false to not ignore it.
                  */
                 setIgnoreGravity(value: boolean): Phaser.GameObjects.GameObject;
 
@@ -58891,7 +59071,7 @@ declare namespace Phaser {
                 /**
                  * [description]
                  */
-                setFixedRotation(): Phaser.GameObjects.GameObject;
+                setFixedRotation(): this;
 
                 /**
                  * [description]
@@ -59057,8 +59237,8 @@ declare namespace Phaser {
                 setFrictionStatic(value: number): Phaser.GameObjects.GameObject;
 
                 /**
-                 * [description]
-                 * @param value [description]
+                 * A togglable function for ignoring world gravity in real-time on the current body.
+                 * @param value Set to true to ignore the effect of world gravity, or false to not ignore it.
                  */
                 setIgnoreGravity(value: boolean): Phaser.GameObjects.GameObject;
 
@@ -59238,18 +59418,18 @@ declare namespace Phaser {
             class World extends Phaser.Events.EventEmitter {
                 /**
                  *
-                 * @param scene [description]
+                 * @param scene The Scene to which this Matter World instance belongs.
                  * @param config [description]
                  */
                 constructor(scene: Phaser.Scene, config: object);
 
                 /**
-                 * [description]
+                 * The Scene to which this Matter World instance belongs.
                  */
                 scene: Phaser.Scene;
 
                 /**
-                 * [description]
+                 * An instance of the MatterJS Engine.
                  */
                 engine: MatterJS.Engine;
 
@@ -59264,7 +59444,7 @@ declare namespace Phaser {
                 walls: object;
 
                 /**
-                 * [description]
+                 * A flag that toggles if the world is enabled or not.
                  */
                 enabled: boolean;
 
@@ -59311,17 +59491,17 @@ declare namespace Phaser {
                 autoUpdate: boolean;
 
                 /**
-                 * [description]
+                 * A flag that controls if the debug graphics will be drawn to or not.
                  */
                 drawDebug: boolean;
 
                 /**
-                 * [description]
+                 * An instance of the Graphics object the debug bodies are drawn to, if enabled.
                  */
                 debugGraphic: Phaser.GameObjects.Graphics;
 
                 /**
-                 * [description]
+                 * The default configuration values.
                  */
                 defaults: object;
 
@@ -59389,12 +59569,12 @@ declare namespace Phaser {
                 setGravity(x?: number, y?: number, scale?: number): Phaser.Physics.Matter.World;
 
                 /**
-                 * [description]
-                 * @param x [description]
-                 * @param y [description]
-                 * @param width [description]
-                 * @param height [description]
-                 * @param options [description]
+                 * Creates a rectangle Matter body and adds it to the world.
+                 * @param x The horizontal position of the body in the world.
+                 * @param y The vertical position of the body in the world.
+                 * @param width The width of the body.
+                 * @param height The height of the body.
+                 * @param options Optional Matter configuration object.
                  */
                 create(x: number, y: number, width: number, height: number, options: object): MatterJS.Body;
 
@@ -59499,11 +59679,6 @@ declare namespace Phaser {
                  * Runs the Matter Engine.update at a fixed timestep of 30Hz.
                  */
                 update30Hz(): number;
-
-                /**
-                 * [description]
-                 */
-                postUpdate(): void;
 
                 /**
                  * [description]
@@ -60283,10 +60458,10 @@ declare namespace Phaser {
             function Canvas(canvas: HTMLCanvasElement, type?: string, encoderOptions?: number): HTMLImageElement;
 
             /**
-             * [description]
-             * @param sourceCanvas [description]
-             * @param type [description] Default 'image/png'.
-             * @param encoderOptions [description] Default 0.92.
+             * Takes a snapshot of the current frame displayed by a WebGL canvas.
+             * @param sourceCanvas The canvas to take a snapshot of.
+             * @param type The format of the returned image. Default 'image/png'.
+             * @param encoderOptions The image quality, between 0 and 1, for image formats which use lossy compression (such as `image/jpeg`). Default 0.92.
              */
             function WebGL(sourceCanvas: HTMLCanvasElement, type?: string, encoderOptions?: number): HTMLImageElement;
         }
@@ -61189,52 +61364,54 @@ declare namespace Phaser {
             class WebGLRenderer {
                 /**
                  *
-                 * @param game [description]
+                 * @param game The Game instance which owns this WebGL Renderer.
                  */
                 constructor(game: Phaser.Game);
 
                 /**
-                 * [description]
+                 * The local configuration settings of this WebGL Renderer.
                  */
                 config: RendererConfig;
 
                 /**
-                 * [description]
+                 * The Game instance which owns this WebGL Renderer.
                  */
                 game: Phaser.Game;
 
                 /**
-                 * [description]
+                 * A constant which allows the renderer to be easily identified as a WebGL Renderer.
                  */
                 type: integer;
 
                 /**
-                 * [description]
+                 * The width of a rendered frame.
                  */
                 width: number;
 
                 /**
-                 * [description]
+                 * The height of a rendered frame.
                  */
                 height: number;
 
                 /**
-                 * [description]
+                 * The canvas which this WebGL Renderer draws to.
                  */
                 canvas: HTMLCanvasElement;
 
                 /**
-                 * [description]
+                 * An array of functions to invoke if the WebGL context is lost.
                  */
                 lostContextCallbacks: WebGLContextCallback[];
 
                 /**
-                 * [description]
+                 * An array of functions to invoke if the WebGL context is restored.
                  */
                 restoredContextCallbacks: WebGLContextCallback[];
 
                 /**
-                 * [description]
+                 * An array of blend modes supported by the WebGL Renderer.
+                 *
+                 * This array includes the default blend modes as well as any custom blend modes added through {@link #addBlendMode}.
                  */
                 blendModes: any[];
 
@@ -61244,7 +61421,7 @@ declare namespace Phaser {
                 nativeTextures: any[];
 
                 /**
-                 * [description]
+                 * Set to `true` if the WebGL context of the renderer is lost.
                  */
                 contextLost: boolean;
 
@@ -61254,7 +61431,9 @@ declare namespace Phaser {
                 pipelines: object;
 
                 /**
-                 * [description]
+                 * Details about the currently scheduled snapshot.
+                 *
+                 * If a non-null `callback` is set in this object, a snapshot of the canvas will be taken after the current frame is fully rendered.
                  */
                 snapshotState: SnapshotState;
 
@@ -61314,7 +61493,7 @@ declare namespace Phaser {
                 scissorStack: Uint32Array;
 
                 /**
-                 * [description]
+                 * The underlying WebGL context of the renderer.
                  */
                 gl: WebGLRenderingContext;
 
@@ -61352,30 +61531,30 @@ declare namespace Phaser {
                 /**
                  * Creates a new WebGLRenderingContext and initializes all internal
                  * state.
-                 * @param config [description]
+                 * @param config The configuration object for the renderer.
                  */
-                init(config: object): Phaser.Renderer.WebGL.WebGLRenderer;
+                init(config: object): this;
 
                 /**
-                 * [description]
-                 * @param width [description]
-                 * @param height [description]
+                 * Resizes the internal canvas and drawing buffer.
+                 * @param width The width of the renderer.
+                 * @param height The height of the renderer.
                  */
-                resize(width: number, height: number): Phaser.Renderer.WebGL.WebGLRenderer;
+                resize(width: number, height: number): this;
 
                 /**
-                 * [description]
-                 * @param callback [description]
-                 * @param target [description]
+                 * Adds a callback to be invoked when the WebGL context has been restored by the browser.
+                 * @param callback The callback to be invoked on context restoration.
+                 * @param target The context of the callback.
                  */
-                onContextRestored(callback: WebGLContextCallback, target: object): Phaser.Renderer.WebGL.WebGLRenderer;
+                onContextRestored(callback: WebGLContextCallback, target: object): this;
 
                 /**
-                 * [description]
-                 * @param callback [description]
-                 * @param target [description]
+                 * Adds a callback to be invoked when the WebGL context has been lost by the browser.
+                 * @param callback The callback to be invoked on context loss.
+                 * @param target The context of the callback.
                  */
-                onContextLost(callback: WebGLContextCallback, target: object): Phaser.Renderer.WebGL.WebGLRenderer;
+                onContextLost(callback: WebGLContextCallback, target: object): this;
 
                 /**
                  * Checks if a WebGL extension is supported
@@ -61385,7 +61564,7 @@ declare namespace Phaser {
 
                 /**
                  * Loads a WebGL extension
-                 * @param extensionName [description]
+                 * @param extensionName The name of the extension to load.
                  */
                 getExtension(extensionName: string): object;
 
@@ -61396,26 +61575,26 @@ declare namespace Phaser {
 
                 /**
                  * Checks if a pipeline is present in the current WebGLRenderer
-                 * @param pipelineName Name of the pipeline
+                 * @param pipelineName The name of the pipeline.
                  */
                 hasPipeline(pipelineName: string): boolean;
 
                 /**
                  * Returns the pipeline by name if the pipeline exists
-                 * @param pipelineName [description]
+                 * @param pipelineName The name of the pipeline.
                  */
                 getPipeline(pipelineName: string): Phaser.Renderer.WebGL.WebGLPipeline;
 
                 /**
-                 * Removes a pipeline by name
-                 * @param pipelineName [description]
+                 * Removes a pipeline by name.
+                 * @param pipelineName The name of the pipeline to be removed.
                  */
-                removePipeline(pipelineName: string): Phaser.Renderer.WebGL.WebGLRenderer;
+                removePipeline(pipelineName: string): this;
 
                 /**
                  * Adds a pipeline instance into the collection of pipelines
-                 * @param pipelineName [description]
-                 * @param pipelineInstance Pipeline instance must extend WebGLPipeline
+                 * @param pipelineName A unique string-based key for the pipeline.
+                 * @param pipelineInstance A pipeline instance which must extend WebGLPipeline.
                  */
                 addPipeline(
                     pipelineName: string,
@@ -61424,17 +61603,21 @@ declare namespace Phaser {
 
                 /**
                  * Pushes a new scissor state. This is used to set nested scissor states.
-                 * @param x [description]
-                 * @param y [description]
-                 * @param w [description]
-                 * @param h [description]
+                 * @param x The x position of the scissor.
+                 * @param y The y position of the scissor.
+                 * @param width The width of the scissor.
+                 * @param height The height of the scissor.
                  */
-                pushScissor(x: integer, y: integer, w: integer, h: integer): Phaser.Renderer.WebGL.WebGLRenderer;
+                pushScissor(x: integer, y: integer, width: integer, height: integer): integer[];
 
                 /**
-                 * Sets the current scissor state
+                 * Sets the current scissor state.
+                 * @param x The x position of the scissor.
+                 * @param y The y position of the scissor.
+                 * @param width The width of the scissor.
+                 * @param height The height of the scissor.
                  */
-                setScissor(): void;
+                setScissor(x: integer, y: integer, width: integer, height: integer): void;
 
                 /**
                  * Pops the last scissor state and sets it.
@@ -61461,84 +61644,79 @@ declare namespace Phaser {
                 setBlendMode(blendModeId: integer): boolean;
 
                 /**
-                 * [description]
-                 * @param func [description]
-                 * @param equation [description]
+                 * Creates a new custom blend mode for the renderer.
+                 * @param func An array containing the WebGL functions to use for the source and the destination blending factors, respectively. See the possible constants for {@link WebGLRenderingContext#blendFunc()}.
+                 * @param equation The equation to use for combining the RGB and alpha components of a new pixel with a rendered one. See the possible constants for {@link WebGLRenderingContext#blendEquation()}.
                  */
                 addBlendMode(func: Function, equation: Function): integer;
 
                 /**
-                 * [description]
-                 * @param index [description]
-                 * @param func [description]
-                 * @param equation [description]
+                 * Updates the function bound to a given custom blend mode.
+                 * @param index The index of the custom blend mode.
+                 * @param func The function to use for the blend mode.
+                 * @param equation The equation to use for the blend mode.
                  */
-                updateBlendMode(index: integer, func: Function, equation: Function): Phaser.Renderer.WebGL.WebGLRenderer;
+                updateBlendMode(index: integer, func: Function, equation: Function): this;
 
                 /**
-                 * [description]
-                 * @param index [description]
+                 * Removes a custom blend mode from the renderer.
+                 * Any Game Objects still using this blend mode will error, so be sure to clear them first.
+                 * @param index The index of the custom blend mode to be removed.
                  */
-                removeBlendMode(index: integer): Phaser.Renderer.WebGL.WebGLRenderer;
+                removeBlendMode(index: integer): this;
 
                 /**
                  * Binds a texture at a texture unit. If a texture is already
                  * bound to that unit it will force a flush on the current pipeline.
-                 * @param texture The WebGL texture that needs to be bound
-                 * @param textureUnit The texture unit to which the texture will be bound
+                 * @param texture The WebGL texture that needs to be bound.
+                 * @param textureUnit The texture unit to which the texture will be bound.
                  */
-                setTexture2D(texture: WebGLTexture, textureUnit: integer): Phaser.Renderer.WebGL.WebGLRenderer;
+                setTexture2D(texture: WebGLTexture, textureUnit: integer): this;
 
                 /**
-                 * Binds a framebuffer. If there was another framebuffer already bound
-                 * it will force a pipeline flush.
+                 * Binds a framebuffer. If there was another framebuffer already bound it will force a pipeline flush.
                  * @param framebuffer The framebuffer that needs to be bound.
                  */
-                setFramebuffer(framebuffer: WebGLFramebuffer): Phaser.Renderer.WebGL.WebGLRenderer;
+                setFramebuffer(framebuffer: WebGLFramebuffer): this;
 
                 /**
-                 * Binds a program. If there was another program already bound
-                 * it will force a pipeline flush
-                 * @param program The program that needs to be bound
+                 * Binds a program. If there was another program already bound it will force a pipeline flush.
+                 * @param program The program that needs to be bound.
                  */
-                setProgram(program: WebGLProgram): Phaser.Renderer.WebGL.WebGLRenderer;
+                setProgram(program: WebGLProgram): this;
 
                 /**
-                 * Bounds a vertex buffer. If there is a vertex buffer already bound
-                 * it'll force a pipeline flush.
-                 * @param vertexBuffer The buffer that needs to be bound
+                 * Bounds a vertex buffer. If there is a vertex buffer already bound it'll force a pipeline flush.
+                 * @param vertexBuffer The buffer that needs to be bound.
                  */
-                setVertexBuffer(vertexBuffer: WebGLBuffer): Phaser.Renderer.WebGL.WebGLRenderer;
+                setVertexBuffer(vertexBuffer: WebGLBuffer): this;
 
                 /**
-                 * Bounds a index buffer. If there is a index buffer already bound
-                 * it'll force a pipeline flush.
-                 * @param indexBuffer The buffer the needs to be bound
+                 * Bounds a index buffer. If there is a index buffer already bound it'll force a pipeline flush.
+                 * @param indexBuffer The buffer the needs to be bound.
                  */
-                setIndexBuffer(indexBuffer: WebGLBuffer): Phaser.Renderer.WebGL.WebGLRenderer;
+                setIndexBuffer(indexBuffer: WebGLBuffer): this;
 
                 /**
-                 * Creates a texture from an image source. If the source is not valid
-                 * it creates an empty texture
-                 * @param source [description]
-                 * @param width [description]
-                 * @param height [description]
-                 * @param scaleMode [description]
+                 * Creates a texture from an image source. If the source is not valid it creates an empty texture.
+                 * @param source The source of the texture.
+                 * @param width The width of the texture.
+                 * @param height The height of the texture.
+                 * @param scaleMode The scale mode to be used by the texture.
                  */
                 createTextureFromSource(source: object, width: integer, height: integer, scaleMode: integer): WebGLTexture;
 
                 /**
-                 * A wrapper for creating a WebGLTexture. If not pixel data is passed
-                 * it will create an empty texture.
-                 * @param mipLevel Mip level of the texture
-                 * @param minFilter Filtering of the texture
-                 * @param magFilter Filtering of the texture
-                 * @param wrapT Wrapping mode of the texture
-                 * @param wrapS Wrapping mode of the texture
-                 * @param format Which format does the texture use
-                 * @param pixels pixel data
-                 * @param width Width of the texture in pixels
-                 * @param height Height of the texture in pixels
+                 * A wrapper for creating a WebGLTexture. If no pixel data is passed it will create an empty texture.
+                 * @param mipLevel Mip level of the texture.
+                 * @param minFilter Filtering of the texture.
+                 * @param magFilter Filtering of the texture.
+                 * @param wrapT Wrapping mode of the texture.
+                 * @param wrapS Wrapping mode of the texture.
+                 * @param format Which format does the texture use.
+                 * @param pixels pixel data.
+                 * @param width Width of the texture in pixels.
+                 * @param height Height of the texture in pixels.
                  * @param pma Does the texture have premultiplied alpha?
                  */
                 createTexture2D(
@@ -61584,46 +61762,46 @@ declare namespace Phaser {
 
                 /**
                  * Wrapper for creating a vertex buffer.
-                 * @param initialDataOrSize It's either ArrayBuffer or an integer indicating the size of the vbo
-                 * @param bufferUsage How the buffer is used. gl.DYNAMIC_DRAW, gl.STATIC_DRAW or gl.STREAM_DRAW
+                 * @param initialDataOrSize Either ArrayBuffer or an integer indicating the size of the vbo.
+                 * @param bufferUsage How the buffer is used. gl.DYNAMIC_DRAW, gl.STATIC_DRAW or gl.STREAM_DRAW.
                  */
                 createIndexBuffer(initialDataOrSize: ArrayBuffer, bufferUsage: integer): WebGLBuffer;
 
                 /**
-                 * [description]
-                 * @param texture [description]
+                 * Removes the given texture from the nativeTextures array and then deletes it from the GPU.
+                 * @param texture The WebGL Texture to be deleted.
                  */
-                deleteTexture(texture: WebGLTexture): Phaser.Renderer.WebGL.WebGLRenderer;
+                deleteTexture(texture: WebGLTexture): this;
 
                 /**
-                 * Wrapper for deleting a raw WebGLFramebuffer
-                 * @param framebuffer [description]
+                 * Deletes a WebGLFramebuffer from the GL instance.
+                 * @param framebuffer The Framebuffer to be deleted.
                  */
-                deleteFramebuffer(framebuffer: WebGLFramebuffer): Phaser.Renderer.WebGL.WebGLRenderer;
+                deleteFramebuffer(framebuffer: WebGLFramebuffer): this;
 
                 /**
-                 * [description]
-                 * @param program [description]
+                 * Deletes a WebGLProgram from the GL instance.
+                 * @param program The shader program to be deleted.
                  */
-                deleteProgram(program: WebGLProgram): Phaser.Renderer.WebGL.WebGLRenderer;
+                deleteProgram(program: WebGLProgram): this;
 
                 /**
-                 * Wrapper for deleting a vertex or index buffer
-                 * @param vertexBuffer [description]
+                 * Deletes a WebGLBuffer from the GL instance.
+                 * @param vertexBuffer The WebGLBuffer to be deleted.
                  */
-                deleteBuffer(vertexBuffer: WebGLBuffer): Phaser.Renderer.WebGL.WebGLRenderer;
+                deleteBuffer(vertexBuffer: WebGLBuffer): this;
 
                 /**
-                 * Handles any clipping needed by the camera and renders the background
-                 * color if a color is visible.
-                 * @param camera [description]
+                 * Controls the pre-render operations for the given camera.
+                 * Handles any clipping needed by the camera and renders the background color if a color is visible.
+                 * @param camera The Camera to pre-render.
                  */
                 preRenderCamera(camera: Phaser.Cameras.Scene2D.Camera): void;
 
                 /**
-                 * Renders the foreground camera effects like flash and fading.
-                 * It resets the current scissor state.
-                 * @param camera [description]
+                 * Controls the post-render operations for the given camera.
+                 * Renders the foreground camera effects like flash and fading. It resets the current scissor state.
+                 * @param camera The Camera to post-render.
                  */
                 postRenderCamera(camera: Phaser.Cameras.Scene2D.Camera): void;
 
@@ -61633,11 +61811,12 @@ declare namespace Phaser {
                 preRender(): void;
 
                 /**
-                 * [description]
-                 * @param scene [description]
-                 * @param children [description]
-                 * @param interpolationPercentage [description]
-                 * @param camera [description]
+                 * The core render step for a Scene.
+                 * Iterates through the given Game Object's array and renders them with the given Camera.
+                 * @param scene The Scene to render.
+                 * @param children The Game Object's within the Scene to be rendered.
+                 * @param interpolationPercentage The interpolation percentage to apply. Currently un-used.
+                 * @param camera The Scene Camera to render with.
                  */
                 render(
                     scene: Phaser.Scene,
@@ -61647,15 +61826,15 @@ declare namespace Phaser {
                 ): void;
 
                 /**
-                 * [description]
+                 * The post-render step happens after all Cameras in all Scenes have been rendered.
                  */
                 postRender(): void;
 
                 /**
-                 * [description]
-                 * @param callback [description]
-                 * @param type [description]
-                 * @param encoderOptions [description]
+                 * Schedules a snapshot to be taken after the current frame is rendered.
+                 * @param callback Function to invoke after the snapshot is created.
+                 * @param type The format of the image to create, usually `image/png`.
+                 * @param encoderOptions The image quality, between 0 and 1, to use for image formats with lossy compression (such as `image/jpeg`).
                  */
                 snapshot(callback: SnapshotCallback, type: string, encoderOptions: number): Phaser.Renderer.WebGL.WebGLRenderer;
 
@@ -61667,9 +61846,9 @@ declare namespace Phaser {
                 canvasToTexture(srcCanvas: HTMLCanvasElement, dstTexture?: WebGLTexture): WebGLTexture;
 
                 /**
-                 * [description]
-                 * @param texture [description]
-                 * @param filter [description]
+                 * Sets the minification and magnification filter for a texture.
+                 * @param texture The texture to set the filter for.
+                 * @param filter The filter to set. 0 for linear filtering, 1 for nearest neighbor (blocky) filtering.
                  */
                 setTextureFilter(texture: integer, filter: integer): this;
 
@@ -63791,12 +63970,12 @@ declare namespace Phaser {
 
     namespace Structs {
         /**
-         * [description]
+         * List is a generic implementation of an ordered list which contains utility methods for retrieving, manipulating, and iterating items.
          */
         class List<T> {
             /**
              *
-             * @param parent [description]
+             * @param parent The parent of this list.
              */
             constructor(parent: any);
 
@@ -63811,7 +63990,9 @@ declare namespace Phaser {
             list: T[];
 
             /**
-             * [description]
+             * The index of the current element.
+             *
+             * This is used internally when iterating through the list with the {@link #first}, {@link #last}, {@link #get}, and {@link #previous} properties.
              */
             position: integer;
 
@@ -63831,29 +64012,29 @@ declare namespace Phaser {
             _sortKey: string;
 
             /**
-             * [description]
-             * @param child [description]
+             * Adds the given item to the end of the list. Each item must be unique.
+             * @param child The item, or array of items, to add to the list.
              * @param skipCallback Skip calling the List.addCallback if this child is added successfully. Default false.
              */
             add(child: T, skipCallback?: boolean): T;
 
             /**
-             * [description]
-             * @param child [description]
-             * @param index [description] Default 0.
+             * Adds an item to list, starting at a specified index. Each item must be unique within the list.
+             * @param child The item, or array of items, to add to the list.
+             * @param index The index in the list at which the element(s) will be inserted. Default 0.
              * @param skipCallback Skip calling the List.addCallback if this child is added successfully. Default false.
              */
             addAt(child: T, index?: integer, skipCallback?: boolean): T;
 
             /**
-             * [description]
-             * @param index [description]
+             * Retrieves the item at a given position inside the List.
+             * @param index The index of the item.
              */
             getAt(index: integer): T;
 
             /**
-             * [description]
-             * @param child [description]
+             * Locates an item within the List and returns its index.
+             * @param child The item to locate.
              */
             getIndex(child: T): integer;
 
@@ -63881,11 +64062,11 @@ declare namespace Phaser {
             getRandom(startIndex?: integer, length?: integer): T | null;
 
             /**
-             * [description]
-             * @param property [description]
-             * @param value [description]
-             * @param startIndex [description] Default 0.
-             * @param endIndex [description]
+             * Returns the first element in a given part of the List which matches a specific criterion.
+             * @param property The name of the property to test or a falsey value to have no criterion.
+             * @param value The value to test the `property` against, or `undefined` to allow any value and only check for existence.
+             * @param startIndex The position in the List to start the search at. Default 0.
+             * @param endIndex The position in the List to optionally stop the search at. It won't be checked.
              */
             getFirst(property: string, value: T, startIndex?: number, endIndex?: number): T | null;
 
@@ -63911,44 +64092,44 @@ declare namespace Phaser {
             getAll(property?: string, value?: T, startIndex?: integer, endIndex?: integer): T[];
 
             /**
-             * [description]
-             * @param property [description]
-             * @param value [description]
+             * Returns the total number of items in the List which have a property matching the given value.
+             * @param property The property to test on each item.
+             * @param value The value to test the property against.
              */
             count(property: string, value: T): integer;
 
             /**
-             * [description]
-             * @param child1 [description]
-             * @param child2 [description]
+             * Swaps the positions of two items in the list.
+             * @param child1 The first item to swap.
+             * @param child2 The second item to swap.
              */
             swap(child1: T, child2: T): void;
 
             /**
-             * [description]
-             * @param child [description]
-             * @param index [description]
+             * Moves an item in the List to a new position.
+             * @param child The item to move.
+             * @param index Moves an item in the List to a new position.
              */
             moveTo(child: T, index: integer): T;
 
             /**
-             * [description]
-             * @param child [description]
+             * Removes one or many items from the List.
+             * @param child The item, or array of items, to remove.
              * @param skipCallback Skip calling the List.removeCallback. Default false.
              */
             remove(child: T, skipCallback?: boolean): T;
 
             /**
-             * [description]
-             * @param index [description]
+             * Removes the item at the given position in the List.
+             * @param index The position to remove the item from.
              * @param skipCallback Skip calling the List.removeCallback. Default false.
              */
             removeAt(index: integer, skipCallback?: boolean): T;
 
             /**
-             * [description]
-             * @param startIndex [description] Default 0.
-             * @param endIndex [description]
+             * Removes the items within the given range in the List.
+             * @param startIndex The index to start removing from. Default 0.
+             * @param endIndex The position to stop removing at. The item at this position won't be removed.
              * @param skipCallback Skip calling the List.removeCallback. Default false.
              */
             removeBetween(startIndex?: integer, endIndex?: integer, skipCallback?: boolean): T[];
@@ -63961,25 +64142,25 @@ declare namespace Phaser {
 
             /**
              * Brings the given child to the top of this List.
-             * @param child [description]
+             * @param child The item to bring to the top of the List.
              */
             bringToTop(child: T): T;
 
             /**
              * Sends the given child to the bottom of this List.
-             * @param child [description]
+             * @param child The item to send to the back of the list.
              */
             sendToBack(child: T): T;
 
             /**
              * Moves the given child up one place in this group unless it's already at the top.
-             * @param child [description]
+             * @param child The item to move up.
              */
             moveUp(child: T): T;
 
             /**
              * Moves the given child down one place in this group unless it's already at the bottom.
-             * @param child [description]
+             * @param child The item to move down.
              */
             moveDown(child: T): T;
 
@@ -63989,7 +64170,7 @@ declare namespace Phaser {
             reverse(): Phaser.Structs.List<T>;
 
             /**
-             * [description]
+             * Shuffles the items in the list.
              */
             shuffle(): Phaser.Structs.List<T>;
 
@@ -64001,15 +64182,15 @@ declare namespace Phaser {
             replace(oldChild: T, newChild: T): T;
 
             /**
-             * [description]
-             * @param child [description]
+             * Checks if an item exists within the List.
+             * @param child The item to check for the existence of.
              */
             exists(child: T): boolean;
 
             /**
              * Sets the property `key` to the given value on all members of this List.
-             * @param property [description]
-             * @param value [description]
+             * @param property The name of the property to set.
+             * @param value The value to set the property to.
              * @param startIndex The first child index to start the search from.
              * @param endIndex The last child index to search up until.
              */
@@ -64024,134 +64205,140 @@ declare namespace Phaser {
             each(callback: EachListCallback<T>, context?: any, ...args: any[]): void;
 
             /**
-             * [description]
+             * Clears the List and recreates its internal array.
              */
             shutdown(): void;
 
             /**
-             * [description]
+             * Destroys this List.
              */
             destroy(): void;
 
             /**
-             * [description]
+             * The number of items inside the List.
              */
             readonly length: integer;
 
             /**
-             * [description]
+             * The first item in the List or `null` for an empty List.
              */
             readonly first: integer;
 
             /**
-             * [description]
+             * The last item in the List, or `null` for an empty List.
              */
             readonly last: integer;
 
             /**
-             * [description]
+             * The next item in the List, or `null` if the entire List has been traversed.
+             *
+             * This property can be read successively after reading {@link #first} or manually setting the {@link #position} to iterate the List.
              */
             readonly next: integer;
 
             /**
-             * [description]
+             * The previous item in the List, or `null` if the entire List has been traversed.
+             *
+             * This property can be read successively after reading {@link #last} or manually setting the {@link #position} to iterate the List backwards.
              */
             readonly previous: integer;
         }
 
         /**
          * The keys of a Map can be arbitrary values.
+         *
+         * ```javascript
          * var map = new Map([
          *    [ 1, 'one' ],
          *    [ 2, 'two' ],
          *    [ 3, 'three' ]
          * ]);
+         * ```
          */
         class Map<K, V> {
             /**
              *
-             * @param elements [description]
+             * @param elements An optional array of key-value pairs to populate this Map with.
              */
             constructor(elements: V[]);
 
             /**
-             * [description]
+             * The entries in this Map.
              */
             entries: { [key: string]: V };
 
             /**
-             * [description]
+             * The number of key / value pairs in this Map.
              */
             size: number;
 
             /**
-             * [description]
-             * @param key [description]
-             * @param value [description]
+             * Adds an element with a specified `key` and `value` to this Map.
+             * @param key The key of the element to be added to this Map.
+             * @param value The value of the element to be added to this Map.
              */
             set(key: K, value: V): Phaser.Structs.Map<K, V>;
 
             /**
-             * [description]
-             * @param key [description]
+             * Returns the value associated to the `key`, or `undefined` if there is none.
+             * @param key The key of the element to return from the `Map` object.
              */
             get(key: K): V;
 
             /**
-             * [description]
+             * Returns an `Array` of all the values stored in this Map.
              */
             getArray(): V[];
 
             /**
-             * [description]
-             * @param key [description]
+             * Returns a boolean indicating whether an element with the specified key exists or not.
+             * @param key The key of the element to test for presence of in this Map.
              */
             has(key: K): boolean;
 
             /**
-             * [description]
-             * @param key [description]
+             * Delete the specified element from this Map.
+             * @param key The key of the element to delete from this Map.
              */
             delete(key: K): Phaser.Structs.Map<K, V>;
 
             /**
-             * [description]
+             * Delete all entries from this Map.
              */
             clear(): Phaser.Structs.Map<K, V>;
 
             /**
-             * [description]
+             * Returns all entries keys in this Map.
              */
             keys(): K[];
 
             /**
-             * [description]
+             * Returns an `Array` of all entries.
              */
             values(): V[];
 
             /**
-             * [description]
+             * Dumps the contents of this Map to the console via `console.group`.
              */
             dump(): void;
 
             /**
-             * [description]
-             * @param callback [description]
+             * Passes all entries in this Map to the given callback.
+             * @param callback The callback which will receive the keys and entries held in this Map.
              */
             each(callback: EachMapCallback<V>): Phaser.Structs.Map<K, V>;
 
             /**
-             * [description]
-             * @param value [description]
+             * Returns `true` if the value exists within this Map. Otherwise, returns `false`.
+             * @param value The value to search for.
              */
             contains(value: V): boolean;
 
             /**
-             * Merges all new keys from the given Map into this one
-             * If it encounters a key that already exists it will be skipped
-             * unless override = true.
-             * @param map [description]
-             * @param override [description] Default false.
+             * Merges all new keys from the given Map into this one.
+             * If it encounters a key that already exists it will be skipped unless override is set to `true`.
+             * @param map The Map to merge in to this Map.
+             * @param override Set to `true` to replace values in this Map with those from the source map, or `false` to skip them. Default false.
              */
             merge(map: Phaser.Structs.Map<K, V>, override?: boolean): Phaser.Structs.Map<K, V>;
         }
@@ -64206,96 +64393,101 @@ declare namespace Phaser {
         class Set<T> {
             /**
              *
-             * @param elements [description]
+             * @param elements An optional array of elements to insert into this Set.
              */
             constructor(elements?: T[]);
 
             /**
-             * [description]
+             * The entries of this Set. Stored internally as an array.
              */
             entries: T[];
 
             /**
-             * [description]
-             * @param value [description]
+             * Inserts the provided value into this Set. If the value is already contained in this Set this method will have no effect.
+             * @param value The value to insert into this Set.
              */
             set(value: T): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
-             * @param property [description]
-             * @param value [description]
+             * Get an element of this Set which has a property of the specified name, if that property is equal to the specified value.
+             * If no elements of this Set satisfy the condition then this method will return `null`.
+             * @param property The property name to check on the elements of this Set.
+             * @param value The value to check for.
              */
             get(property: string, value: T): T;
 
             /**
-             * [description]
+             * Returns an array containing all the values in this Set.
              */
             getArray(): T[];
 
             /**
-             * [description]
-             * @param value [description]
+             * Removes the given value from this Set if this Set contains that value.
+             * @param value The value to remove from the Set.
              */
             delete(value: T): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
+             * Dumps the contents of this Set to the console via `console.group`.
              */
             dump(): void;
 
             /**
-             * For when you know this Set will be modified during the iteration.
-             * @param callback [description]
-             * @param callbackScope [description]
+             * Passes each value in this Set to the given callback.
+             * Use this function when you know this Set will be modified during the iteration, otherwise use `iterate`.
+             * @param callback The callback to be invoked and passed each value this Set contains.
+             * @param callbackScope The scope of the callback.
              */
             each(callback: EachSetCallback<T>, callbackScope: any): Phaser.Structs.Set<T>;
 
             /**
+             * Passes each value in this Set to the given callback.
              * For when you absolutely know this Set won't be modified during the iteration.
-             * @param callback [description]
-             * @param callbackScope [description]
+             * @param callback The callback to be invoked and passed each value this Set contains.
+             * @param callbackScope The scope of the callback.
              */
-            iterate(callback: EachSetCallback<T>, callbackScope?: any): Phaser.Structs.Set<T>;
+            iterate(callback: EachSetCallback<T>, callbackScope: any): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
-             * @param callbackKey [description]
+             * Goes through each entry in this Set and invokes the given function on them, passing in the arguments.
+             * @param callbackKey The key of the function to be invoked on each Set entry.
              * @param args Additional arguments that will be passed to the callback, after the child.
              */
             iterateLocal(callbackKey: string, ...args: any[]): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
+             * Clears this Set so that it no longer contains any values.
              */
             clear(): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
-             * @param value [description]
+             * Returns `true` if this Set contains the given value, otherwise returns `false`.
+             * @param value The value to check for in this Set.
              */
             contains(value: T): boolean;
 
             /**
-             * [description]
-             * @param set [description]
+             * Returns a new Set containing all values that are either in this Set or in the Set provided as an argument.
+             * @param set The Set to perform the union with.
              */
             union(set: Phaser.Structs.Set<T>): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
-             * @param set [description]
+             * Returns a new Set that contains only the values which are in this Set and that are also in the given Set.
+             * @param set The Set to intersect this set with.
              */
             intersect(set: Phaser.Structs.Set<T>): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
-             * @param set [description]
+             * Returns a new Set containing all the values in this Set which are *not* also in the given Set.
+             * @param set The Set to perform the difference with.
              */
             difference(set: Phaser.Structs.Set<T>): Phaser.Structs.Set<T>;
 
             /**
-             * [description]
+             * The size of this Set. This is the number of entries within it.
+             * Changing the size will truncate the Set if the given value is smaller than the current size.
+             * Increasing the size larger than the current size has no effect.
              */
             size: integer;
         }
@@ -64336,6 +64528,11 @@ declare namespace Phaser {
              * The source Canvas Element.
              */
             readonly canvas: HTMLCanvasElement;
+
+            /**
+             * The 2D Canvas Rendering Context.
+             */
+            readonly context: CanvasRenderingContext2D;
 
             /**
              * The width of the Canvas.
@@ -64842,8 +65039,9 @@ declare namespace Phaser {
             /**
              * Returns an array of all the Frames in the given TextureSource.
              * @param sourceIndex The index of the TextureSource to get the Frames from.
+             * @param includeBase Include the `__BASE` Frame in the output array? Default false.
              */
-            getFramesFromTextureSource(sourceIndex: integer): Phaser.Textures.Frame[];
+            getFramesFromTextureSource(sourceIndex: integer, includeBase?: boolean): Phaser.Textures.Frame[];
 
             /**
              * Returns an array with all of the names of the Frames in this Texture.
@@ -65310,13 +65508,14 @@ declare namespace Phaser {
         }
 
         /**
-         * A DynamicTilemapLayer is a game object that renders LayerData from a Tilemap. A
-         * DynamicTilemapLayer can only render tiles from a single tileset.
+         * A Dynamic Tilemap Layer is a Game Object that renders LayerData from a Tilemap when used in combination
+         * with one, or more, Tilesets.
          *
-         * A DynamicTilemapLayer trades some speed for being able to apply powerful effects. Unlike a
-         * StaticTilemapLayer, you can apply per-tile effects like tint or alpha, and you can change the
-         * tiles in a DynamicTilemapLayer. Use this over a StaticTilemapLayer when you need those
-         * features.
+         * A Dynamic Tilemap Layer trades some speed for being able to apply powerful effects. Unlike a
+         * Static Tilemap Layer, you can apply per-tile effects like tint or alpha, and you can change the
+         * tiles in a DynamicTilemapLayer.
+         *
+         * Use this over a Static Tilemap Layer when you need those features.
          */
         class DynamicTilemapLayer extends Phaser.GameObjects.GameObject
             implements
@@ -65334,10 +65533,10 @@ declare namespace Phaser {
                 Phaser.GameObjects.Components.Visible {
             /**
              *
-             * @param scene [description]
+             * @param scene The Scene to which this Game Object belongs.
              * @param tilemap The Tilemap this layer is a part of.
              * @param layerIndex The index of the LayerData associated with this layer.
-             * @param tileset The tileset used to render the tiles in this layer.
+             * @param tileset The tileset, or an array of tilesets, used to render this layer. Can be a string or a Tileset object.
              * @param x The world x position where the top left of this layer will be placed. Default 0.
              * @param y The world y position where the top left of this layer will be placed. Default 0.
              */
@@ -65345,7 +65544,7 @@ declare namespace Phaser {
                 scene: Phaser.Scene,
                 tilemap: Phaser.Tilemaps.Tilemap,
                 layerIndex: integer,
-                tileset: Phaser.Tilemaps.Tileset,
+                tileset: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[],
                 x?: number,
                 y?: number
             );
@@ -65372,9 +65571,11 @@ declare namespace Phaser {
             layer: Phaser.Tilemaps.LayerData;
 
             /**
-             * The Tileset associated with this layer. A tilemap layer can only render from one Tileset.
+             * The Tileset/s associated with this layer.
+             *
+             * As of Phaser 3.14 this property is now an array of Tileset objects, previously it was a single reference.
              */
-            tileset: Phaser.Tilemaps.Tileset;
+            tileset: Phaser.Tilemaps.Tileset[];
 
             /**
              * Used internally with the canvas render. This holds the tiles that are visible within the
@@ -65431,6 +65632,11 @@ declare namespace Phaser {
             cullCallback: Function;
 
             /**
+             * An array holding the mapping between the tile indexes and the tileset they belong to.
+             */
+            gidMap: Phaser.Tilemaps.Tileset[];
+
+            /**
              * Sets the rendering (draw) order of the tiles in this layer.
              *
              * The default is 'right-down', meaning it will order the tiles starting from the top-left,
@@ -65464,10 +65670,10 @@ declare namespace Phaser {
              * Calculates interesting faces within the rectangular area specified (in tile coordinates) of the
              * layer. Interesting faces are used internally for optimizing collisions against tiles. This method
              * is mostly used internally.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              */
             calculateFacesWithin(tileX?: integer, tileY?: integer, width?: integer, height?: integer): Phaser.Tilemaps.DynamicTilemapLayer;
 
@@ -65504,13 +65710,13 @@ declare namespace Phaser {
              * Copies the tiles in the source rectangular area to a new destination (all specified in tile
              * coordinates) within the layer. This copies all tile properties & recalculates collision
              * information in the destination region.
-             * @param srcTileX [description]
-             * @param srcTileY [description]
-             * @param width [description]
-             * @param height [description]
-             * @param destTileX [description]
-             * @param destTileY [description]
-             * @param recalculateFaces [description] Default true.
+             * @param srcTileX The x coordinate of the area to copy from, in tiles, not pixels.
+             * @param srcTileY The y coordinate of the area to copy from, in tiles, not pixels.
+             * @param width The width of the area to copy, in tiles, not pixels.
+             * @param height The height of the area to copy, in tiles, not pixels.
+             * @param destTileX The x coordinate of the area to copy to, in tiles, not pixels.
+             * @param destTileY The y coordinate of the area to copy to, in tiles, not pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
              */
             copy(
                 srcTileX: integer,
@@ -65531,12 +65737,12 @@ declare namespace Phaser {
              * Sets the tiles in the given rectangular area (in tile coordinates) of the layer with the
              * specified index. Tiles will be set to collide if the given index is a colliding index.
              * Collision information in the region will be recalculated.
-             * @param index [description]
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
-             * @param recalculateFaces [description] Default true.
+             * @param index The tile index to fill the area with.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
              */
             fill(
                 index: integer,
@@ -65555,17 +65761,14 @@ declare namespace Phaser {
              * callback as the first and only parameter. The callback should return true for tiles that pass the
              * filter.
              * @param context The context under which the callback should be run.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area to filter. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area to filter. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide
-             * on at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
              */
             filterTiles(
                 callback: Function,
@@ -65594,23 +65797,19 @@ declare namespace Phaser {
              * Find the first tile in the given rectangular area (in tile coordinates) of the layer that
              * satisfies the provided testing function. I.e. finds the first tile for which `callback` returns
              * true. Similar to Array.prototype.find in vanilla JS.
-             * @param callback The callback. Each tile in the given area will be passed to this
-             * callback as the first and only parameter.
+             * @param callback The callback. Each tile in the given area will be passed to this callback as the first and only parameter.
              * @param context The context under which the callback should be run.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide
-             * on at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
              */
             findTile(
-                callback: Function,
+                callback: FindTileCallback,
                 context?: object,
                 tileX?: integer,
                 tileY?: integer,
@@ -65622,23 +65821,19 @@ declare namespace Phaser {
             /**
              * For each tile in the given rectangular area (in tile coordinates) of the layer, run the given
              * callback. Similar to Array.prototype.forEach in vanilla JS.
-             * @param callback The callback. Each tile in the given area will be passed to this
-             * callback as the first and only parameter.
+             * @param callback The callback. Each tile in the given area will be passed to this callback as the first and only parameter.
              * @param context The context under which the callback should be run.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide
-             * on at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
              */
             forEachTile(
-                callback: Function,
+                callback: EachTileCallback,
                 context?: object,
                 tileX?: integer,
                 tileY?: integer,
@@ -65651,8 +65846,7 @@ declare namespace Phaser {
              * Gets a tile at the given tile coordinates from the given layer.
              * @param tileX X position to get the tile from (given in tile units, not pixels).
              * @param tileY Y position to get the tile from (given in tile units, not pixels).
-             * @param nonNull If true getTile won't return null for empty tiles, but a Tile
-             * object with an index of -1. Default false.
+             * @param nonNull If true getTile won't return null for empty tiles, but a Tile object with an index of -1. Default false.
              */
             getTileAt(tileX: integer, tileY: integer, nonNull?: boolean): Phaser.Tilemaps.Tile;
 
@@ -65660,9 +65854,8 @@ declare namespace Phaser {
              * Gets a tile at the given world coordinates from the given layer.
              * @param worldX X position to get the tile from (given in pixels)
              * @param worldY Y position to get the tile from (given in pixels)
-             * @param nonNull If true, function won't return null for empty tiles, but a Tile
-             * object with an index of -1. Default false.
-             * @param camera [description] Default main camera.
+             * @param nonNull If true, function won't return null for empty tiles, but a Tile object with an index of -1. Default false.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             getTileAtWorldXY(
                 worldX: number,
@@ -65673,17 +65866,14 @@ declare namespace Phaser {
 
             /**
              * Gets the tiles in the given rectangular area (in tile coordinates) of the layer.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide on
-             * at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
              */
             getTilesWithin(
                 tileX?: integer,
@@ -65698,13 +65888,10 @@ declare namespace Phaser {
              * Line, Rectangle or Triangle. The shape should be in world coordinates.
              * @param shape A shape in world (pixel) coordinates
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide on
-             * at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param camera [description] Default main camera.
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param camera The Camera to use when factoring in which tiles to return. Default main camera.
              */
             getTilesWithinShape(
                 shape: Phaser.Geom.Circle | Phaser.Geom.Line | Phaser.Geom.Rectangle | Phaser.Geom.Triangle,
@@ -65714,18 +65901,15 @@ declare namespace Phaser {
 
             /**
              * Gets the tiles in the given rectangular area (in world coordinates) of the layer.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param width [description]
-             * @param height [description]
+             * @param worldX The world x coordinate for the top-left of the area.
+             * @param worldY The world y coordinate for the top-left of the area.
+             * @param width The width of the area.
+             * @param height The height of the area.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide on
-             * at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param camera [description] Default main camera.
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param camera The Camera to use when factoring in which tiles to return. Default main camera.
              */
             getTilesWithinWorldXY(
                 worldX: number,
@@ -65739,17 +65923,17 @@ declare namespace Phaser {
             /**
              * Checks if there is a tile at the given location (in tile coordinates) in the given layer. Returns
              * false if there is no tile or if the tile at that location has an index of -1.
-             * @param tileX [description]
-             * @param tileY [description]
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
              */
             hasTileAt(tileX: integer, tileY: integer): boolean;
 
             /**
              * Checks if there is a tile at the given location (in world coordinates) in the given layer. Returns
              * false if there is no tile or if the tile at that location has an index of -1.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param camera [description] Default main camera.
+             * @param worldX The x coordinate, in pixels.
+             * @param worldY The y coordinate, in pixels.
+             * @param camera The Camera to use when factoring in which tiles to return. Default main camera.
              */
             hasTileAtWorldXY(worldX: number, worldY: number, camera?: Phaser.Cameras.Scene2D.Camera): boolean;
 
@@ -65759,9 +65943,9 @@ declare namespace Phaser {
              * location. If you pass in an index, only the index at the specified location will be changed.
              * Collision information will be recalculated at the specified location.
              * @param tile The index of this tile to set or a Tile object.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param recalculateFaces [description] Default true.
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
              */
             putTileAt(
                 tile: integer | Phaser.Tilemaps.Tile,
@@ -65776,15 +65960,15 @@ declare namespace Phaser {
              * specified location. If you pass in an index, only the index at the specified location will be
              * changed. Collision information will be recalculated at the specified location.
              * @param tile The index of this tile to set or a Tile object.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param recalculateFaces [description] Default true.
-             * @param camera [description]
+             * @param worldX The x coordinate, in pixels.
+             * @param worldY The y coordinate, in pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             putTileAtWorldXY(
                 tile: integer | Phaser.Tilemaps.Tile,
-                worldX: integer,
-                worldY: integer,
+                worldX: number,
+                worldY: number,
                 recalculateFaces?: boolean,
                 camera?: Phaser.Cameras.Scene2D.Camera
             ): Phaser.Tilemaps.Tile;
@@ -65795,11 +65979,10 @@ declare namespace Phaser {
              * all attributes will be copied over to the specified location. If you pass in an index, only the
              * index at the specified location will be changed. Collision information will be recalculated
              * within the region tiles were changed.
-             * @param tile A row (array) or grid (2D array) of Tiles
-             * or tile indexes to place.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param recalculateFaces [description] Default true.
+             * @param tile A row (array) or grid (2D array) of Tiles or tile indexes to place.
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
              */
             putTilesAt(
                 tile: integer[] | integer[][] | Phaser.Tilemaps.Tile[] | Phaser.Tilemaps.Tile[][],
@@ -65814,10 +65997,10 @@ declare namespace Phaser {
              * those will be used for randomly assigning new tile indexes. If an array is not provided, the
              * indexes found within the region (excluding -1) will be used for randomly assigning new tile
              * indexes. This method only modifies tile indexes and does not change collision information.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param indexes An array of indexes to randomly draw from during randomization.
              */
             randomize(
@@ -65831,23 +66014,21 @@ declare namespace Phaser {
             /**
              * Removes the tile at the given tile coordinates in the specified layer and updates the layer's
              * collision information.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param replaceWithNull If true, this will replace the tile at the specified
-             * location with null instead of a Tile with an index of -1. Default true.
-             * @param recalculateFaces [description] Default true.
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param replaceWithNull If true, this will replace the tile at the specified location with null instead of a Tile with an index of -1. Default true.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
              */
             removeTileAt(tileX: integer, tileY: integer, replaceWithNull?: boolean, recalculateFaces?: boolean): Phaser.Tilemaps.Tile;
 
             /**
              * Removes the tile at the given world coordinates in the specified layer and updates the layer's
              * collision information.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param replaceWithNull If true, this will replace the tile at the specified
-             * location with null instead of a Tile with an index of -1. Default true.
-             * @param recalculateFaces [description] Default true.
-             * @param camera [description] Default main camera.
+             * @param worldX The x coordinate, in pixels.
+             * @param worldY The y coordinate, in pixels.
+             * @param replaceWithNull If true, this will replace the tile at the specified location with null instead of a Tile with an index of -1. Default true.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             removeTileAtWorldXY(
                 worldX: number,
@@ -65877,12 +66058,12 @@ declare namespace Phaser {
              * Scans the given rectangular area (given in tile coordinates) for tiles with an index matching
              * `findIndex` and updates their index to match `newIndex`. This only modifies the index and does
              * not change collision information.
-             * @param findIndex [description]
-             * @param newIndex [description]
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param findIndex The index of the tile to search for.
+             * @param newIndex The index of the tile to replace it with.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              */
             replaceByIndex(
                 findIndex: integer,
@@ -66009,19 +66190,19 @@ declare namespace Phaser {
              * Sets a collision callback for the given rectangular area (in tile coordinates) within the layer.
              * If a callback is already set for the tile index it will be replaced. Set the callback to null to
              * remove it.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param width [description]
-             * @param height [description]
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param callback The callback that will be invoked when the tile is collided with.
              * @param callbackContext The context under which the callback is called.
              */
             setTileLocationCallback(
-                tileX: integer,
-                tileY: integer,
-                width: integer,
-                height: integer,
-                callback: Function,
+                tileX?: integer,
+                tileY?: integer,
+                width?: integer,
+                height?: integer,
+                callback?: Function,
                 callbackContext?: object
             ): Phaser.Tilemaps.DynamicTilemapLayer;
 
@@ -66030,10 +66211,10 @@ declare namespace Phaser {
              * layer. It will only randomize the tiles in that area, so if they're all the same nothing will
              * appear to have changed! This method only modifies tile indexes and does not change collision
              * information.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              */
             shuffle(tileX?: integer, tileY?: integer, width?: integer, height?: integer): Phaser.Tilemaps.DynamicTilemapLayer;
 
@@ -66043,10 +66224,10 @@ declare namespace Phaser {
              * information.
              * @param tileA First tile index.
              * @param tileB Second tile index.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              */
             swapByIndex(
                 tileA: integer,
@@ -66060,16 +66241,16 @@ declare namespace Phaser {
             /**
              * Converts from tile X coordinates (tile units) to world X coordinates (pixels), factoring in the
              * layers position, scale and scroll.
-             * @param tileX [description]
-             * @param camera [description] Default main camera.
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             tileToWorldX(tileX: integer, camera?: Phaser.Cameras.Scene2D.Camera): number;
 
             /**
              * Converts from tile Y coordinates (tile units) to world Y coordinates (pixels), factoring in the
              * layers position, scale and scroll.
-             * @param tileY [description]
-             * @param camera [description] Default main camera.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             tileToWorldY(tileY: integer, camera?: Phaser.Cameras.Scene2D.Camera): number;
 
@@ -66077,10 +66258,10 @@ declare namespace Phaser {
              * Converts from tile XY coordinates (tile units) to world XY coordinates (pixels), factoring in the
              * layers position, scale and scroll. This will return a new Vector2 object or update the given
              * `point` object.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param point [description]
-             * @param camera [description] Default main camera.
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param point A Vector2 to store the coordinates in. If not given a new Vector2 is created.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             tileToWorldXY(
                 tileX: integer,
@@ -66103,10 +66284,10 @@ declare namespace Phaser {
              *
              * The probability of any index being choose is (the index's weight) / (sum of all weights). This
              * method only modifies tile indexes and does not change collision information.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param weightedIndexes An array of objects to randomly draw from during
              * randomization. They should be in the form: { index: 0, weight: 4 } or
              * { index: [0, 1], weight: 4 } if you wish to draw from multiple tile indexes.
@@ -66122,20 +66303,18 @@ declare namespace Phaser {
             /**
              * Converts from world X coordinates (pixels) to tile X coordinates (tile units), factoring in the
              * layers position, scale and scroll.
-             * @param worldX [description]
-             * @param snapToFloor Whether or not to round the tile coordinate down to the
-             * nearest integer. Default true.
-             * @param camera [description] Default main camera.
+             * @param worldX The x coordinate to be converted, in pixels, not tiles.
+             * @param snapToFloor Whether or not to round the tile coordinate down to the nearest integer. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             worldToTileX(worldX: number, snapToFloor?: boolean, camera?: Phaser.Cameras.Scene2D.Camera): number;
 
             /**
              * Converts from world Y coordinates (pixels) to tile Y coordinates (tile units), factoring in the
              * layers position, scale and scroll.
-             * @param worldY [description]
-             * @param snapToFloor Whether or not to round the tile coordinate down to the
-             * nearest integer. Default true.
-             * @param camera [description] Default main camera.
+             * @param worldY The y coordinate to be converted, in pixels, not tiles.
+             * @param snapToFloor Whether or not to round the tile coordinate down to the nearest integer. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             worldToTileY(worldY: number, snapToFloor?: boolean, camera?: Phaser.Cameras.Scene2D.Camera): number;
 
@@ -66143,12 +66322,11 @@ declare namespace Phaser {
              * Converts from world XY coordinates (pixels) to tile XY coordinates (tile units), factoring in the
              * layers position, scale and scroll. This will return a new Vector2 object or update the given
              * `point` object.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param snapToFloor Whether or not to round the tile coordinate down to the
-             * nearest integer. Default true.
-             * @param point [description]
-             * @param camera [description] Default main camera.
+             * @param worldX The x coordinate to be converted, in pixels, not tiles.
+             * @param worldY The y coordinate to be converted, in pixels, not tiles.
+             * @param snapToFloor Whether or not to round the tile coordinate down to the nearest integer. Default true.
+             * @param point A Vector2 to store the coordinates in. If not given a new Vector2 is created.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
              */
             worldToTileXY(
                 worldX: number,
@@ -67235,8 +67413,8 @@ declare namespace Phaser {
                 function AssignTileProperties(mapData: Phaser.Tilemaps.MapData): void;
 
                 /**
-                 * [description]
-                 * @param data [description]
+                 * Decode base-64 encoded data, for example as exported by Tiled.
+                 * @param data Base-64 encoded data to decode.
                  */
                 function Base64Decode(data: object): any[];
 
@@ -67340,12 +67518,13 @@ declare namespace Phaser {
         ): Phaser.Tilemaps.Tilemap;
 
         /**
-         * A StaticTilemapLayer is a game object that renders LayerData from a Tilemap. A
-         * StaticTilemapLayer can only render tiles from a single tileset.
+         * A Static Tilemap Layer is a Game Object that renders LayerData from a Tilemap when used in combination
+         * with one, or more, Tilesets.
          *
-         * A StaticTilemapLayer is optimized for speed over flexibility. You cannot apply per-tile
-         * effects like tint or alpha. You cannot change the tiles in a StaticTilemapLayer. Use this
-         * over a DynamicTilemapLayer when you don't need either of those features.
+         * A Static Tilemap Layer is optimized for rendering speed over flexibility. You cannot apply per-tile
+         * effects like tint or alpha, or change the tiles or tilesets the layer uses.
+         *
+         * Use a Static Tilemap Layer instead of a Dynamic Tilemap Layer when you don't need tile manipulation features.
          */
         class StaticTilemapLayer extends Phaser.GameObjects.GameObject
             implements
@@ -67363,10 +67542,10 @@ declare namespace Phaser {
                 Phaser.GameObjects.Components.ScrollFactor {
             /**
              *
-             * @param scene [description]
+             * @param scene The Scene to which this Game Object belongs.
              * @param tilemap The Tilemap this layer is a part of.
              * @param layerIndex The index of the LayerData associated with this layer.
-             * @param tileset The tileset used to render the tiles in this layer.
+             * @param tileset The tileset, or an array of tilesets, used to render this layer. Can be a string or a Tileset object.
              * @param x The world x position where the top left of this layer will be placed. Default 0.
              * @param y The world y position where the top left of this layer will be placed. Default 0.
              */
@@ -67374,7 +67553,7 @@ declare namespace Phaser {
                 scene: Phaser.Scene,
                 tilemap: Phaser.Tilemaps.Tilemap,
                 layerIndex: integer,
-                tileset: Phaser.Tilemaps.Tileset,
+                tileset: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[],
                 x?: number,
                 y?: number
             );
@@ -67401,9 +67580,11 @@ declare namespace Phaser {
             layer: Phaser.Tilemaps.LayerData;
 
             /**
-             * The Tileset associated with this layer. A tilemap layer can only render from one Tileset.
+             * The Tileset/s associated with this layer.
+             *
+             * As of Phaser 3.14 this property is now an array of Tileset objects, previously it was a single reference.
              */
-            tileset: Phaser.Tilemaps.Tileset;
+            tileset: Phaser.Tilemaps.Tileset[];
 
             /**
              * Used internally by the Canvas renderer.
@@ -67474,6 +67655,18 @@ declare namespace Phaser {
             cullCallback: Function;
 
             /**
+             * An array holding the mapping between the tile indexes and the tileset they belong to.
+             */
+            gidMap: Phaser.Tilemaps.Tileset[];
+
+            /**
+             * Upload the tile data to a VBO.
+             * @param camera The camera to render to.
+             * @param tilesetIndex The tileset index.
+             */
+            upload(camera: Phaser.Cameras.Scene2D.Camera, tilesetIndex: integer): Phaser.Tilemaps.StaticTilemapLayer;
+
+            /**
              * Sets the rendering (draw) order of the tiles in this layer.
              *
              * The default is 'right-down', meaning it will order the tiles starting from the top-left,
@@ -67493,12 +67686,6 @@ declare namespace Phaser {
              * @param renderOrder The render (draw) order value. Either an integer between 0 and 3, or a string: 'right-down', 'left-down', 'right-up' or 'left-up'.
              */
             setRenderOrder(renderOrder: integer | string): this;
-
-            /**
-             * Upload the tile data to a VBO.
-             * @param camera The camera to render to.
-             */
-            upload(camera: Phaser.Cameras.Scene2D.Camera): Phaser.Tilemaps.StaticTilemapLayer;
 
             /**
              * Calculates interesting faces at the given tile coordinates of the specified layer. Interesting
@@ -69206,30 +69393,45 @@ declare namespace Phaser {
             convertLayerToStatic(layer?: string | integer | Phaser.Tilemaps.DynamicTilemapLayer): Phaser.Tilemaps.StaticTilemapLayer;
 
             /**
-             * See component documentation. If no layer specified, the map's current layer is used. This
-             * cannot be applied to StaticTilemapLayers.
+             * Copies the tiles in the source rectangular area to a new destination (all specified in tile
+             * coordinates) within the layer. This copies all tile properties & recalculates collision
+             * information in the destination region.
+             *
+             * If no layer specified, the map's current layer is used. This cannot be applied to StaticTilemapLayers.
+             * @param srcTileX The x coordinate of the area to copy from, in tiles, not pixels.
+             * @param srcTileY The y coordinate of the area to copy from, in tiles, not pixels.
+             * @param width The width of the area to copy, in tiles, not pixels.
+             * @param height The height of the area to copy, in tiles, not pixels.
+             * @param destTileX The x coordinate of the area to copy to, in tiles, not pixels.
+             * @param destTileY The y coordinate of the area to copy to, in tiles, not pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
-            copy(): Phaser.Tilemaps.Tilemap;
+            copy(
+                srcTileX: integer,
+                srcTileY: integer,
+                width: integer,
+                height: integer,
+                destTileX: integer,
+                destTileY: integer,
+                recalculateFaces?: boolean,
+                layer?: Phaser.Tilemaps.LayerData
+            ): Phaser.Tilemaps.Tilemap;
 
             /**
-             * Creates a new and empty DynamicTilemapLayer. The currently selected layer in the map is set
-             * to this new layer.
+             * Creates a new and empty DynamicTilemapLayer. The currently selected layer in the map is set to this new layer.
              * @param name The name of this layer. Must be unique within the map.
-             * @param tileset The tileset the new layer will use.
+             * @param tileset The tileset, or an array of tilesets, used to render this layer. Can be a string or a Tileset object.
              * @param x The world x position where the top left of this layer will be placed. Default 0.
              * @param y The world y position where the top left of this layer will be placed. Default 0.
-             * @param width The width of the layer in tiles. If not specified, it will default
-             * to the map's width.
-             * @param height The height of the layer in tiles. If not specified, it will default
-             * to the map's height.
-             * @param tileWidth The width of the tiles the layer uses for calculations. If not
-             * specified, it will default to the map's tileWidth.
-             * @param tileHeight The height of the tiles the layer uses for calculations. If not
-             * specified, it will default to the map's tileHeight.
+             * @param width The width of the layer in tiles. If not specified, it will default to the map's width.
+             * @param height The height of the layer in tiles. If not specified, it will default to the map's height.
+             * @param tileWidth The width of the tiles the layer uses for calculations. If not specified, it will default to the map's tileWidth.
+             * @param tileHeight The height of the tiles the layer uses for calculations. If not specified, it will default to the map's tileHeight.
              */
             createBlankDynamicLayer(
                 name: string,
-                tileset: Phaser.Tilemaps.Tileset,
+                tileset: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[],
                 x?: number,
                 y?: number,
                 width?: integer,
@@ -69248,17 +69450,14 @@ declare namespace Phaser {
              *
              * Unlike a static layer, a dynamic layer can be modified. See DynamicTilemapLayer for more
              * information.
-             * @param layerID The layer array index value, or if a string is given, the
-             * layer name from Tiled.
-             * @param tileset The tileset the new layer will use.
-             * @param x The x position to place the layer in the world. If not specified, it will
-             * default to the layer offset from Tiled or 0.
-             * @param y The y position to place the layer in the world. If not specified, it will
-             * default to the layer offset from Tiled or 0.
+             * @param layerID The layer array index value, or if a string is given, the layer name from Tiled.
+             * @param tileset The tileset, or an array of tilesets, used to render this layer. Can be a string or a Tileset object.
+             * @param x The x position to place the layer in the world. If not specified, it will default to the layer offset from Tiled or 0.
+             * @param y The y position to place the layer in the world. If not specified, it will default to the layer offset from Tiled or 0.
              */
             createDynamicLayer(
                 layerID: integer | string,
-                tileset: Phaser.Tilemaps.Tileset,
+                tileset: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[],
                 x: number,
                 y: number
             ): Phaser.Tilemaps.DynamicTilemapLayer;
@@ -69295,11 +69494,10 @@ declare namespace Phaser {
              * @param replacements The tile index, or array of indexes, to change a converted
              * tile to. Set to `null` to leave the tiles unchanged. If an array is given, it is assumed to be a
              * one-to-one mapping with the indexes array.
-             * @param spriteConfig The config object to pass into the Sprite creator (i.e.
-             * scene.make.sprite).
+             * @param spriteConfig The config object to pass into the Sprite creator (i.e. scene.make.sprite).
              * @param scene The Scene to create the Sprites within. Default scene the map is within.
-             * @param camera The Camera to use when determining the world XY Default main camera.
-             * @param layer [description]
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             createFromTiles(
                 indexes: integer | any[],
@@ -69320,17 +69518,14 @@ declare namespace Phaser {
              *
              * It's important to remember that a static layer cannot be modified. See StaticTilemapLayer for
              * more information.
-             * @param layerID The layer array index value, or if a string is given, the
-             * layer name from Tiled.
-             * @param tileset The tileset the new layer will use.
-             * @param x The x position to place the layer in the world. If not specified, it will
-             * default to the layer offset from Tiled or 0.
-             * @param y The y position to place the layer in the world. If not specified, it will
-             * default to the layer offset from Tiled or 0.
+             * @param layerID The layer array index value, or if a string is given, the layer name from Tiled.
+             * @param tileset The tileset, or an array of tilesets, used to render this layer. Can be a string or a Tileset object.
+             * @param x The x position to place the layer in the world. If not specified, it will default to the layer offset from Tiled or 0.
+             * @param y The y position to place the layer in the world. If not specified, it will default to the layer offset from Tiled or 0.
              */
             createStaticLayer(
                 layerID: integer | string,
-                tileset: Phaser.Tilemaps.Tileset,
+                tileset: string | string[] | Phaser.Tilemaps.Tileset | Phaser.Tilemaps.Tileset[],
                 x: number,
                 y: number
             ): Phaser.Tilemaps.StaticTilemapLayer;
@@ -69348,13 +69543,13 @@ declare namespace Phaser {
              *
              * If no layer specified, the map's current layer is used.
              * This cannot be applied to StaticTilemapLayers.
-             * @param index [description]
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
-             * @param recalculateFaces [description] Default true.
-             * @param layer [description]
+             * @param index The tile index to fill the area with.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             fill(
                 index: integer,
@@ -69389,18 +69584,15 @@ declare namespace Phaser {
              * callback as the first and only parameter. The callback should return true for tiles that pass the
              * filter.
              * @param context The context under which the callback should be run.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area to filter. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area to filter. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide
-             * on at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param layer [description]
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param layer The Tile layer to apply the filter on. If not provided will use the current layer.
              */
             filterTiles(
                 callback: Function,
@@ -69422,9 +69614,8 @@ declare namespace Phaser {
              * If no layer specified, the map's current layer is used.
              * @param index The tile index value to search for.
              * @param skip The number of times to skip a matching tile before returning. Default 0.
-             * @param reverse If true it will scan the layer in reverse, starting at the
-             * bottom-right. Otherwise it scans from the top-left. Default false.
-             * @param layer [description]
+             * @param reverse If true it will scan the layer in reverse, starting at the bottom-right. Otherwise it scans from the top-left. Default false.
+             * @param layer The Tile layer to run the search on. If not provided will use the current layer.
              */
             findByIndex(index: integer, skip?: integer, reverse?: boolean, layer?: Phaser.Tilemaps.LayerData): Phaser.Tilemaps.Tile;
 
@@ -69447,21 +69638,17 @@ declare namespace Phaser {
              * satisfies the provided testing function. I.e. finds the first tile for which `callback` returns
              * true. Similar to Array.prototype.find in vanilla JS.
              * If no layer specified, the maps current layer is used.
-             * @param callback The callback. Each tile in the given area will be passed to this
-             * callback as the first and only parameter.
+             * @param callback The callback. Each tile in the given area will be passed to this callback as the first and only parameter.
              * @param context The context under which the callback should be run.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide
-             * on at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param layer [description]
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param layer The Tile layer to run the search on. If not provided will use the current layer.
              */
             findTile(
                 callback: FindTileCallback,
@@ -69479,21 +69666,17 @@ declare namespace Phaser {
              * callback. Similar to Array.prototype.forEach in vanilla JS.
              *
              * If no layer specified, the map's current layer is used.
-             * @param callback The callback. Each tile in the given area will be passed to this
-             * callback as the first and only parameter.
+             * @param callback The callback. Each tile in the given area will be passed to this callback as the first and only parameter.
              * @param context The context under which the callback should be run.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area to search. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide
-             * on at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param layer [description]
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param layer The Tile layer to run the search on. If not provided will use the current layer.
              */
             forEachTile(
                 callback: EachTileCallback,
@@ -69503,7 +69686,7 @@ declare namespace Phaser {
                 width?: integer,
                 height?: integer,
                 filteringOptions?: object,
-                layer?: LayerData
+                layer?: Phaser.Tilemaps.LayerData
             ): Phaser.Tilemaps.Tilemap;
 
             /**
@@ -69559,9 +69742,8 @@ declare namespace Phaser {
              * If no layer specified, the map's current layer is used.
              * @param tileX X position to get the tile from (given in tile units, not pixels).
              * @param tileY Y position to get the tile from (given in tile units, not pixels).
-             * @param nonNull If true getTile won't return null for empty tiles, but a Tile
-             * object with an index of -1. Default false.
-             * @param layer [description]
+             * @param nonNull If true getTile won't return null for empty tiles, but a Tile object with an index of -1. Default false.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             getTileAt(tileX: integer, tileY: integer, nonNull?: boolean, layer?: Phaser.Tilemaps.LayerData): Phaser.Tilemaps.Tile;
 
@@ -69570,10 +69752,9 @@ declare namespace Phaser {
              * If no layer specified, the map's current layer is used.
              * @param worldX X position to get the tile from (given in pixels)
              * @param worldY Y position to get the tile from (given in pixels)
-             * @param nonNull If true, function won't return null for empty tiles, but a Tile
-             * object with an index of -1. Default false.
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param nonNull If true, function won't return null for empty tiles, but a Tile object with an index of -1. Default false.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             getTileAtWorldXY(
                 worldX: number,
@@ -69586,18 +69767,15 @@ declare namespace Phaser {
             /**
              * Gets the tiles in the given rectangular area (in tile coordinates) of the layer.
              * If no layer specified, the maps current layer is used.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide on
-             * at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param layer [description]
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             getTilesWithin(
                 tileX?: integer,
@@ -69614,14 +69792,11 @@ declare namespace Phaser {
              * If no layer specified, the maps current layer is used.
              * @param shape A shape in world (pixel) coordinates
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide on
-             * at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param camera The Camera to use when factoring in which tiles to return. Default main camera.
+             * @param layer The tile layer to search. If not given the current layer is used.
              */
             getTilesWithinShape(
                 shape: Phaser.Geom.Circle | Phaser.Geom.Line | Phaser.Geom.Rectangle | Phaser.Geom.Triangle,
@@ -69633,19 +69808,16 @@ declare namespace Phaser {
             /**
              * Gets the tiles in the given rectangular area (in world coordinates) of the layer.
              * If no layer specified, the maps current layer is used.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param width [description]
-             * @param height [description]
+             * @param worldX The world x coordinate for the top-left of the area.
+             * @param worldY The world y coordinate for the top-left of the area.
+             * @param width The width of the area.
+             * @param height The height of the area.
              * @param filteringOptions Optional filters to apply when getting the tiles.
-             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have
-             * -1 for an index. Default false.
-             * @param filteringOptions.isColliding If true, only return tiles that collide on
-             * at least one side. Default false.
-             * @param filteringOptions.hasInterestingFace If true, only return tiles that
-             * have at least one interesting face. Default false.
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param filteringOptions.isNotEmpty If true, only return tiles that don't have -1 for an index. Default false.
+             * @param filteringOptions.isColliding If true, only return tiles that collide on at least one side. Default false.
+             * @param filteringOptions.hasInterestingFace If true, only return tiles that have at least one interesting face. Default false.
+             * @param camera The Camera to use when factoring in which tiles to return. Default main camera.
+             * @param layer The tile layer to search. If not given the current layer is used.
              */
             getTilesWithinWorldXY(
                 worldX: number,
@@ -69656,6 +69828,12 @@ declare namespace Phaser {
                 camera?: Phaser.Cameras.Scene2D.Camera,
                 layer?: Phaser.Tilemaps.LayerData
             ): Phaser.Tilemaps.Tile[];
+
+            /**
+             * Gets the Tileset that has the given `name`, or null if an invalid `name` is given.
+             * @param name The name of the Tileset to get.
+             */
+            getTileset(name: string): Phaser.Tilemaps.Tileset;
 
             /**
              * Gets the index of the Tileset within this.tilesets that has the given `name`, or null if an
@@ -69669,9 +69847,9 @@ declare namespace Phaser {
              * false if there is no tile or if the tile at that location has an index of -1.
              *
              * If no layer specified, the map's current layer is used.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param layer [description]
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param layer The tile layer to search. If not given the current layer is used.
              */
             hasTileAt(tileX: integer, tileY: integer, layer?: Phaser.Tilemaps.LayerData): boolean;
 
@@ -69680,10 +69858,10 @@ declare namespace Phaser {
              * false if there is no tile or if the tile at that location has an index of -1.
              *
              * If no layer specified, the maps current layer is used.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param worldX The x coordinate, in pixels.
+             * @param worldY The y coordinate, in pixels.
+             * @param camera The Camera to use when factoring in which tiles to return. Default main camera.
+             * @param layer The tile layer to search. If not given the current layer is used.
              */
             hasTileAtWorldXY(
                 worldX: number,
@@ -69708,10 +69886,10 @@ declare namespace Phaser {
              *
              * This cannot be applied to StaticTilemapLayers.
              * @param tile The index of this tile to set or a Tile object.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param recalculateFaces [description] Default true.
-             * @param layer [description]
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             putTileAt(
                 tile: integer | Phaser.Tilemaps.Tile,
@@ -69730,16 +69908,16 @@ declare namespace Phaser {
              * If no layer specified, the maps current layer is used. This
              * cannot be applied to StaticTilemapLayers.
              * @param tile The index of this tile to set or a Tile object.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param recalculateFaces [description] Default true.
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param worldX The x coordinate, in pixels.
+             * @param worldY The y coordinate, in pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             putTileAtWorldXY(
                 tile: integer | Phaser.Tilemaps.Tile,
-                worldX: integer,
-                worldY: integer,
+                worldX: number,
+                worldY: number,
                 recalculateFaces?: boolean,
                 camera?: Phaser.Cameras.Scene2D.Camera,
                 layer?: Phaser.Tilemaps.LayerData
@@ -69754,12 +69932,11 @@ declare namespace Phaser {
              *
              * If no layer specified, the maps current layer is used.
              * This cannot be applied to StaticTilemapLayers.
-             * @param tile A row (array) or grid (2D array) of Tiles
-             * or tile indexes to place.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param recalculateFaces [description] Default true.
-             * @param layer [description]
+             * @param tile A row (array) or grid (2D array) of Tiles or tile indexes to place.
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             putTilesAt(
                 tile: integer[] | integer[][] | Phaser.Tilemaps.Tile[] | Phaser.Tilemaps.Tile[][],
@@ -69778,12 +69955,12 @@ declare namespace Phaser {
              *
              * If no layer specified, the maps current layer is used.
              * This cannot be applied to StaticTilemapLayers.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param indexes An array of indexes to randomly draw from during randomization.
-             * @param layer [description]
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             randomize(
                 tileX?: integer,
@@ -69800,9 +69977,9 @@ declare namespace Phaser {
              * internally to optimize recalculating faces when only one tile has been changed.
              *
              * If no layer specified, the maps current layer is used.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param layer [description]
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             calculateFacesAt(tileX: integer, tileY: integer, layer?: Phaser.Tilemaps.LayerData): Phaser.Tilemaps.Tilemap;
 
@@ -69812,11 +69989,11 @@ declare namespace Phaser {
              * is mostly used internally.
              *
              * If no layer specified, the map's current layer is used.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
-             * @param layer [description]
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             calculateFacesWithin(
                 tileX?: integer,
@@ -69838,12 +70015,11 @@ declare namespace Phaser {
              *
              * If no layer specified, the maps current layer is used.
              * This cannot be applied to StaticTilemapLayers.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param replaceWithNull If true, this will replace the tile at the specified
-             * location with null instead of a Tile with an index of -1. Default true.
-             * @param recalculateFaces [description] Default true.
-             * @param layer [description]
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param replaceWithNull If true, this will replace the tile at the specified location with null instead of a Tile with an index of -1. Default true.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param layer The tile layer to search. If not given the current layer is used.
              */
             removeTileAt(
                 tileX: integer,
@@ -69859,13 +70035,12 @@ declare namespace Phaser {
              *
              * If no layer specified, the maps current layer is used.
              * This cannot be applied to StaticTilemapLayers.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param replaceWithNull If true, this will replace the tile at the specified
-             * location with null instead of a Tile with an index of -1. Default true.
-             * @param recalculateFaces [description] Default true.
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param worldX The x coordinate, in pixels.
+             * @param worldY The y coordinate, in pixels.
+             * @param replaceWithNull If true, this will replace the tile at the specified location with null instead of a Tile with an index of -1. Default true.
+             * @param recalculateFaces `true` if the faces data should be recalculated. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             removeTileAtWorldXY(
                 worldX: number,
@@ -69885,13 +70060,10 @@ declare namespace Phaser {
              * If no layer specified, the maps current layer is used.
              * @param graphics The target Graphics object to draw upon.
              * @param styleConfig An object specifying the colors to use for the debug drawing.
-             * @param styleConfig.tileColor Color to use for drawing a filled rectangle at
-             * non-colliding tile locations. If set to null, non-colliding tiles will not be drawn. Default blue.
-             * @param styleConfig.collidingTileColor Color to use for drawing a filled
-             * rectangle at colliding tile locations. If set to null, colliding tiles will not be drawn. Default orange.
-             * @param styleConfig.faceColor Color to use for drawing a line at interesting
-             * tile faces. If set to null, interesting tile faces will not be drawn. Default grey.
-             * @param layer [description]
+             * @param styleConfig.tileColor Color to use for drawing a filled rectangle at non-colliding tile locations. If set to null, non-colliding tiles will not be drawn. Default blue.
+             * @param styleConfig.collidingTileColor Color to use for drawing a filled rectangle at colliding tile locations. If set to null, colliding tiles will not be drawn. Default orange.
+             * @param styleConfig.faceColor Color to use for drawing a line at interesting tile faces. If set to null, interesting tile faces will not be drawn. Default grey.
+             * @param layer The tile layer to search. If not given the current layer is used.
              */
             renderDebug(
                 graphics: Phaser.GameObjects.Graphics,
@@ -69906,13 +70078,13 @@ declare namespace Phaser {
              *
              * If no layer specified, the maps current layer is used.
              * This cannot be applied to StaticTilemapLayers.
-             * @param findIndex [description]
-             * @param newIndex [description]
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
-             * @param layer [description]
+             * @param findIndex The index of the tile to search for.
+             * @param newIndex The index of the tile to replace it with.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             replaceByIndex(
                 findIndex: integer,
@@ -69931,11 +70103,9 @@ declare namespace Phaser {
              *
              * If no layer specified, the map's current layer is used.
              * @param indexes Either a single tile index, or an array of tile indexes.
-             * @param collides If true it will enable collision. If false it will clear
-             * collision. Default true.
-             * @param recalculateFaces Whether or not to recalculate the tile faces after the
-             * update. Default true.
-             * @param layer [description]
+             * @param collides If true it will enable collision. If false it will clear collision. Default true.
+             * @param recalculateFaces Whether or not to recalculate the tile faces after the update. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             setCollision(
                 indexes: integer | any[],
@@ -69953,11 +70123,9 @@ declare namespace Phaser {
              * If no layer specified, the map's current layer is used.
              * @param start The first index of the tile to be set for collision.
              * @param stop The last index of the tile to be set for collision.
-             * @param collides If true it will enable collision. If false it will clear
-             * collision. Default true.
-             * @param recalculateFaces Whether or not to recalculate the tile faces after the
-             * update. Default true.
-             * @param layer [description]
+             * @param collides If true it will enable collision. If false it will clear collision. Default true.
+             * @param recalculateFaces Whether or not to recalculate the tile faces after the update. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             setCollisionBetween(
                 start: integer,
@@ -69977,13 +70145,10 @@ declare namespace Phaser {
              * "types" property that matches any of those values, its collision flag will be updated.
              *
              * If no layer specified, the map's current layer is used.
-             * @param properties An object with tile properties and corresponding values that should
-             * be checked.
-             * @param collides If true it will enable collision. If false it will clear
-             * collision. Default true.
-             * @param recalculateFaces Whether or not to recalculate the tile faces after the
-             * update. Default true.
-             * @param layer [description]
+             * @param properties An object with tile properties and corresponding values that should be checked.
+             * @param collides If true it will enable collision. If false it will clear collision. Default true.
+             * @param recalculateFaces Whether or not to recalculate the tile faces after the update. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             setCollisionByProperty(
                 properties: object,
@@ -69999,11 +70164,9 @@ declare namespace Phaser {
              *
              * If no layer specified, the map's current layer is used.
              * @param indexes An array of the tile indexes to not be counted for collision.
-             * @param collides If true it will enable collision. If false it will clear
-             * collision. Default true.
-             * @param recalculateFaces Whether or not to recalculate the tile faces after the
-             * update. Default true.
-             * @param layer [description]
+             * @param collides If true it will enable collision. If false it will clear collision. Default true.
+             * @param recalculateFaces Whether or not to recalculate the tile faces after the update. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             setCollisionByExclusion(
                 indexes: integer[],
@@ -70019,11 +70182,9 @@ declare namespace Phaser {
              * controls if collision will be enabled (true) or disabled (false).
              *
              * If no layer specified, the map's current layer is used.
-             * @param collides If true it will enable collision. If false it will clear
-             * collision. Default true.
-             * @param recalculateFaces Whether or not to recalculate the tile faces after the
-             * update. Default true.
-             * @param layer [description]
+             * @param collides If true it will enable collision. If false it will clear collision. Default true.
+             * @param recalculateFaces Whether or not to recalculate the tile faces after the update. Default true.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             setCollisionFromCollisionGroup(
                 collides?: boolean,
@@ -70038,11 +70199,10 @@ declare namespace Phaser {
              * at a specific location on the map then see setTileLocationCallback.
              *
              * If no layer specified, the map's current layer is used.
-             * @param indexes Either a single tile index, or an array of tile indexes to have a
-             * collision callback set for.
+             * @param indexes Either a single tile index, or an array of tile indexes to have a collision callback set for.
              * @param callback The callback that will be invoked when the tile is collided with.
              * @param callbackContext The context under which the callback is called.
-             * @param layer [description]
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             setTileIndexCallback(
                 indexes: integer | any[],
@@ -70057,13 +70217,13 @@ declare namespace Phaser {
              * remove it.
              *
              * If no layer specified, the map's current layer is used.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param width [description]
-             * @param height [description]
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area.
+             * @param width How many tiles wide from the `tileX` index the area will be.
+             * @param height How many tiles tall from the `tileY` index the area will be.
              * @param callback The callback that will be invoked when the tile is collided with.
              * @param callbackContext The context under which the callback is called.
-             * @param layer [description]
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             setTileLocationCallback(
                 tileX: integer,
@@ -70117,11 +70277,11 @@ declare namespace Phaser {
              *
              * If no layer specified, the maps current layer is used.
              * This cannot be applied to StaticTilemapLayers.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
-             * @param layer [description]
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             shuffle(
                 tileX?: integer,
@@ -70140,11 +70300,11 @@ declare namespace Phaser {
              * This cannot be applied to StaticTilemapLayers.
              * @param tileA First tile index.
              * @param tileB Second tile index.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
-             * @param layer [description]
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             swapByIndex(
                 tileA: integer,
@@ -70161,9 +70321,9 @@ declare namespace Phaser {
              * layers position, scale and scroll.
              *
              * If no layer specified, the maps current layer is used.
-             * @param tileX [description]
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             tileToWorldX(tileX: integer, camera?: Phaser.Cameras.Scene2D.Camera, layer?: Phaser.Tilemaps.LayerData): number;
 
@@ -70172,9 +70332,9 @@ declare namespace Phaser {
              * layers position, scale and scroll.
              *
              * If no layer specified, the maps current layer is used.
-             * @param tileY [description]
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             tileToWorldY(tileY: integer, camera?: Phaser.Cameras.Scene2D.Camera, layer?: Phaser.Tilemaps.LayerData): number;
 
@@ -70184,11 +70344,11 @@ declare namespace Phaser {
              * `point` object.
              *
              * If no layer specified, the maps current layer is used.
-             * @param tileX [description]
-             * @param tileY [description]
-             * @param point [description]
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param tileX The x coordinate, in tiles, not pixels.
+             * @param tileY The y coordinate, in tiles, not pixels.
+             * @param point A Vector2 to store the coordinates in. If not given a new Vector2 is created.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             tileToWorldXY(
                 tileX: integer,
@@ -70215,14 +70375,14 @@ declare namespace Phaser {
              *
              * If no layer specified, the map's current layer is used. This
              * cannot be applied to StaticTilemapLayers.
-             * @param tileX [description] Default 0.
-             * @param tileY [description] Default 0.
-             * @param width [description] Default max width based on tileX.
-             * @param height [description] Default max height based on tileY.
+             * @param tileX The left most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param tileY The top most tile index (in tile coordinates) to use as the origin of the area. Default 0.
+             * @param width How many tiles wide from the `tileX` index the area will be. Default max width based on tileX.
+             * @param height How many tiles tall from the `tileY` index the area will be. Default max height based on tileY.
              * @param weightedIndexes An array of objects to randomly draw from during
              * randomization. They should be in the form: { index: 0, weight: 4 } or
              * { index: [0, 1], weight: 4 } if you wish to draw from multiple tile indexes.
-             * @param layer [description]
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             weightedRandomize(
                 tileX?: integer,
@@ -70238,11 +70398,10 @@ declare namespace Phaser {
              * layers position, scale and scroll.
              *
              * If no layer specified, the maps current layer is used.
-             * @param worldX [description]
-             * @param snapToFloor Whether or not to round the tile coordinate down to the
-             * nearest integer. Default true.
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param worldX The x coordinate to be converted, in pixels, not tiles.
+             * @param snapToFloor Whether or not to round the tile coordinate down to the nearest integer. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             worldToTileX(
                 worldX: number,
@@ -70256,11 +70415,10 @@ declare namespace Phaser {
              * layers position, scale and scroll.
              *
              * If no layer specified, the maps current layer is used.
-             * @param worldY [description]
-             * @param snapToFloor Whether or not to round the tile coordinate down to the
-             * nearest integer. Default true.
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param worldY The y coordinate to be converted, in pixels, not tiles.
+             * @param snapToFloor Whether or not to round the tile coordinate down to the nearest integer. Default true.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             worldToTileY(
                 worldY: number,
@@ -70275,13 +70433,12 @@ declare namespace Phaser {
              * `point` object.
              *
              * If no layer specified, the maps current layer is used.
-             * @param worldX [description]
-             * @param worldY [description]
-             * @param snapToFloor Whether or not to round the tile coordinate down to the
-             * nearest integer. Default true.
-             * @param point [description]
-             * @param camera [description] Default main camera.
-             * @param layer [description]
+             * @param worldX The x coordinate to be converted, in pixels, not tiles.
+             * @param worldY The y coordinate to be converted, in pixels, not tiles.
+             * @param snapToFloor Whether or not to round the tile coordinate down to the nearest integer. Default true.
+             * @param point A Vector2 to store the coordinates in. If not given a new Vector2 is created.
+             * @param camera The Camera to use when calculating the tile index from the world values. Default main camera.
+             * @param layer The tile layer to use. If not given the current layer is used.
              */
             worldToTileXY(
                 worldX: number,
@@ -70652,10 +70809,10 @@ declare namespace Phaser {
     namespace Tweens {
         namespace Builders {
             /**
-             * [description]
-             * @param source [description]
-             * @param key [description]
-             * @param defaultValue [description]
+             * Retrieves the value of the given key from an object.
+             * @param source The object to retrieve the value from.
+             * @param key The key to look for in the `source` object.
+             * @param defaultValue The default value to return if the `key` doesn't exist or if no `source` object is provided.
              */
             function GetBoolean(source: object, key: string, defaultValue: any): any;
 
@@ -70676,7 +70833,7 @@ declare namespace Phaser {
 
             /**
              * [description]
-             * @param config [description]
+             * @param config The configuration object of the tween to get the target(s) from.
              */
             function GetProps(config: object): any[];
 
@@ -70839,18 +70996,19 @@ declare namespace Phaser {
             totalProgress: number;
 
             /**
-             * [description]
-             * @param value [description]
+             * Sets the value of the time scale applied to this Timeline. A value of 1 runs in real-time. A value of 0.5 runs 50% slower, and so on.
+             * Value isn't used when calculating total duration of the tween, it's a run-time delta adjustment only.
+             * @param value The time scale value to set.
              */
             setTimeScale(value: number): Phaser.Tweens.Timeline;
 
             /**
-             * [description]
+             * Gets the value of the time scale applied to this Timeline. A value of 1 runs in real-time. A value of 0.5 runs 50% slower, and so on.
              */
             getTimeScale(): number;
 
             /**
-             * [description]
+             * Check whether or not the Timeline is playing.
              */
             isPlaying(): boolean;
 
@@ -70908,7 +71066,7 @@ declare namespace Phaser {
             resetTweens(resetFromLoop: boolean): void;
 
             /**
-             * [description]
+             * Sets a callback for the Tween Manager.
              * @param type [description]
              * @param callback [description]
              * @param params [description]
@@ -70962,7 +71120,7 @@ declare namespace Phaser {
             hasTarget(target: object): boolean;
 
             /**
-             * [description]
+             * Stops all the Tweens in the Timeline immediately, whatever stage of progress they are at and flags them for removal by the TweenManager.
              */
             destroy(): void;
         }
@@ -71054,47 +71212,47 @@ declare namespace Phaser {
 
         type TweenConfigDefaults = {
             /**
-             * [description]
+             * The object, or an array of objects, to run the tween on.
              */
             targets: object | object[];
             /**
-             * [description]
+             * The number of milliseconds to delay before the tween will start.
              */
             delay?: number;
             /**
-             * [description]
+             * The duration of the tween in milliseconds.
              */
             duration?: number;
             /**
-             * [description]
+             * The easing equation to use for the tween.
              */
             ease?: string;
             /**
-             * [description]
+             * Optional easing parameters.
              */
             easeParams?: any[];
             /**
-             * [description]
+             * The number of milliseconds to hold the tween for before yoyo'ing.
              */
             hold?: number;
             /**
-             * [description]
+             * The number of times to repeat the tween.
              */
             repeat?: number;
             /**
-             * [description]
+             * The number of milliseconds to pause before a tween will repeat.
              */
             repeatDelay?: number;
             /**
-             * [description]
+             * Should the tween complete, then reverse the values incrementally to get back to the starting tween values? The reverse tweening will also take `duration` milliseconds to complete.
              */
             yoyo?: boolean;
             /**
-             * [description]
+             * Horizontally flip the target of the Tween when it completes (before it yoyos, if set to do so). Only works for targets that support the `flipX` property.
              */
             flipX?: boolean;
             /**
-             * [description]
+             * Vertically flip the target of the Tween when it completes (before it yoyos, if set to do so). Only works for targets that support the `flipY` property.
              */
             flipY?: boolean;
         };
@@ -71250,12 +71408,12 @@ declare namespace Phaser {
             getTimeScale(): number;
 
             /**
-             * [description]
+             * Checks if the Tween is currently active.
              */
             isPlaying(): boolean;
 
             /**
-             * [description]
+             * Checks if the Tween is currently paused.
              */
             isPaused(): boolean;
 
@@ -71312,7 +71470,7 @@ declare namespace Phaser {
             resetTweenData(resetFromLoop: boolean): void;
 
             /**
-             * [description]
+             * Resumes the playback of a previously paused Tween.
              */
             resume(): Phaser.Tweens.Tween;
 
@@ -71808,14 +71966,14 @@ declare namespace Phaser {
                 function CheckMatrix(matrix: any[]): boolean;
 
                 /**
-                 * [description]
-                 * @param matrix [description]
+                 * Generates a string (which you can pass to console.log) from the given Array Matrix.
+                 * @param matrix A 2-dimensional array.
                  */
                 function MatrixToString(matrix: any[]): string;
 
                 /**
-                 * [description]
-                 * @param matrix [description]
+                 * Reverses the columns in the given Array Matrix.
+                 * @param matrix The array matrix to reverse the columns for.
                  */
                 function ReverseColumns(matrix: any[]): any[];
 
@@ -73037,87 +73195,87 @@ declare type PhysicsGroupConfig = GroupConfig & {
 
 declare type PhysicsGroupDefaults = {
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setCollideWorldBounds}.
      */
     setCollideWorldBounds: boolean;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAccelerationX}.
      */
     setAccelerationX: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAccelerationY}.
      */
     setAccelerationY: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAllowDrag}.
      */
     setAllowDrag: boolean;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAllowGravity}.
      */
     setAllowGravity: boolean;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAllowRotation}.
      */
     setAllowRotation: boolean;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setBounceX}.
      */
     setBounceX: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setBounceY}.
      */
     setBounceY: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setDragX}.
      */
     setDragX: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setDragY}.
      */
     setDragY: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setGravityX}.
      */
     setGravityX: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setGravityY}.
      */
     setGravityY: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setFrictionX}.
      */
     setFrictionX: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setFrictionY}.
      */
     setFrictionY: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setVelocityX}.
      */
     setVelocityX: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setVelocityY}.
      */
     setVelocityY: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAngularVelocity}.
      */
     setAngularVelocity: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAngularAcceleration}.
      */
     setAngularAcceleration: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setAngularDrag}.
      */
     setAngularDrag: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setMass}.
      */
     setMass: number;
     /**
-     * [description]
+     * As {@link Phaser.Physics.Arcade.Body#setImmovable}.
      */
     setImmovable: boolean;
 };
@@ -73399,6 +73557,13 @@ declare namespace MatterJS {
      * An engine is a controller that manages updating the simulation of the world.
      */
     class Engine {}
+
+    /**
+     * The `Matter.Vertices` module contains methods for creating and manipulating sets of vertices.
+     * A set of vertices is an array of `Matter.Vector` with additional indexing properties inserted by `Vertices.create`.
+     * A `Matter.Body` maintains a set of vertices to represent the shape of the object (its convex hull).
+     */
+    class Vertices {}
 }
 
 declare type CorePluginContainer = {
@@ -73669,15 +73834,15 @@ declare type WebGLContextCallback = (renderer: Phaser.Renderer.WebGL.WebGLRender
 
 declare type SnapshotState = {
     /**
-     * [description]
+     * The function to call after the snapshot is taken.
      */
     callback: SnapshotCallback;
     /**
-     * [description]
+     * The type of the image to create.
      */
     type: string;
     /**
-     * [description]
+     * The image quality, between 0 and 1, for image formats which use lossy compression (such as `image/jpeg`).
      */
     encoder: number;
 };
@@ -73863,9 +74028,9 @@ declare type SpriteSheetFromAtlasConfig = {
     spacing?: integer;
 };
 
-declare type FindTileCallback = (value: Phaser.Tilemaps.Tile, index: number, array: Phaser.Tilemaps.Tile[]) => void;
+declare type FindTileCallback = (value: Phaser.Tilemaps.Tile, index: integer, array: Phaser.Tilemaps.Tile[]) => void;
 
-declare type EachTileCallback = (value: Phaser.Tilemaps.Tile, index: number, array: Phaser.Tilemaps.Tile[]) => void;
+declare type EachTileCallback = (value: Phaser.Tilemaps.Tile, index: integer, array: Phaser.Tilemaps.Tile[]) => void;
 
 declare type GetTilesWithinFilteringOptions = {
     /**
@@ -74024,20 +74189,20 @@ declare namespace Phaser.Utils.Objects {
     function GetFastValue(source: object, key: string, defaultValue?: any): any;
 
     /**
-     * [description]
-     * @param source [description]
-     * @param key [description]
-     * @param min [description]
-     * @param max [description]
-     * @param defaultValue [description]
+     * Retrieves and clamps a numerical value from an object.
+     * @param source The object to retrieve the value from.
+     * @param key The name of the property to retrieve from the object. If a property is nested, the names of its preceding properties should be separated by a dot (`.`).
+     * @param min The minimum value which can be returned.
+     * @param max The maximum value which can be returned.
+     * @param defaultValue The value to return if the property doesn't exist. It's also constrained to the given bounds.
      */
     function GetMinMaxValue(source: object, key: string, min: number, max: number, defaultValue: number): number;
 
     /**
-     * [description]
-     * @param source [description]
-     * @param key [description]
-     * @param defaultValue [description]
+     * Retrieves a value from an object.
+     * @param source The object to retrieve the value from.
+     * @param key The name of the property to retrieve from the object. If a property is nested, the names of its preceding properties should be separated by a dot (`.`) - `banner.hideBanner` would return the value of the `hideBanner` property from the object stored in the `banner` property of the `source` object.
+     * @param defaultValue The value to return if the `key` isn't found in the `source` object.
      */
     function GetValue(source: object, key: string, defaultValue: any): any;
 
