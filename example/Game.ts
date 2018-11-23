@@ -25,10 +25,10 @@ export class Game extends Phaser.Game {
     constructor() {
         super({
             type: Phaser.CANVAS,
-            width: 800,
-            height: 600,
+            width: 960,
+            height: 400,
             backgroundColor: "#010101",
-            parent: "phaser-example"
+            canvas: <HTMLCanvasElement>(document.getElementById("canvas"))
         });
 
         this._context = new Context();

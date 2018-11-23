@@ -16,10 +16,10 @@ export class Preload extends BaseScene {
 
     public preload(): void {
         /* Preload required assets */
-        this.load.image("koreez", "assets/koreez.jpg");
-        this.load.image("robotlegs", "assets/robotlegs.png");
-        // this.game.load.audio('myAudio', 'assets/my-audio.wav');
-        // this.game.load.atlas('myAtlas', 'assets/my-atlas.png', 'assets/my-atlas.json');
+        this.load.image("koreez", "images/koreez.jpg");
+        this.load.image("robotlegs", "images/robotlegs.png");
+        // this.game.load.audio('myAudio', 'images/my-audio.wav');
+        // this.game.load.atlas('myAtlas', 'images/my-atlas.png', 'assets/my-atlas.json');
     }
 
     public create(): void {
