@@ -383,6 +383,10 @@ declare type RenderConfig = {
      * The default WebGL batch size.
      */
     batchSize?: integer;
+    /**
+     * The maximum number of lights allowed to be visible within range of a single Camera in the LightManager.
+     */
+    maxLights?: integer;
 };
 
 declare type ScaleConfig = {
@@ -2876,13 +2880,13 @@ declare type TileSprite = GameObjectConfig & {
      */
     y?: number;
     /**
-     * The width of the Tile Sprite.
+     * The width of the Tile Sprite. If zero it will use the size of the texture frame.
      */
-    width?: number;
+    width?: integer;
     /**
-     * The height of the Tile Sprite.
+     * The height of the Tile Sprite. If zero it will use the size of the texture frame.
      */
-    height?: number;
+    height?: integer;
     /**
      * The key of the Texture this Tile Sprite will use to render with, as stored in the Texture Manager.
      */
@@ -4481,13 +4485,6 @@ declare namespace Phaser {
         device: Phaser.DeviceConf;
 
         /**
-         * An instance of the Scale Manager.
-         *
-         * The Scale Manager is a global system responsible for handling game scaling events.
-         */
-        scaleManager: Phaser.Boot.ScaleManager;
-
-        /**
          * An instance of the base Sound Manager.
          *
          * The Sound Manager is a global system responsible for the playback and updating of all audio in your game.
@@ -4653,7 +4650,32 @@ declare namespace Phaser {
             /**
              * [description]
              */
-            readonly scaleMode: any;
+            readonly scaleMode: integer;
+
+            /**
+             * [description]
+             */
+            readonly expandParent: boolean;
+
+            /**
+             * [description]
+             */
+            readonly minWidth: integer;
+
+            /**
+             * [description]
+             */
+            readonly maxWidth: integer;
+
+            /**
+             * [description]
+             */
+            readonly minHeight: integer;
+
+            /**
+             * [description]
+             */
+            readonly maxHeight: integer;
 
             /**
              * Force Phaser to use a specific renderer. Can be `CONST.CANVAS`, `CONST.WEBGL`, `CONST.HEADLESS` or `CONST.AUTO` (default)
@@ -4861,6 +4883,11 @@ declare namespace Phaser {
             readonly batchSize: integer;
 
             /**
+             * The maximum number of lights allowed to be visible within range of a single Camera in the LightManager.
+             */
+            readonly maxLights: integer;
+
+            /**
              * [description]
              */
             readonly backgroundColor: Phaser.Display.Color;
@@ -4971,27 +4998,6 @@ declare namespace Phaser {
          * @param game The Phaser.Game instance which will output this debug header.
          */
         function DebugHeader(game: Phaser.Game): void;
-
-        /**
-         * [description]
-         */
-        class ScaleManager {
-            /**
-             *
-             * @param game A reference to the Phaser.Game instance.
-             */
-            constructor(game: Phaser.Game, config: any);
-
-            /**
-             * A reference to the Phaser.Game instance.
-             */
-            readonly game: Phaser.Game;
-
-            /**
-             * Destroys the ScaleManager.
-             */
-            destroy(): void;
-        }
 
         /**
          * [description]
@@ -5785,10 +5791,13 @@ declare namespace Phaser {
                 protected update(time: integer, delta: number): void;
 
                 /**
-                 * Destroys this Camera instance. You rarely need to call this directly.
+                 * Destroys this Camera instance and its internal properties and references.
+                 * Once destroyed you cannot use this Camera again, even if re-added to a Camera Manager.
                  *
-                 * Called by the Camera Manager. If you wish to destroy a Camera please use `CameraManager.remove` as
-                 * cameras are stored in a pool, ready for recycling later, and calling this directly will prevent that.
+                 * This method is called automatically by `CameraManager.remove` if that methods `runDestroy` argument is `true`, which is the default.
+                 *
+                 * Unless you have a specific reason otherwise, always use `CameraManager.remove` and allow it to handle the camera destruction,
+                 * rather than calling this method directly.
                  */
                 destroy(): void;
 
@@ -6744,11 +6753,13 @@ declare namespace Phaser {
                  * If found in the Camera Manager it will be immediately removed from the local cameras array.
                  * If also currently the 'main' camera, 'main' will be reset to be camera 0.
                  *
-                 * The removed Camera is not destroyed. If you also wish to destroy the Camera, you should call
-                 * `Camera.destroy` on it, so that it clears all references to the Camera Manager.
+                 * The removed Cameras are automatically destroyed if the `runDestroy` argument is `true`, which is the default.
+                 * If you wish to re-use the cameras then set this to `false`, but know that they will retain their references
+                 * and internal data until destroyed or re-added to a Camera Manager.
                  * @param camera The Camera, or an array of Cameras, to be removed from this Camera Manager.
+                 * @param runDestroy Automatically call `Camera.destroy` on each Camera removed from this Camera Manager. Default true.
                  */
-                remove(camera: Phaser.Cameras.Scene2D.Camera | Phaser.Cameras.Scene2D.Camera[]): integer;
+                remove(camera: Phaser.Cameras.Scene2D.Camera | Phaser.Cameras.Scene2D.Camera[], runDestroy?: boolean): integer;
 
                 /**
                  * The internal render method. This is called automatically by the Scene and should not be invoked directly.
@@ -8479,6 +8490,9 @@ declare namespace Phaser {
              * ```
              *
              * Doing so will emit a `setdata` event from the parent of this Data Manager.
+             *
+             * Do not modify this object directly. Adding properties directly to this object will not
+             * emit any events. Always use `DataManager.set` to create new items the first time around.
              */
             values: { [key: string]: any };
 
@@ -10204,7 +10218,7 @@ declare namespace Phaser {
     namespace DOM {
         /**
          * Adds the given element to the DOM. If a parent is provided the element is added as a child of the parent, providing it was able to access it.
-         * If no parent was given or falls back to using `document.body`.
+         * If no parent was given it falls back to using `document.body`.
          * @param element The element to be added to the DOM. Usually a Canvas object.
          * @param parent The parent in which to add the element. Can be a string which is passed to `getElementById` or an actual DOM object.
          * @param overflowHidden Whether or not to hide overflowing content inside the parent. Default true.
@@ -16855,16 +16869,16 @@ declare namespace Phaser {
              * Note: This method will only be available if the TileSprite Game Object has been built into Phaser.
              * @param x The horizontal position of this Game Object in the world.
              * @param y The vertical position of this Game Object in the world.
-             * @param width The width of the Game Object.
-             * @param height The height of the Game Object.
+             * @param width The width of the Game Object. If zero it will use the size of the texture frame.
+             * @param height The height of the Game Object. If zero it will use the size of the texture frame.
              * @param texture The key of the Texture this Game Object will use to render with, as stored in the Texture Manager.
              * @param frame An optional frame from the Texture this Game Object is rendering with.
              */
             tileSprite(
                 x: number,
                 y: number,
-                width: number,
-                height: number,
+                width: integer,
+                height: integer,
                 texture: string,
                 frame?: string | integer
             ): Phaser.GameObjects.TileSprite;
@@ -19308,6 +19322,12 @@ declare namespace Phaser {
              * Whether the Lights Manager is enabled.
              */
             active: boolean;
+
+            /**
+             * The maximum number of lights that a single Camera and the lights shader can process.
+             * Change this via the `maxLights` property in your game config, as it cannot be changed at runtime.
+             */
+            readonly maxLights: integer;
 
             /**
              * Enable the Lights Manager.
@@ -34834,8 +34854,8 @@ declare namespace Phaser {
              * @param scene The Scene to which this Game Object belongs. A Game Object can only belong to one Scene at a time.
              * @param x The horizontal position of this Game Object in the world.
              * @param y The vertical position of this Game Object in the world.
-             * @param width The width of the Game Object.
-             * @param height The height of the Game Object.
+             * @param width The width of the Game Object. If zero it will use the size of the texture frame.
+             * @param height The height of the Game Object. If zero it will use the size of the texture frame.
              * @param textureKey The key of the Texture this Game Object will use to render with, as stored in the Texture Manager.
              * @param frameKey An optional frame from the Texture this Game Object is rendering with.
              */
@@ -34843,8 +34863,8 @@ declare namespace Phaser {
                 scene: Phaser.Scene,
                 x: number,
                 y: number,
-                width: number,
-                height: number,
+                width: integer,
+                height: integer,
                 textureKey: string,
                 frameKey?: string | integer
             );
@@ -34925,14 +34945,9 @@ declare namespace Phaser {
              * The Frame has to belong to the current Texture being used.
              *
              * It can be either a string or an index.
-             *
-             * Calling `setFrame` will modify the `width` and `height` properties of your Game Object.
-             * It will also change the `origin` if the Frame has a custom pivot point, as exported from packages like Texture Packer.
              * @param frame The name or index of the frame within the Texture.
-             * @param updateSize Should this call adjust the size of the Game Object? Default true.
-             * @param updateOrigin Should this call adjust the origin of the Game Object? Default true.
              */
-            setFrame(frame: string | integer, updateSize?: boolean, updateOrigin?: boolean): this;
+            setFrame(frame: string | integer): this;
 
             /**
              * Sets {@link Phaser.GameObjects.TileSprite#tilePositionX} and {@link Phaser.GameObjects.TileSprite#tilePositionY}.
@@ -37831,6 +37846,13 @@ declare namespace Phaser {
             centerY: number;
 
             /**
+             * Determines if the two objects (either Rectangles or Rectangle-like) have the same width and height values under strict equality.
+             * @param rect The first Rectangle object.
+             * @param toCompare The second Rectangle object.
+             */
+            static SameDimensions(rect: Phaser.Geom.Rectangle, toCompare: Phaser.Geom.Rectangle): boolean;
+
+            /**
              * [description]
              * @param rect [description]
              * @param x [description]
@@ -38203,6 +38225,11 @@ declare namespace Phaser {
          * A touch pointer has been started.
          */
         var TOUCH_END: integer;
+
+        /**
+         * A touch pointer has been been cancelled by the browser.
+         */
+        var TOUCH_CANCEL: integer;
 
         /**
          * The pointer lock has changed.
@@ -40056,6 +40083,16 @@ declare namespace Phaser {
                  * @param duration The duration which must have elapsed before this Key is considered as being down. Default 0.
                  */
                 checkDown(key: Phaser.Input.Keyboard.Key, duration?: number): boolean;
+
+                /**
+                 * Resets all Key objects created by _this_ Keyboard Plugin back to their default un-pressed states.
+                 * This can only reset keys created via the `addKey`, `addKeys` or `createCursors` methods.
+                 * If you have created a Key object directly you'll need to reset it yourself.
+                 *
+                 * This method is called automatically when the Keyboard Plugin shuts down, but can be
+                 * invoked directly at any time you require.
+                 */
+                resetKeys(): void;
             }
 
             type CursorKeys = {
@@ -40581,6 +40618,13 @@ declare namespace Phaser {
             wasTouch: boolean;
 
             /**
+             * Did this Pointer get canceled by a touchcancel event?
+             *
+             * Note: "canceled" is the American-English spelling of "cancelled". Please don't submit PRs correcting it!
+             */
+            wasCanceled: boolean;
+
+            /**
              * If the mouse is locked, the horizontal relative movement of the Pointer in pixels since last frame.
              */
             movementX: number;
@@ -40735,26 +40779,35 @@ declare namespace Phaser {
                 target: any;
 
                 /**
-                 * The Touch Start Event Handler.
-                 * @param event The native DOM Touch Start Event.
+                 * The Touch Start event handler function.
+                 * Initially empty and bound in the `startListeners` method.
                  */
-                onTouchStart(event: TouchEvent): void;
+                onTouchStart: Function;
 
                 /**
-                 * The Touch Move Event Handler.
-                 * @param event The native DOM Touch Move Event.
+                 * The Touch Move event handler function.
+                 * Initially empty and bound in the `startListeners` method.
                  */
-                onTouchMove(event: TouchEvent): void;
+                onTouchMove: Function;
 
                 /**
-                 * The Touch End Event Handler.
-                 * @param event The native DOM Touch End Event.
+                 * The Touch End event handler function.
+                 * Initially empty and bound in the `startListeners` method.
                  */
-                onTouchEnd(event: TouchEvent): void;
+                onTouchEnd: Function;
 
                 /**
-                 * Starts the Touch Event listeners running.
-                 * This is called automatically and does not need to be manually invoked.
+                 * The Touch Cancel event handler function.
+                 * Initially empty and bound in the `startListeners` method.
+                 */
+                onTouchCancel: Function;
+
+                /**
+                 * Starts the Touch Event listeners running as long as an input target is set.
+                 *
+                 * This method is called automatically if Touch Input is enabled in the game config,
+                 * which it is by default. However, you can call it manually should you need to
+                 * delay input capturing until later in the game.
                  */
                 startListeners(): void;
 
@@ -50258,6 +50311,12 @@ declare namespace Phaser {
                  * @param value The value to assign to `immovable`. Default true.
                  */
                 setImmovable(value?: boolean): Phaser.Physics.Arcade.Body;
+
+                /**
+                 * Sets the Body's `enable` property.
+                 * @param value The value to assign to `enable`. Default true.
+                 */
+                setEnable(value?: boolean): Phaser.Physics.Arcade.Body;
 
                 /**
                  * The Body's horizontal position (left edge).
@@ -60681,6 +60740,11 @@ declare namespace Phaser {
                     maxQuads: integer;
 
                     /**
+                     * Collection of batch information
+                     */
+                    batches: any[];
+
+                    /**
                      * Called every time the pipeline needs to be used.
                      * It binds all necessary resources.
                      */
@@ -60701,6 +60765,14 @@ declare namespace Phaser {
                      * @param textureUnit Texture unit to which the texture needs to be bound.
                      */
                     setTexture2D(texture: WebGLTexture, textureUnit: integer): Phaser.Renderer.WebGL.Pipelines.TextureTintPipeline;
+
+                    /**
+                     * Creates a new batch object and pushes it to a batch array.
+                     * The batch object contains information relevant to the current
+                     * vertex batch like the offset in the vertex buffer, vertex count and
+                     * the textures used by that batch.
+                     */
+                    pushBatch(): void;
 
                     /**
                      * Uploads the vertex data and emits a draw call for the current batch of vertices.
@@ -61384,14 +61456,14 @@ declare namespace Phaser {
                 type: integer;
 
                 /**
-                 * The width of a rendered frame.
+                 * The width of the canvas being rendered to.
                  */
-                width: number;
+                width: integer;
 
                 /**
-                 * The height of a rendered frame.
+                 * The height of the canvas being rendered to.
                  */
-                height: number;
+                height: integer;
 
                 /**
                  * The canvas which this WebGL Renderer draws to.
@@ -61536,7 +61608,7 @@ declare namespace Phaser {
                 init(config: object): this;
 
                 /**
-                 * Resizes the internal canvas and drawing buffer.
+                 * Resizes the drawing buffer.
                  * @param width The width of the renderer.
                  * @param height The height of the renderer.
                  */
@@ -61842,8 +61914,9 @@ declare namespace Phaser {
                  * Creates a WebGL Texture based on the given canvas element.
                  * @param srcCanvas The Canvas element that will be used to populate the texture.
                  * @param dstTexture Is this going to replace an existing texture? If so, pass it here.
+                 * @param noRepeat Should this canvas never be allowed to set REPEAT? (such as for Text objects) Default false.
                  */
-                canvasToTexture(srcCanvas: HTMLCanvasElement, dstTexture?: WebGLTexture): WebGLTexture;
+                canvasToTexture(srcCanvas: HTMLCanvasElement, dstTexture?: WebGLTexture, noRepeat?: boolean): WebGLTexture;
 
                 /**
                  * Sets the minification and magnification filter for a texture.
@@ -62428,10 +62501,10 @@ declare namespace Phaser {
              * The target Scene will emit the event `transitioninit` when that Scene's `init` method is called.
              * It will then emit the event `transitionstart` when its `create` method is called.
              * If the Scene was sleeping and has been woken up, it will emit the event `transitionwake` instead of these two,
-             * as the Scenes `init` and `create` methods are not invoked when a sleep wakes up.
+             * as the Scenes `init` and `create` methods are not invoked when a Scene wakes up.
              *
              * When the duration of the transition has elapsed it will emit the event `transitioncomplete`.
-             * These events are all cleared of listeners when the Scene shuts down, but not if it is sent to sleep.
+             * These events are cleared of all listeners when the Scene shuts down, but not if it is sent to sleep.
              *
              * It's important to understand that the duration of the transition begins the moment you call this method.
              * If the Scene you are transitioning to includes delayed processes, such as waiting for files to load, the
@@ -73148,6 +73221,10 @@ declare type PhysicsGroupConfig = GroupConfig & {
      */
     dragY?: number;
     /**
+     * Sets {@link Phaser.Physics.Arcade.Body#enable enable}.
+     */
+    enable?: boolean;
+    /**
      * Sets {@link Phaser.Physics.Arcade.Body#gravity gravity.x}.
      */
     gravityX?: number;
@@ -73234,6 +73311,10 @@ declare type PhysicsGroupDefaults = {
      * As {@link Phaser.Physics.Arcade.Body#setDragY}.
      */
     setDragY: number;
+    /**
+     * As {@link Phaser.Physics.Arcade.Body#setEnable}.
+     */
+    setEnable: boolean;
     /**
      * As {@link Phaser.Physics.Arcade.Body#setGravityX}.
      */
