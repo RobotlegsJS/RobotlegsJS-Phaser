@@ -22,7 +22,7 @@
 
 ### v0.4.1
 
-- Update `phaser` to version 3.13.0 (see #63).
+- Update `phaser` to version `3.13.0` (see #63).
 
 - Update dev dependencies to latest version.
 
