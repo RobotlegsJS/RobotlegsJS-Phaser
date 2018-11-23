@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>RobotlegsJS Phaser Boilerplate</title>
   <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/example.css">
   <link rel="manifest" href="manifest.json">
 
   <script>
@@ -24,6 +25,13 @@
 </head>
 
 <body>
+  <header class="Phaser">
+    <h1>integration with <a target="_blank" href="http://phaser.io">Phaser</a></h1>
+    <p>This example shows how to integrate <code>RobotlegsJS</code> framework with <code>Phaser</code>. Click on the screen to see some action!</p>
+  </header>
+
+  <canvas id="canvas" width="960" height="400"></canvas>
+
   <script type="text/javascript">
     window.onload = initGame;
   </script>
