@@ -22,7 +22,9 @@
 
 ### v0.4.1
 
-- Update `phaser` to version `3.15.1` (see #67).
+- Update `phaser` to version `3.15.1` (see #68).
+
+- Migrate to Headless Chrome and improve performance of Karma (see #69).
 
 - Update dev dependencies to latest version.
 
