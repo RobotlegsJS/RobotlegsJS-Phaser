@@ -4698,7 +4698,7 @@ public-encrypt@^4.0.0:
     randombytes "^2.0.1"
     safe-buffer "^5.1.2"
 
-publish-please@^5.0.0:
+publish-please@^5.3.0:
   version "5.3.0"
   resolved "https://registry.npmjs.org/publish-please/-/publish-please-5.3.0.tgz#bc27aaae563fed5887307a2c419a683bb92b85c4"
   integrity sha512-VJhnwAN32kct8cK9vijDZ8Q+H3+FEGgahZzK55TDS9kVKxgebEdE3DA7dRED8Vq+LwJ+2awgx5cSzVQKpTKPrw==
