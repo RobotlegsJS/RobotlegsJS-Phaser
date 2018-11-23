@@ -5252,10 +5252,10 @@ phantomjs-prebuilt@^2.1.7:
     request-progress "^2.0.1"
     which "^1.2.10"
 
-phaser@^3.15.1:
-  version "3.15.1"
-  resolved "https://registry.npmjs.org/phaser/-/phaser-3.15.1.tgz#17d41fb5b310fb062952e29d9bb26a99c90d3a44"
-  integrity sha512-K2IaBziSW6OFyIkIFyJgBSi+kL1yip3gbL6TBsjzesJqLxP3o5+NwfPf6fqrQ4yxBYbbuKP2da5lsh5LFw7jXA==
+phaser@3.13.0:
+  version "3.13.0"
+  resolved "https://registry.npmjs.org/phaser/-/phaser-3.13.0.tgz#75242ee62ff3934e634e920dd61f25eaa05310c7"
+  integrity sha512-8L7YUmTI3Ed1UpvgsKIYBjIEhZYqs2MZe4UZHc1d84YhRUV9y5GN0IO/PaqIETXmNHK4WF8CAgPV8pZLUAuFGA==
   dependencies:
     eventemitter3 "^3.1.0"
 

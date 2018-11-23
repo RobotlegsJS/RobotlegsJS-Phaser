@@ -91,7 +91,7 @@
     "karma-sourcemap-writer": "^0.1.2",
     "karma-webpack": "^3.0.5",
     "mocha": "^5.2.0",
-    "phaser": "^3.15.1",
+    "phaser": "^3.13.0",
     "prettier": "^1.15.2",
     "publish-please": "^5.3.0",
     "reflect-metadata": "^0.1.12",
