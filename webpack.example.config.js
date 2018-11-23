@@ -1,6 +1,8 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const OpenBrowserPlugin = require("open-browser-webpack-plugin");
+const SimpleProgressPlugin = require("webpack-simple-progress-plugin");
 const ConcatPlugin = require("webpack-concat-plugin");
 
 const concatPluginConfigGenerator = (name, files) => {
@@ -24,10 +26,10 @@ module.exports = options => {
 
     output: {
       path: __dirname + "/dist",
-      filename: "bundle.js"
+      filename: "game.[hash].js"
     },
 
-    devtool: 'source-map',
+    devtool: "source-map",
 
     module: {
       rules: [
@@ -44,10 +46,14 @@ module.exports = options => {
       new ConcatPlugin(concatPluginConfigGenerator("phaser", [
         path.resolve(__dirname, "./node_modules/phaser/dist/phaser.js")
       ])),
+
+      new SimpleProgressPlugin(),
+
+      new OpenBrowserPlugin({ url: "http://0.0.0.0:8080/webpack-dev-server/" })
     ],
 
     resolve: {
-      extensions: ['.ts', '.js', '.json']
+      extensions: [".ts", ".js", ".json"]
     },
 
     devServer: {
