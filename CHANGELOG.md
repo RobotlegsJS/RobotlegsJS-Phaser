@@ -1,8 +1,11 @@
 # RobotlegsJS Phaser Changelog
 
-## RobotlegsJS Phaser 1.0.0
+All notable changes to this project will be documented in this file.
 
-### v1.0.0 - Planned stable version
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## Suggestions or improvements for further versions
 
 - [ ] Improve how mediators for `Phaser.Scene` and `Phaser.GameObjects.Container` are handled:
 
@@ -18,19 +21,25 @@
 
 - [ ] Migrate [original documentation](https://github.com/robotlegs/robotlegs-framework/blob/master/src/readme.md) and adapt it to TypeScript and Phaser.
 
-## RobotlegsJS Phaser 0.4.0
+## [Unreleased]
 
-### v0.4.1
+### v1.0.0
+
+#### Changed
 
 - Update `phaser` to version `3.15.1` (see #68).
 
 - Migrate to Headless Chrome and improve performance of Karma (see #69).
 
+- Prepare package for stable version (see #70).
+
 - Update dev dependencies to latest version.
+
+## RobotlegsJS Phaser 0.4.0
 
 ### [v0.4.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.4.0) - 2018-09-14
 
-#### Major Breaking Changes
+#### Changed
 
 - Enable view listeners on `SceneMediator` and `ViewMediator` classes (see #56 and #59).
 
@@ -42,15 +51,13 @@
 
   - New methods `addDomListener` and `removeDomListener` were added to add support to `DOM` events dispatched by an `EventTarget`.
 
-#### Features Or Improvements
-
 - Update dev dependencies to latest version.
 
 ## RobotlegsJS Phaser 0.3.0
 
 ### [v0.3.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.3.0) - 2018-09-10
 
-#### Major Breaking Changes
+#### Changed
 
 - Add support for `Phaser.GameObject.Container`, allowing the creation of mediators for `Phaser.Scene` and `Phaser.GameObjects.Container` (see #54 and #55).
 
@@ -67,8 +74,6 @@
 
   - Package `sceneManager` renamed to `viewManager`
 
-#### Features Or Improvements
-
 - Update `karma` setup to generate code coverage report only for `src` folder (see #53).
 
 - Update dev dependencies to latest version.
@@ -77,17 +82,7 @@
 
 ### [v0.2.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.2.0) - 2018-08-07
 
-#### Major Breaking Changes
-
-- Implement support for [phaser](https://github.com/photonstorm/phaser) plugin version 3. Suppor for [phaser-ce](https://github.com/photonstorm/phaser-ce) plugin was moved to [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE) (see #52).
-
-- Move `phaser` library to **peerDependencies**, allowing the final user to choose the desired version of the [phaser](https://github.com/photonstorm/phaser) library on each project (see #52).
-
-- Update `@robotlegsjs/core` to version `0.2.0` (see #51).
-
-- Remove `eventemitter3` dependency (see #45).
-
-#### Features Or Improvements
+#### Added
 
 - Add changelog (see #35).
 
@@ -96,6 +91,14 @@
 - Add issue template (see #38).
 
 - Add pull request template (see #39).
+
+#### Changed
+
+- Implement support for [phaser](https://github.com/photonstorm/phaser) plugin version 3. Suppor for [phaser-ce](https://github.com/photonstorm/phaser-ce) plugin was moved to [RobotlegsJS-Phaser-CE](https://github.com/RobotlegsJS/RobotlegsJS-Phaser-CE) (see #52).
+
+- Move `phaser` library to **peerDependencies**, allowing the final user to choose the desired version of the [phaser](https://github.com/photonstorm/phaser) library on each project (see #52).
+
+- Update `@robotlegsjs/core` to version `0.2.0` (see #51).
 
 - Update codeclimate settings (see #40).
 
@@ -113,9 +116,15 @@
 
 - Update dev dependencies to latest version.
 
+#### Removed
+
+- Remove `eventemitter3` dependency (see #45).
+
 ## RobotlegsJS Phaser 0.0.1
 
 ### [v0.0.5](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.0.5) - 2017-09-26
+
+#### Changed
 
 - Update `@robotlegsjs/core` to version `0.0.6` (see #9).
 
@@ -127,19 +136,25 @@
 
 ### [v0.0.4](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.0.4) - 2017-09-15
 
+#### Added
+
+- Add support to [Prettier](https://prettier.io) code formatter (see #6).
+
+- Add integration with [CodeBeat](https://codebeat.co) (see #6).
+
+#### Changed
+
 - Update `@robotlegsjs/core` to version `0.0.5` (see #5).
 
 - Update `phaser-ce` to version `2.8.7` (see #6).
 
 - Update TSLint rules (see #6).
 
-- Add support to [Prettier](https://prettier.io) code formatter (see #6).
-
-- Add integration with [CodeBeat](https://codebeat.co) (see #6).
-
 - Update dev dependencies to latest version.
 
 ### [v0.0.3](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.0.3) - 2017-08-30
+
+#### Changed
 
 - Update `@robotlegsjs/core` to version `0.0.4` (see #4).
 
@@ -150,6 +165,8 @@
 - Update dev dependencies to latest version.
 
 ### [v0.0.2](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/0.0.2) - 2017-08-12
+
+#### Changed
 
 - Update `@robotlegsjs/core` to version `0.0.3`.
 
