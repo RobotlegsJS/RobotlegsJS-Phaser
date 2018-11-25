@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@robotlegsjs/core": "^1.0.0",
-    "@robotlegsjs/eventemitter3": "^0.0.1",
+    "@robotlegsjs/eventemitter3": "^1.0.0",
     "tslib": "^1.9.3"
   },
   "peerDependencies": {
