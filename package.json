@@ -1,6 +1,6 @@
 {
   "name": "@robotlegsjs/phaser",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "RobotlegsJS integration with Phaser Scene Manager",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -52,6 +52,7 @@
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
   "files": [
+    "definitions",
     "lib"
   ],
   "directories": {
