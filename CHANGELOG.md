@@ -29,6 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update `@robotlegsjs/core` to version `1.0.0` (see #74).
 
+- Update `@robotlegsjs/eventemitter3` to version `1.0.0` (see #75).
+
 - Update `phaser` to version `3.15.1` (see #68).
 
 - Migrate to Headless Chrome and improve performance of Karma (see #69).
