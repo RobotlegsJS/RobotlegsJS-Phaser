@@ -35,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Improve webpack configuration used to run example project. The `npm start` script will generate hashed files (to avoid browser cache) and open the broswer automatically (see #71).
 
+- Update GitHub Templates (see #73).
+
 - Update dev dependencies to latest version.
 
 ## RobotlegsJS Phaser 0.4.0
