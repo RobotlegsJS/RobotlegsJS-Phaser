@@ -51,6 +51,12 @@
     "url": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser/issues"
   },
   "homepage": "https://github.com/RobotlegsJS/RobotlegsJS-Phaser#readme",
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "lib": "./lib"
+  },
   "dependencies": {
     "@robotlegsjs/core": "^0.2.1",
     "@robotlegsjs/eventemitter3": "^0.0.1",
