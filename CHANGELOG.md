@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+#### Changed
+
+- Add mediator when scene has been started after stop/shutdown (see #79).
+
 <!--
 Types of changes:
 
