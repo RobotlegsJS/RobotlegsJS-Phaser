@@ -5,9 +5,8 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-import { IMediatorMapping } from "../api/IMediatorMapping";
 import { IMediatorManager } from "../api/IMediatorManager";
-
+import { IMediatorMapping } from "../api/IMediatorMapping";
 import { SceneMediatorFactory } from "./SceneMediatorFactory";
 
 /**
@@ -54,7 +53,7 @@ export class SceneMediatorManager implements IMediatorManager {
                 this._autoRemoveMap.set(scene.sys.settings.key, scene);
             }
             scene.sys.events.on("destroy", this.onSceneDestroy, this);
-            // scene.sys.events.on("shutdown", this.onSceneDestroy, this);
+            scene.sys.events.on("shutdown", this.onSceneDestroy, this);
             // scene.sys.events.on("sleep", this.onSceneDestroy, this);
             // scene.sys.events.on("pause", this.onSceneDestroy, this);
         }
@@ -81,6 +80,7 @@ export class SceneMediatorManager implements IMediatorManager {
             this._factory.removeMediators(scene);
             if (this._autoRemoveMap.size === 0) {
                 scene.sys.events.off("destroy", this.onSceneDestroy, this, false);
+                scene.sys.events.off("shutdown", this.onSceneDestroy, this, false);
             }
         }
     }
