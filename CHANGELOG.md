@@ -27,6 +27,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add mediator when scene has been started after stop/shutdown (see #79).
 
+- Update dev dependencies to latest version.
+
 <!--
 Types of changes:
 
