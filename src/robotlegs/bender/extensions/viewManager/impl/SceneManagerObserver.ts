@@ -120,18 +120,28 @@ export class SceneManagerObserver {
                     // this.events.emit('resume', this);
                     // this.events.emit('wake', this);
                     // this.events.emit('start', this);
-                    scene.sys.events.on("start", this.onSceneStart, this);
+                    scene.sys.events.once("start", this.onSceneStart, this);
                 }
             }
         }
     }
 
     private onSceneStart(sys: Phaser.Scenes.Systems): void {
-        sys.events.off("start", this.onSceneStart, this, false);
+        sys.events.once("shutdown", this.onSceneShutdown, this);
+        sys.events.once("destroy", this.onSceneDestroy, this);
         const binding: SceneManagerBinding = this._registry.getBinding(sys.game.scene);
         if (binding) {
             binding.handleScene(sys.scene, <any>sys.scene.constructor);
         }
+    }
+
+    private onSceneShutdown(sys: Phaser.Scenes.Systems): void {
+        sys.events.once("start", this.onSceneStart, this);
+        sys.events.off("destroy", this.onSceneDestroy, this, true);
+    }
+
+    private onSceneDestroy(sys: Phaser.Scenes.Systems): void {
+        sys.events.off("shutdown", this.onSceneStart, this, true);
     }
 
     private removeRootListener(container: any): void {}
