@@ -45,6 +45,14 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+#### Changed
+
+- Improve `prettier` rules and `autoformat` script (see #85).
+
+- Enable `"editor.formatOnSave"` rule for `VS Code` (see #85).
+
+- Update dev dependencies to latest version.
+
 ## RobotlegsJS Phaser 1.0.0
 
 ### [v1.0.1](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/1.0.1) - 2018-12-25

@@ -28,7 +28,7 @@ export class Game extends Phaser.Game {
             width: 960,
             height: 400,
             backgroundColor: "#010101",
-            canvas: <HTMLCanvasElement>(document.getElementById("canvas"))
+            canvas: <HTMLCanvasElement>document.getElementById("canvas")
         });
 
         this._context = new Context();
