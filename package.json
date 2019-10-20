@@ -65,7 +65,7 @@
   },
   "peerDependencies": {
     "eventemitter3": "*",
-    "phaser": "^3.11.0",
+    "phaser": "^3.17.0",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {

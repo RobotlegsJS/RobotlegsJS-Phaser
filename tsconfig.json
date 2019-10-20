@@ -23,8 +23,5 @@
   },
   "include": [
     "./src/**/*.ts"
-  ],
-  "files": [
-    "./definitions/phaser.d.ts"
   ]
 }

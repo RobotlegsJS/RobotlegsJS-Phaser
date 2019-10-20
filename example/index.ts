@@ -5,7 +5,7 @@
 //  in accordance with the terms of the license agreement accompanying it.
 // ------------------------------------------------------------------------------
 
-/// <reference path="../definitions/phaser.d.ts" />
+/// <reference path="../node_modules/phaser/types/phaser.d.ts" />
 
 import "reflect-metadata";
 
