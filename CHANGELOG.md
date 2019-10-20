@@ -47,6 +47,8 @@ Types of changes:
 
 #### Changed
 
+- Update `phaser` to version `3.20.1` (see #104).
+
 - Improve `prettier` rules and `autoformat` script (see #85).
 
 - Enable `"editor.formatOnSave"` rule for `VS Code` (see #85).
