@@ -53,6 +53,8 @@ Types of changes:
 
 - Enable `"editor.formatOnSave"` rule for `VS Code` (see #85).
 
+- Migrate project to `travis-ci.com`.
+
 - Update `codebeat` Project UUID.
 
 - Update dev dependencies to latest version.
