@@ -47,9 +47,23 @@ Types of changes:
 
 #### Changed
 
+- Update `phaser` to version `3.20.1` (see #104).
+
+  - `definitions` folder removed, since `phaser` package is now providing native type definitions.
+
+  - Use the type definitions from `/node_modules/phaser/types/phaser.d.ts`.
+
+  - Remember to add `"scripthost"` to `lib` array in `compilerOptions` on your `tsconfig.json` file.
+
+  - Minimum version supported is `3.17.0`. Previous versions doens't have the `phaser/types` folder.
+
 - Improve `prettier` rules and `autoformat` script (see #85).
 
 - Enable `"editor.formatOnSave"` rule for `VS Code` (see #85).
+
+- Migrate project to `travis-ci.com`.
+
+- Update `codebeat` Project UUID.
 
 - Update dev dependencies to latest version.
 
