@@ -53,6 +53,8 @@ Types of changes:
 
   - Use the type definitions from `/node_modules/phaser/types/phaser.d.ts`.
 
+  - Remember to add `"scripthost"` to `lib` array in `compilerOptions` on your `tsconfig.json` file.
+
   - Minimum version supported is `3.17.0`. Previous versions doens't have the `phaser/types` folder.
 
 - Improve `prettier` rules and `autoformat` script (see #85).
