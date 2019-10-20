@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 const SimpleProgressPlugin = require("webpack-simple-progress-plugin");
 const ConcatPlugin = require("webpack-concat-plugin");
 
@@ -32,9 +31,7 @@ module.exports = options => {
     devtool: "source-map",
 
     module: {
-      rules: [
-        { test: /\.ts$/, loader: "ts-loader" }
-      ]
+      rules: [{ test: /\.ts$/, loader: "ts-loader" }]
     },
 
     plugins: [
@@ -43,13 +40,9 @@ module.exports = options => {
         inject: false
       }),
 
-      new ConcatPlugin(concatPluginConfigGenerator("phaser", [
-        path.resolve(__dirname, "./node_modules/phaser/dist/phaser.js")
-      ])),
+      new ConcatPlugin(concatPluginConfigGenerator("phaser", [path.resolve(__dirname, "./node_modules/phaser/dist/phaser.js")])),
 
-      new SimpleProgressPlugin(),
-
-      new OpenBrowserPlugin({ url: "http://0.0.0.0:8080/webpack-dev-server/" })
+      new SimpleProgressPlugin()
     ],
 
     resolve: {
@@ -61,8 +54,7 @@ module.exports = options => {
       contentBase: path.join(__dirname, "static"),
       hot: true,
       disableHostCheck: true,
-      inline:false
+      inline: false
     }
-
-  }
+  };
 };
