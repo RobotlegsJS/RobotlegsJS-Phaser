@@ -3,7 +3,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/blob/master/LICENSE)
 [![Gitter chat](https://badges.gitter.im/RobotlegsJS/RobotlegsJS.svg)](https://gitter.im/RobotlegsJS/RobotlegsJS)
 [![Build Status](https://secure.travis-ci.org/RobotlegsJS/RobotlegsJS-Phaser.svg?branch=master)](https://travis-ci.org/RobotlegsJS/RobotlegsJS-Phaser)
-[![codebeat badge](https://codebeat.co/badges/75c0995f-d238-4d43-99a7-cc883bb0dd88)](https://codebeat.co/projects/github-com-robotlegsjs-robotlegsjs-phaser-master)
+[![codebeat badge](https://codebeat.co/badges/d74d7d61-bd8a-4ddc-8555-c5c6c858a957)](https://codebeat.co/projects/github-com-robotlegsjs-robotlegsjs-phaser-master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3d3a971a95d7d97d6b32/maintainability)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/3d3a971a95d7d97d6b32/test_coverage)](https://codeclimate.com/github/RobotlegsJS/RobotlegsJS-Phaser/test_coverage)
 [![npm version](https://badge.fury.io/js/%40robotlegsjs%2Fphaser.svg)](https://badge.fury.io/js/%40robotlegsjs%2Fphaser)
