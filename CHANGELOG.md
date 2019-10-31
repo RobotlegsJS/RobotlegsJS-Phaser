@@ -45,11 +45,11 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
-#### Changed
+## RobotlegsJS Phaser 2.0.0
 
-- Update `@robotlegsjs/core` to version `1.0.3` (see #105).
+### [v2.0.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/2.0.0) - 2019-10-31
 
-- Update `@robotlegsjs/eventemitter3` to version `1.0.2` (see #107).
+#### Breaking Change
 
 - Update `phaser` to version `3.20.1` (see #104).
 
@@ -60,6 +60,12 @@ Types of changes:
   - Remember to add `"scripthost"` to `lib` array in `compilerOptions` on your `tsconfig.json` file.
 
   - Minimum version supported is `3.17.0`. Previous versions doens't have the `phaser/types` folder.
+
+#### Changed
+
+- Update `@robotlegsjs/core` to version `1.0.3` (see #105).
+
+- Update `@robotlegsjs/eventemitter3` to version `1.0.2` (see #107).
 
 - Improve `prettier` rules and `autoformat` script (see #85).
 
