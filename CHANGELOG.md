@@ -49,6 +49,8 @@ Types of changes:
 
 - Update `@robotlegsjs/core` to version `1.0.3` (see #105).
 
+- Update `@robotlegsjs/eventemitter3` to version `1.0.2` (see #107).
+
 - Update `phaser` to version `3.20.1` (see #104).
 
   - `definitions` folder removed, since `phaser` package is now providing native type definitions.
