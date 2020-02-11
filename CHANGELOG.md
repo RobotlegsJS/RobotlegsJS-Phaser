@@ -45,6 +45,10 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+#### Changed
+
+- Update `phaser` to version `3.22.0` (see #112).
+
 #### Security
 
 - Migrate to [terser-webpack-plugin](https://github.com/webpack-contrib/terser-webpack-plugin) to solve security vulnerability (see #111).
