@@ -45,6 +45,10 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+#### Security
+
+- Migrate to [terser-webpack-plugin](https://github.com/webpack-contrib/terser-webpack-plugin) to solve security vulnerability (see #111).
+
 ## RobotlegsJS Phaser 2.0.0
 
 ### [v2.0.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/2.0.0) - 2019-10-31

@@ -10,9 +10,7 @@
  */
 export { IContextSceneManager } from "./robotlegs/bender/extensions/contextSceneManager/api/IContextSceneManager";
 export { ContextSceneManager } from "./robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManager";
-export {
-    ContextSceneManagerListenerConfig
-} from "./robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
+export { ContextSceneManagerListenerConfig } from "./robotlegs/bender/extensions/contextSceneManager/impl/ContextSceneManagerListenerConfig";
 export { ContextSceneManagerExtension } from "./robotlegs/bender/extensions/contextSceneManager/ContextSceneManagerExtension";
 
 /**
