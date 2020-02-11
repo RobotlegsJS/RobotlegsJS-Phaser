@@ -3,6 +3,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SimpleProgressPlugin = require("webpack-simple-progress-plugin");
 const ConcatPlugin = require("webpack-concat-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const concatPluginConfigGenerator = (name, files) => {
   return {
@@ -35,6 +36,8 @@ module.exports = options => {
     },
 
     plugins: [
+      new CleanWebpackPlugin(),
+
       new HtmlWebpackPlugin({
         template: path.resolve("static/index.html"),
         inject: false
