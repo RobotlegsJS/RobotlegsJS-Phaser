@@ -45,6 +45,12 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+#### Added
+
+- Add **Tidelift** as funding option (see #113).
+
+- Add **Enterprise Support** information (see #114).
+
 #### Changed
 
 - Update `phaser` to version `3.22.0` (see #112).
