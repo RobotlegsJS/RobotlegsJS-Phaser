@@ -47,7 +47,7 @@ Types of changes:
 
 #### Added
 
-- Add **Tidelift** as funding option (see #112).
+- Add **Tidelift** as funding option (see #113).
 
 #### Security
 
