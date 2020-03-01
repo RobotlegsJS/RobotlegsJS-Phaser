@@ -67,6 +67,14 @@ export { SceneManagerExtension } from "./robotlegs/bender/extensions/viewManager
 export { SceneManagerObserverExtension } from "./robotlegs/bender/extensions/viewManager/SceneManagerObserverExtension";
 
 /**
+ * LocalEventEmitterMap
+ */
+export { IEventEmitterMap } from "./robotlegs/bender/extensions/localEventEmitterMap/api/IEventEmitterMap";
+export { EventEmitterMap } from "./robotlegs/bender/extensions/localEventEmitterMap/impl/EventEmitterMap";
+export { EventEmitterMapConfig } from "./robotlegs/bender/extensions/localEventEmitterMap/impl/EventEmitterMapConfig";
+export { LocalEventEmitterMapExtension } from "./robotlegs/bender/extensions/localEventEmitterMap/LocalEventEmitterMapExtension";
+
+/**
  * Bundles
  */
 export { PhaserBundle } from "./robotlegs/bender/bundles/phaser/PhaserBundle";

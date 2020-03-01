@@ -10,7 +10,7 @@ import { injectable } from "@robotlegsjs/core";
 import { AbstractMediator } from "./AbstractMediator";
 
 /**
- * Classic Robotlegs mediator implementation for the <code>Phaser.GameObjects.Container</code>.
+ * Classic Robotlegs mediator implementation for the `Phaser.GameObjects.Container`.
  *
  * <p>Override initialize and destroy to hook into the mediator lifecycle.</p>
  */
