@@ -14,40 +14,40 @@ import { IEventMap } from "@robotlegsjs/core";
 export const IEventEmitterMap = Symbol("IEventEmitterMap");
 export interface IEventEmitterMap extends IEventMap {
     /**
-     * The same as calling <code>on</code> or <code>addListener</code> directly on the <code>Phaser.Events.EventEmitter</code>,
+     * The same as calling `on` or `addListener` directly on the `Phaser.Events.EventEmitter`,
      * but keeps a list of listeners for easy (usually automatic) removal.
      *
-     * @param emitter The <code>Phaser.Events.EventEmitter</code> to listen to
-     * @param event The <code>event</code> type to listen for
-     * @param listener The <code>event</code> handler
+     * @param emitter The `Phaser.Events.EventEmitter` to listen to
+     * @param event The `event` type to listen for
+     * @param listener The `event` handler
      * @param context the listener function's "this"
      */
     on(emitter: Phaser.Events.EventEmitter, event: string | symbol, listener: Function, context?: any): void;
 
     /**
-     * The same as calling <code>once</code> directly on the <code>Phaser.Events.EventEmitter</code>,
+     * The same as calling `once` directly on the `Phaser.Events.EventEmitter`,
      * but keeps a list of listeners for easy (usually automatic) removal.
      *
-     * @param emitter The <code>Phaser.Events.EventEmitter</code> to listen to
-     * @param event The <code>event</code> type to listen for
-     * @param listener The <code>event</code> handler
+     * @param emitter The `Phaser.Events.EventEmitter` to listen to
+     * @param event The `event` type to listen for
+     * @param listener The `event` handler
      * @param context the listener function's "this"
      */
     once(emitter: Phaser.Events.EventEmitter, event: string | symbol, listener: Function, context?: any): void;
 
     /**
-     * The same as calling <code>off</code> or <code>removeListener</code> directly on the <code>Phaser.Events.EventEmitter</code>,
+     * The same as calling `off` or `removeListener` directly on the `Phaser.Events.EventEmitter`,
      * but updates our local list of listeners.
      *
-     * @param emitter The <code>Phaser.Events.EventEmitter</code> to listen to
-     * @param event The <code>event</code> type to listen for
-     * @param listener The <code>event</code> handler
+     * @param emitter The `Phaser.Events.EventEmitter` to listen to
+     * @param event The `event` type to listen for
+     * @param listener The `event` handler
      * @param context the listener function's "this"
      */
     off(emitter: Phaser.Events.EventEmitter, event: string | symbol, listener?: Function, context?: any): void;
 
     /**
-     * Removes all listeners registered through <code>on</code> or <code>once</code>
+     * Removes all listeners registered through `on` or `once`
      */
     unmapEventEmitterListeners(): void;
 }
