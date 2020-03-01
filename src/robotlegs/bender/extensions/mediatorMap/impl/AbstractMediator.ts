@@ -7,11 +7,9 @@
 
 import { injectable, inject, IClass, IEvent, IEventDispatcher, Event } from "@robotlegsjs/core";
 
-import { IEventEmitterMap } from "@robotlegsjs/eventemitter3";
-
 import { IMediator } from "../api/IMediator";
 
-import EventEmitter = require("eventemitter3");
+import { IEventEmitterMap } from "../../localEventEmitterMap/api/IEventEmitterMap";
 
 /**
  * Abstract mediator implementation used by <code>SceneMediator</code> and <code>ViewMediator</code> classes.
@@ -55,55 +53,55 @@ export abstract class AbstractMediator implements IMediator {
     /*============================================================================*/
 
     /**
-     * Use this method to listen for events dispatched by the <code>EventEmitter</code>.
+     * Use this method to listen for events dispatched by the <code>Phaser.Events.EventEmitter</code>.
      * All the registered listeners will be automatically removed when this mediator is destroyed.
      *
      * Call this method is the same as calling <code>on</code> or <code>addListener</code> directly on the
-     * <code>EventEmitter</code>, but keeps a list of listeners for easy (usually automatic) removal.
+     * <code>Phaser.Events.EventEmitter</code>, but keeps a list of listeners for easy (usually automatic) removal.
      *
      * The <code>context</code> will be automatically mapped to <code>this</code> when no context information is provided.
      *
-     * @param emitter The <code>EventEmitter</code> to listen to
+     * @param emitter The <code>Phaser.Events.EventEmitter</code> to listen to
      * @param event The <code>event</code> type to listen for
      * @param listener The <code>event</code> handler
      * @param context The listener function's "this"
      */
-    protected on(emitter: EventEmitter, event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
+    protected on(emitter: Phaser.Events.EventEmitter, event: string | symbol, listener: Function, context?: any): void {
         this._eventEmitterMap.on(emitter, event, listener, context || this);
     }
 
     /**
-     * Use this method to listen for events dispatched by the <code>EventEmitter</code>.
+     * Use this method to listen for events dispatched by the <code>Phaser.Events.EventEmitter</code>.
      * All the registered listeners will be automatically removed when this mediator is destroyed.
      *
      * Call this method is the same as calling <code>once</code> directly on the
-     * <code>EventEmitter</code>, but keeps a list of listeners for easy (usually automatic) removal.
+     * <code>Phaser.Events.EventEmitter</code>, but keeps a list of listeners for easy (usually automatic) removal.
      *
      * The <code>context</code> will be automatically mapped to <code>this</code> when no context information is provided.
      *
-     * @param emitter The <code>EventEmitter</code> to listen to
+     * @param emitter The <code>Phaser.Events.EventEmitter</code> to listen to
      * @param event The <code>event</code> type to listen for
      * @param listener The <code>event</code> handler
      * @param context The listener function's "this"
      */
-    protected once(emitter: EventEmitter, event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
+    protected once(emitter: Phaser.Events.EventEmitter, event: string | symbol, listener: Function, context?: any): void {
         this._eventEmitterMap.once(emitter, event, listener, context || this);
     }
 
     /**
-     * Use this method to remove listeners from events dispatched by the <code>EventEmitter</code>.
+     * Use this method to remove listeners from events dispatched by the <code>Phaser.Events.EventEmitter</code>.
      *
      * Call this method is the same as calling <code>off</code> directly on the
-     * <code>EventEmitter</code> emitter, but updates our local list of listeners.
+     * <code>Phaser.Events.EventEmitter</code> emitter, but updates our local list of listeners.
      *
      * The <code>context</code> will be automatically mapped to <code>this</code> when no context information is provided.
      *
-     * @param emitter The <code>EventEmitter</code> to listen to
+     * @param emitter The <code>Phaser.Events.EventEmitter</code> to listen to
      * @param event The <code>event</code> type to listen for
      * @param listener The <code>event</code> handler
      * @param contextt The listener function's "this"
      */
-    protected off(emitter: EventEmitter, event: string | symbol, listener: EventEmitter.ListenerFn, context?: any): void {
+    protected off(emitter: Phaser.Events.EventEmitter, event: string | symbol, listener: Function, context?: any): void {
         this._eventEmitterMap.off(emitter, event, listener, context || this);
     }
 
