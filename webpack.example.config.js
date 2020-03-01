@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SimpleProgressPlugin = require("webpack-simple-progress-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 const ConcatPlugin = require("webpack-concat-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
@@ -44,6 +45,8 @@ module.exports = options => {
       }),
 
       new ConcatPlugin(concatPluginConfigGenerator("phaser", [path.resolve(__dirname, "./node_modules/phaser/dist/phaser.js")])),
+
+      new CopyPlugin([{ from: "static", to: "." }]),
 
       new SimpleProgressPlugin()
     ],

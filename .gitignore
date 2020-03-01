@@ -73,6 +73,7 @@ src/**/*.js
 src/**/*.js.map
 test/**/*.js
 test/**/*.js.map
+gh-pages
 
 #os
 .DS_Store
