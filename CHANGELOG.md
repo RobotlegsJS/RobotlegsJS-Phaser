@@ -45,6 +45,16 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+#### Breaking Change
+
+- Update `phaser` to version `3.22.0` (see #112).
+
+  - `@robotlegsjs/eventemitter3` package is not necessary anymore, you should remove this dependency from your `package.json` and use the extension `LocalEventEmitterMap` from `@robotlegsjs/phaser` package.
+
+  - `eventemitter3` package is not necessary anymore, you should remove this dependency from your `package.json` and use the definitions from `Phaser.Events.EventEmitter` package instead. Notice that the type of your listeners must change from `EventEmitter.ListenerFn` to `Function`.
+
+  - For compatibility with previous versions of `phaser`, use `@robotlegsjs/phaser` version 2.
+
 #### Added
 
 - Add **Tidelift** as funding option (see #113).
@@ -52,8 +62,6 @@ Types of changes:
 - Add **Enterprise Support** information (see #114).
 
 #### Changed
-
-- Update `phaser` to version `3.22.0` (see #112).
 
 - Update `tslib` to version `1.11.1` (see #116).
 
