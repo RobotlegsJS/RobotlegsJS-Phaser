@@ -117,14 +117,6 @@
     inversify "^5.0.1"
     tslib "^1.10.0"
 
-"@robotlegsjs/eventemitter3@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.npmjs.org/@robotlegsjs/eventemitter3/-/eventemitter3-1.0.2.tgz#a00ed5ba02deaf09f012ac676cfb91dde0faa531"
-  integrity sha512-N3u15BWTmsV5YvBj1PuWe9bI3sp9FJKD/04VzYgYaodVNgO5h5ttwuqRCw1BnmsdFftUNPCgTgsSqqzAV/QGXQ==
-  dependencies:
-    "@robotlegsjs/core" "^1.0.3"
-    tslib "^1.10.0"
-
 "@sinonjs/commons@^1", "@sinonjs/commons@^1.6.0", "@sinonjs/commons@^1.7.0":
   version "1.7.1"
   resolved "https://registry.npmjs.org/@sinonjs/commons/-/commons-1.7.1.tgz#da5fd19a5f71177a53778073978873964f49acf1"
