@@ -45,6 +45,10 @@ Types of changes:
 - in case of vulnerabilities.
 -->
 
+## RobotlegsJS Phaser 3.0.0
+
+### [v3.0.0](https://github.com/RobotlegsJS/RobotlegsJS-Phaser/releases/tag/3.0.0) - 2020-03-14
+
 #### Breaking Change
 
 - Update `phaser` to version `3.22.0` (see #112).
